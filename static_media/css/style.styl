@@ -1,0 +1,128 @@
+blacktext = rgba(0, 0, 0, 0.7)
+letratext = 'Lato', sans-serif
+letratitulo = 'Roboto', sans-serif
+colorlink = #d93
+negro = #3D3935
+
+vendor(prop, args)
+    -webkit-{prop} args
+    -moz-{prop} args
+    -o-{prop} args
+    {prop} args
+
+transition()
+    vendor('transition', arguments)
+border-radius()
+    vendor('border-radius', arguments)
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+body
+    font-family: 'Open Sans', sans-serif    
+
+/*MENU*/
+.navbar-default
+    box-shadow 0 0 7px rgba(0, 0, 0, 0.3)
+    .navbar-nav > li > a
+        text-transform capitalize
+        font-size 17px !important
+        font-weight bold
+        font-family letratext
+        color blacktext
+        &.selected
+        &:hover
+            color colorlink !important
+        
+#logo
+    font-size 28px
+    font-family letratitulo 
+    font-weight 500
+    color blacktext
+/*Secciones*/
+
+.section-white-xs
+    margin-top 20px
+    margin-bottom 20px
+.section-grey
+    padding 30px 0px
+h1, h2, h3, h4, h5, h6
+    color blacktext
+p a
+    color colorlink
+.titulo-map
+    background negro
+    h4
+        color #fff
+        margin 0px
+        padding 20px 10px
+        font-size 20px
+        display inline-block
+    .btn-map
+        float right
+        display inline-block
+        margin-bottom 0px
+/*Sponsor*/
+.sponsors img.sponsor
+    opacity 0.8
+    min-height 90px
+    height auto
+    width 100%
+    &:hover
+        opacity 1
+.sponsors-padding
+    padding 17px 0
+    border-top 1px solid rgba(61, 57, 53, 0.5)
+/*footer*/
+.footer, .top-intro
+    background negro
+a.top-scroll:hover
+    background colorlink
+    border-color colorlink
+ul.footer_social li a i:hover, .footer p a:hover, ul.footer-list li a:hover
+    color colorlink
+
+.btn-blue, .btn-blue:focus, .btn-blue:active, .btn-blue-full, .btn-blue-full:focus, .btn-blue-full:active, input.contact-submit
+    background colorlink
+    border-color colorlink
+    padding 10px
+.btn-sm.btn-blue:hover, input.contact-submit:hover
+    border-color colorlink
+    color colorlink
+    cursor pointer
+    
+.footer-top
+    padding 20px 0 0px 0
+
+/*Registro*/
+#contact-form
+    max-width 100%
+select#input
+    color #7c8595
+
+
+
+
+
+// .section-image-contact
+//     margin 20px 0px
+// .section-image-contact
+//     background url(../images/portada3.jpg) top center no-repeat
+//     background-size cover
+// .contact-wrapper
+//     background negro
+// input.contact-submit
+//     background colorlink
+//     border-color colorlink
+//     &:hover
+//         border-color colorlink
+//         color colorlink
+//         cursor pointer
+// .contact-wrapper
+//     padding 15px
+// h2.section-title
+    
+// @media (max-width: 768px)
+//     .section-image-contact
+//         background negro

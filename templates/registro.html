@@ -128,7 +128,6 @@
 
                         <li><a href="consulta.html" class="menu-last">Organizaciones</a></li>
                         <li><a href="registro.html" class="menu-last">Registrarse</a></li>
-                        
 
                 
                     </ul>
@@ -151,47 +150,81 @@
 
   
     <!--begin section-white -->
-    <section class="section-white-xs">
+    <section class="section-white small-padding">
         
         <!--begin container-->
         <div class="container">
-
-            <!--begin row-->
-            <div class="row">
-
-                <!--begin col-md-6-->
-                <div class="col-md-6">
-                    <div class="titulo-map">
-                        <h4>Mapeo de cadena de valor de cacao</h4>
-                        <a href="http://cadenacacaoca.info/conocenos/" class="btn-sm btn-blue btn-map" target="_blank">Organizaciones</a>
-                    </div>
-                    <img src="http://placehold.it/500x400" class="width-100" alt="about-us-image">
-                </div>
-                <!--end col-md-6-->
-                
-                <!--begin col-md-6-->
-                <div class="col-md-6">
-                    
-                    <div class="tabs">
-                        <h4>Cadena de valor del cacao | Actores</h4>
-                        <div class="tab-content text-left" data-tab="1">
-
-                                <p class="margin-bottom-20">El Programa Agroalimentario Sostenible financiado por la Agencia de los Estados Unidos para el Desarrollo Internacional (USAID) e implementado por la Unidad Regional para el Desarrollo Rural Sostenible (RUTA) del Consejo Agropecuario Centroamericano (CAC), pone a su disposición esta herramienta web donde encontrará información sobre actores de las cadenas de cacao y su quehacer. </p>
-
-                                <p class="margin-bottom-20">Esta sección presenta un mapeo de actores involucrados en las cadenas de valor del cacao principalmente de Centroamérica y República Dominicana, pero también de otros países del resto del mundo. Estos actores son organizaciones e instituciones que bien participan como protagonistas principales en la cadena, o bien proporcionan servicios de apoyo a lo largo de la cadena.</p>
-
-                                <p class="margin-bottom-20">Esta herramienta se considera un instrumento de trabajo, gracias a la cual se facilita la comunicación e interacción entre las organizaciones e instituciones mejorando su encadenamiento a nivel nacional, regional e internacional.</p>
-
-
-
+            <h3>Registro de organizaciones</h3>
+            
+            
+                <p class="contact_success_box" style="display:none;">We received your message and you'll hear from us soon. Thank You!</p>
+                    <!--begin contact form -->
+                    <form id="contact-form" class="contact" action="php/contact.php" method="post">
+                        <!--begin row-->
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <input class="contact-input white-input" required="" name="contact_names" placeholder="Nombre completo organización*" type="text">
+                            </div>
+                            <div class="col-sm-6">
+                                <select name="" id="input" class="form-control contact-input white-input" required="required">
+                                    <option value="">Seleccione país sede*</option>
+                                    <option value="nic">Nicaragua</option>
+                                    <option value="hon">Honduras</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <input class="contact-input white-input" required="" name="contact_names" placeholder="Nombre de contacto*" type="text">
+                            </div>
+                            <div class="col-sm-6">
+                                <input class="contact-input white-input" required="" name="contact_email" placeholder="Correo de contacto*" type="email">
+                            </div>
+                            <div class="col-sm-6">
+                                <input class="contact-input white-input" required="" name="contact_phone" placeholder="Numero de teléfono*" type="text">
+                            </div>
+                            <div class="col-sm-6">
+                                <select name="" id="input" class="form-control contact-input white-input" required="required">
+                                    <option value="">Tipo de organización*</option>
+                                    <option value="nic">Nicaragua</option>
+                                    <option value="hon">Honduras</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-12">
+                                 <textarea class="contact-commnent white-input" rows="2" cols="20" name="contact_message" placeholder="Escribe un mensaje"></textarea>
+                                 
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="checkbox checkbox-primary">
+                                    <input id="checkbox2" type="checkbox" checked>
+                                    <label for="checkbox2">
+                                        Condiciones: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam hic distinctio sapiente dignissimos consectetur reprehenderit pariatur, corporis, voluptatem vitae impedit, id! Maiores, possimus, blanditiis. Sit enim amet corporis ab culpa!
+                                    </label>
+                                </div>
+                                <input value="Enviar registro" id="submit-button" class="contact-submit" type="submit">
                             </div>
 
-                    </div>
-                </div>    
-                <!--end col-md-6-->
+                            
+                        </div>
+                        <!--end row-->
+                    </form>
+                    <!--end contact form -->
+
+                
+                <!--begin col-sm-6 -->
+                <div class="col-sm-6">
+
+                    <form id="contact-form" class="contact" action="php/contact.php" method="post">
+                    
+                        
+                        
+                        
+                       
+                        
+                    </form>
+
+                </div>
+                <!--end col-sm-6-->
+             
             
-            </div>
-            <!--end row-->
     
         </div>
         <!--end container-->
@@ -199,53 +232,6 @@
     </section>
     <!--end section-white-->
 
-    <!--begin section-grey -->
-    <section class="section-grey">
-        
-        <!--begin container-->
-        <div class="container">
-
-            <!--begin row-->
-            <div class="row">
-            
-                <!--begin col-md-12-->
-                <div class="col-md-12">
-                    <h2 class="">Estudios cadena de valor de cacao en centroamérica | Tecnologías</h2>
-                
-                    
-                    <p align="margin-bottom-20">
-                        El <strong>Programa Agroalimentario Sostenible</strong> produjo una serie de estudios en relación al uso de tecnologías sostenibles en las cadenas de valor del cacao de El Salvador, Guatemala, Honduras y Nicaragua, así como acerca de la oferta de tecnologías a nivel mundial.
-                    </p>
-                    <p align="margin-bottom-20">
-                        Dado que se trata de información complementaria interesante a la provista por este buscador de actores de las cadenas del cacao de los países centroamericanos, ponemos a tu disposición los accesos directos a estos documentos, almacenados en nuestro <a href="http://cadenacacaoca.info/estudios-cacao/CEDOC/">Centro de Documentación:</a>
-                    </p>
-                    <p align="margin-bottom-20">
-                        - Uso actual y oferta de tecnologías sostenibles en las cadenas de valor del cacao en El Salvador para mejorar la seguridad alimentaria. <a href="http://cadenacacaoca.info/estudios-cacao/CEDOC/ficha.php?id=1563&amp;lang=es">Informe nacional | El Salvador</a>
-                    </p>
-                    <p align="margin-bottom-20">
-                        - Uso actual y oferta de tecnologías sostenibles en las cadenas de valor del cacao en Guatemala para mejorar la seguridad alimentaria. <a href="http://cadenacacaoca.info/estudios-cacao/CEDOC/ficha.php?id=1577&amp;lang=es">Informe nacional | Guatemala</a>
-                    </p>
-                    <p align="margin-bottom-20">
-                        - Uso actual y oferta de tecnologías sostenibles en las cadenas de valor del cacao en Honduras para mejorar la seguridad alimentaria. <a href="http://cadenacacaoca.info/estudios-cacao/CEDOC/ficha.php?id=1578&amp;lang=es">Informe nacional | Honduras</a>
-                    </p>
-                    <p align="margin-bottom-20">
-                        - Uso actual y oferta de tecnologías sostenibles en las cadenas de valor del cacao en Nicaragua para mejorar la seguridad alimentaria. <a href="http://cadenacacaoca.info/estudios-cacao/CEDOC/ficha.php?id=1579&amp;lang=es">Informe nacional | Nicaragua</a>
-                    </p>
-                    <p align="margin-bottom-20">
-                        - Oferta de tecnologías de producción de cacao. <a href="http://cadenacacaoca.info/estudios-cacao/CEDOC/ficha.php?id=1567&amp;lang=es">Informe mundial</a>
-                    </p>
-
-                </div>
-                <!--end col-md-12-->
-            
-            </div>
-            <!--end row-->
-    
-        </div>
-        <!--end container-->
-    
-    </section>
-    <!--end section-grey-->
 
     <!--begin section-white-->
     <div class="section-white sponsors-padding">
