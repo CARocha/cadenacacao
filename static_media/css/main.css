@@ -91,7 +91,7 @@ p {
 	line-height: 24px;
 	font-weight: 400;
 	margin-bottom:15px;
-	color: #7c8595;
+	color: #424242;
 	font-family: 'Lato', sans-serif;
 }
 
@@ -393,7 +393,7 @@ img.fluid {
 }
 
 .section-grey{
-	background-color: #f6f7f8;
+	background-color: #f5f5f5;
 	padding:90px 0;
 }
 
@@ -412,8 +412,7 @@ img.fluid {
 	padding:90px 0;
 }
 
-.section-grey.small-padding, .section-white.small-padding, .section-blue.small-padding, .section-light-blue.small-padding{
-	padding:40px 0;
+.section-grey.small-padding, .section-white.small-padding, .section-blue.small-padding, .section-light-blue.small-padding{ padding: 40px 0;
 }
 
 .section-grey.medium-padding, .section-white.medium-padding, .section-dark.medium-padding, .section-blue.medium-padding, .section-light-blue.medium-padding{
@@ -1285,12 +1284,12 @@ ul.header_social li a.facebook i:hover {
   background-color: #3b5998;
 }
 
-ul.header_social li a.instagram i:hover {
-  background-color: #6dc993;
+ul.header_social li a.flickr i:hover {
+  background-color: #0063DC;
 }
 
-ul.header_social li a.skype i:hover {
-  background-color: #00aff0;
+ul.header_social li a.youtube i:hover {
+  background-color: #FF0000;
 }
 
 /* ----- 3. Breadcrumb ----- */
@@ -4206,8 +4205,8 @@ h5.chart-title {
     outline: 5px auto -webkit-focus-ring-color;
     outline-offset: -2px; }
 .checkbox input[type="checkbox"]:checked + label::after {
-    font-family: 'FontAwesome';
-    content: "\f00c"; }
+    font-family: "icons-font";
+    content: "\e00b"; }
 .checkbox input[type="checkbox"]:disabled + label {
     opacity: 0.65; }
 .checkbox input[type="checkbox"]:disabled + label::before {
@@ -4223,3 +4222,76 @@ h5.chart-title {
     border-color: #428bca; }
 .checkbox-primary input[type="checkbox"]:checked + label::after {
     color: #fff; }
+#myList {
+    padding: 0 0 40px 0;
+    margin: 0;
+    list-style: none;
+    overflow: hidden;
+}
+#myList .box{
+	    float: left;
+    width: 100%;
+    background: #fff;
+    border-radius: 3px;
+    padding: 20px;
+    margin: 0 0 8px 0;
+    box-shadow: 2px 3px 3px 0px rgba(0,0,0,0.1);
+    -moz-box-shadow: 2px 3px 3px 0px rgba(0,0,0,0.1);
+    -webkit-box-shadow: 2px 3px 3px 0px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    transition: box-shadow 1s;
+    -webkit-transition: box-shadow 1s;
+    -moz-transition: box-shadow 1s;
+}
+#myList .box .thumb{
+    margin: 0 20px 0 0;
+    text-align: center;
+}
+#myList .box .text-col{
+	float: left;
+}
+#myList .box strong.price{
+	    font: 700 18px/18px 'Roboto',sans-serif;
+    color: #222;
+    float: left;
+    padding: 24px 0 0 50px;
+}
+#myList .box a.btn-1{
+	float: right;
+}
+#myList .box .text-col a.text {
+    font: 400 13px/13px 'Roboto',sans-serif;
+    color: #3d3935;
+    text-decoration: none;
+    float: left;
+    padding: 0 20px 0 0;
+}
+#myList .box .text-col p {
+    font: 400 15px/15px 'Roboto',sans-serif;
+    color: #666;
+}
+#myList .box .text-col h5 {
+    margin: 0 0 10px 0;
+}
+#myList .box .text-col h5 a{
+   color: #B5BD00;
+}
+
+#myList .box .text-col a.text i{
+	    padding: 0 6px 0 0;
+	    font-size: 15px;
+}
+#myList .box:hover{
+	box-shadow: 2px 3px 3px 0px rgba(0,0,0,0.3);
+    -moz-box-shadow: 2px 3px 3px 0px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 2px 3px 3px 0px rgba(0,0,0,0.3);
+}
+
+
+.thumb img {
+    vertical-align: middle;
+    max-height: auto;
+    max-width: 100%;
+}

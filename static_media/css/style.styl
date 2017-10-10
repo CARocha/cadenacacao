@@ -3,6 +3,7 @@ letratext = 'Lato', sans-serif
 letratitulo = 'Roboto', sans-serif
 colorlink = #d93
 negro = #3D3935
+verde = #B5BD00
 
 vendor(prop, args)
     -webkit-{prop} args
@@ -36,7 +37,7 @@ body
             color colorlink !important
         
 #logo
-    font-size 28px
+    font-size 18px
     font-family letratitulo 
     font-weight 500
     color blacktext
@@ -101,9 +102,46 @@ ul.footer_social li a i:hover, .footer p a:hover, ul.footer-list li a:hover
 select#input
     color #7c8595
 
-
-
-
+/*consulta*/
+.input-group
+    padding 5px 0px
+    position inherit
+    display block
+.input-group-addon
+    background negro
+    color white
+    line-height normal
+    border-radius 0px
+    border 0px
+.border-bottom-black
+    border-bottom 1px solid rgba(61,57,53,0.5)
+    padding-bottom 10px
+.pagination > li > a, .pagination > li > span
+    color negro
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus
+    background-color colorlink
+    border-color colorlink
+/*Detalle org*/
+.obj-org
+    margin-bottom 10px
+    h5
+        margin 5px
+.detalle-org .panel-primary
+    border-color negro
+    .panel-heading
+        background-color verde
+    .panel-body
+        li
+            font-size 16px
+            color negro
+            a
+                color colorlink    
+.panel-body a.pull-right
+    color negro
+    font-weight bold
+    i
+        padding-right 2px
+        
 
 // .section-image-contact
 //     margin 20px 0px
