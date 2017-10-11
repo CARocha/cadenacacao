@@ -128,6 +128,7 @@
 
                         <li><a href="consulta.html" class="menu-last">Organizaciones</a></li>
                         <li><a href="registro.html" class="menu-last">Registrarse</a></li>
+                        <li><a class="" type="button" data-toggle="collapse" data-target="#collapsebuscador" aria-expanded="true" aria-controls="collapsebuscador"><i class="icon-search-find"></i></a></li>
 
                 
                     </ul>
@@ -159,8 +160,18 @@
                             <h5 class="panel-title">Asociación de Productores de Sistemas Agroforestales con Cacao Orgánico-Olancho (APROSACAO)</h5>
                         </div>
                         <div class="panel-body">
-                            <a class="pull-right"><i class="icon-calendar"> </i>Actualización: Feb 20, 2016 </a>
-                                <div class="clearfix"></div>
+                            <ul class="list-inline lista-perfil">
+                                <li class="pull-left">
+                                    <a><i class="">Calificación: </i>  <img src="../static_media/images/cacaoranking.png" alt="" width="100px"> </a>
+                                    
+                                    
+                                </li>
+                                <li class="pull-right">
+                                    <a ><i class="icon-calendar"> </i> Actualización: Feb 20, 2016 </a>
+                                </li>
+                            </ul>
+                            
+                            <div class="clearfix"></div>
                             <div class="obj-org">
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-3">
@@ -187,10 +198,10 @@
                                             <div class="panel-body">
                                                 <ul>
                                                     <li>
-                                                        <b>País sede:</b> Honduras</a>
+                                                        <b>País sede:</b> Honduras
                                                     </li>
                                                     <li>
-                                                        <b>País(es) donde labora:</b> Honduras</a>
+                                                        <b>País(es) donde labora:</b> Honduras
                                                     </li>
                                                     <li>
                                                         <b>Ámbito de acción: </b> Nacional
@@ -242,9 +253,95 @@
                                                 </ul>
                                             </div>
                                         </div>
+                                        <div class="">
+                                            <h5 class="border-bottom-black">Valorar organización</h5>
+                                        </div>
+                                        <div>
+                                            <div class="col-sm-12">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon" id="ratelabel">Rango del 1 al 5</span>
+                                                    <select name="" id="input-rate" class="form-control" required="required">
+                                                        <option value="">1</option><option value="1">2</option><option value="2">3</option><option value="3">4</option><option value="4">5</option>
+                                                    </select>
+                                                    <span class="input-group-btn" id="rate-btn">
+                                                        <button class="btn btn-rate" type="button">Valorar </button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <ul class="list-inline">
+                                            <li>
+                                                <a class="btn-sm btn-blue like-btn" href="">Excelente Organnización <i class="icon-like-filled"></i></a>
+                                            </li>
+                                            
+                                            
+                                        </ul> -->
                                     </div>
                                 </div>
+                                
                             </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                             <h5 class="panel-title">Productos y sevicios</h5>
+                        </div>
+                        <div class="panel-body ">
+                            <div class="row">
+                
+                                <div id="myCarousel" class="carousel carousel1 slide  margin-bottom-30" data-interval="false">
+                                    
+                                    <!-- Wrapper for slides -->
+                                    <div class="carousel-inner">
+                                    
+                                        <div class="item active popup-gallery">
+                                                            
+                                            <a href="../static_media/images/cacaoimg/1.jpg" title="The Cleaner" class="col-xs-4 col-sm-4 margin-bottom-20">
+                                                <img src="../static_media/images/cacaoimg/1.jpg">
+
+                                            </a>
+                                            <a href="../static_media/images/cacaoimg/2.jpg" title="The Cleaner" class="col-xs-4 col-sm-4 margin-bottom-20">
+                                                <img src="../static_media/images/cacaoimg/2.jpg">
+
+                                            </a>
+                                            <a href="../static_media/images/cacaoimg/3.jpg" title="The Cleaner" class="col-xs-4 col-sm-4 margin-bottom-20">
+                                                <img src="../static_media/images/cacaoimg/3.jpg">
+
+                                            </a>
+                                                
+                                
+                                        </div>
+                                        <div class="item popup-gallery">
+                                            
+                                            <a href="http://farm9.staticflickr.com/8383/8563475581_df05e9906d_b.jpg" title="The Cleaner" class="col-xs-4 col-sm-4 margin-bottom-20">
+                                                <img src="http://farm9.staticflickr.com/8383/8563475581_df05e9906d_s.jpg">
+
+                                            </a>
+                                        </div>
+
+                                        
+                                    </div>
+
+                                    <!-- Indicators -->
+                                    <ol class="carousel-indicators">
+                                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                                    </ol>
+                                    <!-- Left and right controls 
+                                      <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                                        <span class="glyphicon glyphicon-chevron-left"></span>
+                                        <span class="sr-only">Previous</span>
+                                      </a>
+                                      <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                                        <span class="glyphicon glyphicon-chevron-right"></span>
+                                        <span class="sr-only">Next</span>
+                                      </a>-->
+
+                                </div>
+                            
+                            </div>
+                            <h5>Comentarios</h5>
+                            <img src="../static_media/images/disqus.png" alt="" width="100%">
                         </div>
                     </div>
                 </div>
@@ -256,8 +353,8 @@
                             <!--begin row-->
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <div class="input-group">
-                                        <span class="input-group-addon" id="sizing-addon2">País sede</span>
+                                    <div class="input-group group-costum">
+                                        <span class="input-group-addon group" id="sizing-addon2">País sede</span>
                                         <select name="" id="input" class="form-control" required="required">
                                             <option value="">Seleccione país sede</option>
                                             <option value="nic">Nicaragua</option>
@@ -266,8 +363,8 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
-                                    <div class="input-group">
-                                        <span class="input-group-addon" id="sizing-addon2">Ámbito de acción</span>
+                                    <div class="input-group group-costum">
+                                        <span class="input-group-addon group" id="sizing-addon2">Ámbito de acción</span>
                                         <select name="" id="input" class="form-control" required="required">
                                             <option value="">Seleccione ámbito de acción</option>
                                             <option value="nic">Nicaragua</option>
@@ -276,8 +373,8 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
-                                    <div class="input-group">
-                                        <span class="input-group-addon" id="sizing-addon2">Tipo de organización *</span>
+                                    <div class="input-group group-costum">
+                                        <span class="input-group-addon group" id="sizing-addon2">Tipo de organización *</span>
                                         <select name="" id="input" class="form-control" required="required">
                                             <option value="">Seleccione tipo de organización</option>
                                             <option value="nic">Nicaragua</option>
@@ -286,8 +383,8 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
-                                    <div class="input-group">
-                                        <span class="input-group-addon" id="sizing-addon2">País(es) donde labora *</span>
+                                    <div class="input-group group-costum">
+                                        <span class="input-group-addon group" id="sizing-addon2">País(es) donde labora *</span>
                                         <select name="" id="input" class="form-control" required="required">
                                             <option value="">Seleccione País(es) donde labora</option>
                                             <option value="nic">Nicaragua</option>
@@ -296,24 +393,24 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
-                                    <div class="input-group">
-                                        <span class="input-group-addon" id="sizing-addon2">Participación en la cadena de valor *</span>
+                                    <div class="input-group group-costum">
+                                        <span class="input-group-addon group" id="sizing-addon2">Participación en la cadena de valor *</span>
                                         <select name="" id="input" class="form-control" required="required">
                                             <option value="">Seleccione participación en la cadena</option><option value="1">Vivero</option><option value="2">Insumos</option><option value="3">Producción</option><option value="4">Transformación primaria</option><option value="5">Acopio</option><option value="6">Transformación secundaria</option><option value="7">Comercialización nacional</option><option value="8">Comercialización internacional</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
-                                    <div class="input-group">
-                                        <span class="input-group-addon" id="sizing-addon2">Servicios a la cadena de valor *</span>
+                                    <div class="input-group group-costum">
+                                        <span class="input-group-addon group" id="sizing-addon2">Servicios a la cadena de valor *</span>
                                         <select name="" id="input" class="form-control" required="required">
                                             <option value="">Seleccione servicios a la cadena</option><option value="1">Asistencia técnica</option><option value="2">Financiamiento</option><option value="3">Investigación</option><option value="4">Certificación</option><option value="5">Legales</option><option value="6">Logística</option><option value="7">Mercadeo</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
-                                    <div class="input-group">
-                                        <span class="input-group-addon" id="sizing-addon2">Intercambio de tecnologías *</span>
+                                    <div class="input-group group-costum">
+                                        <span class="input-group-addon group" id="sizing-addon2">Intercambio de tecnologías *</span>
                                         <select name="" id="input" class="form-control" required="required">
                                             <option value="">Seleccione intercambio de tecnologías</option><option value="1">Desarrollo</option><option value="2">Divulgación</option><option value="3">Transferencia</option><option value="4">Intercambio</option><option value="5">Demanda</option>
                                         </select>
@@ -510,8 +607,29 @@
     <script src="../static_media/js/bootstrap.min.js"></script>
     <script src="../static_media/js/jquery.scrollTo-min.js"></script>
     <script src="../static_media/js/jquery.magnific-popup.min.js"></script>
-    <!-- <script src="../static_media/js/plugins.js"></script> -->
-    <script src="../static_media/js/custom.js"></script>
+    <!-- <script src="../static_media/js/plugins.js"></script>
+    <script src="../static_media/js/custom.js"></script> -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.popup-gallery').magnificPopup({
+                delegate: 'a',
+                type: 'image',
+                tLoading: 'Loading image #%curr%...',
+                mainClass: 'mfp-img-mobile',
+                gallery: {
+                    enabled: true,
+                    navigateByImgClick: true,
+                    preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+                },
+                image: {
+                    tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+                    titleSrc: function(item) {
+                        return item.el.attr('title') + '<small>by Marsel Van Oosten</small>';
+                    }
+                }
+            });
+        });
+    </script>
    
     
 </body></html>

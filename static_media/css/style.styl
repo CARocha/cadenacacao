@@ -15,7 +15,10 @@ transition()
     vendor('transition', arguments)
 border-radius()
     vendor('border-radius', arguments)
-
+box-shadow() 
+  -moz-box-shadow arguments
+  -webkit-box-shadow arguments
+  box-shadow arguments
 
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
@@ -26,6 +29,7 @@ body
 /*MENU*/
 .navbar-default
     box-shadow 0 0 7px rgba(0, 0, 0, 0.3)
+    border-radius 0px
     .navbar-nav > li > a
         text-transform capitalize
         font-size 17px !important
@@ -61,7 +65,6 @@ p a
         font-size 20px
         display inline-block
     .btn-map
-        float right
         display inline-block
         margin-bottom 0px
 /*Sponsor*/
@@ -103,16 +106,16 @@ select#input
     color #7c8595
 
 /*consulta*/
-.input-group
+.group-costum
     padding 5px 0px
     position inherit
     display block
-.input-group-addon
-    background negro
-    color white
-    line-height normal
-    border-radius 0px
-    border 0px
+    .input-group-addon
+        background negro
+        color white
+        line-height normal
+        border-radius 0px
+        border 0px
 .border-bottom-black
     border-bottom 1px solid rgba(61,57,53,0.5)
     padding-bottom 10px
@@ -141,7 +144,69 @@ select#input
     font-weight bold
     i
         padding-right 2px
+.lista-perfil li
+    margin-bottom 20px
+    color negro
+    font-weight bold
+.lista-perfil>li>a
+    color negro
+    font-size 16px
+#ratelabel
+    background-color negro
+    color white
+    font-size 16px
+    font-family: 'Lato', sans-serif;
+#input-rate
+    max-width 60px
+    font-size 16px
+    font-family: 'Lato', sans-serif;
+    min-height 36px 
+#rate-btn
+    display inline-block
+    font-size 16px
+    font-family: 'Lato', sans-serif;
+    button
+        background-color verde
+        color white
+        border-color verde
+        font-size 16px
+        font-family: 'Lato', sans-serif;
+        &:hover
+            background-color white
+            color verde
+            border-color verde      
+/*buscador*/
+.buscador
+    position: absolute;
+    width: 20%;
+    z-index: 99;
+    right: 0;
+    input.contact-input
+        border-radius 0px
+        .form-control:focus
+            box-shadow inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(181, 189, 0, 0.5)
+.like-btn
+    background-color verde
+    border-color verde
+    &:hover
+        color verde !important
+        border-color verde !important
         
+/*galeria*/
+.popup-gallery:hover img
+    opacity 1
+.mfp-title
+    background-color negro
+    text-align center
+    padding 10px 0px
+    small
+        display none !important
+.mfp-img-mobile .mfp-bottom-bar
+    padding 0px
+.no-padding-top
+    padding-top 0px
+.carousel.carousel1 .carousel-indicators li.active
+    background-color verde
 
 // .section-image-contact
 //     margin 20px 0px
