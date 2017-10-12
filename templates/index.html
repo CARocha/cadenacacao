@@ -128,7 +128,10 @@
 
                         <li><a href="consulta.html" class="menu-last">Organizaciones</a></li>
                         <li><a href="registro.html" class="menu-last">Registrarse</a></li>
-                        
+                        <li><a class="" type="button" data-toggle="collapse" data-target="#collapsebuscador" aria-expanded="true" aria-controls="collapsebuscador"><i class="icon-search-find"></i></a></li>
+                        <li class="visible-xs visible-sm">
+                            <input type="search" name="" id="input" class="form-control contact-input white-input" value="" required="required" title="" placeholder="Buscar ....">
+                        </li>
 
                 
                     </ul>
@@ -142,7 +145,11 @@
 
         </div>
         <!-- end navbar -->
-            
+        <div class="buscador collapse" id="collapsebuscador">
+            <form action="">
+                <input type="search" name="" id="input" class="form-control contact-input white-input" value="" required="required" title="" placeholder="Buscar ....">
+            </form>
+        </div>
     </header>
     <!--end header -->
 
@@ -348,7 +355,7 @@
                     <!--begin col-md-2 -->
                     <div class="col-md-2 text-center">
                     
-                        <a href="#top-intro" class="scrool top-scroll"><i class="icon icon-angle-up"></i></a>
+                        <a href="#top-intro" class="scrool top-scroll back-to-top"><i class="icon icon-angle-up"></i></a>
                         
                     </div>
                     <!--end col-md-2 -->
@@ -398,10 +405,17 @@
 
      <script type="text/javascript">
 
-                console.log(" Itchy " != " Scratchy ")
+        console.log(" Itchy " != " Scratchy ")
+            
+            $('a.back-to-top').click(function() {
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 700);
+                return false;
+            });
 
 
-                </script>
+    </script>
 
 
     <!-- Load JS here for greater good =============================-->
@@ -409,8 +423,8 @@
     <script src="../static_media/js/bootstrap.min.js"></script>
     <script src="../static_media/js/jquery.scrollTo-min.js"></script>
     <script src="../static_media/js/jquery.magnific-popup.min.js"></script>
-    <!-- <script src="../static_media/js/plugins.js"></script> -->
-    <script src="../static_media/js/custom.js"></script>
+    <!-- <script src="../static_media/js/plugins.js"></script> 
+    <script src="../static_media/js/custom.js"></script>-->
    
     
 </body></html>
