@@ -28,6 +28,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'directorio',
+    'location_field.apps.DefaultConfig',
+    'sorl.thumbnail',
+    'star_ratings',
 ]
 
 MIDDLEWARE = [
@@ -45,7 +48,7 @@ ROOT_URLCONF = 'cadenacacao.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -105,3 +108,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static_media"),
 )
+
+THUMBNAIL_DEBUG = True
+
+STAR_RATINGS_ANONYMOUS = True
+
+STAR_RATINGS_STAR_HEIGHT = 20

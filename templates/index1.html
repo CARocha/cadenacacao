@@ -1,0 +1,4 @@
+<h1>Lista org</h1>
+{% for obj in object %}
+	<a href="{% url "detail-org" obj.slug %}">{{obj.nombre}}</a>
+{% endfor %}
