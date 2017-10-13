@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 from location_field.models.plain import PlainLocationField
 from sorl.thumbnail import ImageField
@@ -22,6 +23,9 @@ class Pais(models.Model):
 class TipoActividad(models.Model):
 	nombre = models.CharField(max_length=255)
 
+	def __str__(self):
+		return self.nombre
+
 	class Meta:
 		verbose_name = 'Tipo de actividad'
 		verbose_name_plural = 'Tipos de actividades'
@@ -29,17 +33,26 @@ class TipoActividad(models.Model):
 class Participacion(models.Model):
 	nombre = models.CharField(max_length=255)
 
+	def __str__(self):
+		return self.nombre
+
 	class Meta:
 		verbose_name_plural = 'Participación en la cadena de valor'
 
 class ServiciosCadena(models.Model):
 	nombre = models.CharField(max_length=255)
 
+	def __str__(self):
+		return self.nombre
+
 	class Meta:
 		verbose_name_plural = 'Servicios en la Cadena de Valor'
 
 class IntercambioTecnologia(models.Model):
 	nombre = models.CharField(max_length=255)
+
+	def __str__(self):
+		return self.nombre
 
 	class Meta:
 		verbose_name_plural = 'Intercambio de Tecnología'
@@ -87,13 +100,16 @@ class Organizacion(models.Model):
 	tamano = models.CharField(max_length=20,blank=True,null=True,verbose_name='Tamaño')
 	actualizado = models.DateField(editable=False,auto_now=True)
 	slug = models.SlugField(editable=False, max_length=450)
-
 	ratings = GenericRelation(Rating, related_query_name='orgs')
+	usuario = models.ForeignKey(User)
 
 	def save(self, *args, **kwargs):
 		if not self.id:
 			self.slug = slugify(self.nombre)
 		super(Organizacion, self).save(*args, **kwargs)
+
+	def __str__(self):
+		return self.nombre
 
 	class Meta:
 		verbose_name = 'Organización'

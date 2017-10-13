@@ -23,7 +23,7 @@ SECRET_KEY = '90lsxcc-_v^t2=8%1zf8j)86#c45xg3^a6e_e+a&iz-1@jl0dk'
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
-    'django.contrib.sites',
+    # 'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'location_field.apps.DefaultConfig',
     'sorl.thumbnail',
     'star_ratings',
+    'el_pagination',
 ]
 
 MIDDLEWARE = [
@@ -57,6 +58,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # 'cadenacacao.context.buscador',
             ],
         },
     },
@@ -110,13 +112,16 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static_media"),
 )
 
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
+
 THUMBNAIL_DEBUG = True
 
 STAR_RATINGS_ANONYMOUS = True
 
 STAR_RATINGS_STAR_HEIGHT = 20
 
+STAR_RATINGS_RERATE = False
 
 #######
 ACCOUNT_ACTIVATION_DAYS = 7
-SITE_ID = 1
+# SITE_ID = 1
