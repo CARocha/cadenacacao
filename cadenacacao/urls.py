@@ -22,6 +22,8 @@ from directorio.views import *
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
+    url(r'^accounts/register/$',MyRegistrationView.as_view(),name='registration_register'),
+    url(r'^accounts/', include('registration.backends.hmac.urls')),
     url(r'^$', index, name='index'),
     url(r'^detalle/(?P<slug>[\w-]+)/$', detail_org, name='detail-org')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -23,6 +23,7 @@ SECRET_KEY = '90lsxcc-_v^t2=8%1zf8j)86#c45xg3^a6e_e+a&iz-1@jl0dk'
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -114,3 +115,8 @@ THUMBNAIL_DEBUG = True
 STAR_RATINGS_ANONYMOUS = True
 
 STAR_RATINGS_STAR_HEIGHT = 20
+
+
+#######
+ACCOUNT_ACTIVATION_DAYS = 7
+SITE_ID = 1

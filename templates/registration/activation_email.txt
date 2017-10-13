@@ -1,0 +1,4 @@
+<a href="127.0.0.1:8000/accounts/activate/{{activation_key}}">Activar</a> <br>
+{{expiration_days}} <br>
+{{user}} <br>
+{{site}}
