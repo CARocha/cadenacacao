@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from .models import *
 from .forms import *
+from django.db.models import Q
 from registration.backends.hmac.views import *
 
 # Create your views here.
@@ -43,7 +44,7 @@ def _queryset_filtrado_afiliado(request):
 	for key in unvalid_keys:
 		del params[key]
 
-	return Organizacion.objects.filter(**params)
+	return Organizacion.objects.filter(**params).order_by('nombre')
 
 def consulta(request,template='consulta.html'):
 	if request.method == 'POST':
@@ -80,16 +81,21 @@ def consulta(request,template='consulta.html'):
 		except:
 			pass
 
-	if 'pais_sede' not in request.session:
-		object_list = Organizacion.objects.all()
+	if request.GET.get('q'):
+		search_text = request.GET['q']
+		if search_text is not None and search_text != u'':
+			object_list = Organizacion.objects.filter(Q(nombre__icontains=search_text)).distinct().order_by('nombre')
+	elif 'pais_sede' not in request.session:
+		object_list = Organizacion.objects.all().order_by('nombre')
 	else:
 		filtro = _queryset_filtrado_afiliado(request)
 		object_list = filtro
 
 	return render(request, template, locals())
 
-def detail_org(request,template='detalle.html',slug=None):
+def detail_org(request,template='perfil.html',slug=None):
 	object = Organizacion.objects.get(slug=slug)
+
 	return render(request, template, locals())
 
 class MyRegistrationView(RegistrationView):

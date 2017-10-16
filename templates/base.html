@@ -151,9 +151,9 @@
         </div>
         <!-- end navbar -->
         <div class="buscador collapse" id="collapsebuscador">
-            <form action="/buscador/" method="GET">
+            <form action="/consulta/" method="GET">
                 <!--<input type="search" name="" id="input" class="form-control contact-input white-input" value="" required="required" title="" placeholder="Buscar ....">-->
-                {{form.q}}
+                {{search.q}}
             </form>
         </div>
     </header>
@@ -162,6 +162,30 @@
     {% block content %}
         
     {% endblock content %}
+
+    <!--begin section-white-->
+    <div class="section-white sponsors-padding">
+        
+        <!--begin container-->
+        <div class="container">
+
+            <!--begin row-->
+            <div class="row text-center">
+                <!--begin col-sm-12-->
+                <div class="col-sm-12 sponsors">
+                    <img src="/static/images/footer-banner.png" class="sponsor" alt="image">
+                    
+                </div>
+                <!--end col-sm-12-->
+                
+            </div>
+            <!--end row-->
+            
+        </div>
+        <!--end container-->
+    
+    </div> 
+    <!--end section-white-->
 
         <!--begin footer -->
     <footer class="footer">
