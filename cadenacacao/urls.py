@@ -19,6 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from directorio.views import *
 from context import *
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -27,6 +28,8 @@ urlpatterns = [
     url(r'^accounts/', include('registration.backends.hmac.urls')),
     url(r'^$', index, name='index'),
     url(r'^buscador/$', buscador, name='search'),
-    url(r'^consulta/$', consulta, name='consulta'),
-    url(r'^detalle/(?P<slug>[\w-]+)/$', detail_org, name='detail-org')
+    url(r'^actores/$', consulta, name='consulta'),
+    url(r'^actores/perfil/(?P<slug>[\w-]+)/$', detail_org, name='detail-org')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += staticfiles_urlpatterns()

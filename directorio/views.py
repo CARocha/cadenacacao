@@ -95,6 +95,8 @@ def consulta(request,template='consulta.html'):
 
 def detail_org(request,template='perfil.html',slug=None):
 	object = Organizacion.objects.get(slug=slug)
+	fotos = ProductosServicios.objects.filter(organizacion = object)
+	conteo = fotos.count() / 3
 
 	return render(request, template, locals())
 

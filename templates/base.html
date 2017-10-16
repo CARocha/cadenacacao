@@ -131,7 +131,7 @@
 
                         <li><a href="/" class="menu-last selected">Inicio</a></li>
 
-                        <li><a href="/consulta/" class="menu-last">Organizaciones</a></li>
+                        <li><a href="/actores/" class="menu-last">Organizaciones</a></li>
                         <li><a href="registro.html" class="menu-last">Registrarse</a></li>
                         <li><a class="" type="button" data-toggle="collapse" data-target="#collapsebuscador" aria-expanded="true" aria-controls="collapsebuscador"><i class="icon-search-find"></i></a></li>
                         <li class="visible-xs visible-sm">
@@ -151,7 +151,7 @@
         </div>
         <!-- end navbar -->
         <div class="buscador collapse" id="collapsebuscador">
-            <form action="/consulta/" method="GET">
+            <form action="/actores/" method="GET">
                 <!--<input type="search" name="" id="input" class="form-control contact-input white-input" value="" required="required" title="" placeholder="Buscar ....">-->
                 {{search.q}}
             </form>
@@ -338,6 +338,7 @@
     <script src="/static/js/jquery.magnific-popup.min.js"></script>
     <!-- <script src="../static_media/js/plugins.js"></script> 
     <script src="../static_media/js/custom.js"></script>-->
+    {% block extra_js %}{% endblock extra_js %}
    
     
 </body></html>

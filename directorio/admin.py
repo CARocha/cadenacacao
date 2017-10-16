@@ -14,6 +14,7 @@ admin.site.register(IntercambioTecnologia)
 class ProductosServiciosInline(admin.TabularInline):
 	model = ProductosServicios
 	extra = 1
+	max_num = 9
 
 class OrganizacionAdmin(admin.ModelAdmin):
 	inlines = [ProductosServiciosInline,]
