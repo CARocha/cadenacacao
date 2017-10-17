@@ -17,9 +17,8 @@ AMBITO_CHOICES = (
 	)
 
 TIPO_CHOICES = (
-		('','Seleccione tipo de organización'),
-		('Sector público','Sector público'),('Sector privado','Sector privado'),('Academia','Academia'),
-		('Asociación','Asociación'),('Cooperativa','Cooperativa'),('Fundación','Fundación'),
+		('Sector publico','Sector público'),('Sector privado','Sector privado'),('Academia','Academia'),
+		('Asociacion','Asociación'),('Cooperativa','Cooperativa'),('Fundacion','Fundación'),
 		('ONG','ONG'),('ONGI','ONGI'),('Plataforma','Plataforma')
 	)
 
@@ -28,7 +27,7 @@ class OrganizacionForm(forms.Form):
 		super(OrganizacionForm, self).__init__(*args, **kwargs)
 		self.fields['pais_sede'] = forms.ModelChoiceField(queryset=paises(),required=True)
 		self.fields['ambito_accion'] = forms.ChoiceField(choices=AMBITO_CHOICES,required=False)
-		self.fields['tipo_organizacion'] = forms.ChoiceField(choices=TIPO_CHOICES,required=False)
+		self.fields['tipo_organizacion'] = forms.MultipleChoiceField(choices=TIPO_CHOICES,required=False)
 		self.fields['paises_labora'] = forms.ModelMultipleChoiceField(queryset=paises_labora(),required=False)
 		self.fields['participacion_cadena'] = forms.ModelMultipleChoiceField(queryset=Participacion.objects.all(),required=False)
 		self.fields['servicios'] = forms.ModelMultipleChoiceField(queryset=ServiciosCadena.objects.all(),required=False)

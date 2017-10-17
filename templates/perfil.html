@@ -3,6 +3,11 @@
  {% load ratings %}
   
 {% block content %}
+<style type="text/css">
+.star-ratings ul {
+    height: 18.5px !important
+}
+</style>
       <!--begin section-white -->
     <section class="section-white small-padding">
         
@@ -14,7 +19,7 @@
             </h5>
             <ul class="list-inline lista-perfil">
                                 <li class="pull-left">
-                                    <a><i class="">Calificación: </i>  <img src="/static/images/cacaoranking.png" alt="" width="150px"> </a>
+                                    <a><i class="">Calificación: </i>  <!--<img src="/static/images/cacaoranking.png" alt="" width="150px"> -->{% ratings object %}</a>
                                     
                                     
                                 </li>
@@ -147,7 +152,7 @@
                     </div>
                     {% endif %}
                 </div>
-                <div class="col-xs-4 col-sm-4">
+                <div class="col-xs-12 col-sm-4">
                     {% if object.contacto_1 %}
                     <div class="panel panel-primary">
                         <div class="panel-heading">

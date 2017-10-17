@@ -58,8 +58,8 @@ class IntercambioTecnologia(models.Model):
 		verbose_name_plural = 'Intercambio de Tecnología'
 
 TIPO_CHOICES = (
-		('Sector público','Sector público'),('Sector privado','Sector privado'),('Academia','Academia'),
-		('Asociación','Asociación'),('Cooperativa','Cooperativa'),('Fundación','Fundación'),
+		('Sector publico','Sector público'),('Sector privado','Sector privado'),('Academia','Academia'),
+		('Asociacion','Asociación'),('Cooperativa','Cooperativa'),('Fundacion','Fundación'),
 		('ONG','ONG'),('ONGI','ONGI'),('Plataforma','Plataforma')
 	)
 
@@ -76,6 +76,7 @@ PERIODO_CHOICES = (
 
 class Organizacion(models.Model):
 	nombre = models.CharField(max_length=255)
+	logo = ImageField(upload_to='logos/',blank=True,null=True)
 	objetivo = models.TextField()
 	contacto_1 = models.CharField(max_length=255,blank=True,null=True,verbose_name='Persona de Contacto 1')
 	correo_1 = models.CharField(max_length=255,blank=True,null=True,verbose_name='Correo 1')

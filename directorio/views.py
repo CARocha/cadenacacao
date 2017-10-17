@@ -22,7 +22,7 @@ def _queryset_filtrado_afiliado(request):
 		params['ambito_accion'] = request.session['ambito_accion']
 
 	if request.session['tipo_organizacion']:
-		params['tipo_organizacion'] = request.session['tipo_organizacion']
+		params['tipo_organizacion__in'] = request.session['tipo_organizacion']
 
 	if request.session['paises_labora']:
 		params['paises_labora__in'] = request.session['paises_labora']

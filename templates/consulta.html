@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load ratings %}
 {% load el_pagination_tags %}
+{% load thumbnail %}
 
 {% block content %}
  <!--begin section-white -->
@@ -108,7 +109,7 @@
         <h4 class="border-bottom-black">Lista de organizaciones</h4>
         <div class="list">
             <ul id="myList">
-                {% paginate object_list %}
+                {% paginate 10 object_list %}
                 {% if not object_list %}
                     <li>No se encontraron resultados</li>
                 {% else %}
@@ -118,7 +119,13 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-2">
                                 <div class="thumb">
-                                    <a href="#"><img src="http://via.placeholder.com/120x120" alt="img"></a>
+                                    <a href="{% url "detail-org" obj.slug %}">
+                                        {% thumbnail obj.logo "120x120" crop='center' format='PNG' as img %}
+                                            <img src="/media/{{img}}" alt="img">
+                                        {% empty %}
+                                            <img src="http://via.placeholder.com/120x120" alt="img">
+                                        {% endthumbnail %}
+                                    </a>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-9">
@@ -159,9 +166,9 @@
             </ul>
         </div>
         <nav aria-label="Page navigation">
-            {% show_pages %}
-            <!--<ul class="pagination pull-right">
-                <li>
+            <ul class="pagination pull-right">
+                {% show_pages %}
+                <!--<li>
                     <a href="#" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
@@ -175,12 +182,25 @@
                     <a href="#" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
-                </li>
-            </ul>-->
+                </li>-->
+            </ul>
         </nav>
     </div>
 </section>
 <!--end section-white-->
 {% endblock content %}
+
+{% block extra_js %}
+<script type="text/javascript">
+    $( "#id_pais_sede" ).addClass("form-control");
+    $( "#id_ambito_accion" ).addClass("form-control");
+    $( "#id_tipo_organizacion" ).addClass("form-control");
+    $( "#id_paises_labora" ).addClass("form-control");
+    $( "#id_participacion_cadena" ).addClass("form-control");
+    $( "#id_servicios" ).addClass("form-control");
+    $( "#id_intercambio" ).addClass("form-control");
+
+</script>
+{% endblock extra_js %}
 
 
