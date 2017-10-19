@@ -1,14 +1,26 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-	<form action="/accounts/register/" method="POST">{% csrf_token %}
-		
-		{{form.as_p}}
-		<input type="submit" name="Registrar">
-	</form>
-	
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+<section class="section-white small-padding">
+    
+    <!--begin container-->
+    <div class="container">
+		<form action="/accounts/register/" method="POST" id="contact-form" class="contact">{% csrf_token %}
+			<!--<div class="row">
+                <div class="col-sm-6">
+                    <input class="contact-input white-input" required="" name="contact_names" placeholder="Nombre completo organización*" type="text">
+                </div>
+                <div class="col-sm-6">
+                    <select name="" id="input" class="form-control contact-input white-input" required="required">
+                        <option value="">Seleccione país sede*</option>
+                        <option value="nic">Nicaragua</option>
+                        <option value="hon">Honduras</option>
+                    </select>
+                </div>
+            </div>-->
+			{{form.as_p}}
+			<input type="submit" name="Registrar">
+		</form>
+	</div>
+</section>
+{% endblock content %}

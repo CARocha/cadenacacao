@@ -25,6 +25,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
     url(r'^accounts/register/$',MyRegistrationView.as_view(),name='registration_register'),
+    url(r'^accounts/profile/$',user_profile,name='profile'),
+    url(r'^accounts/profile/editar/(?P<slug>[\w-]+)/$',editar_org,name='editar-org'),
     url(r'^accounts/', include('registration.backends.hmac.urls')),
     url(r'^$', index, name='index'),
     url(r'^buscador/$', buscador, name='search'),

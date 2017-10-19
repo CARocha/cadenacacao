@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+	{{user.username}} <br>
+	{{user.email}} <br>
+	{% for org in organizaciones %}
+		<a href="{% url "editar-org" org.slug %}">{{org.nombre}}</a> <br>
+	{% endfor %}
+{% endblock content %}

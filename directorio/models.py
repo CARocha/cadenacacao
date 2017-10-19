@@ -74,7 +74,11 @@ PERIODO_CHOICES = (
 		('Más de 5 años','Más de 5 años')
 	)
 
+ESP_ORG_CHOICES = (
+	('Organizacion','Organización'),('Especialista','Especialista'))
+
 class Organizacion(models.Model):
+	tipo = models.CharField(max_length=20,choices=ESP_ORG_CHOICES)
 	nombre = models.CharField(max_length=255)
 	logo = ImageField(upload_to='logos/',blank=True,null=True)
 	objetivo = models.TextField()
@@ -102,7 +106,7 @@ class Organizacion(models.Model):
 	actualizado = models.DateField(editable=False,auto_now=True)
 	slug = models.SlugField(editable=False, max_length=450)
 	ratings = GenericRelation(Rating, related_query_name='orgs')
-	usuario = models.ForeignKey(User)
+	usuario = models.ForeignKey(User,blank=True,null=True)
 
 	def save(self, *args, **kwargs):
 		if not self.id:
@@ -113,8 +117,8 @@ class Organizacion(models.Model):
 		return self.nombre
 
 	class Meta:
-		verbose_name = 'Organización'
-		verbose_name_plural = 'Organizaciones'
+		verbose_name = 'Organización/Especialista'
+		verbose_name_plural = 'Organizaciones/Especialistas'
 
 class ProductosServicios(models.Model):
 	organizacion = models.ForeignKey(Organizacion)

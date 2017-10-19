@@ -6,6 +6,8 @@ from .models import *
 from .forms import *
 from django.db.models import Q
 from registration.backends.hmac.views import *
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request,template='index.html'):
@@ -36,6 +38,9 @@ def _queryset_filtrado_afiliado(request):
 	if request.session['intercambio']:
 		params['intercambio__in'] = request.session['intercambio']
 
+	if request.session['tipo']:
+		params['tipo'] = request.session['tipo']
+
 	unvalid_keys = []
 	for key in params:
 		if not params[key]:
@@ -58,6 +63,7 @@ def consulta(request,template='consulta.html'):
 			request.session['participacion_cadena'] = form.cleaned_data['participacion_cadena']
 			request.session['servicios'] = form.cleaned_data['servicios']
 			request.session['intercambio'] = form.cleaned_data['intercambio']
+			request.session['tipo'] = form.cleaned_data['tipo']
 
 			mensaje = "Todas las variables estan correctamente :)"
 			request.session['activo'] = True
@@ -78,6 +84,7 @@ def consulta(request,template='consulta.html'):
 			del request.session['participacion_cadena']
 			del request.session['servicios']
 			del request.session['intercambio']
+			del request.session['tipo']
 		except:
 			pass
 
@@ -115,3 +122,23 @@ class MyRegistrationView(RegistrationView):
 		self.send_activation_email(new_user)
 
 		return new_user
+
+@login_required
+def user_profile(request,template='perfil_user.html'):
+	user = User.objects.get(username = request.user)
+	organizaciones = Organizacion.objects.filter(usuario = user)
+
+	return render(request, template, locals())
+
+@login_required
+def editar_org(request,template='editar_org.html',slug=None):
+	object = Organizacion.objects.get(slug=slug)
+	if request.method == 'POST':
+		form = OrgForm(request.POST, instance=object)
+		if form.is_valid():
+			form.save()
+	else:
+		form = OrgForm(instance=object)
+
+
+	return render(request, template, locals())

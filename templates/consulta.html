@@ -86,6 +86,15 @@
                         </select>-->
                     </div>
                 </div>
+                <div class="col-sm-4">
+                    <div class="input-group group-costum">
+                        <span class="input-group-addon" id="sizing-addon2">Tipo</span>
+                        {{form.tipo}}
+                        <!--<select name="" id="input" class="form-control" required="required">
+                            <option value="">Seleccione intercambio de tecnologías</option><option value="1">Desarrollo</option><option value="2">Divulgación</option><option value="3">Transferencia</option><option value="4">Intercambio</option><option value="5">Demanda</option>
+                        </select>-->
+                    </div>
+                </div>
                 
 
                 <div class="col-sm-4">
@@ -199,6 +208,7 @@
     $( "#id_participacion_cadena" ).addClass("form-control");
     $( "#id_servicios" ).addClass("form-control");
     $( "#id_intercambio" ).addClass("form-control");
+    $( "#id_tipo" ).addClass("form-control");
 
 </script>
 {% endblock extra_js %}
