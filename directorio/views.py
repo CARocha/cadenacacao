@@ -8,6 +8,8 @@ from django.db.models import Q
 from registration.backends.hmac.views import *
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
+from django.core.mail import send_mail, EmailMultiAlternatives
 
 # Create your views here.
 def index(request,template='index.html'):
@@ -69,7 +71,6 @@ def consulta(request,template='consulta.html'):
 			request.session['activo'] = True
 			centinela = 1
 
-			# return HttpResponseRedirect('/afiliados/datos-personales/')
 		else:
 			centinela = 0
 
@@ -128,7 +129,47 @@ def user_profile(request,template='perfil_user.html'):
 	user = User.objects.get(username = request.user)
 	organizaciones = Organizacion.objects.filter(usuario = user)
 
+	if request.method == 'POST':
+		form = EmailForm(request.POST)
+		if form.is_valid():
+			mensaje = form.cleaned_data['mensaje']
+		try:
+			subject, from_email, to = 'Solicitud ingreso Cadena de cacao', 'cadenacacao@gmail.com', 'cadenacacao@gmail.com'
+			text_content = 'Usuario: ' + str(user.username) + '<br>'  + \
+							'Correo: ' + str(user.email) + '<br>'  + \
+							'Mensaje: ' + str(mensaje)
+
+			html_content = 'Usuario: ' + str(user.username) + '<br>'  + \
+							'Correo: ' + str(user.email) + '<br>'  + \
+							'Mensaje: ' + str(mensaje)
+
+			msg = EmailMultiAlternatives(subject, text_content, from_email, ['cadenacacao@gmail.com',])
+			msg.attach_alternative(html_content, "text/html")
+			msg.send()
+
+			enviado = 1
+			form = EmailForm()
+		except:
+			pass
+
+	else:
+		form = EmailForm()
+
 	return render(request, template, locals())
+
+@login_required
+def editar_user(request,template='editar_user.html'):
+	if request.method == 'POST':
+		form = UserForm(request.POST, instance=request.user)
+		if form.is_valid():
+			form.save()
+			return HttpResponseRedirect('/accounts/profile/')
+	else:
+		form = UserForm(instance=request.user)
+
+	return render(request, template, locals())
+
+from django.contrib.auth.views import password_reset
 
 @login_required
 def editar_org(request,template='editar_org.html',slug=None):
@@ -137,8 +178,9 @@ def editar_org(request,template='editar_org.html',slug=None):
 		form = OrgForm(request.POST, instance=object)
 		if form.is_valid():
 			form.save()
+			return HttpResponseRedirect('/accounts/profile/')
+
 	else:
 		form = OrgForm(instance=object)
-
 
 	return render(request, template, locals())

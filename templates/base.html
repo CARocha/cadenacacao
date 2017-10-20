@@ -132,7 +132,14 @@
                         <li><a href="/" class="menu-last selected">Inicio</a></li>
 
                         <li><a href="/actores/" class="menu-last">Organizaciones</a></li>
-                        <li><a href="registro.html" class="menu-last">Registrarse</a></li>
+                        {% if user.is_authenticated %}
+                            <li><a href="/accounts/profile/">Bienvenid@ {{user.username}}</a></li>
+                            <li><a href="/accounts/logout/">Salir</a></li>
+                        {% else %}
+                            <li><a href="/accounts/register/" class="menu-last">Registrarse</a></li>
+                            <li><a href="/accounts/login/" class="menu-last">Iniciar Sesion</a></li>
+                        {% endif %}
+                       
                         <li><a class="" type="button" data-toggle="collapse" data-target="#collapsebuscador" aria-expanded="true" aria-controls="collapsebuscador"><i class="icon-search-find"></i></a></li>
                         <li class="visible-xs visible-sm">
                             <form action="/actores/" method="GET">

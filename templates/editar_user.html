@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form method="POST" id="contact-form">{% csrf_token %}
+	username:{{form.username}} <br>
+	email:{{form.email}} <br>
+	Nombre:{{form.first_name}} <br>
+	apellidos:{{form.last_name}} <br>
+	<input type="submit" name="Editar" value="Editar">
+</form>
+	
+{% endblock content %}

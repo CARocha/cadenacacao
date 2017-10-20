@@ -3,7 +3,7 @@
 {% block content %}
 <form action="." method="POST" id="contact-form" class="contact">{% csrf_token %}
 	{{ form.media }}
-	{{form.as_p}}
+	{{ form.as_p }}
 	<input type="submit" name="Editar">
 </form>
 	
