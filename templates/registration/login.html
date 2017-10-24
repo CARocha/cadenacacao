@@ -1,8 +1,29 @@
 {% extends "base.html" %}
 
 {% block content %}
-<form action="/accounts/login/" method="POST" id="contact-form" class="contact">{% csrf_token %}
-	{{form.as_p}}
-	<input type="submit" name="Login">
-</form>
+<!--begin section-white -->
+<section class="section-white small-padding">
+    
+    <!--begin container-->
+    <div class="container">
+    	<h3>Inicio de sesion</h3>
+		<form action="/accounts/login/" method="POST" id="contact-form" class="contact">{% csrf_token %}
+			<div class="col-sm-6">
+				{{form.username}}
+            </div>
+            <div class="col-sm-6">
+				{{form.password}}				
+            </div>
+			<input type="submit" name="Login" id="submit-button" class="contact-submit" value="Enviar">
+		</form>
+	</div>
+</div>
 {% endblock content %}
+
+{% block extra_js %}
+<script type="text/javascript">
+    $( "#id_username" ).addClass("contact-input white-input").attr("placeholder", "Nombre de usuario*");
+    $( "#id_password" ).addClass("contact-input white-input").attr("placeholder", "Contraseña*");
+
+</script>
+{% endblock extra_js %}

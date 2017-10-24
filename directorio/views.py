@@ -8,8 +8,9 @@ from django.db.models import Q
 from registration.backends.hmac.views import *
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.core.mail import send_mail, EmailMultiAlternatives
+import json as simplejson
 
 # Create your views here.
 def index(request,template='index.html'):
@@ -106,6 +107,8 @@ def detail_org(request,template='perfil.html',slug=None):
 	fotos = ProductosServicios.objects.filter(organizacion = object)
 	conteo = fotos.count() / 3
 
+	location = object.location.split(",")
+
 	return render(request, template, locals())
 
 class MyRegistrationView(RegistrationView):
@@ -184,3 +187,17 @@ def editar_org(request,template='editar_org.html',slug=None):
 		form = OrgForm(instance=object)
 
 	return render(request, template, locals())
+
+def obtener_lista(request):
+	if request.is_ajax():
+		lista = []
+		for objeto in Organizacion.objects.all():
+			split_location = objeto.location.split(",")
+			dicc = dict(nombre=objeto.nombre ,id=objeto.id,
+						lat=float(split_location[0]),
+						lon=float(split_location[1])
+						)
+			lista.append(dicc)
+
+		serializado = simplejson.dumps(lista)
+		return HttpResponse(serializado, content_type = 'application/json')

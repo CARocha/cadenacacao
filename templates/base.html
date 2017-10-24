@@ -129,9 +129,9 @@
                     <!-- begin nav -->
                     <ul class="nav navbar-nav text-right">
 
-                        <li><a href="/" class="menu-last selected">Inicio</a></li>
+                        <li><a href="/" class="menu-last {% if request.path == '/' %}selected{% endif %}">Inicio</a></li>
 
-                        <li><a href="/actores/" class="menu-last">Organizaciones</a></li>
+                        <li><a href="/actores/" class="menu-last {% if '/actores/' in request.path %}selected{% endif %}">Organizaciones</a></li>
                         {% if user.is_authenticated %}
                             <li><a href="/accounts/profile/">Bienvenid@ {{user.username}}</a></li>
                             <li><a href="/accounts/logout/">Salir</a></li>

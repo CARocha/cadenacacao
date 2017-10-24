@@ -43,7 +43,8 @@ urlpatterns = [
     url(r'^$', index, name='index'),
     url(r'^buscador/$', buscador, name='search'),
     url(r'^actores/$', consulta, name='consulta'),
-    url(r'^actores/perfil/(?P<slug>[\w-]+)/$', detail_org, name='detail-org')
+    url(r'^actores/perfil/(?P<slug>[\w-]+)/$', detail_org, name='detail-org'),
+    url(r'^mapa/$', obtener_lista, name='obtener-lista'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()

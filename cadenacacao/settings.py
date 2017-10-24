@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'sorl.thumbnail',
     'star_ratings',
     'el_pagination',
+    # 'disqus',
 ]
 
 MIDDLEWARE = [

@@ -59,7 +59,13 @@
                                 </div>
 
                                 <div class="col-xs-12 col-sm-6 no-padding">
-                                    <iframe src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d62035.480202143335!2d-87.01821512528458!3d13.644528691889732!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e0!4m0!4m5!1s0x8f6fd1049d86c45f%3A0xb4a883edc1235347!2sTex%C3%ADguat%2C+Honduras!3m2!1d13.649619!2d-87.0218192!5e0!3m2!1ses-419!2ses!4v1507847832150" width="600" height="245" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                    <style>
+                                       #map {
+                                        height: 300px;
+                                        width: 100%;
+                                       }
+                                    </style>
+                                    <div id="map"></div>
                                 </div>
 
 
@@ -235,25 +241,42 @@
 {% endblock content %}
 
 {% block extra_js %}
-  <script type="text/javascript">
-        $(document).ready(function() {
-            $('.popup-gallery').magnificPopup({
-                delegate: 'a',
-                type: 'image',
-                tLoading: 'Loading image #%curr%...',
-                mainClass: 'mfp-img-mobile',
-                gallery: {
-                    enabled: true,
-                    navigateByImgClick: true,
-                    preload: [0,1] // Will preload 0 - before current, and 1 after the current image
-                },
-                image: {
-                    tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
-                    titleSrc: function(item) {
-                        return item.el.attr('title') + '<small>by Marsel Van Oosten</small>';
-                    }
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.popup-gallery').magnificPopup({
+            delegate: 'a',
+            type: 'image',
+            tLoading: 'Loading image #%curr%...',
+            mainClass: 'mfp-img-mobile',
+            gallery: {
+                enabled: true,
+                navigateByImgClick: true,
+                preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+            },
+            image: {
+                tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+                titleSrc: function(item) {
+                    return item.el.attr('title') + '<small>by Marsel Van Oosten</small>';
                 }
-            });
+            }
         });
-    </script>  
+    });
+</script> 
+
+<script>
+      function initMap() {
+        var uluru = {lat: {{location.0}}, lng: {{location.1}}};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 7,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBaguICGAyEp7DdwkG2Z-odTyjLVYMicmg&callback=initMap">
+    </script>
 {% endblock extra_js %}

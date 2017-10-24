@@ -1,4 +1,10 @@
-<a href="127.0.0.1:8000/accounts/activate/{{activation_key}}">Activar</a> <br>
-{{expiration_days}} <br>
-{{user}} <br>
-{{site}}
+Para acceder al sistema deberá darle clic al siguiente enlace para que el usuario {{user}} se active:
+
+{{site}}/accounts/activate/{{activation_key}}
+
+Este link estará activo por los siguientes {{expiration_days}} días.
+
+Si hacer clic en el enlace de arriba no funciona, copie y pegue la URL en una nueva ventana del navegador.
+
+Sinceramente,
+El equipo de Sistema Cadena de Cacao
