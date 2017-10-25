@@ -7,7 +7,7 @@
 	{% if user.last_name %}{{user.last_name}} <br>{% endif %}
 	{% if organizaciones %}
 		{% for org in organizaciones %}
-			<p>{{org.nombre}} <a href="{% url "editar-org" org.slug %}">Editar</a></p>
+			<p>{{org.nombre}} <a href="{% url "detail-org" org.slug %}">Ver</a> <a href="{% url "editar-org" org.slug %}">Editar</a></p>
 		{% endfor %}
 	{% else %}
 		<form method="POST" id="contact-form">{% csrf_token %}
