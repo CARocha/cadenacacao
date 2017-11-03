@@ -1,0 +1,216 @@
+{% extends "base.html" %}
+{% load ratings %}
+{% load el_pagination_tags %}
+{% load thumbnail %}
+
+{% block content %}
+ <!--begin section-white -->
+<section class="section-white small-padding">
+    
+    <!--begin container-->
+    <div class="container">
+        <h4 class="border-bottom-black">Filtro directorio</h4>
+    
+        <!--begin contact form -->
+        <form id="contact-form" class="contact" action="." method="post">{% csrf_token %}
+            <!--begin row-->
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="input-group group-costum">
+                        <span class="input-group-addon" id="sizing-addon2">País sede</span>
+                        {{form.pais_sede}}
+                        <!--<select name="" id="input" class="form-control" required="required">
+                            <option value="">Seleccione país sede</option>
+                            <option value="nic">Nicaragua</option>
+                            <option value="hon">Honduras</option>
+                        </select>-->
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group group-costum">
+                        <span class="input-group-addon" id="sizing-addon2">Ámbito de acción</span>
+                        {{form.ambito_accion}}
+                        <!--<select name="" id="input" class="form-control" required="required">
+                            <option value="">Seleccione ámbito de acción</option>
+                            <option value="nic">Nicaragua</option>
+                            <option value="hon">Honduras</option>
+                        </select>-->
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group group-costum">
+                        <span class="input-group-addon" id="sizing-addon2">Tipo de organización *</span>
+                        {{form.tipo_organizacion}}
+                        <!--<select name="" id="input" class="form-control" required="required">
+                            <option value="">Seleccione tipo de organización</option>
+                            <option value="nic">Nicaragua</option>
+                            <option value="hon">Honduras</option>
+                        </select>-->
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group group-costum">
+                        <span class="input-group-addon" id="sizing-addon2">País(es) donde labora *</span>
+                        {{form.paises_labora}}
+                        <!--<select name="" id="input" class="form-control" required="required">
+                            <option value="">Seleccione País(es) donde labora</option>
+                            <option value="nic">Nicaragua</option>
+                            <option value="hon">Honduras</option>
+                        </select>-->
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group group-costum">
+                        <span class="input-group-addon" id="sizing-addon2">Participación en la cadena de valor *</span>
+                        {{form.participacion_cadena}}
+                        <!--<select name="" id="input" class="form-control" required="required">
+                            <option value="">Seleccione participación en la cadena</option><option value="1">Vivero</option><option value="2">Insumos</option><option value="3">Producción</option><option value="4">Transformación primaria</option><option value="5">Acopio</option><option value="6">Transformación secundaria</option><option value="7">Comercialización nacional</option><option value="8">Comercialización internacional</option>
+                        </select>-->
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group group-costum">
+                        <span class="input-group-addon" id="sizing-addon2">Servicios a la cadena de valor *</span>
+                        {{form.servicios}}
+                        <!--<select name="" id="input" class="form-control" required="required">
+                            <option value="">Seleccione servicios a la cadena</option><option value="1">Asistencia técnica</option><option value="2">Financiamiento</option><option value="3">Investigación</option><option value="4">Certificación</option><option value="5">Legales</option><option value="6">Logística</option><option value="7">Mercadeo</option>
+                        </select>-->
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group group-costum">
+                        <span class="input-group-addon" id="sizing-addon2">Intercambio de tecnologías *</span>
+                        {{form.intercambio}}
+                        <!--<select name="" id="input" class="form-control" required="required">
+                            <option value="">Seleccione intercambio de tecnologías</option><option value="1">Desarrollo</option><option value="2">Divulgación</option><option value="3">Transferencia</option><option value="4">Intercambio</option><option value="5">Demanda</option>
+                        </select>-->
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group group-costum">
+                        <span class="input-group-addon" id="sizing-addon2">Tipo</span>
+                        {{form.tipo}}
+                        <!--<select name="" id="input" class="form-control" required="required">
+                            <option value="">Seleccione intercambio de tecnologías</option><option value="1">Desarrollo</option><option value="2">Divulgación</option><option value="3">Transferencia</option><option value="4">Intercambio</option><option value="5">Demanda</option>
+                        </select>-->
+                    </div>
+                </div>
+                
+
+                <div class="col-sm-4">
+                    <input value="Consultar" id="submit-button" class="contact-submit" type="submit">
+                </div>
+
+                
+            </div>
+            <!--end row-->
+        </form>
+        <!--end contact form -->            
+       
+
+    </div>
+    <!--end container-->
+
+</section>
+<!--end section-white-->
+<section class="section-grey">
+    <div class="container">
+        <h4 class="border-bottom-black">Lista de organizaciones</h4>
+        <div class="list">
+            <ul id="myList">
+                {% paginate 10 object_list %}
+                {% if not object_list %}
+                    <li>No se encontraron resultados</li>
+                {% else %}
+                {% for obj in object_list %}
+                    <li>
+                    <div class="box">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-2">
+                                <div class="thumb">
+                                    <a href="{% url "detail-org" obj.slug %}">
+                                        {% thumbnail obj.logo "120x120" crop='center' format='PNG' as img %}
+                                            <img src="/media/{{img}}" alt="img">
+                                        {% empty %}
+                                            <img src="http://via.placeholder.com/120x120" alt="img">
+                                        {% endthumbnail %}
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-9">
+                                <div class="text-col">
+                                    <h5><a href="{% url "detail-org" obj.slug %}">{{obj.nombre}}</a></h5>
+                                    <a class="text"><i class="icon-pin-map"></i>País: {{obj.pais_sede}} - Labora: {% for pais in obj.paises_labora.all %}{{pais}}{% if not forloop.last %}, {% endif %}{% endfor %}</a>
+                                    <a class="text"><i class="icon-pin-map"></i>Ámbito de acción: {{obj.ambito_accion}}</a>
+                                     
+                                    <a class="text"><i class="icon-calendar"> </i>Actualización: {{obj.actualizado}} </a>
+
+                                    <div class="clearfix"></div>
+                                    <br>
+
+                                    <a href="#" class="text"><i class="icon-user"></i>
+                                        Contacto: {{obj.contacto_1}}
+                                    </a>
+                                    <a href="#" class="text"><i class="icon-email-envelope"></i>
+                                       {{obj.correo_1}}
+                                    </a>  
+                                    <a href="#" class="text"><i class="icon-call-phone"></i>
+                                        {{obj.telefono_1}}
+                                    </a>
+                                    <div class="clearfix"></div>
+                                    <br>
+                                    <a class="text"><i class="icon-star-two"> </i>Calificación: </a>
+                                    {% ratings obj %}
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-1">
+                                <a href="{% url "detail-org" obj.slug %}" class="btn-1 btn-sm btn-blue btn-map">Perfil</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+                {% endif %}
+                                               
+            </ul>
+        </div>
+        <nav aria-label="Page navigation">
+            <ul class="pagination pull-right">
+                {% show_pages %}
+                <!--<li>
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li>
+                    <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>-->
+            </ul>
+        </nav>
+    </div>
+</section>
+<!--end section-white-->
+{% endblock content %}
+
+{% block extra_js %}
+<script type="text/javascript">
+    $( "#id_pais_sede" ).addClass("form-control");
+    $( "#id_ambito_accion" ).addClass("form-control");
+    $( "#id_tipo_organizacion" ).addClass("form-control");
+    $( "#id_paises_labora" ).addClass("form-control");
+    $( "#id_participacion_cadena" ).addClass("form-control");
+    $( "#id_servicios" ).addClass("form-control");
+    $( "#id_intercambio" ).addClass("form-control");
+    $( "#id_tipo" ).addClass("form-control");
+
+</script>
+{% endblock extra_js %}
+
+

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <title>Directorio de rutas</title>
+
+	<!-- LOAD JQUERY LIBRARY -->
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+	
+    <!-- Loading Bootstrap -->
+    <link href="../static_media/css/bootstrap.css" rel="stylesheet">
+
+    
+    <!-- Font Awesome -->
+    <link href="../static_media/css/fonts.css" rel="stylesheet">
+    <link href="../static_media/font/flaticon.css" rel="stylesheet">
+
+    <!-- Loading Template CSS -->
+    <link href="../static_media/css/main.css" rel="stylesheet">
+    <link href="../static_media/css/style-magnific-popup.css" rel="stylesheet">
+    <link href="../static_media/css/style.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,400i,700,700i,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oleo+Script+Swash+Caps" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lobster|Oleo+Script+Swash+Caps" rel="stylesheet">
+
+    <!-- LOADING FONTS AND ICONS -->        
+    <!-- <link rel="stylesheet" type="text/css" href="revolution/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css">
+    <link rel="stylesheet" type="text/css" href="revolution/fonts/font-awesome/css/font-awesome.min.css"> -->
+
+    <!-- Font Favicon -->
+    <!-- <link rel="shortcut icon" href="images/favicon.ico"> -->
+    <link rel="shortcut icon" type="image/png" href="../static_media/images/favicon.png" />
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+    
+    <!--headerIncludes-->
+    
+</head>
+<body>
+    
+    <!--begin top-intro -->
+    <div class="top-intro" id="top-intro">
+    
+        <!--begin container-->
+        <div class="container"> 
+
+            <!--begin row-->
+            <div class="row">
+            
+                <!--begin col-sm-4-->
+                <div class="col-sm-12details-wrapper">
+
+                    <!--begin header_social -->
+                    <ul class="header_social pull-right">
+
+                        <li>
+                            <a href="https://www.facebook.com/vecomesoamerica/" class="facebook">
+                                <i class="icon icon-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.flickr.com/photos/vecoma/" class="flickr">
+                                <i class="icon icon-flickr"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/channel/UCoCJqwCoQx9ZfT9mFbdfBhQ" class="youtube">
+                                <i class="icon icon-youtube"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <!--end header_social -->
+
+                </div>
+                <!--end col-sm-4 -->
+                 
+                       
+            </div>
+            <!--end row -->
+                    
+        </div>
+        <!--end container -->
+                
+    </div>
+    <!--end top-intro -->
+
+    <!--begin header -->
+    <header class="header">
+
+        <!-- begin navbar -->
+        <div class="navbar yamm navbar-default ">
+          
+            <!-- begin container -->
+            <div class="container">
+
+                <!-- begin navbar-header -->
+                <div class="navbar-header">
+                    <button data-target="#navbar-collapse-02" data-toggle="collapse" class="navbar-toggle" type="button">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="index.html" class="navbar-brand brand scrool" id="logo">Directorio Regional de Actores de Cadena de Valor de Cacao</a>
+                </div>
+                <!-- end navbar-header -->
+
+                <!-- begin navbar -->
+                <div id="navbar-collapse-02" class="navbar-collapse collapse">
+                    
+                    <!-- begin nav -->
+                    <ul class="nav navbar-nav text-right">
+
+                        <li><a href="index.html" class="menu-last selected">Inicio</a></li>
+
+                        <li><a href="consulta.html" class="menu-last">Organizaciones</a></li>
+                        <li><a href="registro.html" class="menu-last">Registrarse</a></li>
+                        <li><a class="" type="button" data-toggle="collapse" data-target="#collapsebuscador" aria-expanded="true" aria-controls="collapsebuscador"><i class="icon-search-find"></i></a></li>
+                
+                    </ul>
+                    <!-- end nav -->
+
+                </div>
+                <!-- end navbar -->
+
+            </div>
+            <!-- end container -->
+
+        </div>
+        <!-- end navbar -->
+            
+    </header>
+    <!--end header -->
+
+
+
+
+  
+    <!--begin section-white -->
+    <section class="section-white small-padding">
+        
+        <!--begin container-->
+        <div class="container">
+            <h3>Registro de organizaciones</h3>
+            
+            
+                <p class="contact_success_box" style="display:none;">We received your message and you'll hear from us soon. Thank You!</p>
+                    <!--begin contact form -->
+                    <form id="contact-form" class="contact" action="php/contact.php" method="post">
+                        <!--begin row-->
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <input class="contact-input white-input" required="" name="contact_names" placeholder="Nombre completo organización*" type="text">
+                            </div>
+                            <div class="col-sm-6">
+                                <select name="" id="input" class="form-control contact-input white-input" required="required">
+                                    <option value="">Seleccione país sede*</option>
+                                    <option value="nic">Nicaragua</option>
+                                    <option value="hon">Honduras</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <input class="contact-input white-input" required="" name="contact_names" placeholder="Nombre de contacto*" type="text">
+                            </div>
+                            <div class="col-sm-6">
+                                <input class="contact-input white-input" required="" name="contact_email" placeholder="Correo de contacto*" type="email">
+                            </div>
+                            <div class="col-sm-6">
+                                <input class="contact-input white-input" required="" name="contact_phone" placeholder="Numero de teléfono*" type="text">
+                            </div>
+                            <div class="col-sm-6">
+                                <select name="" id="input" class="form-control contact-input white-input" required="required">
+                                    <option value="">Tipo de organización*</option>
+                                    <option value="nic">Nicaragua</option>
+                                    <option value="hon">Honduras</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-12">
+                                 <textarea class="contact-commnent white-input" rows="2" cols="20" name="contact_message" placeholder="Mensaje: ¿porqué desea incribirse?"></textarea>
+                                 
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="checkbox checkbox-primary">
+                                    <input id="checkbox2" type="checkbox" checked>
+                                    <label for="checkbox2">
+                                        <b>Terminos y condiciones:</b> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam hic distinctio sapiente dignissimos consectetur reprehenderit pariatur, corporis, voluptatem vitae impedit, id! Maiores, possimus, blanditiis. Sit enim amet corporis ab culpa!
+                                    </label>
+                                </div>
+                                <input value="Enviar registro" id="submit-button" class="contact-submit" type="submit">
+                            </div>
+
+                            
+                        </div>
+                        <!--end row-->
+                    </form>
+                    <!--end contact form -->
+
+                
+                <!--begin col-sm-6 -->
+                <div class="col-sm-6">
+
+                    <form id="contact-form" class="contact" action="php/contact.php" method="post">
+                    
+                        
+                        
+                        
+                       
+                        
+                    </form>
+
+                </div>
+                <!--end col-sm-6-->
+             
+            
+    
+        </div>
+        <!--end container-->
+    
+    </section>
+    <!--end section-white-->
+
+
+    <!--begin section-white-->
+    <div class="section-white sponsors-padding">
+        
+        <!--begin container-->
+        <div class="container">
+
+            <!--begin row-->
+            <div class="row text-center">
+                <!--begin col-sm-12-->
+                <div class="col-sm-12 sponsors">
+                    <img src="../static_media/images/footer-banner.png" class="sponsor" alt="image">
+                    
+                </div>
+                <!--end col-sm-12-->
+                
+            </div>
+            <!--end row-->
+            
+        </div>
+        <!--end container-->
+    
+    </div> 
+    <!--end section-white-->
+
+ 
+
+    
+    <!--begin footer -->
+    <footer class="footer">
+            
+        <!--begin container -->
+        <div class="container">
+        
+            <!--begin row -->
+            <div class="row footer-top">
+            
+                <!--begin col-md-4 -->
+                <div class="col-md-4 padding-bottom-20">
+                
+                    <h4>ACERCA DE</h4>
+                    
+                    <p class="margin-bottom-20">El Proyecto Gestión del Conocimiento en la Cadena de Valor del Cacao en Centroamérica, ejecutado por VECO MA, tiene como fin, contribuir en el mejoramiento de la competitividad e inclusividad en la cadena de valor del cacao a nivel regional,</p>
+
+                    <a href="http://cadenacacaoca.info/conocenos/" class="btn-sm btn-blue" target="_blank">Conocer más</a>
+                                        
+                </div>
+                <!--end col-md-4 -->
+                
+                <!--begin col-md-4 -->
+                <div class="col-md-4 padding-bottom-50">
+                
+                    <h4>ENLACES DE INTERÉS</h4>
+                    
+                    <ul class="footer-list">
+                        
+                        <li class="first"><a href="http://cadenacacaoca.info/" target="blank">Cadena cacao CA</a></li>
+                        
+                        <li><a href="http://cadenacacaoca.info/noticias/" target="blank">Noticias</a></li>
+                        
+                        <li><a href="http://cadenacacaoca.info/biblioteca-virtual/" target="blank">Biblioteca virtual</a></li>
+
+                        <li><a href="http://cadenacacaoca.info/cacao-movil/" target="blank">Cacao móvil</a></li>
+                        
+                        
+                    </ul>
+                    
+                </div>
+                <!--end col-md-4 -->
+                
+                <!--begin col-md-4 -->
+                <div class="col-md-4 padding-bottom-50">
+                
+                    <h4>DETALLES DE CONTACTO</h4>
+                    
+                    <p class="contact_info"><i class="icon icon-pin-map"></i> Altamira este, SINSA Cerámicas 100mts Este y 50mts Norte Casa # 650 Managua, Nicaragua.</p>
+                    
+                    <p class="contact_info"><i class="icon icon-email-envelope"></i> <a href="mailto:contact@email.com">info@cadenacacao.org</a></p>
+                    
+                    <p class="contact_info"><i class="icon icon-call-phone"></i> +505 2278-3775 | 2278-1358</p>
+                
+                </div>
+                <!--end col-md-4 -->
+                
+            </div>
+            <!--end row -->
+            
+            <!--begin row -->
+            <div class="row">
+                
+                <!--begin footer-bottom -->
+                <div class="footer-bottom">
+                
+                    <!--begin col-md-5 -->
+                    <div class="col-md-5">
+                        
+                        <!--begin copyright -->
+                        <div class="copyright ">
+                            <p>© 2017 <a href="http://cadenacacaoca.info/">Cadenacacaoca</a></p>
+                            
+                        </div>
+                        <!--end copyright -->
+                       
+                    </div>
+                    <!--end col-md-5 -->
+                    
+                    <!--begin col-md-2 -->
+                    <div class="col-md-2 text-center">
+                    
+                        <a href="#top-intro" class="scrool top-scroll"><i class="icon icon-angle-up"></i></a>
+                        
+                    </div>
+                    <!--end col-md-2 -->
+                    
+                    <!--begin col-md-5 -->
+                    <div class="col-md-5">
+                                                        
+                        <!--begin footer_social -->
+                        <ul class="footer_social">
+                            <li>
+                                Siguenos:
+                            </li>
+                            <li>
+                                <a href="https://www.facebook.com/vecomesoamerica/">
+                                    <i class="icon icon-facebook"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.flickr.com/photos/vecoma/">
+                                    <i class="icon icon-flickr"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.youtube.com/channel/UCoCJqwCoQx9ZfT9mFbdfBhQ">
+                                    <i class="icon icon-youtube"></i>
+                                </a>
+                            </li>
+
+
+                        </ul>
+                        <!--end footer_social -->
+                        
+                    </div>
+                    <!--end col-md-5 -->
+                        
+                </div>
+                <!--end footer-bottom -->
+                        
+            </div>
+            <!--end row -->
+            
+        </div>
+        <!--end container -->
+                
+    </footer>
+    <!--end footer -->
+
+     <script type="text/javascript">
+
+                console.log(" Itchy " != " Scratchy ")
+
+
+                </script>
+
+
+    <!-- Load JS here for greater good =============================-->
+    <script src="../static_media/js/jquery-1.11.3.min.js"></script>
+    <script src="../static_media/js/bootstrap.min.js"></script>
+    <script src="../static_media/js/jquery.scrollTo-min.js"></script>
+    <script src="../static_media/js/jquery.magnific-popup.min.js"></script>
+    <!-- <script src="../static_media/js/plugins.js"></script> -->
+    <script src="../static_media/js/custom.js"></script>
+   
+    
+</body></html>
