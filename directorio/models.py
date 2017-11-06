@@ -14,7 +14,7 @@ class Pais(models.Model):
 	nombre = models.CharField(max_length=255)
 
 	def __str__(self):
-		return self.nombre
+		return self.nombre.encode('utf-8')
 
 	class Meta:
 		verbose_name = 'País'
@@ -24,7 +24,7 @@ class TipoActividad(models.Model):
 	nombre = models.CharField(max_length=255)
 
 	def __str__(self):
-		return self.nombre
+		return self.nombre.encode('utf-8')
 
 	class Meta:
 		verbose_name = 'Tipo de actividad'
@@ -34,7 +34,7 @@ class Participacion(models.Model):
 	nombre = models.CharField(max_length=255)
 
 	def __str__(self):
-		return self.nombre
+		return self.nombre.encode('utf-8')
 
 	class Meta:
 		verbose_name_plural = 'Participación en la cadena de valor'
@@ -43,7 +43,7 @@ class ServiciosCadena(models.Model):
 	nombre = models.CharField(max_length=255)
 
 	def __str__(self):
-		return self.nombre
+		return self.nombre.encode('utf-8')
 
 	class Meta:
 		verbose_name_plural = 'Servicios en la Cadena de Valor'
@@ -52,7 +52,7 @@ class IntercambioTecnologia(models.Model):
 	nombre = models.CharField(max_length=255)
 
 	def __str__(self):
-		return self.nombre
+		return self.nombre.encode('utf-8')
 
 	class Meta:
 		verbose_name_plural = 'Intercambio de Tecnología'
@@ -114,7 +114,7 @@ class Organizacion(models.Model):
 		super(Organizacion, self).save(*args, **kwargs)
 
 	def __str__(self):
-		return self.nombre
+		return self.nombre.encode('utf-8')
 
 	class Meta:
 		verbose_name = 'Organización/Especialista'
