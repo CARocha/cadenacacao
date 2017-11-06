@@ -1,0 +1,18 @@
+{% extends "admin/base.html" %}
+
+{% block extrahead %}
+
+<style media="screen">
+.footer {
+  display: none !important
+}
+</style>
+{% endblock %}
+
+{% block title %}{{ title }} | Cadena Cacao {% endblock %}
+
+{% block branding %}
+<h1 id="site-name">Administración Cadena Cacao</h1>
+{% endblock %}
+
+{% load admin_static %}
