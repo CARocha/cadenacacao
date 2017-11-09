@@ -17,16 +17,22 @@
             <h5 class="border-bottom-black">
                {{object.nombre}}
             </h5>
-            <ul class="list-inline lista-perfil">
-                                <li class="pull-left">
-                                    <a><i class="">Calificación: </i>  <!--<img src="/static/images/cacaoranking.png" alt="" width="150px"> -->{% ratings object %}</a>
-                                    
-                                    
-                                </li>
-                                <li class="pull-right">
-                                    <a ><i class="icon-calendar"> </i> Actualización: {{object.actualizado}} </a>
-                                </li>
-                            </ul>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <ul class="list-inline lista-perfil">
+                        <li class="pull-left">
+                            <a>Calificación: <!--<img src="/static/images/cacaoranking.png" alt="" width="150px"> -->{% ratings object %}</a>
+                            
+                            
+                        </li>
+                        <li class="pull-right">
+                            <a ><i class="icon-calendar"> </i> Actualización: {{object.actualizado}} </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
             <div class="row">
                 <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
                     <div class="panel panel-primary">
@@ -35,12 +41,12 @@
                         </div>
                         <div class="panel-body no-padding">
                             <div class="row no-margin">
-                                <div class="col-xs-12 col-sm-6 no-padding">
+                                <div class="col-xs-12 col-sm-5 no-padding">
                                     <div class="thumb">
                                         {% thumbnail object.logo "120x120" crop='center' format='PNG' as img %}
-                                            <img src="/media/{{img}}" alt="img">
+                                            <img class="center-block" src="/media/{{img}}" alt="img">
                                         {% empty %}
-                                            <img src="http://via.placeholder.com/120x120" alt="img">
+                                            <img class="center-block" src="http://via.placeholder.com/120x120" alt="img">
                                         {% endthumbnail %}
                                     </div>
                                     <ul class="list-group margin-bottom-0">
@@ -58,7 +64,7 @@
                                     </ul>
                                 </div>
 
-                                <div class="col-xs-12 col-sm-6 no-padding">
+                                <div class="col-xs-12 col-sm-7 no-padding">
                                     <style>
                                        #map {
                                         height: 300px;
@@ -79,7 +85,7 @@
                         </div>
                         <div class="panel-body">
                             
-                           {{object.objetivo}}
+                           <p>{{object.objetivo}}</p>
                   
                         </div>
                     </div>
@@ -171,10 +177,10 @@
                         <div class="panel-body no-padding">
                             <ul class="list-group margin-bottom-0">
                                 <li class="list-group-item">
-                                    <b>Correo:</b> <a href="">{{object.correo_1}} </a> 
+                                    <b>Correo:</b> <a href="mailto:{{object.correo_1}}">{{object.correo_1}} </a> 
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Teléfono: </b><a href="">{{object.telefono_1}} </a>
+                                    <b>Teléfono: </b><a href="tel:{{object.telefono_1}}">{{object.telefono_1}} </a>
                                 </li>
                                 
                             </ul>
@@ -190,10 +196,10 @@
                         <div class="panel-body no-padding">
                             <ul class="list-group margin-bottom-0">
                                 <li class="list-group-item">
-                                    <b>Correo:</b> <a href="">{{object.correo_2}} </a> 
+                                    <b>Correo:</b> <a href="mailto:{{object.correo_2}}">{{object.correo_2}} </a> 
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Teléfono: </b><a href="">{{object.telefono_2}} </a>
+                                    <b>Teléfono: </b><a href="tel:{{object.telefono_2}}">{{object.telefono_2}} </a>
                                 </li>
                                 
                             </ul>
@@ -223,7 +229,7 @@
                                         </li>
                                         {% if object.sitio_web %}
                                         <li class="list-group-item">
-                                            <b>URL: </b> <a href="{{object.sitio_web}}">Enlace</a>
+                                            <b>URL: </b> <a href="{{object.sitio_web}}" target="_blank">Enlace</a>
                                         </li>
                                         {% endif %}
                                     </ul>

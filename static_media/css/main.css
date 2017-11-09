@@ -49,7 +49,7 @@ ul, ol { list-style: none; list-style-image: none; margin: 0; padding: 0;
 }
 	
 ul li, ol li{
-	font-size: 14px;
+	font-size: 15px;
 	line-height: 24px;
 	font-family: 'Lato', sans-serif;
 }
@@ -4228,11 +4228,11 @@ h5.chart-title {
     overflow: hidden;
 }
 #myList .box{
-	    float: left;
+	float: left;
     width: 100%;
     background: #fff;
     border-radius: 3px;
-    padding: 20px;
+    padding: 10px;
     margin: 0 0 8px 0;
     box-shadow: 2px 3px 3px 0px rgba(0,0,0,0.1);
     -moz-box-shadow: 2px 3px 3px 0px rgba(0,0,0,0.1);
@@ -4247,12 +4247,13 @@ h5.chart-title {
 #myList .box .thumb{
     margin: 0 20px 0 0;
     text-align: center;
+    padding: 0px;
 }
 #myList .box .text-col{
 	float: left;
 }
 #myList .box strong.price{
-	    font: 700 18px/18px 'Roboto',sans-serif;
+	font: 700 18px/18px 'Roboto',sans-serif;
     color: #222;
     float: left;
     padding: 24px 0 0 50px;
@@ -4261,11 +4262,11 @@ h5.chart-title {
 	float: right;
 }
 #myList .box .text-col a.text {
-    font: 400 13px/13px 'Roboto',sans-serif;
+    font: 400 15px/15px 'Roboto',sans-serif;
     color: #3d3935;
     text-decoration: none;
     float: left;
-    padding: 0 20px 0 0;
+    padding: 3px 20px 0 0;
 }
 #myList .box .text-col p {
     font: 400 15px/15px 'Roboto',sans-serif;
@@ -4293,6 +4294,16 @@ h5.chart-title {
     vertical-align: middle;
     max-height: auto;
     max-width: 100%;
+}
+.helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+.img-thumb{
+	display: block;
+    min-height: 145px;
+    white-space: nowrap;
 }
 
 @media (max-width: 768px){

@@ -126,14 +126,16 @@
                     <li>
                     <div class="box">
                         <div class="row">
-                            <div class="col-xs-12 col-sm-2">
+                            <div class="col-xs-12 col-sm-3">
                                 <div class="thumb">
-                                    <a href="{% url "detail-org" obj.slug %}">
-                                        {% thumbnail obj.logo "120x120" crop='center' format='PNG' as img %}
+                                    <a class="img-thumb" href="{% url "detail-org" obj.slug %}">
+                                        {% thumbnail obj.logo "210x210" crop='center' format='PNG' as img %}
                                             <img src="/media/{{img}}" alt="img">
                                         {% empty %}
-                                            <img src="http://via.placeholder.com/120x120" alt="img">
+                                            <img src="http://via.placeholder.com/210x210" alt="img">
                                         {% endthumbnail %}
+                                        <span class="helper"></span>
+                                        <!-- <img src="/media/{{obj.logo}}" alt="img"> -->
                                     </a>
                                 </div>
                             </div>
@@ -162,9 +164,6 @@
                                     <a class="text"><i class="icon-star-two"> </i>Calificación: </a>
                                     {% ratings obj %}
                                 </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-1">
-                                <a href="{% url "detail-org" obj.slug %}" class="btn-1 btn-sm btn-blue btn-map">Perfil</a>
                             </div>
                         </div>
                     </div>
