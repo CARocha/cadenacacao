@@ -25,7 +25,8 @@ box-shadow()
 
 body
     font-family: 'Open Sans', sans-serif    
-
+.display-inline
+    display inline-block
 /*MENU*/
 .navbar-default
     box-shadow 0 0 7px rgba(0, 0, 0, 0.3)
@@ -45,6 +46,8 @@ body
     font-family letratitulo 
     font-weight 500
     color blacktext
+ol.breadcrumb li a:hover
+    color colorlink
 /*Secciones*/
 
 .section-white-xs
@@ -116,6 +119,15 @@ select#input
         line-height normal
         border-radius 0px
         border 0px
+.group-costum-2
+    padding 5px 0px
+    position inherit
+    .input-group-addon
+        background negro
+        color white
+        line-height normal
+        border-radius 0px
+        border 0px
 .border-bottom-black
     border-bottom 1px solid rgba(61,57,53,0.5)
     padding-bottom 10px
@@ -129,10 +141,14 @@ select#input
     margin-bottom 10px
     h5
         margin 5px
-.detalle-org .panel-primary
+.detalle-org .panel-primary, .detalle-user .panel-primary 
     border-color negro
     .panel-heading
         background-color verde
+        border-color transparent
+        .list-inline > li > a
+            color negro
+            font-weight bold
     .panel-body
         li
             font-size 16px

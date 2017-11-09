@@ -1,12 +1,63 @@
 {% extends "base.html" %}
 
 {% block content %}
-<form method="POST" id="contact-form">{% csrf_token %}
-	username:{{form.username}} <br>
-	email:{{form.email}} <br>
-	Nombre:{{form.first_name}} <br>
-	apellidos:{{form.last_name}} <br>
-	<input type="submit" name="Editar" value="Editar">
-</form>
+	<section class="section-white small-padding">
+        
+        <!--begin container-->
+        <div class="container detalle-user">
+        	
+        	<div class="row">
+
+        		<div class="col-xs-12 col-md-8 col-md-offset-2">
+        			<h4 class="border-bottom-black">Editar perfil de usuario</h4>
+        			<form method="POST" id="contact-form">{% csrf_token %}
+						<div class="row">
+							<div class="col-xs-12 col-sm-6">
+					            <div class="input-group group-costum-2">
+					                <span class="input-group-addon " id="sizing-addon2">Nombre</span>
+									{{form.first_name}} 
+
+								</div>
+					        </div>
+					        <div class="col-xs-12 col-sm-6">
+					            <div class="input-group group-costum-2">
+					                <span class="input-group-addon " id="sizing-addon2">Apellidos:</span>
+									{{form.last_name}}
+
+								</div>
+					        </div>
+							
+					        <div class="col-xs-12 col-sm-6">
+					            <div class="input-group group-costum-2">
+					                <span class="input-group-addon " id="sizing-addon2">Correo</span>
+									{{form.email}}
+
+								</div>
+					        </div>
+					        <div class="col-xs-12 col-sm-6">
+					            <div class="input-group group-costum-2">
+					                <span class="input-group-addon " id="sizing-addon2">Username</span>
+									{{form.username}} 
+
+								</div>
+					        </div>
+					        <div class="col-xs-12 col-sm-12">
+						        <input value="Guardar" type="submit" name="Editar" id="submit-button" class="contact-submit pull-right" type="submit">
+						    </div>	
+						</div>
+					</form>
+        		</div>
+        	</div>
+        	
+        </div>
+    </section>
+
 	
 {% endblock content %}
+{% block extra_js %}
+<script type="text/javascript">
+	$('input[type=text]').addClass( "form-control" );
+	$('input[type=email]').addClass( "form-control" );
+</script>
+
+{% endblock extra_js %}

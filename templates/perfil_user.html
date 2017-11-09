@@ -1,16 +1,68 @@
 {% extends "base.html" %}
 
 {% block content %}
-	{{user.username}} <a href="/accounts/profile/user/editar">Editar perfil</a> <a href="/password_reset/">Resetear contraseña</a><br>
-	{{user.email}} <br>
-	{% if user.first_name %}{{user.first_name}} <br>{% endif %}
-	{% if user.last_name %}{{user.last_name}} <br>{% endif %}
-	{% if organizaciones %}
-		{% for org in organizaciones %}
-			<p>{{org.nombre}} <a href="{% url "detail-org" org.slug %}">Ver</a> <a href="{% url "editar-org" org.slug %}">Editar</a></p>
-		{% endfor %}
-	{% else %}
-		<form method="POST" id="contact-form">{% csrf_token %}
+	<section class="section-white small-padding">
+        
+        <!--begin container-->
+        <div class="container detalle-user">
+        	
+        	<div class="row">
+        		<ol class="breadcrumb">
+	        		<li>
+	        			<a href="/accounts/profile/user/editar">Editar perfil</a>
+	        		</li>
+	        		<li>
+	        			<a href="/password_reset/">Resetear contraseña</a>
+	        		</li>
+	        	</ol>
+        	</div>
+        	<div class="row">
+        		<div class="col-xs-12 col-sm-5">
+        			<div class="panel panel-primary">
+		        		<div class="panel-heading">
+		                    <h3 class="panel-title display-inline">Perfil de Usuario</h3>
+		                    
+		                </div>
+		        		<div class="panel-body no-padding">
+		        			<ul class="list-group margin-bottom-0">
+		                        <li class="list-group-item">
+		                            <span><b> Nombre de usuario:</b> {{user.username}}</span>
+
+		                        </li>
+		                        <li class="list-group-item">
+		                            <span><b> Nombre:</b> {{user.first_name}}</span>
+		                        </li>
+		                        <li class="list-group-item">
+		                            <span><b> Apellido:</b> {{user.last_name}} </span>
+		                        </li>
+		                        <li class="list-group-item">
+		                            <span><b> Correo:</b> {{user.email}} </span>
+		                        </li>
+		                  
+		                    </ul>
+		        		</div>
+		        	</div>
+        		</div>
+        		<div class="col-xs-12 col-sm-7">
+        			{% if organizaciones %}
+        			<div class="panel panel-primary">
+		        		<div class="panel-heading">
+		                    <h3 class="panel-title">Organizaciones</h3>
+		                </div>
+		        		<div class="panel-body no-padding">
+		        			<ul class="list-group margin-bottom-0">
+		        				{% for org in organizaciones %}
+		        				<li class="list-group-item">
+		                            
+									<p>	<b>{{org.nombre}} </b><a href="{% url "detail-org" org.slug %}">Perfil </a>| <a href="{% url "editar-org" org.slug %}">Editar</a></p>
+		                        </li>
+		                       {% endfor %}
+		        			</ul>
+
+		        		</div>
+		        	</div>
+		        	{% else %}
+		        	<form method="POST" id="contact-form">{% csrf_token %}
 			{% if enviado == 1 %}
 				<div class="text-success">Su mensaje ha sido enviado correctamente!!!</div>
 				{% endif %}
@@ -19,5 +71,14 @@
 			<input type="submit" name="Enviar" value="Enviar mensaje">
 		</form>
 	{% endif %}
+
+
+        		</div>
+
+        	</div>
+        	
+        </div>
+    </section>
+
 		
 {% endblock content %}
