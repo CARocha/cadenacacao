@@ -8,51 +8,57 @@ from location_field.models.plain import PlainLocationField
 from sorl.thumbnail import ImageField
 from django.contrib.contenttypes.fields import GenericRelation
 from star_ratings.models import Rating
+from django.utils.encoding import python_2_unicode_compatible
 
 # Create your models here.
+@python_2_unicode_compatible
 class Pais(models.Model):
 	nombre = models.CharField(max_length=255)
 
 	def __str__(self):
-		return self.nombre.encode('utf-8')
+		return self.nombre
 
 	class Meta:
 		verbose_name = 'País'
 		verbose_name_plural = 'Paises'
 
+@python_2_unicode_compatible
 class TipoActividad(models.Model):
 	nombre = models.CharField(max_length=255)
 
 	def __str__(self):
-		return self.nombre.encode('utf-8')
+		return self.nombre
 
 	class Meta:
 		verbose_name = 'Tipo de actividad'
 		verbose_name_plural = 'Tipos de actividades'
 
+@python_2_unicode_compatible
 class Participacion(models.Model):
 	nombre = models.CharField(max_length=255)
 
 	def __str__(self):
-		return self.nombre.encode('utf-8')
+		return self.nombre
 
 	class Meta:
 		verbose_name_plural = 'Participación en la cadena de valor'
 
+@python_2_unicode_compatible
 class ServiciosCadena(models.Model):
 	nombre = models.CharField(max_length=255)
 
 	def __str__(self):
-		return self.nombre.encode('utf-8')
+		return self.nombre
 
 	class Meta:
 		verbose_name_plural = 'Servicios en la Cadena de Valor'
 
+@python_2_unicode_compatible
 class IntercambioTecnologia(models.Model):
 	nombre = models.CharField(max_length=255)
 
 	def __str__(self):
-		return self.nombre.encode('utf-8')
+		return self.nombre
 
 	class Meta:
 		verbose_name_plural = 'Intercambio de Tecnología'
@@ -77,6 +83,7 @@ PERIODO_CHOICES = (
 ESP_ORG_CHOICES = (
 	('Organizacion','Organización'),('Especialista','Especialista'))
 
+@python_2_unicode_compatible
 class Organizacion(models.Model):
 	tipo = models.CharField(max_length=20,choices=ESP_ORG_CHOICES)
 	nombre = models.CharField(max_length=255)
@@ -114,7 +121,7 @@ class Organizacion(models.Model):
 		super(Organizacion, self).save(*args, **kwargs)
 
 	def __str__(self):
-		return self.nombre.encode('utf-8')
+		return self.nombre
 
 	class Meta:
 		verbose_name = 'Organización/Especialista'

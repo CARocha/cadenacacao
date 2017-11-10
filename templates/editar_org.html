@@ -1,11 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-<form action="." method="POST" id="contact-form" class="contact">{% csrf_token %}
+<form action="." method="POST" id="contact-form" class="contact" enctype="multipart/form-data">{% csrf_token %}
 	{{ form.media }}
 	{{ form.as_p }}
-	<input type="submit" name="Editar">
+
+	<h3>Productos/Servicios</h3>
+	{{ formset.as_p }}
+	<input type="submit" name="Editar" value="Actualizar">
 </form>
+
 	
 {% endblock content %}
 

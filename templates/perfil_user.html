@@ -30,10 +30,10 @@
 
 		                        </li>
 		                        <li class="list-group-item">
-		                            <span><b> Nombre:</b> {{user.first_name}}</span>
+		                            <span><b> Nombre:</b> {% if user.first_name %}{{user.first_name}}{% else %}---{% endif %}</span>
 		                        </li>
 		                        <li class="list-group-item">
-		                            <span><b> Apellido:</b> {{user.last_name}} </span>
+		                            <span><b> Apellido:</b> {% if user.last_name %}{{user.last_name}}{% else %}---{% endif %}</span>
 		                        </li>
 		                        <li class="list-group-item">
 		                            <span><b> Correo:</b> {{user.email}} </span>

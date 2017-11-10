@@ -11,6 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.mail import send_mail, EmailMultiAlternatives
 import json as simplejson
+from django.forms import inlineformset_factory
 
 # Create your views here.
 def index(request,template='index.html'):
@@ -93,7 +94,9 @@ def consulta(request,template='consulta.html'):
 	if request.GET.get('q'):
 		search_text = request.GET['q']
 		if search_text is not None and search_text != u'':
-			object_list = Organizacion.objects.filter(Q(nombre__icontains=search_text)).distinct().order_by('nombre')
+			object_list = Organizacion.objects.filter(Q(nombre__icontains=search_text)|
+													Q(participacion_cadena__nombre__icontains=search_text)
+													).distinct().order_by('nombre')
 	elif 'pais_sede' not in request.session:
 		object_list = Organizacion.objects.all().order_by('nombre')
 	else:
@@ -177,14 +180,19 @@ from django.contrib.auth.views import password_reset
 @login_required
 def editar_org(request,template='editar_org.html',slug=None):
 	object = Organizacion.objects.get(slug=slug)
+	FormSetInit = inlineformset_factory(Organizacion, ProductosServicios, form=ProductosServiciosFrom)
+
 	if request.method == 'POST':
 		form = OrgForm(request.POST, instance=object)
-		if form.is_valid():
+		formset = FormSetInit(request.POST,request.FILES,instance=object)
+		if form.is_valid() and formset.is_valid():
 			form.save()
+			formset.save()
 			return HttpResponseRedirect('/accounts/profile/')
 
 	else:
 		form = OrgForm(instance=object)
+		formset = FormSetInit(instance=object)
 
 	return render(request, template, locals())
 
