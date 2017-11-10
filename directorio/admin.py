@@ -38,7 +38,4 @@ class OrganizacionAdmin(admin.ModelAdmin):
 			obj.usuario = request.user
 			obj.save() 
 
-	class Media:
-		js = ('https://maps.googleapis.com/maps/api/js?key=AIzaSyBaguICGAyEp7DdwkG2Z-odTyjLVYMicmg',)
-
 admin.site.register(Organizacion,OrganizacionAdmin)
