@@ -133,8 +133,13 @@
 
                         <li><a href="/actores/" class="menu-last {% if '/actores/' in request.path %}selected{% endif %}">Organizaciones</a></li>
                         {% if user.is_authenticated %}
-                            <li><a href="/accounts/profile/">Bienvenid@ {{user.username}}</a></li>
-                            <li><a href="/accounts/logout/">Salir</a></li>
+                            <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Bienvenid@ {{user.username}} <span class="caret"></span></a>
+                              <ul class="dropdown-menu">
+                                <li><a href="/accounts/profile/">Ir al perfil</a></li>
+                                <li><a href="/accounts/logout/">Salir</a></li>
+                              </ul>
+                            </li>
                         {% else %}
                             <li><a href="/accounts/register/" class="menu-last">Registrarse</a></li>
                             <li><a href="/accounts/login/" class="menu-last">Iniciar Sesion</a></li>

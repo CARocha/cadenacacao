@@ -95,7 +95,15 @@ def consulta(request,template='consulta.html'):
 		search_text = request.GET['q']
 		if search_text is not None and search_text != u'':
 			object_list = Organizacion.objects.filter(Q(nombre__icontains=search_text)|
-													Q(participacion_cadena__nombre__icontains=search_text)
+													Q(pais_sede__nombre__icontains=search_text)|
+													Q(tipo_organizacion__icontains=search_text)|
+													Q(tipo_actividad__nombre__icontains=search_text)|
+													Q(participacion_cadena__nombre__icontains=search_text)|
+													Q(servicios__nombre__icontains=search_text)|
+													Q(ambito_accion__icontains=search_text)|
+													Q(paises_labora__nombre__icontains=search_text)|
+													Q(cobertura__icontains=search_text)|
+													Q(intercambio__nombre__icontains=search_text)
 													).distinct().order_by('nombre')
 	elif 'pais_sede' not in request.session:
 		object_list = Organizacion.objects.all().order_by('nombre')

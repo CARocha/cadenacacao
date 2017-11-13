@@ -7,7 +7,27 @@
     <div class="container">
 		<form action="/accounts/register/" method="POST" id="contact-form" class="contact">{% csrf_token %}
 			{{form.as_p}}
-			<input type="submit" name="Registrar" value="Registrar usuario">
+			<!-- Modal -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title" id="myModalLabel">Terminos y condiciones</h4>
+			      </div>
+			      <div class="modal-body">
+			        ...
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+			        <input type="submit" class="btn btn-primary" name="Registrar" value="Aceptar">
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+			  Registrarse
+			</button>
 		</form>
 	</div>
 </section>
