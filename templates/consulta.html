@@ -2,110 +2,115 @@
 {% load ratings %}
 {% load el_pagination_tags %}
 {% load thumbnail %}
-
+{% block extra_css %}
+    <link rel="stylesheet" href="/static/css/bootstrap-multiselect.css">
+    <link rel="stylesheet" href="/static/css/bootstrap-select.min.css">
+{% endblock extra_css %}
 {% block content %}
  <!--begin section-white -->
 <section class="section-white small-padding">
     
     <!--begin container-->
     <div class="container">
-        <h4 class="border-bottom-black">Filtro directorio</h4>
-    
-        <!--begin contact form -->
-        <form id="contact-form" class="contact" action="." method="post">{% csrf_token %}
-            <!--begin row-->
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="input-group group-costum">
-                        <span class="input-group-addon" id="sizing-addon2">País sede</span>
-                        {{form.pais_sede}}
-                        <!--<select name="" id="input" class="form-control" required="required">
-                            <option value="">Seleccione país sede</option>
-                            <option value="nic">Nicaragua</option>
-                            <option value="hon">Honduras</option>
-                        </select>-->
+        <div role="tabpanel">
+            <!-- Nav tabs -->
+            <ul class="list-inline border-bottom-black tab-busca" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Búsqueda</a>
+                </li>
+                <li>|</li>
+                <li role="presentation">
+                    <a href="#tab" aria-controls="tab" role="tab" data-toggle="tab">Búsqueda avanzada</a>
+                </li>
+            </ul>
+            
+        </div>
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="home">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <form id="contact-form " class="contact form-busca" action="." method="post">{% csrf_token %}
+                            <div class="input-group">
+                                {{search.q}}
+                                <span class="input-group-btn">
+                                    <input value="Buscar" id="submit-button" class="contact-submit" type="submit">
+                                </span>
+                            </div>
+                        </form>
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <div class="input-group group-costum">
-                        <span class="input-group-addon" id="sizing-addon2">Ámbito de acción</span>
-                        {{form.ambito_accion}}
-                        <!--<select name="" id="input" class="form-control" required="required">
-                            <option value="">Seleccione ámbito de acción</option>
-                            <option value="nic">Nicaragua</option>
-                            <option value="hon">Honduras</option>
-                        </select>-->
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="input-group group-costum">
-                        <span class="input-group-addon" id="sizing-addon2">Tipo de organización *</span>
-                        {{form.tipo_organizacion}}
-                        <!--<select name="" id="input" class="form-control" required="required">
-                            <option value="">Seleccione tipo de organización</option>
-                            <option value="nic">Nicaragua</option>
-                            <option value="hon">Honduras</option>
-                        </select>-->
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="input-group group-costum">
-                        <span class="input-group-addon" id="sizing-addon2">País(es) donde labora *</span>
-                        {{form.paises_labora}}
-                        <!--<select name="" id="input" class="form-control" required="required">
-                            <option value="">Seleccione País(es) donde labora</option>
-                            <option value="nic">Nicaragua</option>
-                            <option value="hon">Honduras</option>
-                        </select>-->
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="input-group group-costum">
-                        <span class="input-group-addon" id="sizing-addon2">Participación en la cadena de valor *</span>
-                        {{form.participacion_cadena}}
-                        <!--<select name="" id="input" class="form-control" required="required">
-                            <option value="">Seleccione participación en la cadena</option><option value="1">Vivero</option><option value="2">Insumos</option><option value="3">Producción</option><option value="4">Transformación primaria</option><option value="5">Acopio</option><option value="6">Transformación secundaria</option><option value="7">Comercialización nacional</option><option value="8">Comercialización internacional</option>
-                        </select>-->
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="input-group group-costum">
-                        <span class="input-group-addon" id="sizing-addon2">Servicios a la cadena de valor *</span>
-                        {{form.servicios}}
-                        <!--<select name="" id="input" class="form-control" required="required">
-                            <option value="">Seleccione servicios a la cadena</option><option value="1">Asistencia técnica</option><option value="2">Financiamiento</option><option value="3">Investigación</option><option value="4">Certificación</option><option value="5">Legales</option><option value="6">Logística</option><option value="7">Mercadeo</option>
-                        </select>-->
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="input-group group-costum">
-                        <span class="input-group-addon" id="sizing-addon2">Intercambio de tecnologías *</span>
-                        {{form.intercambio}}
-                        <!--<select name="" id="input" class="form-control" required="required">
-                            <option value="">Seleccione intercambio de tecnologías</option><option value="1">Desarrollo</option><option value="2">Divulgación</option><option value="3">Transferencia</option><option value="4">Intercambio</option><option value="5">Demanda</option>
-                        </select>-->
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="input-group group-costum">
-                        <span class="input-group-addon" id="sizing-addon2">Tipo</span>
-                        {{form.tipo}}
-                        <!--<select name="" id="input" class="form-control" required="required">
-                            <option value="">Seleccione intercambio de tecnologías</option><option value="1">Desarrollo</option><option value="2">Divulgación</option><option value="3">Transferencia</option><option value="4">Intercambio</option><option value="5">Demanda</option>
-                        </select>-->
-                    </div>
-                </div>
-                
-
-                <div class="col-sm-4">
-                    <input value="Consultar" id="submit-button" class="contact-submit" type="submit">
-                </div>
-
                 
             </div>
-            <!--end row-->
-        </form>
-        <!--end contact form -->            
+            <div role="tabpanel" class="tab-pane" id="tab">
+                <!--begin contact form -->
+                <form id="contact-form" class="contact" action="." method="post">{% csrf_token %}
+                    <!--begin row-->
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="input-group group-costum">
+                                <span class="input-group-addon" id="sizing-addon2">País sede</span>
+                                {{form.pais_sede}}
+
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group group-costum">
+                                <span class="input-group-addon" id="sizing-addon2">Ámbito de acción</span>
+                                {{form.ambito_accion}}
+
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group group-costum">
+                                <span class="input-group-addon" id="sizing-addon2">Tipo de organización *</span>
+                                {{form.tipo_organizacion}}
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group group-costum">
+                                <span class="input-group-addon" id="sizing-addon2">País(es) donde labora *</span>
+                                {{form.paises_labora}}
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group group-costum">
+                                <span class="input-group-addon" id="sizing-addon2">Participación en la cadena de valor *</span>
+                                {{form.participacion_cadena}}
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group group-costum">
+                                <span class="input-group-addon" id="sizing-addon2">Servicios a la cadena de valor *</span>
+                                {{form.servicios}}
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group group-costum">
+                                <span class="input-group-addon" id="sizing-addon2">Intercambio de tecnologías *</span>
+                                {{form.intercambio}}
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group group-costum">
+                                <span class="input-group-addon" id="sizing-addon2">Tipo</span>
+                                {{form.tipo}}
+
+                            </div>
+                        </div>
+                        
+
+                        <div class="col-sm-4">
+                            <input value="Consultar" id="submit-button" class="contact-submit" type="submit">
+                        </div>
+
+                        
+                    </div>
+                    <!--end row-->
+                </form>
+                <!--end contact form --> 
+            </div>
+        </div>
+                  
        
 
     </div>
@@ -199,17 +204,33 @@
 {% endblock content %}
 
 {% block extra_js %}
+<script src="/static/js/bootstrap-multiselect.js"></script>
+<script src="/static/js/bootstrap-select.min.js"></script>
 <script type="text/javascript">
-    $( "#id_pais_sede" ).addClass("form-control");
-    $( "#id_ambito_accion" ).addClass("form-control");
-    $( "#id_tipo_organizacion" ).addClass("form-control");
-    $( "#id_paises_labora" ).addClass("form-control");
-    $( "#id_participacion_cadena" ).addClass("form-control");
-    $( "#id_servicios" ).addClass("form-control");
-    $( "#id_intercambio" ).addClass("form-control");
-    $( "#id_tipo" ).addClass("form-control");
+    $(document).ready(function() {
+        $('').multiselect();
+    });
+</script>
+<script type="text/javascript">
+    $('#id_paises_labora, #id_tipo_organizacion, #id_participacion_cadena, #id_servicios, #id_intercambio').selectpicker({
+      style: 'btn-default',
+      size: 4,
+      liveSearch: 'true',
+      title: 'Seleccione'
+    });
 
 </script>
+<script type="text/javascript">
+    
+    $( ".bootstrap-select" ).removeClass( "input-group-btn" );
+    $( "#id_pais_sede" ).addClass("form-control");
+    $( "#id_ambito_accion" ).addClass("form-control");
+    $( "#id_tipo" ).addClass("form-control");
+    $( ".form-busca #id_q" ).addClass("form-control");
+    
+
+</script>
+
 {% endblock extra_js %}
 
 

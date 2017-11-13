@@ -12,7 +12,7 @@ def paises_labora():
 	return Pais.objects.filter(id__in=foo)
 
 AMBITO_CHOICES = (
-		('','Seleccione ámbito de acción'),('Internacional','Internacional'),('Regional','Regional'),
+		('','Seleccione'),('Internacional','Internacional'),('Regional','Regional'),
 		('Nacional','Nacional'),('Local','Local')
 	)
 
@@ -22,7 +22,7 @@ TIPO_CHOICES = (
 		('ONG','ONG'),('ONGI','ONGI'),('Plataforma','Plataforma')
 	)
 
-ESP_ORG_CHOICES = (('','Seleccione tipo'),
+ESP_ORG_CHOICES = (('','Seleccione'),
 	('Organizacion','Organización'),('Especialista','Especialista'))
 
 class OrganizacionForm(forms.Form):
