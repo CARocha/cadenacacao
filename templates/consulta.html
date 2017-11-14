@@ -29,7 +29,7 @@
             <div role="tabpanel" class="tab-pane active" id="home">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                        <form id="contact-form " class="contact form-busca" action="." method="post">{% csrf_token %}
+                        <form id="contact-form" class="contact form-busca" action="/actores/" method="GET">
                             <div class="input-group">
                                 {{search.q}}
                                 <span class="input-group-btn">
@@ -94,6 +94,13 @@
                             <div class="input-group group-costum">
                                 <span class="input-group-addon" id="sizing-addon2">Tipo</span>
                                 {{form.tipo}}
+
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group group-costum">
+                                <span class="input-group-addon" id="sizing-addon2">Tipo de actividad</span>
+                                {{form.tipo_actividad}}
 
                             </div>
                         </div>
@@ -212,7 +219,7 @@
     });
 </script>
 <script type="text/javascript">
-    $('#id_paises_labora, #id_tipo_organizacion, #id_participacion_cadena, #id_servicios, #id_intercambio').selectpicker({
+    $('#id_paises_labora, #id_tipo_organizacion, #id_participacion_cadena, #id_servicios, #id_intercambio, #id_tipo_actividad').selectpicker({
       style: 'btn-default',
       size: 4,
       liveSearch: 'true',
@@ -226,8 +233,11 @@
     $( "#id_pais_sede" ).addClass("form-control");
     $( "#id_ambito_accion" ).addClass("form-control");
     $( "#id_tipo" ).addClass("form-control");
+    $( "#id_tipo_actividad" ).addClass("form-control");
     $( ".form-busca #id_q" ).addClass("form-control");
-    
+    {% if search_text %}
+        $(".form-busca #id_q").val("{{search_text}}");
+    {% endif %} 
 
 </script>
 
