@@ -45,6 +45,9 @@ def _queryset_filtrado_afiliado(request):
 	if request.session['tipo']:
 		params['tipo'] = request.session['tipo']
 
+	if request.session['tipo_actividad']:
+		params['tipo_actividad__in'] = request.session['tipo_actividad']
+
 	unvalid_keys = []
 	for key in params:
 		if not params[key]:
@@ -68,6 +71,7 @@ def consulta(request,template='consulta.html'):
 			request.session['servicios'] = form.cleaned_data['servicios']
 			request.session['intercambio'] = form.cleaned_data['intercambio']
 			request.session['tipo'] = form.cleaned_data['tipo']
+			request.session['tipo_actividad'] = form.cleaned_data['tipo_actividad']
 
 			mensaje = "Todas las variables estan correctamente :)"
 			request.session['activo'] = True
@@ -88,6 +92,7 @@ def consulta(request,template='consulta.html'):
 			del request.session['servicios']
 			del request.session['intercambio']
 			del request.session['tipo']
+			del request.session['tipo_actividad']
 		except:
 			pass
 

@@ -28,7 +28,7 @@ ESP_ORG_CHOICES = (('','Seleccione tipo'),
 class OrganizacionForm(forms.Form):
 	def __init__(self, *args, **kwargs):
 		super(OrganizacionForm, self).__init__(*args, **kwargs)
-		self.fields['pais_sede'] = forms.ModelChoiceField(queryset=paises(),required=True)
+		self.fields['pais_sede'] = forms.ModelChoiceField(queryset=paises(),required=False)
 		self.fields['ambito_accion'] = forms.ChoiceField(choices=AMBITO_CHOICES,required=False)
 		self.fields['tipo_organizacion'] = forms.MultipleChoiceField(choices=TIPO_CHOICES,required=False)
 		self.fields['paises_labora'] = forms.ModelMultipleChoiceField(queryset=paises_labora(),required=False)
@@ -36,6 +36,7 @@ class OrganizacionForm(forms.Form):
 		self.fields['servicios'] = forms.ModelMultipleChoiceField(queryset=ServiciosCadena.objects.all(),required=False)
 		self.fields['intercambio'] = forms.ModelMultipleChoiceField(queryset=IntercambioTecnologia.objects.all(),required=False)
 		self.fields['tipo'] = forms.ChoiceField(choices=ESP_ORG_CHOICES,required=False)
+		self.fields['tipo_actividad'] = forms.ModelMultipleChoiceField(queryset=TipoActividad.objects.all(),required=False)
 
 class BuscadorForm(forms.Form):
 	def __init__(self, *args, **kwargs):
