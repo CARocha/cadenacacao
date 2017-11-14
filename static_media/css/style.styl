@@ -31,8 +31,8 @@ body
 .navbar-default
     box-shadow 0 0 7px rgba(0, 0, 0, 0.3)
     border-radius 0px
-    .navbar-nav > li > a
-        text-transform capitalize
+    .navbar-nav > li > a, .dropdown-menu li a
+        text-transform initial
         font-size 16px !important
         font-weight bold
         font-family letratext
@@ -119,6 +119,11 @@ select#input
         line-height normal
         border-radius 0px
         border 0px
+    select
+        color negro !important
+        font-size 16px
+        font-weight bold
+        padding 5px 12px
 .group-costum-2
     padding 5px 0px
     position inherit
@@ -136,6 +141,23 @@ select#input
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus
     background-color colorlink
     border-color colorlink
+.form-busca
+    input.contact-submit
+        margin-top 0px
+    input[type="text"]
+        height 44px
+.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn)
+    width 100%
+.bootstrap-select>.dropdown-toggle
+    margin 0px
+    padding 5px
+.bootstrap-select.btn-group .dropdown-toggle .filter-option
+    color negro
+.bootstrap-select.btn-group .dropdown-menu li a
+    color negro !important
+    font-size 16px
+.bootstrap-select.btn-group .dropdown-menu li.selected a
+    color colorlink !important
 /*Detalle org*/
 .obj-org
     margin-bottom 10px
@@ -207,7 +229,15 @@ select#input
     &:hover
         color verde !important
         border-color verde !important
-        
+
+.tab-busca
+    li a
+        font-size 17px
+        font-family letratext
+        font-weight bold
+        color negro
+    li.active a
+        color colorlink
 /*galeria*/
 .popup-gallery:hover img
     opacity 1
