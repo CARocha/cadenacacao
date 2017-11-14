@@ -112,11 +112,11 @@ def consulta(request,template='consulta.html'):
 			# 										Q(intercambio__nombre__icontains=search_text)
 			# 										).distinct().order_by('nombre')
 
-			object_list = Organizacion.objects.annotate(search=SearchVector('nombre', 'pais_sede__nombre',
+			object_list = Organizacion.objects.annotate(search=SearchVector('nombre','objetivo','pais_sede__nombre',
 														'tipo_organizacion','tipo_actividad__nombre',
 														'participacion_cadena__nombre','servicios__nombre',
 														'ambito_accion','paises_labora__nombre',
-														'cobertura','intercambio__nombre'),).filter(search=search_text).distinct().order_by('nombre')
+														'cobertura','intercambio__nombre')).filter(search=search_text).distinct().order_by('nombre')
 
 	elif 'pais_sede' not in request.session:
 		object_list = Organizacion.objects.all().order_by('nombre')
