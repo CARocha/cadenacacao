@@ -28,7 +28,7 @@ ESP_ORG_CHOICES = (('','Seleccione'),
 class OrganizacionForm(forms.Form):
 	def __init__(self, *args, **kwargs):
 		super(OrganizacionForm, self).__init__(*args, **kwargs)
-		self.fields['pais_sede'] = forms.ModelChoiceField(queryset=paises(),required=False)
+		self.fields['pais_sede'] = forms.ModelChoiceField(queryset=paises(),required=True)
 		self.fields['ambito_accion'] = forms.ChoiceField(choices=AMBITO_CHOICES,required=False)
 		self.fields['tipo_organizacion'] = forms.MultipleChoiceField(choices=TIPO_CHOICES,required=False)
 		self.fields['paises_labora'] = forms.ModelMultipleChoiceField(queryset=paises_labora(),required=False)
