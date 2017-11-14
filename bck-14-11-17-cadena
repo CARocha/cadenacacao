@@ -1,0 +1,2169 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.6.5
+-- Dumped by pg_dump version 9.6.5
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: auth_group; Type: TABLE; Schema: public; Owner: emurillo
+--
+
+CREATE TABLE auth_group (
+    id integer NOT NULL,
+    name character varying(80) NOT NULL
+);
+
+
+ALTER TABLE auth_group OWNER TO emurillo;
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE; Schema: public; Owner: emurillo
+--
+
+CREATE SEQUENCE auth_group_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE auth_group_id_seq OWNER TO emurillo;
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: emurillo
+--
+
+ALTER SEQUENCE auth_group_id_seq OWNED BY auth_group.id;
+
+
+--
+-- Name: auth_group_permissions; Type: TABLE; Schema: public; Owner: emurillo
+--
+
+CREATE TABLE auth_group_permissions (
+    id integer NOT NULL,
+    group_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE auth_group_permissions OWNER TO emurillo;
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: emurillo
+--
+
+CREATE SEQUENCE auth_group_permissions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE auth_group_permissions_id_seq OWNER TO emurillo;
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: emurillo
+--
+
+ALTER SEQUENCE auth_group_permissions_id_seq OWNED BY auth_group_permissions.id;
+
+
+--
+-- Name: auth_permission; Type: TABLE; Schema: public; Owner: emurillo
+--
+
+CREATE TABLE auth_permission (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    content_type_id integer NOT NULL,
+    codename character varying(100) NOT NULL
+);
+
+
+ALTER TABLE auth_permission OWNER TO emurillo;
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE; Schema: public; Owner: emurillo
+--
+
+CREATE SEQUENCE auth_permission_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE auth_permission_id_seq OWNER TO emurillo;
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: emurillo
+--
+
+ALTER SEQUENCE auth_permission_id_seq OWNED BY auth_permission.id;
+
+
+--
+-- Name: auth_user; Type: TABLE; Schema: public; Owner: emurillo
+--
+
+CREATE TABLE auth_user (
+    id integer NOT NULL,
+    password character varying(128) NOT NULL,
+    last_login timestamp with time zone,
+    is_superuser boolean NOT NULL,
+    username character varying(150) NOT NULL,
+    first_name character varying(30) NOT NULL,
+    last_name character varying(30) NOT NULL,
+    email character varying(254) NOT NULL,
+    is_staff boolean NOT NULL,
+    is_active boolean NOT NULL,
+    date_joined timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE auth_user OWNER TO emurillo;
+
+--
+-- Name: auth_user_groups; Type: TABLE; Schema: public; Owner: emurillo
+--
+
+CREATE TABLE auth_user_groups (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    group_id integer NOT NULL
+);
+
+
+ALTER TABLE auth_user_groups OWNER TO emurillo;
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: emurillo
+--
+
+CREATE SEQUENCE auth_user_groups_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE auth_user_groups_id_seq OWNER TO emurillo;
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: emurillo
+--
+
+ALTER SEQUENCE auth_user_groups_id_seq OWNED BY auth_user_groups.id;
+
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE; Schema: public; Owner: emurillo
+--
+
+CREATE SEQUENCE auth_user_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE auth_user_id_seq OWNER TO emurillo;
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: emurillo
+--
+
+ALTER SEQUENCE auth_user_id_seq OWNED BY auth_user.id;
+
+
+--
+-- Name: auth_user_user_permissions; Type: TABLE; Schema: public; Owner: emurillo
+--
+
+CREATE TABLE auth_user_user_permissions (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE auth_user_user_permissions OWNER TO emurillo;
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: emurillo
+--
+
+CREATE SEQUENCE auth_user_user_permissions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE auth_user_user_permissions_id_seq OWNER TO emurillo;
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: emurillo
+--
+
+ALTER SEQUENCE auth_user_user_permissions_id_seq OWNED BY auth_user_user_permissions.id;
+
+
+--
+-- Name: directorio_intercambiotecnologia; Type: TABLE; Schema: public; Owner: emurillo
+--
+
+CREATE TABLE directorio_intercambiotecnologia (
+    id integer NOT NULL,
+    nombre character varying(255) NOT NULL
+);
+
+
+ALTER TABLE directorio_intercambiotecnologia OWNER TO emurillo;
+
+--
+-- Name: directorio_intercambiotecnologia_id_seq; Type: SEQUENCE; Schema: public; Owner: emurillo
+--
+
+CREATE SEQUENCE directorio_intercambiotecnologia_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE directorio_intercambiotecnologia_id_seq OWNER TO emurillo;
+
+--
+-- Name: directorio_intercambiotecnologia_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: emurillo
+--
+
+ALTER SEQUENCE directorio_intercambiotecnologia_id_seq OWNED BY directorio_intercambiotecnologia.id;
+
+
+--
+-- Name: directorio_organizacion; Type: TABLE; Schema: public; Owner: emurillo
+--
+
+CREATE TABLE directorio_organizacion (
+    id integer NOT NULL,
+    tipo character varying(20) NOT NULL,
+    nombre character varying(255) NOT NULL,
+    logo character varying(100),
+    objetivo text NOT NULL,
+    contacto_1 character varying(255),
+    correo_1 character varying(255),
+    telefono_1 character varying(255),
+    contacto_2 character varying(255),
+    correo_2 character varying(255),
+    telefono_2 character varying(255),
+    ciudad character varying(255),
+    location character varying(63),
+    tipo_organizacion character varying(20) NOT NULL,
+    ambito_accion character varying(20) NOT NULL,
+    cobertura character varying(255) NOT NULL,
+    periodo_permanencia character varying(20) NOT NULL,
+    sitio_web character varying(200),
+    miembros integer,
+    tamano character varying(20),
+    actualizado date NOT NULL,
+    slug character varying(450) NOT NULL,
+    pais_sede_id integer NOT NULL,
+    tipo_actividad_id integer NOT NULL,
+    usuario_id integer
+);
+
+
+ALTER TABLE directorio_organizacion OWNER TO emurillo;
+
+--
+-- Name: directorio_organizacion_id_seq; Type: SEQUENCE; Schema: public; Owner: emurillo
+--
+
+CREATE SEQUENCE directorio_organizacion_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE directorio_organizacion_id_seq OWNER TO emurillo;
+
+--
+-- Name: directorio_organizacion_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: emurillo
+--
+
+ALTER SEQUENCE directorio_organizacion_id_seq OWNED BY directorio_organizacion.id;
+
+
+--
+-- Name: directorio_organizacion_intercambio; Type: TABLE; Schema: public; Owner: emurillo
+--
+
+CREATE TABLE directorio_organizacion_intercambio (
+    id integer NOT NULL,
+    organizacion_id integer NOT NULL,
+    intercambiotecnologia_id integer NOT NULL
+);
+
+
+ALTER TABLE directorio_organizacion_intercambio OWNER TO emurillo;
+
+--
+-- Name: directorio_organizacion_intercambio_id_seq; Type: SEQUENCE; Schema: public; Owner: emurillo
+--
+
+CREATE SEQUENCE directorio_organizacion_intercambio_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE directorio_organizacion_intercambio_id_seq OWNER TO emurillo;
+
+--
+-- Name: directorio_organizacion_intercambio_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: emurillo
+--
+
+ALTER SEQUENCE directorio_organizacion_intercambio_id_seq OWNED BY directorio_organizacion_intercambio.id;
+
+
+--
+-- Name: directorio_organizacion_paises_labora; Type: TABLE; Schema: public; Owner: emurillo
+--
+
+CREATE TABLE directorio_organizacion_paises_labora (
+    id integer NOT NULL,
+    organizacion_id integer NOT NULL,
+    pais_id integer NOT NULL
+);
+
+
+ALTER TABLE directorio_organizacion_paises_labora OWNER TO emurillo;
+
+--
+-- Name: directorio_organizacion_paises_labora_id_seq; Type: SEQUENCE; Schema: public; Owner: emurillo
+--
+
+CREATE SEQUENCE directorio_organizacion_paises_labora_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE directorio_organizacion_paises_labora_id_seq OWNER TO emurillo;
+
+--
+-- Name: directorio_organizacion_paises_labora_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: emurillo
+--
+
+ALTER SEQUENCE directorio_organizacion_paises_labora_id_seq OWNED BY directorio_organizacion_paises_labora.id;
+
+
+--
+-- Name: directorio_organizacion_participacion_cadena; Type: TABLE; Schema: public; Owner: emurillo
+--
+
+CREATE TABLE directorio_organizacion_participacion_cadena (
+    id integer NOT NULL,
+    organizacion_id integer NOT NULL,
+    participacion_id integer NOT NULL
+);
+
+
+ALTER TABLE directorio_organizacion_participacion_cadena OWNER TO emurillo;
+
+--
+-- Name: directorio_organizacion_participacion_cadena_id_seq; Type: SEQUENCE; Schema: public; Owner: emurillo
+--
+
+CREATE SEQUENCE directorio_organizacion_participacion_cadena_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE directorio_organizacion_participacion_cadena_id_seq OWNER TO emurillo;
+
+--
+-- Name: directorio_organizacion_participacion_cadena_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: emurillo
+--
+
+ALTER SEQUENCE directorio_organizacion_participacion_cadena_id_seq OWNED BY directorio_organizacion_participacion_cadena.id;
+
+
+--
+-- Name: directorio_organizacion_servicios; Type: TABLE; Schema: public; Owner: emurillo
+--
+
+CREATE TABLE directorio_organizacion_servicios (
+    id integer NOT NULL,
+    organizacion_id integer NOT NULL,
+    servicioscadena_id integer NOT NULL
+);
+
+
+ALTER TABLE directorio_organizacion_servicios OWNER TO emurillo;
+
+--
+-- Name: directorio_organizacion_servicios_id_seq; Type: SEQUENCE; Schema: public; Owner: emurillo
+--
+
+CREATE SEQUENCE directorio_organizacion_servicios_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE directorio_organizacion_servicios_id_seq OWNER TO emurillo;
+
+--
+-- Name: directorio_organizacion_servicios_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: emurillo
+--
+
+ALTER SEQUENCE directorio_organizacion_servicios_id_seq OWNED BY directorio_organizacion_servicios.id;
+
+
+--
+-- Name: directorio_pais; Type: TABLE; Schema: public; Owner: emurillo
+--
+
+CREATE TABLE directorio_pais (
+    id integer NOT NULL,
+    nombre character varying(255) NOT NULL
+);
+
+
+ALTER TABLE directorio_pais OWNER TO emurillo;
+
+--
+-- Name: directorio_pais_id_seq; Type: SEQUENCE; Schema: public; Owner: emurillo
+--
+
+CREATE SEQUENCE directorio_pais_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE directorio_pais_id_seq OWNER TO emurillo;
+
+--
+-- Name: directorio_pais_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: emurillo
+--
+
+ALTER SEQUENCE directorio_pais_id_seq OWNED BY directorio_pais.id;
+
+
+--
+-- Name: directorio_participacion; Type: TABLE; Schema: public; Owner: emurillo
+--
+
+CREATE TABLE directorio_participacion (
+    id integer NOT NULL,
+    nombre character varying(255) NOT NULL
+);
+
+
+ALTER TABLE directorio_participacion OWNER TO emurillo;
+
+--
+-- Name: directorio_participacion_id_seq; Type: SEQUENCE; Schema: public; Owner: emurillo
+--
+
+CREATE SEQUENCE directorio_participacion_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE directorio_participacion_id_seq OWNER TO emurillo;
+
+--
+-- Name: directorio_participacion_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: emurillo
+--
+
+ALTER SEQUENCE directorio_participacion_id_seq OWNED BY directorio_participacion.id;
+
+
+--
+-- Name: directorio_productosservicios; Type: TABLE; Schema: public; Owner: emurillo
+--
+
+CREATE TABLE directorio_productosservicios (
+    id integer NOT NULL,
+    nombre character varying(255) NOT NULL,
+    foto character varying(100) NOT NULL,
+    organizacion_id integer NOT NULL
+);
+
+
+ALTER TABLE directorio_productosservicios OWNER TO emurillo;
+
+--
+-- Name: directorio_productosservicios_id_seq; Type: SEQUENCE; Schema: public; Owner: emurillo
+--
+
+CREATE SEQUENCE directorio_productosservicios_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE directorio_productosservicios_id_seq OWNER TO emurillo;
+
+--
+-- Name: directorio_productosservicios_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: emurillo
+--
+
+ALTER SEQUENCE directorio_productosservicios_id_seq OWNED BY directorio_productosservicios.id;
+
+
+--
+-- Name: directorio_servicioscadena; Type: TABLE; Schema: public; Owner: emurillo
+--
+
+CREATE TABLE directorio_servicioscadena (
+    id integer NOT NULL,
+    nombre character varying(255) NOT NULL
+);
+
+
+ALTER TABLE directorio_servicioscadena OWNER TO emurillo;
+
+--
+-- Name: directorio_servicioscadena_id_seq; Type: SEQUENCE; Schema: public; Owner: emurillo
+--
+
+CREATE SEQUENCE directorio_servicioscadena_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE directorio_servicioscadena_id_seq OWNER TO emurillo;
+
+--
+-- Name: directorio_servicioscadena_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: emurillo
+--
+
+ALTER SEQUENCE directorio_servicioscadena_id_seq OWNED BY directorio_servicioscadena.id;
+
+
+--
+-- Name: directorio_tipoactividad; Type: TABLE; Schema: public; Owner: emurillo
+--
+
+CREATE TABLE directorio_tipoactividad (
+    id integer NOT NULL,
+    nombre character varying(255) NOT NULL
+);
+
+
+ALTER TABLE directorio_tipoactividad OWNER TO emurillo;
+
+--
+-- Name: directorio_tipoactividad_id_seq; Type: SEQUENCE; Schema: public; Owner: emurillo
+--
+
+CREATE SEQUENCE directorio_tipoactividad_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE directorio_tipoactividad_id_seq OWNER TO emurillo;
+
+--
+-- Name: directorio_tipoactividad_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: emurillo
+--
+
+ALTER SEQUENCE directorio_tipoactividad_id_seq OWNED BY directorio_tipoactividad.id;
+
+
+--
+-- Name: django_admin_log; Type: TABLE; Schema: public; Owner: emurillo
+--
+
+CREATE TABLE django_admin_log (
+    id integer NOT NULL,
+    action_time timestamp with time zone NOT NULL,
+    object_id text,
+    object_repr character varying(200) NOT NULL,
+    action_flag smallint NOT NULL,
+    change_message text NOT NULL,
+    content_type_id integer,
+    user_id integer NOT NULL,
+    CONSTRAINT django_admin_log_action_flag_check CHECK ((action_flag >= 0))
+);
+
+
+ALTER TABLE django_admin_log OWNER TO emurillo;
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE; Schema: public; Owner: emurillo
+--
+
+CREATE SEQUENCE django_admin_log_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE django_admin_log_id_seq OWNER TO emurillo;
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: emurillo
+--
+
+ALTER SEQUENCE django_admin_log_id_seq OWNED BY django_admin_log.id;
+
+
+--
+-- Name: django_content_type; Type: TABLE; Schema: public; Owner: emurillo
+--
+
+CREATE TABLE django_content_type (
+    id integer NOT NULL,
+    app_label character varying(100) NOT NULL,
+    model character varying(100) NOT NULL
+);
+
+
+ALTER TABLE django_content_type OWNER TO emurillo;
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE; Schema: public; Owner: emurillo
+--
+
+CREATE SEQUENCE django_content_type_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE django_content_type_id_seq OWNER TO emurillo;
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: emurillo
+--
+
+ALTER SEQUENCE django_content_type_id_seq OWNED BY django_content_type.id;
+
+
+--
+-- Name: django_migrations; Type: TABLE; Schema: public; Owner: emurillo
+--
+
+CREATE TABLE django_migrations (
+    id integer NOT NULL,
+    app character varying(255) NOT NULL,
+    name character varying(255) NOT NULL,
+    applied timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE django_migrations OWNER TO emurillo;
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: emurillo
+--
+
+CREATE SEQUENCE django_migrations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE django_migrations_id_seq OWNER TO emurillo;
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: emurillo
+--
+
+ALTER SEQUENCE django_migrations_id_seq OWNED BY django_migrations.id;
+
+
+--
+-- Name: django_session; Type: TABLE; Schema: public; Owner: emurillo
+--
+
+CREATE TABLE django_session (
+    session_key character varying(40) NOT NULL,
+    session_data text NOT NULL,
+    expire_date timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE django_session OWNER TO emurillo;
+
+--
+-- Name: star_ratings_rating; Type: TABLE; Schema: public; Owner: emurillo
+--
+
+CREATE TABLE star_ratings_rating (
+    id integer NOT NULL,
+    count integer NOT NULL,
+    total integer NOT NULL,
+    average numeric(6,3) NOT NULL,
+    object_id integer,
+    content_type_id integer,
+    CONSTRAINT star_ratings_rating_count_check CHECK ((count >= 0)),
+    CONSTRAINT star_ratings_rating_object_id_check CHECK ((object_id >= 0)),
+    CONSTRAINT star_ratings_rating_total_check CHECK ((total >= 0))
+);
+
+
+ALTER TABLE star_ratings_rating OWNER TO emurillo;
+
+--
+-- Name: star_ratings_rating_id_seq; Type: SEQUENCE; Schema: public; Owner: emurillo
+--
+
+CREATE SEQUENCE star_ratings_rating_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE star_ratings_rating_id_seq OWNER TO emurillo;
+
+--
+-- Name: star_ratings_rating_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: emurillo
+--
+
+ALTER SEQUENCE star_ratings_rating_id_seq OWNED BY star_ratings_rating.id;
+
+
+--
+-- Name: star_ratings_userrating; Type: TABLE; Schema: public; Owner: emurillo
+--
+
+CREATE TABLE star_ratings_userrating (
+    id integer NOT NULL,
+    created timestamp with time zone NOT NULL,
+    modified timestamp with time zone NOT NULL,
+    ip inet,
+    score smallint NOT NULL,
+    rating_id integer NOT NULL,
+    user_id integer,
+    CONSTRAINT star_ratings_userrating_score_check CHECK ((score >= 0))
+);
+
+
+ALTER TABLE star_ratings_userrating OWNER TO emurillo;
+
+--
+-- Name: star_ratings_userrating_id_seq; Type: SEQUENCE; Schema: public; Owner: emurillo
+--
+
+CREATE SEQUENCE star_ratings_userrating_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE star_ratings_userrating_id_seq OWNER TO emurillo;
+
+--
+-- Name: star_ratings_userrating_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: emurillo
+--
+
+ALTER SEQUENCE star_ratings_userrating_id_seq OWNED BY star_ratings_userrating.id;
+
+
+--
+-- Name: thumbnail_kvstore; Type: TABLE; Schema: public; Owner: emurillo
+--
+
+CREATE TABLE thumbnail_kvstore (
+    key character varying(200) NOT NULL,
+    value text NOT NULL
+);
+
+
+ALTER TABLE thumbnail_kvstore OWNER TO emurillo;
+
+--
+-- Name: auth_group id; Type: DEFAULT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY auth_group ALTER COLUMN id SET DEFAULT nextval('auth_group_id_seq'::regclass);
+
+
+--
+-- Name: auth_group_permissions id; Type: DEFAULT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY auth_group_permissions ALTER COLUMN id SET DEFAULT nextval('auth_group_permissions_id_seq'::regclass);
+
+
+--
+-- Name: auth_permission id; Type: DEFAULT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY auth_permission ALTER COLUMN id SET DEFAULT nextval('auth_permission_id_seq'::regclass);
+
+
+--
+-- Name: auth_user id; Type: DEFAULT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY auth_user ALTER COLUMN id SET DEFAULT nextval('auth_user_id_seq'::regclass);
+
+
+--
+-- Name: auth_user_groups id; Type: DEFAULT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY auth_user_groups ALTER COLUMN id SET DEFAULT nextval('auth_user_groups_id_seq'::regclass);
+
+
+--
+-- Name: auth_user_user_permissions id; Type: DEFAULT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY auth_user_user_permissions ALTER COLUMN id SET DEFAULT nextval('auth_user_user_permissions_id_seq'::regclass);
+
+
+--
+-- Name: directorio_intercambiotecnologia id; Type: DEFAULT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY directorio_intercambiotecnologia ALTER COLUMN id SET DEFAULT nextval('directorio_intercambiotecnologia_id_seq'::regclass);
+
+
+--
+-- Name: directorio_organizacion id; Type: DEFAULT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY directorio_organizacion ALTER COLUMN id SET DEFAULT nextval('directorio_organizacion_id_seq'::regclass);
+
+
+--
+-- Name: directorio_organizacion_intercambio id; Type: DEFAULT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY directorio_organizacion_intercambio ALTER COLUMN id SET DEFAULT nextval('directorio_organizacion_intercambio_id_seq'::regclass);
+
+
+--
+-- Name: directorio_organizacion_paises_labora id; Type: DEFAULT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY directorio_organizacion_paises_labora ALTER COLUMN id SET DEFAULT nextval('directorio_organizacion_paises_labora_id_seq'::regclass);
+
+
+--
+-- Name: directorio_organizacion_participacion_cadena id; Type: DEFAULT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY directorio_organizacion_participacion_cadena ALTER COLUMN id SET DEFAULT nextval('directorio_organizacion_participacion_cadena_id_seq'::regclass);
+
+
+--
+-- Name: directorio_organizacion_servicios id; Type: DEFAULT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY directorio_organizacion_servicios ALTER COLUMN id SET DEFAULT nextval('directorio_organizacion_servicios_id_seq'::regclass);
+
+
+--
+-- Name: directorio_pais id; Type: DEFAULT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY directorio_pais ALTER COLUMN id SET DEFAULT nextval('directorio_pais_id_seq'::regclass);
+
+
+--
+-- Name: directorio_participacion id; Type: DEFAULT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY directorio_participacion ALTER COLUMN id SET DEFAULT nextval('directorio_participacion_id_seq'::regclass);
+
+
+--
+-- Name: directorio_productosservicios id; Type: DEFAULT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY directorio_productosservicios ALTER COLUMN id SET DEFAULT nextval('directorio_productosservicios_id_seq'::regclass);
+
+
+--
+-- Name: directorio_servicioscadena id; Type: DEFAULT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY directorio_servicioscadena ALTER COLUMN id SET DEFAULT nextval('directorio_servicioscadena_id_seq'::regclass);
+
+
+--
+-- Name: directorio_tipoactividad id; Type: DEFAULT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY directorio_tipoactividad ALTER COLUMN id SET DEFAULT nextval('directorio_tipoactividad_id_seq'::regclass);
+
+
+--
+-- Name: django_admin_log id; Type: DEFAULT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY django_admin_log ALTER COLUMN id SET DEFAULT nextval('django_admin_log_id_seq'::regclass);
+
+
+--
+-- Name: django_content_type id; Type: DEFAULT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY django_content_type ALTER COLUMN id SET DEFAULT nextval('django_content_type_id_seq'::regclass);
+
+
+--
+-- Name: django_migrations id; Type: DEFAULT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY django_migrations ALTER COLUMN id SET DEFAULT nextval('django_migrations_id_seq'::regclass);
+
+
+--
+-- Name: star_ratings_rating id; Type: DEFAULT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY star_ratings_rating ALTER COLUMN id SET DEFAULT nextval('star_ratings_rating_id_seq'::regclass);
+
+
+--
+-- Name: star_ratings_userrating id; Type: DEFAULT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY star_ratings_userrating ALTER COLUMN id SET DEFAULT nextval('star_ratings_userrating_id_seq'::regclass);
+
+
+--
+-- Data for Name: auth_group; Type: TABLE DATA; Schema: public; Owner: emurillo
+--
+
+COPY auth_group (id, name) FROM stdin;
+\.
+
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: emurillo
+--
+
+SELECT pg_catalog.setval('auth_group_id_seq', 1, false);
+
+
+--
+-- Data for Name: auth_group_permissions; Type: TABLE DATA; Schema: public; Owner: emurillo
+--
+
+COPY auth_group_permissions (id, group_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: emurillo
+--
+
+SELECT pg_catalog.setval('auth_group_permissions_id_seq', 1, false);
+
+
+--
+-- Data for Name: auth_permission; Type: TABLE DATA; Schema: public; Owner: emurillo
+--
+
+COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
+1	Can add log entry	1	add_logentry
+2	Can change log entry	1	change_logentry
+3	Can delete log entry	1	delete_logentry
+4	Can add group	2	add_group
+5	Can change group	2	change_group
+6	Can delete group	2	delete_group
+7	Can add permission	3	add_permission
+8	Can change permission	3	change_permission
+9	Can delete permission	3	delete_permission
+10	Can add user	4	add_user
+11	Can change user	4	change_user
+12	Can delete user	4	delete_user
+13	Can add content type	5	add_contenttype
+14	Can change content type	5	change_contenttype
+15	Can delete content type	5	delete_contenttype
+16	Can add session	6	add_session
+17	Can change session	6	change_session
+18	Can delete session	6	delete_session
+19	Can add Tipo de actividad	7	add_tipoactividad
+20	Can change Tipo de actividad	7	change_tipoactividad
+21	Can delete Tipo de actividad	7	delete_tipoactividad
+22	Can add intercambio tecnologia	8	add_intercambiotecnologia
+23	Can change intercambio tecnologia	8	change_intercambiotecnologia
+24	Can delete intercambio tecnologia	8	delete_intercambiotecnologia
+25	Can add servicios cadena	9	add_servicioscadena
+26	Can change servicios cadena	9	change_servicioscadena
+27	Can delete servicios cadena	9	delete_servicioscadena
+28	Can add participacion	10	add_participacion
+29	Can change participacion	10	change_participacion
+30	Can delete participacion	10	delete_participacion
+31	Can add País	11	add_pais
+32	Can change País	11	change_pais
+33	Can delete País	11	delete_pais
+34	Can add Producto/Servicio	12	add_productosservicios
+35	Can change Producto/Servicio	12	change_productosservicios
+36	Can delete Producto/Servicio	12	delete_productosservicios
+37	Can add Organización/Especialista	13	add_organizacion
+38	Can change Organización/Especialista	13	change_organizacion
+39	Can delete Organización/Especialista	13	delete_organizacion
+40	Can add kv store	14	add_kvstore
+41	Can change kv store	14	change_kvstore
+42	Can delete kv store	14	delete_kvstore
+43	Can add user rating	15	add_userrating
+44	Can change user rating	15	change_userrating
+45	Can delete user rating	15	delete_userrating
+46	Can add rating	16	add_rating
+47	Can change rating	16	change_rating
+48	Can delete rating	16	delete_rating
+\.
+
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: emurillo
+--
+
+SELECT pg_catalog.setval('auth_permission_id_seq', 48, true);
+
+
+--
+-- Data for Name: auth_user; Type: TABLE DATA; Schema: public; Owner: emurillo
+--
+
+COPY auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
+1	pbkdf2_sha256$36000$Timikfh0Ymzu$1qsJx8VKtQisoy/3LRIpjTdxRhjUapwtQK8nSodBUKc=	2017-11-14 11:07:14.924307-06	t	erick				t	t	2017-11-14 11:06:17.051381-06
+\.
+
+
+--
+-- Data for Name: auth_user_groups; Type: TABLE DATA; Schema: public; Owner: emurillo
+--
+
+COPY auth_user_groups (id, user_id, group_id) FROM stdin;
+\.
+
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: emurillo
+--
+
+SELECT pg_catalog.setval('auth_user_groups_id_seq', 1, false);
+
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: emurillo
+--
+
+SELECT pg_catalog.setval('auth_user_id_seq', 1, true);
+
+
+--
+-- Data for Name: auth_user_user_permissions; Type: TABLE DATA; Schema: public; Owner: emurillo
+--
+
+COPY auth_user_user_permissions (id, user_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: emurillo
+--
+
+SELECT pg_catalog.setval('auth_user_user_permissions_id_seq', 1, false);
+
+
+--
+-- Data for Name: directorio_intercambiotecnologia; Type: TABLE DATA; Schema: public; Owner: emurillo
+--
+
+COPY directorio_intercambiotecnologia (id, nombre) FROM stdin;
+1	tecnologia
+\.
+
+
+--
+-- Name: directorio_intercambiotecnologia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: emurillo
+--
+
+SELECT pg_catalog.setval('directorio_intercambiotecnologia_id_seq', 1, true);
+
+
+--
+-- Data for Name: directorio_organizacion; Type: TABLE DATA; Schema: public; Owner: emurillo
+--
+
+COPY directorio_organizacion (id, tipo, nombre, logo, objetivo, contacto_1, correo_1, telefono_1, contacto_2, correo_2, telefono_2, ciudad, location, tipo_organizacion, ambito_accion, cobertura, periodo_permanencia, sitio_web, miembros, tamano, actualizado, slug, pais_sede_id, tipo_actividad_id, usuario_id) FROM stdin;
+1	Organizacion	simas	logos/benificios_cacao.jpg	sdsdfs	\N	\N	\N	\N	\N	\N	managua parque el carmen	12.1440114,-86.2858405	Sector privado	Regional	regional	Más de 5 años	\N	\N	\N	2017-11-14	simas	1	1	\N
+\.
+
+
+--
+-- Name: directorio_organizacion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: emurillo
+--
+
+SELECT pg_catalog.setval('directorio_organizacion_id_seq', 1, true);
+
+
+--
+-- Data for Name: directorio_organizacion_intercambio; Type: TABLE DATA; Schema: public; Owner: emurillo
+--
+
+COPY directorio_organizacion_intercambio (id, organizacion_id, intercambiotecnologia_id) FROM stdin;
+1	1	1
+\.
+
+
+--
+-- Name: directorio_organizacion_intercambio_id_seq; Type: SEQUENCE SET; Schema: public; Owner: emurillo
+--
+
+SELECT pg_catalog.setval('directorio_organizacion_intercambio_id_seq', 1, true);
+
+
+--
+-- Data for Name: directorio_organizacion_paises_labora; Type: TABLE DATA; Schema: public; Owner: emurillo
+--
+
+COPY directorio_organizacion_paises_labora (id, organizacion_id, pais_id) FROM stdin;
+1	1	2
+\.
+
+
+--
+-- Name: directorio_organizacion_paises_labora_id_seq; Type: SEQUENCE SET; Schema: public; Owner: emurillo
+--
+
+SELECT pg_catalog.setval('directorio_organizacion_paises_labora_id_seq', 1, true);
+
+
+--
+-- Data for Name: directorio_organizacion_participacion_cadena; Type: TABLE DATA; Schema: public; Owner: emurillo
+--
+
+COPY directorio_organizacion_participacion_cadena (id, organizacion_id, participacion_id) FROM stdin;
+1	1	1
+\.
+
+
+--
+-- Name: directorio_organizacion_participacion_cadena_id_seq; Type: SEQUENCE SET; Schema: public; Owner: emurillo
+--
+
+SELECT pg_catalog.setval('directorio_organizacion_participacion_cadena_id_seq', 1, true);
+
+
+--
+-- Data for Name: directorio_organizacion_servicios; Type: TABLE DATA; Schema: public; Owner: emurillo
+--
+
+COPY directorio_organizacion_servicios (id, organizacion_id, servicioscadena_id) FROM stdin;
+1	1	1
+\.
+
+
+--
+-- Name: directorio_organizacion_servicios_id_seq; Type: SEQUENCE SET; Schema: public; Owner: emurillo
+--
+
+SELECT pg_catalog.setval('directorio_organizacion_servicios_id_seq', 1, true);
+
+
+--
+-- Data for Name: directorio_pais; Type: TABLE DATA; Schema: public; Owner: emurillo
+--
+
+COPY directorio_pais (id, nombre) FROM stdin;
+1	Nicaragua
+2	centro àmerica
+\.
+
+
+--
+-- Name: directorio_pais_id_seq; Type: SEQUENCE SET; Schema: public; Owner: emurillo
+--
+
+SELECT pg_catalog.setval('directorio_pais_id_seq', 2, true);
+
+
+--
+-- Data for Name: directorio_participacion; Type: TABLE DATA; Schema: public; Owner: emurillo
+--
+
+COPY directorio_participacion (id, nombre) FROM stdin;
+1	participacion
+\.
+
+
+--
+-- Name: directorio_participacion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: emurillo
+--
+
+SELECT pg_catalog.setval('directorio_participacion_id_seq', 1, true);
+
+
+--
+-- Data for Name: directorio_productosservicios; Type: TABLE DATA; Schema: public; Owner: emurillo
+--
+
+COPY directorio_productosservicios (id, nombre, foto, organizacion_id) FROM stdin;
+\.
+
+
+--
+-- Name: directorio_productosservicios_id_seq; Type: SEQUENCE SET; Schema: public; Owner: emurillo
+--
+
+SELECT pg_catalog.setval('directorio_productosservicios_id_seq', 1, false);
+
+
+--
+-- Data for Name: directorio_servicioscadena; Type: TABLE DATA; Schema: public; Owner: emurillo
+--
+
+COPY directorio_servicioscadena (id, nombre) FROM stdin;
+1	servicios
+\.
+
+
+--
+-- Name: directorio_servicioscadena_id_seq; Type: SEQUENCE SET; Schema: public; Owner: emurillo
+--
+
+SELECT pg_catalog.setval('directorio_servicioscadena_id_seq', 1, true);
+
+
+--
+-- Data for Name: directorio_tipoactividad; Type: TABLE DATA; Schema: public; Owner: emurillo
+--
+
+COPY directorio_tipoactividad (id, nombre) FROM stdin;
+1	Servicios
+\.
+
+
+--
+-- Name: directorio_tipoactividad_id_seq; Type: SEQUENCE SET; Schema: public; Owner: emurillo
+--
+
+SELECT pg_catalog.setval('directorio_tipoactividad_id_seq', 1, true);
+
+
+--
+-- Data for Name: django_admin_log; Type: TABLE DATA; Schema: public; Owner: emurillo
+--
+
+COPY django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) FROM stdin;
+1	2017-11-14 11:07:39.964415-06	1	Nicaragua	1	[{"added": {}}]	11	1
+2	2017-11-14 11:07:58.376657-06	1	Servicios	1	[{"added": {}}]	7	1
+3	2017-11-14 11:08:03.126121-06	1	participacion	1	[{"added": {}}]	10	1
+4	2017-11-14 11:08:08.045398-06	1	servicios	1	[{"added": {}}]	9	1
+5	2017-11-14 11:08:24.007997-06	2	centro àmerica	1	[{"added": {}}]	11	1
+6	2017-11-14 11:08:35.17211-06	1	tecnologia	1	[{"added": {}}]	8	1
+7	2017-11-14 11:08:37.814848-06	1	simas	1	[{"added": {}}]	13	1
+\.
+
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: emurillo
+--
+
+SELECT pg_catalog.setval('django_admin_log_id_seq', 7, true);
+
+
+--
+-- Data for Name: django_content_type; Type: TABLE DATA; Schema: public; Owner: emurillo
+--
+
+COPY django_content_type (id, app_label, model) FROM stdin;
+1	admin	logentry
+2	auth	group
+3	auth	permission
+4	auth	user
+5	contenttypes	contenttype
+6	sessions	session
+7	directorio	tipoactividad
+8	directorio	intercambiotecnologia
+9	directorio	servicioscadena
+10	directorio	participacion
+11	directorio	pais
+12	directorio	productosservicios
+13	directorio	organizacion
+14	thumbnail	kvstore
+15	star_ratings	userrating
+16	star_ratings	rating
+\.
+
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: emurillo
+--
+
+SELECT pg_catalog.setval('django_content_type_id_seq', 16, true);
+
+
+--
+-- Data for Name: django_migrations; Type: TABLE DATA; Schema: public; Owner: emurillo
+--
+
+COPY django_migrations (id, app, name, applied) FROM stdin;
+1	contenttypes	0001_initial	2017-11-14 11:06:00.975932-06
+2	auth	0001_initial	2017-11-14 11:06:01.075181-06
+3	admin	0001_initial	2017-11-14 11:06:01.111803-06
+4	admin	0002_logentry_remove_auto_add	2017-11-14 11:06:01.126003-06
+5	contenttypes	0002_remove_content_type_name	2017-11-14 11:06:01.155973-06
+6	auth	0002_alter_permission_name_max_length	2017-11-14 11:06:01.16468-06
+7	auth	0003_alter_user_email_max_length	2017-11-14 11:06:01.180909-06
+8	auth	0004_alter_user_username_opts	2017-11-14 11:06:01.194625-06
+9	auth	0005_alter_user_last_login_null	2017-11-14 11:06:01.210407-06
+10	auth	0006_require_contenttypes_0002	2017-11-14 11:06:01.213166-06
+11	auth	0007_alter_validators_add_error_messages	2017-11-14 11:06:01.224288-06
+12	auth	0008_alter_user_username_max_length	2017-11-14 11:06:01.242763-06
+13	directorio	0001_initial	2017-11-14 11:06:01.460346-06
+14	sessions	0001_initial	2017-11-14 11:06:01.481833-06
+15	star_ratings	0001_initial	2017-11-14 11:06:01.587253-06
+16	star_ratings	0002_auto_20160608_1119	2017-11-14 11:06:01.651747-06
+17	star_ratings	0003_auto_20160721_1127	2017-11-14 11:06:01.685543-06
+18	thumbnail	0001_initial	2017-11-14 11:09:06.933681-06
+\.
+
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: emurillo
+--
+
+SELECT pg_catalog.setval('django_migrations_id_seq', 18, true);
+
+
+--
+-- Data for Name: django_session; Type: TABLE DATA; Schema: public; Owner: emurillo
+--
+
+COPY django_session (session_key, session_data, expire_date) FROM stdin;
+otv1gfgxrtrqpzk1v23orj7prnd8z262	NTcyY2JlMjY4NTlkZWQxYTdkNThhMmRiNjZjZTQ0ODIzMWQ2NGI4ZTqAAn1xAShVD19hdXRoX3VzZXJfaGFzaHECVShmODFjNGQ5NzIzOTM4NzAwN2U0MDQ2ZmM1MDkzNmUyZjAyNzYxOTlkVRJfYXV0aF91c2VyX2JhY2tlbmRxA1gpAAAAZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmRxBFUNX2F1dGhfdXNlcl9pZHEFWAEAAAAxdS4=	2017-11-28 11:07:14.927831-06
+\.
+
+
+--
+-- Data for Name: star_ratings_rating; Type: TABLE DATA; Schema: public; Owner: emurillo
+--
+
+COPY star_ratings_rating (id, count, total, average, object_id, content_type_id) FROM stdin;
+1	0	0	0.000	1	13
+\.
+
+
+--
+-- Name: star_ratings_rating_id_seq; Type: SEQUENCE SET; Schema: public; Owner: emurillo
+--
+
+SELECT pg_catalog.setval('star_ratings_rating_id_seq', 1, true);
+
+
+--
+-- Data for Name: star_ratings_userrating; Type: TABLE DATA; Schema: public; Owner: emurillo
+--
+
+COPY star_ratings_userrating (id, created, modified, ip, score, rating_id, user_id) FROM stdin;
+\.
+
+
+--
+-- Name: star_ratings_userrating_id_seq; Type: SEQUENCE SET; Schema: public; Owner: emurillo
+--
+
+SELECT pg_catalog.setval('star_ratings_userrating_id_seq', 1, false);
+
+
+--
+-- Data for Name: thumbnail_kvstore; Type: TABLE DATA; Schema: public; Owner: emurillo
+--
+
+COPY thumbnail_kvstore (key, value) FROM stdin;
+sorl-thumbnail||image||1c2ab4d4108f9a24d99168cfd79e2507	{"storage": "django.core.files.storage.FileSystemStorage", "name": "logos/benificios_cacao.jpg", "size": [624, 402]}
+sorl-thumbnail||image||f3145270d2fc972f754a1ba1cf6b38de	{"storage": "django.core.files.storage.FileSystemStorage", "name": "cache/c3/67/c367f7490307a4cac060d11aeebc68e2.png", "size": [210, 210]}
+sorl-thumbnail||thumbnails||1c2ab4d4108f9a24d99168cfd79e2507	["f3145270d2fc972f754a1ba1cf6b38de"]
+sorl-thumbnail||image||151ccb25151423d6747eaa27781e52fe	{"storage": "django.core.files.storage.FileSystemStorage", "name": "cache/0e/90/0e90bf151c809ff2e15c100ebc876064.png", "size": [120, 120]}
+\.
+
+
+--
+-- Name: auth_group auth_group_name_key; Type: CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY auth_group
+    ADD CONSTRAINT auth_group_name_key UNIQUE (name);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_group_id_permission_id_0cd325b0_uniq; Type: CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_permission_id_0cd325b0_uniq UNIQUE (group_id, permission_id);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_group auth_group_pkey; Type: CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY auth_group
+    ADD CONSTRAINT auth_group_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_permission auth_permission_content_type_id_codename_01ab375a_uniq; Type: CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_codename_01ab375a_uniq UNIQUE (content_type_id, codename);
+
+
+--
+-- Name: auth_permission auth_permission_pkey; Type: CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY auth_permission
+    ADD CONSTRAINT auth_permission_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_groups auth_user_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY auth_user_groups
+    ADD CONSTRAINT auth_user_groups_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_groups auth_user_groups_user_id_group_id_94350c0c_uniq; Type: CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY auth_user_groups
+    ADD CONSTRAINT auth_user_groups_user_id_group_id_94350c0c_uniq UNIQUE (user_id, group_id);
+
+
+--
+-- Name: auth_user auth_user_pkey; Type: CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY auth_user
+    ADD CONSTRAINT auth_user_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissions_user_id_permission_id_14a6b632_uniq; Type: CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_user_id_permission_id_14a6b632_uniq UNIQUE (user_id, permission_id);
+
+
+--
+-- Name: auth_user auth_user_username_key; Type: CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY auth_user
+    ADD CONSTRAINT auth_user_username_key UNIQUE (username);
+
+
+--
+-- Name: directorio_intercambiotecnologia directorio_intercambiotecnologia_pkey; Type: CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY directorio_intercambiotecnologia
+    ADD CONSTRAINT directorio_intercambiotecnologia_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: directorio_organizacion_intercambio directorio_organizacion__organizacion_id_intercam_178c4adf_uniq; Type: CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY directorio_organizacion_intercambio
+    ADD CONSTRAINT directorio_organizacion__organizacion_id_intercam_178c4adf_uniq UNIQUE (organizacion_id, intercambiotecnologia_id);
+
+
+--
+-- Name: directorio_organizacion_paises_labora directorio_organizacion__organizacion_id_pais_id_9a2d7a9f_uniq; Type: CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY directorio_organizacion_paises_labora
+    ADD CONSTRAINT directorio_organizacion__organizacion_id_pais_id_9a2d7a9f_uniq UNIQUE (organizacion_id, pais_id);
+
+
+--
+-- Name: directorio_organizacion_participacion_cadena directorio_organizacion__organizacion_id_particip_5b5c9ecc_uniq; Type: CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY directorio_organizacion_participacion_cadena
+    ADD CONSTRAINT directorio_organizacion__organizacion_id_particip_5b5c9ecc_uniq UNIQUE (organizacion_id, participacion_id);
+
+
+--
+-- Name: directorio_organizacion_servicios directorio_organizacion__organizacion_id_servicio_598e380f_uniq; Type: CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY directorio_organizacion_servicios
+    ADD CONSTRAINT directorio_organizacion__organizacion_id_servicio_598e380f_uniq UNIQUE (organizacion_id, servicioscadena_id);
+
+
+--
+-- Name: directorio_organizacion_intercambio directorio_organizacion_intercambio_pkey; Type: CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY directorio_organizacion_intercambio
+    ADD CONSTRAINT directorio_organizacion_intercambio_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: directorio_organizacion_paises_labora directorio_organizacion_paises_labora_pkey; Type: CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY directorio_organizacion_paises_labora
+    ADD CONSTRAINT directorio_organizacion_paises_labora_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: directorio_organizacion_participacion_cadena directorio_organizacion_participacion_cadena_pkey; Type: CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY directorio_organizacion_participacion_cadena
+    ADD CONSTRAINT directorio_organizacion_participacion_cadena_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: directorio_organizacion directorio_organizacion_pkey; Type: CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY directorio_organizacion
+    ADD CONSTRAINT directorio_organizacion_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: directorio_organizacion_servicios directorio_organizacion_servicios_pkey; Type: CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY directorio_organizacion_servicios
+    ADD CONSTRAINT directorio_organizacion_servicios_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: directorio_pais directorio_pais_pkey; Type: CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY directorio_pais
+    ADD CONSTRAINT directorio_pais_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: directorio_participacion directorio_participacion_pkey; Type: CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY directorio_participacion
+    ADD CONSTRAINT directorio_participacion_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: directorio_productosservicios directorio_productosservicios_pkey; Type: CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY directorio_productosservicios
+    ADD CONSTRAINT directorio_productosservicios_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: directorio_servicioscadena directorio_servicioscadena_pkey; Type: CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY directorio_servicioscadena
+    ADD CONSTRAINT directorio_servicioscadena_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: directorio_tipoactividad directorio_tipoactividad_pkey; Type: CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY directorio_tipoactividad
+    ADD CONSTRAINT directorio_tipoactividad_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_admin_log django_admin_log_pkey; Type: CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY django_admin_log
+    ADD CONSTRAINT django_admin_log_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_content_type django_content_type_app_label_model_76bd3d3b_uniq; Type: CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY django_content_type
+    ADD CONSTRAINT django_content_type_app_label_model_76bd3d3b_uniq UNIQUE (app_label, model);
+
+
+--
+-- Name: django_content_type django_content_type_pkey; Type: CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY django_content_type
+    ADD CONSTRAINT django_content_type_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_migrations django_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY django_migrations
+    ADD CONSTRAINT django_migrations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_session django_session_pkey; Type: CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY django_session
+    ADD CONSTRAINT django_session_pkey PRIMARY KEY (session_key);
+
+
+--
+-- Name: star_ratings_rating star_ratings_rating_content_type_id_object_id_f170c88b_uniq; Type: CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY star_ratings_rating
+    ADD CONSTRAINT star_ratings_rating_content_type_id_object_id_f170c88b_uniq UNIQUE (content_type_id, object_id);
+
+
+--
+-- Name: star_ratings_rating star_ratings_rating_pkey; Type: CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY star_ratings_rating
+    ADD CONSTRAINT star_ratings_rating_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: star_ratings_userrating star_ratings_userrating_pkey; Type: CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY star_ratings_userrating
+    ADD CONSTRAINT star_ratings_userrating_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: star_ratings_userrating star_ratings_userrating_user_id_rating_id_25ba0a69_uniq; Type: CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY star_ratings_userrating
+    ADD CONSTRAINT star_ratings_userrating_user_id_rating_id_25ba0a69_uniq UNIQUE (user_id, rating_id);
+
+
+--
+-- Name: thumbnail_kvstore thumbnail_kvstore_pkey; Type: CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY thumbnail_kvstore
+    ADD CONSTRAINT thumbnail_kvstore_pkey PRIMARY KEY (key);
+
+
+--
+-- Name: auth_group_name_a6ea08ec_like; Type: INDEX; Schema: public; Owner: emurillo
+--
+
+CREATE INDEX auth_group_name_a6ea08ec_like ON auth_group USING btree (name varchar_pattern_ops);
+
+
+--
+-- Name: auth_group_permissions_group_id_b120cbf9; Type: INDEX; Schema: public; Owner: emurillo
+--
+
+CREATE INDEX auth_group_permissions_group_id_b120cbf9 ON auth_group_permissions USING btree (group_id);
+
+
+--
+-- Name: auth_group_permissions_permission_id_84c5c92e; Type: INDEX; Schema: public; Owner: emurillo
+--
+
+CREATE INDEX auth_group_permissions_permission_id_84c5c92e ON auth_group_permissions USING btree (permission_id);
+
+
+--
+-- Name: auth_permission_content_type_id_2f476e4b; Type: INDEX; Schema: public; Owner: emurillo
+--
+
+CREATE INDEX auth_permission_content_type_id_2f476e4b ON auth_permission USING btree (content_type_id);
+
+
+--
+-- Name: auth_user_groups_group_id_97559544; Type: INDEX; Schema: public; Owner: emurillo
+--
+
+CREATE INDEX auth_user_groups_group_id_97559544 ON auth_user_groups USING btree (group_id);
+
+
+--
+-- Name: auth_user_groups_user_id_6a12ed8b; Type: INDEX; Schema: public; Owner: emurillo
+--
+
+CREATE INDEX auth_user_groups_user_id_6a12ed8b ON auth_user_groups USING btree (user_id);
+
+
+--
+-- Name: auth_user_user_permissions_permission_id_1fbb5f2c; Type: INDEX; Schema: public; Owner: emurillo
+--
+
+CREATE INDEX auth_user_user_permissions_permission_id_1fbb5f2c ON auth_user_user_permissions USING btree (permission_id);
+
+
+--
+-- Name: auth_user_user_permissions_user_id_a95ead1b; Type: INDEX; Schema: public; Owner: emurillo
+--
+
+CREATE INDEX auth_user_user_permissions_user_id_a95ead1b ON auth_user_user_permissions USING btree (user_id);
+
+
+--
+-- Name: auth_user_username_6821ab7c_like; Type: INDEX; Schema: public; Owner: emurillo
+--
+
+CREATE INDEX auth_user_username_6821ab7c_like ON auth_user USING btree (username varchar_pattern_ops);
+
+
+--
+-- Name: directorio_organizacion_in_intercambiotecnologia_id_2a02423e; Type: INDEX; Schema: public; Owner: emurillo
+--
+
+CREATE INDEX directorio_organizacion_in_intercambiotecnologia_id_2a02423e ON directorio_organizacion_intercambio USING btree (intercambiotecnologia_id);
+
+
+--
+-- Name: directorio_organizacion_intercambio_organizacion_id_55702fde; Type: INDEX; Schema: public; Owner: emurillo
+--
+
+CREATE INDEX directorio_organizacion_intercambio_organizacion_id_55702fde ON directorio_organizacion_intercambio USING btree (organizacion_id);
+
+
+--
+-- Name: directorio_organizacion_pa_organizacion_id_15a8eff4; Type: INDEX; Schema: public; Owner: emurillo
+--
+
+CREATE INDEX directorio_organizacion_pa_organizacion_id_15a8eff4 ON directorio_organizacion_participacion_cadena USING btree (organizacion_id);
+
+
+--
+-- Name: directorio_organizacion_pa_participacion_id_76f55745; Type: INDEX; Schema: public; Owner: emurillo
+--
+
+CREATE INDEX directorio_organizacion_pa_participacion_id_76f55745 ON directorio_organizacion_participacion_cadena USING btree (participacion_id);
+
+
+--
+-- Name: directorio_organizacion_pais_sede_id_662a494e; Type: INDEX; Schema: public; Owner: emurillo
+--
+
+CREATE INDEX directorio_organizacion_pais_sede_id_662a494e ON directorio_organizacion USING btree (pais_sede_id);
+
+
+--
+-- Name: directorio_organizacion_paises_labora_organizacion_id_c5cd1f09; Type: INDEX; Schema: public; Owner: emurillo
+--
+
+CREATE INDEX directorio_organizacion_paises_labora_organizacion_id_c5cd1f09 ON directorio_organizacion_paises_labora USING btree (organizacion_id);
+
+
+--
+-- Name: directorio_organizacion_paises_labora_pais_id_ee729168; Type: INDEX; Schema: public; Owner: emurillo
+--
+
+CREATE INDEX directorio_organizacion_paises_labora_pais_id_ee729168 ON directorio_organizacion_paises_labora USING btree (pais_id);
+
+
+--
+-- Name: directorio_organizacion_servicios_organizacion_id_4eb594c8; Type: INDEX; Schema: public; Owner: emurillo
+--
+
+CREATE INDEX directorio_organizacion_servicios_organizacion_id_4eb594c8 ON directorio_organizacion_servicios USING btree (organizacion_id);
+
+
+--
+-- Name: directorio_organizacion_servicios_servicioscadena_id_34273cb0; Type: INDEX; Schema: public; Owner: emurillo
+--
+
+CREATE INDEX directorio_organizacion_servicios_servicioscadena_id_34273cb0 ON directorio_organizacion_servicios USING btree (servicioscadena_id);
+
+
+--
+-- Name: directorio_organizacion_slug_354f7ce8; Type: INDEX; Schema: public; Owner: emurillo
+--
+
+CREATE INDEX directorio_organizacion_slug_354f7ce8 ON directorio_organizacion USING btree (slug);
+
+
+--
+-- Name: directorio_organizacion_slug_354f7ce8_like; Type: INDEX; Schema: public; Owner: emurillo
+--
+
+CREATE INDEX directorio_organizacion_slug_354f7ce8_like ON directorio_organizacion USING btree (slug varchar_pattern_ops);
+
+
+--
+-- Name: directorio_organizacion_tipo_actividad_id_eaaa9e1b; Type: INDEX; Schema: public; Owner: emurillo
+--
+
+CREATE INDEX directorio_organizacion_tipo_actividad_id_eaaa9e1b ON directorio_organizacion USING btree (tipo_actividad_id);
+
+
+--
+-- Name: directorio_organizacion_usuario_id_c6a07714; Type: INDEX; Schema: public; Owner: emurillo
+--
+
+CREATE INDEX directorio_organizacion_usuario_id_c6a07714 ON directorio_organizacion USING btree (usuario_id);
+
+
+--
+-- Name: directorio_productosservicios_organizacion_id_2b7aecf3; Type: INDEX; Schema: public; Owner: emurillo
+--
+
+CREATE INDEX directorio_productosservicios_organizacion_id_2b7aecf3 ON directorio_productosservicios USING btree (organizacion_id);
+
+
+--
+-- Name: django_admin_log_content_type_id_c4bce8eb; Type: INDEX; Schema: public; Owner: emurillo
+--
+
+CREATE INDEX django_admin_log_content_type_id_c4bce8eb ON django_admin_log USING btree (content_type_id);
+
+
+--
+-- Name: django_admin_log_user_id_c564eba6; Type: INDEX; Schema: public; Owner: emurillo
+--
+
+CREATE INDEX django_admin_log_user_id_c564eba6 ON django_admin_log USING btree (user_id);
+
+
+--
+-- Name: django_session_expire_date_a5c62663; Type: INDEX; Schema: public; Owner: emurillo
+--
+
+CREATE INDEX django_session_expire_date_a5c62663 ON django_session USING btree (expire_date);
+
+
+--
+-- Name: django_session_session_key_c0390e0f_like; Type: INDEX; Schema: public; Owner: emurillo
+--
+
+CREATE INDEX django_session_session_key_c0390e0f_like ON django_session USING btree (session_key varchar_pattern_ops);
+
+
+--
+-- Name: star_ratings_rating_content_type_id_176abacc; Type: INDEX; Schema: public; Owner: emurillo
+--
+
+CREATE INDEX star_ratings_rating_content_type_id_176abacc ON star_ratings_rating USING btree (content_type_id);
+
+
+--
+-- Name: star_ratings_userrating_rating_id_e7ac9370; Type: INDEX; Schema: public; Owner: emurillo
+--
+
+CREATE INDEX star_ratings_userrating_rating_id_e7ac9370 ON star_ratings_userrating USING btree (rating_id);
+
+
+--
+-- Name: star_ratings_userrating_user_id_33d5d349; Type: INDEX; Schema: public; Owner: emurillo
+--
+
+CREATE INDEX star_ratings_userrating_user_id_33d5d349 ON star_ratings_userrating USING btree (user_id);
+
+
+--
+-- Name: thumbnail_kvstore_key_3f850178_like; Type: INDEX; Schema: public; Owner: emurillo
+--
+
+CREATE INDEX thumbnail_kvstore_key_3f850178_like ON thumbnail_kvstore USING btree (key varchar_pattern_ops);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissio_permission_id_84c5c92e_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY auth_group_permissions
+    ADD CONSTRAINT auth_group_permissio_permission_id_84c5c92e_fk_auth_perm FOREIGN KEY (permission_id) REFERENCES auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_group_id_b120cbf9_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_b120cbf9_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_permission auth_permission_content_type_id_2f476e4b_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_2f476e4b_fk_django_co FOREIGN KEY (content_type_id) REFERENCES django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_groups auth_user_groups_group_id_97559544_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY auth_user_groups
+    ADD CONSTRAINT auth_user_groups_group_id_97559544_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_groups auth_user_groups_user_id_6a12ed8b_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY auth_user_groups
+    ADD CONSTRAINT auth_user_groups_user_id_6a12ed8b_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm FOREIGN KEY (permission_id) REFERENCES auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: directorio_organizacion_intercambio directorio_organizac_intercambiotecnologi_2a02423e_fk_directori; Type: FK CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY directorio_organizacion_intercambio
+    ADD CONSTRAINT directorio_organizac_intercambiotecnologi_2a02423e_fk_directori FOREIGN KEY (intercambiotecnologia_id) REFERENCES directorio_intercambiotecnologia(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: directorio_organizacion_participacion_cadena directorio_organizac_organizacion_id_15a8eff4_fk_directori; Type: FK CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY directorio_organizacion_participacion_cadena
+    ADD CONSTRAINT directorio_organizac_organizacion_id_15a8eff4_fk_directori FOREIGN KEY (organizacion_id) REFERENCES directorio_organizacion(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: directorio_organizacion_servicios directorio_organizac_organizacion_id_4eb594c8_fk_directori; Type: FK CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY directorio_organizacion_servicios
+    ADD CONSTRAINT directorio_organizac_organizacion_id_4eb594c8_fk_directori FOREIGN KEY (organizacion_id) REFERENCES directorio_organizacion(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: directorio_organizacion_intercambio directorio_organizac_organizacion_id_55702fde_fk_directori; Type: FK CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY directorio_organizacion_intercambio
+    ADD CONSTRAINT directorio_organizac_organizacion_id_55702fde_fk_directori FOREIGN KEY (organizacion_id) REFERENCES directorio_organizacion(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: directorio_organizacion_paises_labora directorio_organizac_organizacion_id_c5cd1f09_fk_directori; Type: FK CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY directorio_organizacion_paises_labora
+    ADD CONSTRAINT directorio_organizac_organizacion_id_c5cd1f09_fk_directori FOREIGN KEY (organizacion_id) REFERENCES directorio_organizacion(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: directorio_organizacion_paises_labora directorio_organizac_pais_id_ee729168_fk_directori; Type: FK CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY directorio_organizacion_paises_labora
+    ADD CONSTRAINT directorio_organizac_pais_id_ee729168_fk_directori FOREIGN KEY (pais_id) REFERENCES directorio_pais(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: directorio_organizacion directorio_organizac_pais_sede_id_662a494e_fk_directori; Type: FK CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY directorio_organizacion
+    ADD CONSTRAINT directorio_organizac_pais_sede_id_662a494e_fk_directori FOREIGN KEY (pais_sede_id) REFERENCES directorio_pais(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: directorio_organizacion_participacion_cadena directorio_organizac_participacion_id_76f55745_fk_directori; Type: FK CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY directorio_organizacion_participacion_cadena
+    ADD CONSTRAINT directorio_organizac_participacion_id_76f55745_fk_directori FOREIGN KEY (participacion_id) REFERENCES directorio_participacion(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: directorio_organizacion_servicios directorio_organizac_servicioscadena_id_34273cb0_fk_directori; Type: FK CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY directorio_organizacion_servicios
+    ADD CONSTRAINT directorio_organizac_servicioscadena_id_34273cb0_fk_directori FOREIGN KEY (servicioscadena_id) REFERENCES directorio_servicioscadena(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: directorio_organizacion directorio_organizac_tipo_actividad_id_eaaa9e1b_fk_directori; Type: FK CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY directorio_organizacion
+    ADD CONSTRAINT directorio_organizac_tipo_actividad_id_eaaa9e1b_fk_directori FOREIGN KEY (tipo_actividad_id) REFERENCES directorio_tipoactividad(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: directorio_organizacion directorio_organizacion_usuario_id_c6a07714_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY directorio_organizacion
+    ADD CONSTRAINT directorio_organizacion_usuario_id_c6a07714_fk_auth_user_id FOREIGN KEY (usuario_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: directorio_productosservicios directorio_productos_organizacion_id_2b7aecf3_fk_directori; Type: FK CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY directorio_productosservicios
+    ADD CONSTRAINT directorio_productos_organizacion_id_2b7aecf3_fk_directori FOREIGN KEY (organizacion_id) REFERENCES directorio_organizacion(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: django_admin_log django_admin_log_content_type_id_c4bce8eb_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY django_admin_log
+    ADD CONSTRAINT django_admin_log_content_type_id_c4bce8eb_fk_django_co FOREIGN KEY (content_type_id) REFERENCES django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: django_admin_log django_admin_log_user_id_c564eba6_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY django_admin_log
+    ADD CONSTRAINT django_admin_log_user_id_c564eba6_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: star_ratings_rating star_ratings_rating_content_type_id_176abacc_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY star_ratings_rating
+    ADD CONSTRAINT star_ratings_rating_content_type_id_176abacc_fk_django_co FOREIGN KEY (content_type_id) REFERENCES django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: star_ratings_userrating star_ratings_userrat_rating_id_e7ac9370_fk_star_rati; Type: FK CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY star_ratings_userrating
+    ADD CONSTRAINT star_ratings_userrat_rating_id_e7ac9370_fk_star_rati FOREIGN KEY (rating_id) REFERENCES star_ratings_rating(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: star_ratings_userrating star_ratings_userrating_user_id_33d5d349_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: emurillo
+--
+
+ALTER TABLE ONLY star_ratings_userrating
+    ADD CONSTRAINT star_ratings_userrating_user_id_33d5d349_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- PostgreSQL database dump complete
+--
+

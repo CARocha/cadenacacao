@@ -43,7 +43,7 @@ class OrganizacionAdmin(admin.ModelAdmin):
 		if obj.usuario:
 			print obj.usuario.email
 			try:
-				subject, from_email = 'Perfil activo en Sistema Cadena de cacao', 'ermurillo22@gmail.com'
+				subject, from_email = 'Perfil activo en Sistema Cadena de cacao', 'noreply@unag-datos.org'
 				text_content = 'Se ha asignado la Organizacion/Especialista ' + str(obj.nombre) +  'usuario ' + str(obj.usuario) 
 
 				html_content = 'Se ha asignado el usuario ' + str(obj.usuario)
