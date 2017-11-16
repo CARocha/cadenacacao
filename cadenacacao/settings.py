@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'star_ratings',
     'el_pagination',
     # 'disqus',
+    'import_export',
 ]
 
 MIDDLEWARE = [
