@@ -5,6 +5,8 @@ from django.contrib import admin
 from .models import *
 from django.core.mail import send_mail, EmailMultiAlternatives
 from import_export.admin import ImportExportModelAdmin
+from django import forms
+from ckeditor.widgets import CKEditorWidget
 
 # Register your models here.
 
@@ -34,8 +36,15 @@ class ProductosServiciosInline(admin.TabularInline):
 	extra = 1
 	max_num = 9
 
+class OrganizacionForm(forms.ModelForm):
+    objetivo = forms.CharField(widget=CKEditorWidget())
+    class Meta:
+        model = Organizacion
+        fields = '__all__'
+
 class OrganizacionAdmin(ImportExportModelAdmin):
 	inlines = [ProductosServiciosInline,]
+	form = OrganizacionForm
 	search_fields = ['nombre',]
 	list_filter = ['pais_sede','tipo_organizacion']
 	
