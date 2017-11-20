@@ -78,7 +78,7 @@ AMBITO_CHOICES = (
 PERIODO_CHOICES = (
 		('2 años','2 años'),('3 años','3 años'),
 		('4 años','4 años'),('5 años','5 años'),
-		('Más de 5 años','Más de 5 años')
+		('Mas de 5 años','Más de 5 años')
 	)
 
 ESP_ORG_CHOICES = (
