@@ -147,7 +147,7 @@ select#input
     input[type="text"]
         height 44px
 .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn)
-    width 100%
+    width 100% !important
 .bootstrap-select>.dropdown-toggle
     margin 0px
     padding 5px
@@ -158,6 +158,38 @@ select#input
     font-size 16px
 .bootstrap-select.btn-group .dropdown-menu li.selected a
     color colorlink !important
+.form-edit-org
+    label
+        font-size 16px
+        color negro
+    input[type=file]
+        display inline-block
+.detalle-user
+    background-color white
+    padding 20px
+.reset-pass, .registro-user
+    ul
+        list-style square
+        padding-left 40px
+    ul.errorlist
+        list-style none
+        padding 0
+        color red
+        li
+            padding-left: 1.3em
+            &:before
+                content 'X'
+                font-weight bold
+                display inline-block
+                margin-left -1.3em
+                width 1em
+                font-size 17px
+.login-user
+    margin-bottom 40px
+    a 
+        color colorlink
+.modal-footer .btn + .btn
+    margin-bottom 10px
 /*Detalle org*/
 .obj-org
     margin-bottom 10px
