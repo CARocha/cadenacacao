@@ -144,3 +144,7 @@ LOCATION_FIELD = {
 'provider.google.api_key': GOOGLE_MAPS_API_KEY,
 'provider.google.map.type': 'ROADMAP',
 }
+
+# CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_IMAGE_BACKEND = "pillow"

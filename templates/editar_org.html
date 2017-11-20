@@ -1,8 +1,11 @@
 {% extends "base.html" %}
+{% load static %}
+
 {% block extra_css %}
 
-    <link rel="stylesheet" href="/static/css/bootstrap-select.min.css">
+ <link rel="stylesheet" href="/static/css/bootstrap-select.min.css">
 {% endblock extra_css %}
+
 {% block content %}
 <section class="section-grey small-padding">
         
@@ -13,6 +16,10 @@
 
         		<div class="col-xs-12 col-md-12">
         			<h4 class="border-bottom-black">Editar perfil de la organnización</h4>
+        			{% if form.errors %}
+        				<p>{{form.errors}}</p>
+        			{% endif %}
+        			
         			<form action="." method="POST" id="contact-form" class="contact form-edit-org" enctype="multipart/form-data">{% csrf_token %}
 						{{ form.media }}
 
@@ -33,17 +40,19 @@
 					        </div>
 					    </div>
 					    <div class="row">
-							<div class="col-xs-12 col-sm-6">
+							<div class="col-xs-12">
 					          
 					            	<h5 class="border-bottom-black">Logo</h5>
 					                
 									{{ form.logo }}
 					        </div>
-					        <div class="col-xs-12 col-sm-6">
-					        	<h5 class="border-bottom-black">Objetivo</h5>
-								{{ form.objetivo }}
-					        </div>
 					    </div>
+					    <div class="row">
+					    	<div class="col-xs-12">
+					    		<h5 class="border-bottom-black">Objetivo</h5>
+								{{ form.objetivo }}
+					    	</div>
+					    </div
 					    <div class="row">
 					        <div class="col-xs-12 col-sm-6">
 					          
