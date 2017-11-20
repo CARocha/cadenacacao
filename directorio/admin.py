@@ -4,21 +4,37 @@ from __future__ import unicode_literals
 from django.contrib import admin
 from .models import *
 from django.core.mail import send_mail, EmailMultiAlternatives
-from django.utils.encoding import smart_str
+from import_export.admin import ImportExportModelAdmin
 
 # Register your models here.
-admin.site.register(Pais)
-admin.site.register(TipoActividad)
-admin.site.register(Participacion)
-admin.site.register(ServiciosCadena)
-admin.site.register(IntercambioTecnologia)
+
+class PaisAdmin(ImportExportModelAdmin):
+	pass
+
+class TipoActividadAdmin(ImportExportModelAdmin):
+	pass
+
+class ParticipacionAdmin(ImportExportModelAdmin):
+	pass
+
+class ServiciosCadenaAdmin(ImportExportModelAdmin):
+	pass
+
+class IntercambioTecnologiaAdmin(ImportExportModelAdmin):
+	pass
+
+admin.site.register(Pais,PaisAdmin)
+admin.site.register(TipoActividad,TipoActividadAdmin)
+admin.site.register(Participacion,ParticipacionAdmin)
+admin.site.register(ServiciosCadena,ServiciosCadenaAdmin)
+admin.site.register(IntercambioTecnologia,IntercambioTecnologiaAdmin)
 
 class ProductosServiciosInline(admin.TabularInline):
 	model = ProductosServicios
 	extra = 1
 	max_num = 9
 
-class OrganizacionAdmin(admin.ModelAdmin):
+class OrganizacionAdmin(ImportExportModelAdmin):
 	inlines = [ProductosServiciosInline,]
 	search_fields = ['nombre',]
 	list_filter = ['pais_sede','tipo_organizacion']
