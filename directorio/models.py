@@ -9,6 +9,7 @@ from sorl.thumbnail import ImageField
 from django.contrib.contenttypes.fields import GenericRelation
 from star_ratings.models import Rating
 from django.utils.encoding import python_2_unicode_compatible
+from ckeditor_uploader.fields import RichTextUploadingField
 
 # Create your models here.
 @python_2_unicode_compatible
@@ -77,7 +78,7 @@ AMBITO_CHOICES = (
 PERIODO_CHOICES = (
 		('2 años','2 años'),('3 años','3 años'),
 		('4 años','4 años'),('5 años','5 años'),
-		('Más de 5 años','Más de 5 años')
+		('Mas de 5 años','Más de 5 años')
 	)
 
 ESP_ORG_CHOICES = (
@@ -88,7 +89,7 @@ class Organizacion(models.Model):
 	tipo = models.CharField(max_length=20,choices=ESP_ORG_CHOICES)
 	nombre = models.CharField(max_length=255)
 	logo = ImageField(upload_to='logos/',blank=True,null=True)
-	objetivo = models.TextField()
+	objetivo = RichTextUploadingField()
 	contacto_1 = models.CharField(max_length=255,blank=True,null=True,verbose_name='Persona de Contacto 1')
 	correo_1 = models.CharField(max_length=255,blank=True,null=True,verbose_name='Correo 1')
 	telefono_1 = models.CharField(max_length=255,blank=True,null=True,verbose_name='Teléfono 1')

@@ -201,7 +201,7 @@ from django.contrib.auth.views import password_reset
 @login_required
 def editar_org(request,template='editar_org.html',slug=None):
 	object = Organizacion.objects.get(slug=slug)
-	FormSetInit = inlineformset_factory(Organizacion, ProductosServicios, form=ProductosServiciosFrom)
+	FormSetInit = inlineformset_factory(Organizacion, ProductosServicios, form=ProductosServiciosFrom,max_num=9,extra=9)
 
 	if request.method == 'POST':
 		form = OrgForm(request.POST, instance=object)
