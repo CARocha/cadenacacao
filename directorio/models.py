@@ -67,7 +67,7 @@ class IntercambioTecnologia(models.Model):
 TIPO_CHOICES = (
 		('Sector publico','Sector público'),('Sector privado','Sector privado'),('Academia','Academia'),
 		('Asociacion','Asociación'),('Cooperativa','Cooperativa'),('Fundacion','Fundación'),
-		('ONG','ONG'),('ONGI','ONGI'),('Plataforma','Plataforma')
+		('ONG','ONG'),('ONGI','ONGI'),('Plataforma','Plataforma'),('Consultor','Consultor')
 	)
 
 AMBITO_CHOICES = (
@@ -81,12 +81,12 @@ PERIODO_CHOICES = (
 		('Mas de 5 años','Más de 5 años')
 	)
 
-ESP_ORG_CHOICES = (
-	('Organizacion','Organización'),('Especialista','Especialista'))
+# ESP_ORG_CHOICES = (
+# 	('Organizacion','Organización'),('Especialista','Especialista'))
 
 @python_2_unicode_compatible
 class Organizacion(models.Model):
-	tipo = models.CharField(max_length=20,choices=ESP_ORG_CHOICES)
+	# tipo = models.CharField(max_length=20,choices=ESP_ORG_CHOICES)
 	nombre = models.CharField(max_length=255)
 	logo = ImageField(upload_to='logos/',blank=True,null=True)
 	objetivo = RichTextUploadingField()

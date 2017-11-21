@@ -19,11 +19,11 @@ AMBITO_CHOICES = (
 TIPO_CHOICES = (
 		('Sector publico','Sector público'),('Sector privado','Sector privado'),('Academia','Academia'),
 		('Asociacion','Asociación'),('Cooperativa','Cooperativa'),('Fundacion','Fundación'),
-		('ONG','ONG'),('ONGI','ONGI'),('Plataforma','Plataforma')
+		('ONG','ONG'),('ONGI','ONGI'),('Plataforma','Plataforma'),('Consultor','Consultor')
 	)
 
-ESP_ORG_CHOICES = (('','Seleccione'),
-	('Organizacion','Organización'),('Especialista','Especialista'))
+# ESP_ORG_CHOICES = (('','Seleccione'),
+# 	('Organizacion','Organización'),('Especialista','Especialista'))
 
 class OrganizacionForm(forms.Form):
 	def __init__(self, *args, **kwargs):
@@ -35,7 +35,7 @@ class OrganizacionForm(forms.Form):
 		self.fields['participacion_cadena'] = forms.ModelMultipleChoiceField(queryset=Participacion.objects.all(),required=False)
 		self.fields['servicios'] = forms.ModelMultipleChoiceField(queryset=ServiciosCadena.objects.all(),required=False)
 		self.fields['intercambio'] = forms.ModelMultipleChoiceField(queryset=IntercambioTecnologia.objects.all(),required=False)
-		self.fields['tipo'] = forms.ChoiceField(choices=ESP_ORG_CHOICES,required=False)
+		# self.fields['tipo'] = forms.ChoiceField(choices=ESP_ORG_CHOICES,required=False)
 		self.fields['tipo_actividad'] = forms.ModelMultipleChoiceField(queryset=TipoActividad.objects.all(),required=False)
 
 class BuscadorForm(forms.Form):
