@@ -31,13 +31,6 @@
 
 								</div>
 					        </div>
-					        <div class="col-xs-12 col-sm-6">
-					            <div class="input-group group-costum-2">
-					                <span class="input-group-addon " id="sizing-addon2">Tipo</span>
-									{{ form.tipo }}
-
-								</div>
-					        </div>
 					    </div>
 					    <div class="row">
 							<div class="col-xs-12">
@@ -52,7 +45,7 @@
 					    		<h5 class="border-bottom-black">Objetivo</h5>
 								{{ form.objetivo }}
 					    	</div>
-					    </div
+					    </div>
 					    <div class="row">
 					        <div class="col-xs-12 col-sm-6">
 					          
@@ -254,12 +247,14 @@
 <script src="/static/js/bootstrap-select.min.js"></script>
 
 <script type="text/javascript">
-    // $('#id_participacion_cadena, #id_servicios, #id_paises_labora,#id_intercambio').selectpicker({
-    //   style: 'btn-default',
-    //   size: 4,
-    //   liveSearch: 'true',
-    //   title: 'Seleccione'
-    // });
+    $('#id_participacion_cadena, #id_servicios, #id_paises_labora,#id_intercambio').selectpicker({
+      style: 'btn-default',
+      size: 4,
+      liveSearch: 'true',
+      title: 'Seleccione',
+      selectedTextFormat: 'count',
+      countSelectedText: '{0} seleccinados',
+    });
 
 </script>
 <script type="text/javascript">

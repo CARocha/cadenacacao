@@ -8,7 +8,7 @@
 {% block content %}
 <style type="text/css">
 .star-ratings ul {
-    height: 18.5px !important
+    height: 18px !important
 }
 </style>
  <!--begin section-white -->
@@ -160,12 +160,12 @@
                                         <div class="row">
                                             <div class="col-xs-12">
                                                 <ul class="list-inline">
-                                                    <li class="pull-left">
+                                                    <li class="">
                                                         <b>Calificación: </b>{% ratings obj %}
                                                         
                                                         
                                                     </li>
-                                                    <li class="pull-right">
+                                                    <li class="">
                                                         <i class="icon-calendar"> </i> <b>Actualización: </b>{{obj.actualizado}}
                                                     </li>
                                                 </ul>
@@ -201,21 +201,6 @@
         <nav aria-label="Page navigation">
             <ul class="pagination pull-right">
                 {% show_pages %}
-                <!--<li>
-                    <a href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li>
-                    <a href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>-->
             </ul>
         </nav>
     </div>
