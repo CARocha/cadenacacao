@@ -6,6 +6,11 @@
     <link rel="stylesheet" href="/static/css/bootstrap-select.min.css">
 {% endblock extra_css %}
 {% block content %}
+<style type="text/css">
+.star-ratings ul {
+    height: 18.5px !important
+}
+</style>
  <!--begin section-white -->
 <section class="section-white small-padding">
     
@@ -47,7 +52,7 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="input-group group-costum">
-                                <span class="input-group-addon" id="sizing-addon2">País sede</span>
+                                <span class="input-group-addon" id="sizing-addon2">País sede *</span>
                                 {{form.pais_sede}}
 
                             </div>
@@ -61,31 +66,31 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="input-group group-costum">
-                                <span class="input-group-addon" id="sizing-addon2">Tipo de organización *</span>
+                                <span class="input-group-addon" id="sizing-addon2">Tipo de organización</span>
                                 {{form.tipo_organizacion}}
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="input-group group-costum">
-                                <span class="input-group-addon" id="sizing-addon2">País(es) donde labora *</span>
+                                <span class="input-group-addon" id="sizing-addon2">País(es) donde labora</span>
                                 {{form.paises_labora}}
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="input-group group-costum">
-                                <span class="input-group-addon" id="sizing-addon2">Participación en la cadena de valor *</span>
+                                <span class="input-group-addon" id="sizing-addon2">Participación en la cadena de valor</span>
                                 {{form.participacion_cadena}}
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="input-group group-costum">
-                                <span class="input-group-addon" id="sizing-addon2">Servicios a la cadena de valor *</span>
+                                <span class="input-group-addon" id="sizing-addon2">Servicios a la cadena de valor</span>
                                 {{form.servicios}}
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="input-group group-costum">
-                                <span class="input-group-addon" id="sizing-addon2">Intercambio de tecnologías *</span>
+                                <span class="input-group-addon" id="sizing-addon2">Intercambio de tecnologías</span>
                                 {{form.intercambio}}
                             </div>
                         </div>
@@ -135,50 +140,58 @@
                 {% else %}
                 {% for obj in object_list %}
                     <li>
-                    <div class="box">
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-3">
-                                <div class="thumb">
-                                    <a class="img-thumb" href="{% url "detail-org" obj.slug %}">
-                                        {% thumbnail obj.logo "210x210" crop='center' format='PNG' as img %}
-                                            <img src="/media/{{img}}" alt="img">
-                                        {% empty %}
-                                            <img src="http://via.placeholder.com/210x210" alt="img">
-                                        {% endthumbnail %}
-                                        <span class="helper"></span>
-                                        <!-- <img src="/media/{{obj.logo}}" alt="img"> -->
-                                    </a>
+                        <div class="box">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-3">
+                                    <div class="thumb">
+                                        <a class="img-thumb" href="{% url "detail-org" obj.slug %}">
+                                            {% thumbnail obj.logo "210x210" crop='center' format='PNG' as img %}
+                                                <img src="/media/{{img}}" alt="img">
+                                            {% empty %}
+                                                <img src="http://via.placeholder.com/210x210" alt="img">
+                                            {% endthumbnail %}
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-9">
-                                <div class="text-col">
-                                    <h5><a href="{% url "detail-org" obj.slug %}">{{obj.nombre}}</a></h5>
-                                    <a class="text"><i class="icon-pin-map"></i>País: {{obj.pais_sede}} - Labora: {% for pais in obj.paises_labora.all %}{{pais}}{% if not forloop.last %}, {% endif %}{% endfor %}</a>
-                                    <a class="text"><i class="icon-pin-map"></i>Ámbito de acción: {{obj.ambito_accion}}</a>
-                                     
-                                    <a class="text"><i class="icon-calendar"> </i>Actualización: {{obj.actualizado}} </a>
-
-                                    <div class="clearfix"></div>
-                                    <br>
-
-                                    <a href="#" class="text"><i class="icon-user"></i>
-                                        Contacto: {{obj.contacto_1}}
-                                    </a>
-                                    <a href="#" class="text"><i class="icon-email-envelope"></i>
-                                       {{obj.correo_1}}
-                                    </a>  
-                                    <a href="#" class="text"><i class="icon-call-phone"></i>
-                                        {{obj.telefono_1}}
-                                    </a>
-                                    <div class="clearfix"></div>
-                                    <br>
-                                    <a class="text"><i class="icon-star-two"> </i>Calificación: </a>
-                                    {% ratings obj %}
+                                <div class="col-xs-12 col-sm-9">
+                                    <div class="text-col">
+                                        <h5><a href="{% url "detail-org" obj.slug %}">{{obj.nombre}}</a></h5>
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <ul class="list-inline">
+                                                    <li class="pull-left">
+                                                        <b>Calificación: </b>{% ratings obj %}
+                                                        
+                                                        
+                                                    </li>
+                                                    <li class="pull-right">
+                                                        <i class="icon-calendar"> </i> <b>Actualización: </b>{{obj.actualizado}}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="">
+                                            <ul class="list-inline">
+                                                
+                                                <li><i class="icon-pin-map"></i><b> País: </b>{{obj.pais_sede}} - <b>Labora: </b>{% for pais in obj.paises_labora.all %}{{pais}}{% if not forloop.last %}, {% endif %}{% endfor %}</li>
+                                                <li><i class="icon-pin-map"></i><b> Ámbito de acción: </b>{{obj.ambito_accion}}</li>
+                                            </ul>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="">
+                                            <ul class="list-inline">
+                                                <li><i class="icon-user"></i><b> Contacto: </b>{{obj.contacto_1}}</li>
+                                                <li><i class="icon-email-envelope"></i><b> Correo: </b>{{obj.correo_1}}</li>
+                                                <li><i class="icon-call-phone"></i><b> Teléfono: </b>{{obj.telefono_1}}</li>
+                                            </ul>
+                                        </div>
+                                        <div class="desc-obj"><b>Objetivo: </b>{{obj.objetivo|safe|truncatewords:30}}</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </li>
+                    </li>
                 {% endfor %}
                 {% endif %}
                                                

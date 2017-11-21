@@ -4251,7 +4251,9 @@ h5.chart-title {
 }
 #myList .box .text-col{
 	float: left;
+	color: #3D3935;
 }
+
 #myList .box strong.price{
 	font: 700 18px/18px 'Roboto',sans-serif;
     color: #222;
