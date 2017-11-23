@@ -117,8 +117,8 @@ class Organizacion(models.Model):
 	usuario = models.ForeignKey(User,blank=True,null=True)
 
 	def save(self, *args, **kwargs):
-		if not self.id:
-			self.slug = slugify(self.nombre)
+		# if not self.id:
+		self.slug = slugify(self.nombre)
 		super(Organizacion, self).save(*args, **kwargs)
 
 	def __str__(self):
