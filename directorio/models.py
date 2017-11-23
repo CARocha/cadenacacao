@@ -100,7 +100,7 @@ class Organizacion(models.Model):
 	ciudad = models.CharField(max_length=255,blank=True,null=True,help_text='Cuidad donde esta ubicada')
 	location = PlainLocationField(based_fields=['ciudad'], zoom=5,blank=True,null=True,verbose_name='Ubicación')
 	tipo_organizacion = models.CharField(max_length=20,choices=TIPO_CHOICES,verbose_name='Tipo de Organización')
-	tipo_actividad = models.ForeignKey(TipoActividad,verbose_name='Tipo de Actividad')
+	tipo_actividad = models.ManyToManyField(TipoActividad,verbose_name='Tipo de Actividad')
 	participacion_cadena = models.ManyToManyField(Participacion,verbose_name='Participación en la Cadena de Valor')
 	servicios = models.ManyToManyField(ServiciosCadena,verbose_name='Servicios  en la Cadena de Valor')
 	ambito_accion = models.CharField(max_length=20,choices=AMBITO_CHOICES,verbose_name='Ámbito de Acción')
