@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load el_pagination_tags %}
 {% block content %}
 	<section class="section-grey small-padding">
         
@@ -51,6 +51,7 @@
 		                </div>
 		        		<div class="panel-body no-padding">
 		        			<ul class="list-group margin-bottom-0">
+		        				{% paginate 5 organizaciones %}
 		        				{% for org in organizaciones %}
 		        				<li class="list-group-item">
 		                            
@@ -58,6 +59,13 @@
 		                        </li>
 		                       {% endfor %}
 		        			</ul>
+		        			<nav class="Page navigation">
+					            <ul class="pagination pull-right">
+					                <li>
+					                    {% show_pages %}
+					                </li>
+					            </ul>
+					        </nav>
 
 		        		</div>
 		        	</div>
