@@ -103,6 +103,8 @@ def consulta(request,template='consulta.html'):
 			object_list = Organizacion.objects.filter(Q(nombre__icontains=search_text)|
 													Q(pais_sede__nombre__icontains=search_text)|
 													Q(tipo_organizacion__icontains=search_text)|
+													Q(contacto_1__icontains=search_text)|
+													Q(contacto_2__icontains=search_text)|
 													Q(tipo_actividad__nombre__icontains=search_text)|
 													Q(participacion_cadena__nombre__icontains=search_text)|
 													Q(servicios__nombre__icontains=search_text)|
