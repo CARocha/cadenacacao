@@ -216,7 +216,8 @@
                                             <b> Tipo de organización:</b> {{object.tipo_organizacion}}
                                         </li>
                                         <li class="list-group-item">
-                                            <b> Tipo de actividad:</b> {{object.tipo_actividad}}
+                                            <b> Tipo de actividad:</b>
+                                            {% for actividad in object.tipo_actividad.all %}{{actividad}}{% if not forloop.last %}, {% endif %}{% endfor %}
                                         </li>
                                         <li class="list-group-item">
                                             <b>Servicios a la cadena de valor:</b> {% for servicio in object.servicios.all %}{{servicio}}{% if not forloop.last %}, {% endif %}{% endfor %}
