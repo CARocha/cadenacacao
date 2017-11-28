@@ -223,12 +223,13 @@ def obtener_lista(request):
 	if request.is_ajax():
 		lista = []
 		for objeto in Organizacion.objects.all():
-			split_location = objeto.location.split(",")
-			dicc = dict(nombre=objeto.nombre ,id=objeto.id,
-						lat=float(split_location[0]),
-						lon=float(split_location[1])
-						)
-			lista.append(dicc)
+			if objeto.location:
+				split_location = objeto.location.split(",")
+				dicc = dict(nombre=objeto.nombre ,id=objeto.id,
+							lat=float(split_location[0]),
+							lon=float(split_location[1])
+							)
+				lista.append(dicc)
 
 		serializado = simplejson.dumps(lista)
 		return HttpResponse(serializado, content_type = 'application/json')
