@@ -100,23 +100,25 @@ def consulta(request,template='consulta.html'):
 	if request.GET.get('q'):
 		search_text = request.GET['q']
 		if search_text is not None and search_text != u'':
-			object_list = Organizacion.objects.filter(Q(nombre__icontains=search_text)|
-													Q(pais_sede__nombre__icontains=search_text)|
-													Q(tipo_organizacion__icontains=search_text)|
-													Q(tipo_actividad__nombre__icontains=search_text)|
-													Q(participacion_cadena__nombre__icontains=search_text)|
-													Q(servicios__nombre__icontains=search_text)|
-													Q(ambito_accion__icontains=search_text)|
-													Q(paises_labora__nombre__icontains=search_text)|
-													Q(cobertura__icontains=search_text)|
-													Q(intercambio__nombre__icontains=search_text)
-													).distinct().order_by('nombre')
+			# object_list = Organizacion.objects.filter(Q(nombre__icontains=search_text)|
+			# 										Q(pais_sede__nombre__icontains=search_text)|
+			# 										Q(tipo_organizacion__icontains=search_text)|
+			# 										Q(contacto_1__icontains=search_text)|
+			# 										Q(contacto_2__icontains=search_text)|
+			# 										Q(tipo_actividad__nombre__icontains=search_text)|
+			# 										Q(participacion_cadena__nombre__icontains=search_text)|
+			# 										Q(servicios__nombre__icontains=search_text)|
+			# 										Q(ambito_accion__icontains=search_text)|
+			# 										Q(paises_labora__nombre__icontains=search_text)|
+			# 										Q(cobertura__icontains=search_text)|
+			# 										Q(intercambio__nombre__icontains=search_text)
+			# 										).distinct().order_by('nombre')
 
-			# object_list = Organizacion.objects.annotate(search=SearchVector('nombre','objetivo','pais_sede__nombre',
-			# 											'tipo_organizacion','tipo_actividad__nombre',
-			# 											'participacion_cadena__nombre','servicios__nombre',
-			# 											'ambito_accion','paises_labora__nombre',
-			# 											'cobertura','intercambio__nombre')).filter(search=search_text).order_by('nombre').distinct()
+			object_list = Organizacion.objects.annotate(search=SearchVector('nombre','objetivo','pais_sede__nombre',
+														'tipo_organizacion','tipo_actividad__nombre',
+														'participacion_cadena__nombre','servicios__nombre',
+														'ambito_accion','paises_labora__nombre',
+														'cobertura','intercambio__nombre')).filter(search=search_text).order_by('nombre').distinct('nombre')
 
 	elif 'pais_sede' not in request.session:
 		object_list = Organizacion.objects.all().order_by('nombre')
@@ -221,12 +223,13 @@ def obtener_lista(request):
 	if request.is_ajax():
 		lista = []
 		for objeto in Organizacion.objects.all():
-			split_location = objeto.location.split(",")
-			dicc = dict(nombre=objeto.nombre ,id=objeto.id,
-						lat=float(split_location[0]),
-						lon=float(split_location[1])
-						)
-			lista.append(dicc)
+			if objeto.location:
+				split_location = objeto.location.split(",")
+				dicc = dict(nombre=objeto.nombre ,id=objeto.id,
+							lat=float(split_location[0]),
+							lon=float(split_location[1])
+							)
+				lista.append(dicc)
 
 		serializado = simplejson.dumps(lista)
 		return HttpResponse(serializado, content_type = 'application/json')

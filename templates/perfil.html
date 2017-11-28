@@ -37,7 +37,7 @@
                 <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Perfil de organizazión</h3>
+                            <h3 class="panel-title">Perfil de organización</h3>
                         </div>
                         <div class="panel-body no-padding">
                             <div class="row no-margin">
@@ -169,18 +169,18 @@
                     {% endif %}
                 </div>
                 <div class="col-xs-12 col-sm-4">
-                    {% if object.contacto_1 %}
+                    {% if object.contacto_1 or object.correo_1 or object.telefono_1 %}
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h3 class="panel-title">{{object.contacto_1}}</h3>
+                            <h3 class="panel-title">{{object.contacto_1|default:"Sin contacto"}}</h3>
                         </div>
                         <div class="panel-body no-padding">
                             <ul class="list-group margin-bottom-0">
                                 <li class="list-group-item">
-                                    <b>Correo:</b> <a href="mailto:{{object.correo_1}}">{{object.correo_1}} </a> 
+                                    <b>Correo:</b> <a href="mailto:{{object.correo_1}}">{{object.correo_1|default:"Sin correo"}} </a> 
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Teléfono: </b><a href="tel:{{object.telefono_1}}">{{object.telefono_1}} </a>
+                                    <b>Teléfono: </b><a href="tel:{{object.telefono_1}}">{{object.telefono_1|default:"Sin teléfono"}} </a>
                                 </li>
                                 
                             </ul>
@@ -188,18 +188,18 @@
                     </div>
                     {% endif %}
                     
-                    {% if object.contacto_2 %}
+                    {% if object.contacto_2 or object.correo_2 or object.telefono_2 %}
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h3 class="panel-title">{{object.contacto_2}}</h3>
+                            <h3 class="panel-title">{{object.contacto_2|default:"Sin contacto"}}</h3>
                         </div>
                         <div class="panel-body no-padding">
                             <ul class="list-group margin-bottom-0">
                                 <li class="list-group-item">
-                                    <b>Correo:</b> <a href="mailto:{{object.correo_2}}">{{object.correo_2}} </a> 
+                                    <b>Correo:</b> <a href="mailto:{{object.correo_2}}">{{object.correo_2|default:"Sin correo"}} </a> 
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Teléfono: </b><a href="tel:{{object.telefono_2}}">{{object.telefono_2}} </a>
+                                    <b>Teléfono: </b><a href="tel:{{object.telefono_2}}">{{object.telefono_2|default:"Sin teléfono"}} </a>
                                 </li>
                                 
                             </ul>

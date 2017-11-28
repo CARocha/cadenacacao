@@ -184,9 +184,9 @@
                                         <div class="clearfix"></div>
                                         <div class="">
                                             <ul class="list-inline">
-                                                <li><i class="icon-user"></i><b> Contacto: </b>{{obj.contacto_1}}</li>
-                                                <li><i class="icon-email-envelope"></i><b> Correo: </b>{{obj.correo_1}}</li>
-                                                <li><i class="icon-call-phone"></i><b> Teléfono: </b>{{obj.telefono_1}}</li>
+                                                <li><i class="icon-user"></i><b> Contacto: </b>{{obj.contacto_1|default:"Sin contacto"}}</li>
+                                                <li><i class="icon-email-envelope"></i><b> Correo: </b>{{obj.correo_1|default:"Sin correo"}}</li>
+                                                <li><i class="icon-call-phone"></i><b> Teléfono: </b>{{obj.telefono_1|default:"Sin teléfono"}}</li>
                                             </ul>
                                         </div>
                                         <div class="desc-obj"><b>Objetivo: </b>{{obj.objetivo|safe|truncatewords:30}}</div>
@@ -227,9 +227,9 @@
                                         <div class="clearfix"></div>
                                         <div class="">
                                             <ul class="list-inline">
-                                                <li><i class="icon-user"></i><b> Contacto: </b>{{obj.contacto_1}}</li>
-                                                <li><i class="icon-email-envelope"></i><b> Correo: </b>{{obj.correo_1}}</li>
-                                                <li><i class="icon-call-phone"></i><b> Teléfono: </b>{{obj.telefono_1}}</li>
+                                                <li><i class="icon-user"></i><b> Contacto: </b>{{obj.contacto_1|default:"Sin contacto"}}</li>
+                                                <li><i class="icon-email-envelope"></i><b> Correo: </b>{{obj.correo_1|default:"Sin correo"}}</li>
+                                                <li><i class="icon-call-phone"></i><b> Teléfono: </b>{{obj.telefono_1|default:"Sin teléfono"}}</li>
                                             </ul>
                                         </div>
                                         <div class="desc-obj"><b>Objetivo: </b>{{obj.objetivo|safe|truncatewords:30}}</div>
