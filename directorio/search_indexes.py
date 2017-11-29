@@ -6,8 +6,8 @@ class OrganizacionIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
     nombre = indexes.CharField(model_attr='nombre')
     objetivo = indexes.CharField(model_attr='objetivo')
-    contacto_1 = indexes.CharField(model_attr='contacto_1')
-    contacto_2 = indexes.CharField(model_attr='contacto_2')
+    contacto_1 = indexes.CharField(model_attr='contacto_1',null=True)
+    contacto_2 = indexes.CharField(model_attr='contacto_2',null=True)
     pais_sede = indexes.CharField(model_attr='pais_sede__nombre')
     paises_labora = indexes.CharField(model_attr='paises_labora__nombre')
 
