@@ -1,0 +1,6 @@
+{{ object.nombre }}
+{{ object.objetivo }}
+{{ object.contacto_1 }}
+{{ object.contacto_2 }}
+{{ object.pais_sede }}
+{{ object.paises_labora }}

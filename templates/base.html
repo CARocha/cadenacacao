@@ -131,10 +131,10 @@
 
                         <li><a href="/" class="menu-last {% if request.path == '/' %}selected{% endif %}">Inicio</a></li>
 
-                        <li><a href="/actores/" class="menu-last {% if '/actores/' in request.path %}selected{% endif %}">Organizaciones</a></li>
+                        <li><a href="/actores/" class="menu-last {% if '/actores/' in request.path %}selected{% endif %}">Actores</a></li>
                         {% if user.is_authenticated %}
                             <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Bienvenid@ {{user.username}} <span class="caret"></span></a>
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Bienvenido {{user.username}} <span class="caret"></span></a>
                               <ul class="dropdown-menu">
                                 <li><a href="/accounts/profile/">Ir al perfil</a></li>
                                 <li><a href="/accounts/logout/">Salir</a></li>
@@ -165,7 +165,7 @@
         </div>
         <!-- end navbar -->
         <div class="buscador collapse" id="collapsebuscador">
-            <form action="/actores/" method="GET">
+            <form action="/actores/busqueda/" method="GET">
                 <!--<input type="search" name="" id="input" class="form-control contact-input white-input" value="" required="required" title="" placeholder="Buscar ....">-->
                 {{search.q}}
             </form>

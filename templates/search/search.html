@@ -1,0 +1,213 @@
+{% extends "base.html" %}
+{% load ratings %}
+{% load el_pagination_tags %}
+{% load thumbnail %}
+{% block extra_css %}
+    <link rel="stylesheet" href="/static/css/bootstrap-select.min.css">
+{% endblock extra_css %}
+{% block content %}
+<style type="text/css">
+.star-ratings ul {
+    height: 18px !important
+}
+</style>
+ <!--begin section-white -->
+<section class="section-white small-padding">
+    
+    <!--begin container-->
+    <div class="container">
+        <div role="tabpanel">
+            <!-- Nav tabs -->
+            <ul class="list-inline border-bottom-black tab-busca" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Búsqueda</a>
+                </li>
+            </ul>
+            
+        </div>
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="home">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <form id="contact-form" class="contact form-busca" action="/actores/busqueda/" method="GET">
+                            <div class="input-group">
+                                {{search.q}}
+                                <span class="input-group-btn">
+                                    <input value="Buscar" id="submit-button" class="contact-submit" type="submit">
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+                  
+       
+
+    </div>
+    <!--end container-->
+
+</section>
+<!--end section-white-->
+<section class="section-grey">
+    <div class="container">
+        <h4 class="border-bottom-black">Lista de actores</h4>
+        <div class="list">
+            <ul id="myList">
+                {# {% paginate 10 page.object_list %} #}
+                {% if not page.object_list %}
+                    <li>No se encontraron resultados</li>
+                {% else %}
+                {% for result in page.object_list %}
+                    
+                    {% if result.object.logo %}
+                    <li>
+                        <div class="box">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-3">
+                                    <div class="thumb">
+                                        <a class="img-thumb" href="{% url "detail-org" result.object.slug %}">
+                                            {% thumbnail result.object.logo "210x210" crop='center' format='PNG' as img %}
+                                                <img src="/media/{{img}}" alt="img">
+                                            {% empty %}
+                                                <img src="http://via.placeholder.com/210x210" alt="img">
+                                            {% endthumbnail %}
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-9">
+                                    <div class="text-col">
+                                        <h5><a href="{% url "detail-org" result.object.slug %}">{{result.object.nombre}}</a></h5>
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <ul class="list-inline">
+                                                    <li class="">
+                                                        <b>Calificación: </b>{% ratings result.object %}
+                                                        
+                                                        
+                                                    </li>
+                                                    <li class="">
+                                                        <i class="icon-calendar"> </i> <b>Actualización: </b>{{result.object.actualizado}}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="">
+                                            <ul class="list-inline">
+                                                
+                                                <li><i class="icon-pin-map"></i><b> País: </b>{{result.object.pais_sede}} - <b>Labora: </b>{% for pais in result.object.paises_labora.all %}{{pais}}{% if not forloop.last %}, {% endif %}{% endfor %}</li>
+                                                <li><i class="icon-pin-map"></i><b> Ámbito de acción: </b>{{result.object.ambito_accion}}</li>
+                                            </ul>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="">
+                                            <ul class="list-inline">
+                                                <li><i class="icon-user"></i><b> Contacto: </b>{{result.object.contacto_1|default:"Sin contacto"}}</li>
+                                                <li><i class="icon-email-envelope"></i><b> Correo: </b>{{result.object.correo_1|default:"Sin correo"}}</li>
+                                                <li><i class="icon-call-phone"></i><b> Teléfono: </b>{{result.object.telefono_1|default:"Sin teléfono"}}</li>
+                                            </ul>
+                                        </div>
+                                        <div class="desc-obj"><b>Objetivo: </b>{{result.object.objetivo|safe|truncatewords:30}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    {% else %}
+                    <li>
+                        <div class="box">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12">
+                                    <div class="text-col p-15">
+                                        <h5><a href="{% url "detail-org" result.object.slug %}">{{result.object.nombre}}</a></h5>
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <ul class="list-inline">
+                                                    <li class="">
+                                                        <b>Calificación: </b>{% ratings result.object %}
+                                                        
+                                                        
+                                                    </li>
+                                                    <li class="">
+                                                        <i class="icon-calendar"> </i> <b>Actualización: </b>{{result.object.actualizado}}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="">
+                                            <ul class="list-inline">
+                                                
+                                                <li><i class="icon-pin-map"></i><b> País: </b>{{result.object.pais_sede}} - <b>Labora: </b>{% for pais in result.object.paises_labora.all %}{{pais}}{% if not forloop.last %}, {% endif %}{% endfor %}</li>
+                                                <li><i class="icon-pin-map"></i><b> Ámbito de acción: </b>{{result.object.ambito_accion}}</li>
+                                            </ul>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="">
+                                            <ul class="list-inline">
+                                                <li><i class="icon-user"></i><b> Contacto: </b>{{result.object.contacto_1|default:"Sin contacto"}}</li>
+                                                <li><i class="icon-email-envelope"></i><b> Correo: </b>{{result.object.correo_1|default:"Sin correo"}}</li>
+                                                <li><i class="icon-call-phone"></i><b> Teléfono: </b>{{result.object.telefono_1|default:"Sin teléfono"}}</li>
+                                            </ul>
+                                        </div>
+                                        <div class="desc-obj"><b>Objetivo: </b>{{result.object.objetivo|safe|truncatewords:30}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    {% endif %}
+
+                    
+                {% endfor %}
+                {% endif %}
+                                               
+            </ul>
+        </div>
+        <nav class="Page navigation">
+            <ul class="pagination pull-right">
+                <li>
+                    {% if page.has_previous or page.has_next %}
+                        
+                            {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}" class="endless_page_link">{% endif %}{% if page.has_previous %}< </a>{% endif %}
+                            <span class="endless_page_current">{{ page.number }} de {{ page.paginator.num_pages }}</span>
+
+                            {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}" class="endless_page_link">{% endif %} {% if page.has_next %}> </a>{% endif %}
+                        
+                    {% endif %}
+                </li>
+            </ul>
+        </nav>
+    </div>
+</section>
+<!--end section-white-->
+{% endblock content %}
+
+{% block extra_js %}
+
+<script src="/static/js/bootstrap-select.min.js"></script>
+
+<script type="text/javascript">
+    $('#id_paises_labora, #id_tipo_organizacion, #id_participacion_cadena, #id_servicios, #id_intercambio, #id_tipo_actividad').selectpicker({
+      style: 'btn-default',
+      size: 4,
+      liveSearch: 'true',
+      title: 'Seleccione'
+    });
+
+</script>
+<script type="text/javascript">
+    
+    $( ".bootstrap-select" ).removeClass( "input-group-btn" );
+    $( "#id_pais_sede" ).addClass("form-control");
+    $( "#id_ambito_accion" ).addClass("form-control");
+    $( "#id_tipo" ).addClass("form-control");
+    $( ".form-busca #id_q" ).addClass("form-control");
+    $(".form-busca #id_q").val("{{request.GET.q}}");
+</script>
+
+{% endblock extra_js %}
+
+
