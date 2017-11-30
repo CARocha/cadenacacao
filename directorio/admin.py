@@ -36,7 +36,7 @@ class ProductosServiciosInline(admin.TabularInline):
 
 class OrganizacionAdmin(ImportExportModelAdmin):
 	inlines = [ProductosServiciosInline,]
-	search_fields = ['nombre',]
+	search_fields = ['nombre','objetivo','pais_sede__nombre','paises_labora__nombre']
 	list_filter = ['pais_sede','tipo_organizacion']
 	
 	def get_form(self, request, obj=None, **kwargs):

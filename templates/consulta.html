@@ -30,10 +30,10 @@
             
         </div>
         <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="home">
+            <div role="tabpanel" class="tab-pane {% if not request.POST %}active{% endif %}" id="home">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                        <form id="contact-form" class="contact form-busca" action="/actores/" method="GET">
+                        <form id="contact-form" class="contact form-busca" action="/actores/busqueda/" method="GET">
                             <div class="input-group">
                                 {{search.q}}
                                 <span class="input-group-btn">
@@ -41,11 +41,15 @@
                                 </span>
                             </div>
                         </form>
+                        <!--<form id="search-form" action="/actores/search/", method="GET">
+                            <input id="search-input" type="text" role="search" value="Buscar..." name="q" id="q" onblur="if (this.value == '') { this.value = 'Buscar...';}" onfocus="if (this.value == 'Buscar...'){this.value = '';}" placeholder="Buscar...">
+                            <label for="search-input" class="ui-search"></label>-->
+                        </form>
                     </div>
                 </div>
                 
             </div>
-            <div role="tabpanel" class="tab-pane" id="tab">
+            <div role="tabpanel" class="tab-pane {% if request.POST %}active{% endif %}" id="tab">
                 <!--begin contact form -->
                 <form id="contact-form" class="contact" action="." method="post">{% csrf_token %}
                     <!--begin row-->
@@ -132,7 +136,7 @@
 <!--end section-white-->
 <section class="section-grey">
     <div class="container">
-        <h4 class="border-bottom-black">Lista de organizaciones</h4>
+        <h4 class="border-bottom-black">Lista de actores</h4>
         <div class="list">
             <ul id="myList">
                 {% paginate 10 object_list %}
@@ -142,7 +146,7 @@
                 {% for obj in object_list %}
                     
                     {% if obj.logo %}
-                        <li>
+                    <li>
                         <div class="box">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-3">
