@@ -88,7 +88,7 @@ PERIODO_CHOICES = (
 class Organizacion(models.Model):
 	# tipo = models.CharField(max_length=20,choices=ESP_ORG_CHOICES)
 	nombre = models.CharField(max_length=255)
-	logo = ImageField(upload_to='logos/',blank=True,null=True)
+	logo = ImageField(upload_to='logos/',blank=True,null=True,help_text='Las dimenciones de la imagen son 200x200')
 	objetivo = RichTextUploadingField()
 	contacto_1 = models.CharField(max_length=255,blank=True,null=True,verbose_name='Persona de Contacto 1')
 	correo_1 = models.CharField(max_length=255,blank=True,null=True,verbose_name='Correo 1')
