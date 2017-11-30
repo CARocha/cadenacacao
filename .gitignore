@@ -75,3 +75,5 @@ CACHE
 *.DS_Store
 media/
 *.styl
+
+/whoosh
