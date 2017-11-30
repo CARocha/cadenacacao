@@ -97,7 +97,7 @@ class Organizacion(models.Model):
 	correo_2 = models.CharField(max_length=255,blank=True,null=True,verbose_name='Correo 2')
 	telefono_2 = models.CharField(max_length=255,blank=True,null=True,verbose_name='Teléfono 2')
 	pais_sede = models.ForeignKey(Pais,verbose_name='País Sede')
-	ciudad = models.CharField(max_length=255,blank=True,null=True,help_text='Cuidad donde esta ubicada')
+	ciudad = models.CharField(max_length=255,blank=True,null=True,help_text='Cuidad donde esta ubicada o dirección',verbose_name='Ciudad/Dirección')
 	location = PlainLocationField(based_fields=['ciudad'], zoom=5,blank=True,null=True,verbose_name='Ubicación')
 	tipo_organizacion = models.CharField(max_length=20,choices=TIPO_CHOICES,verbose_name='Tipo de Organización')
 	tipo_actividad = models.ManyToManyField(TipoActividad,verbose_name='Tipo de Actividad')
