@@ -5,6 +5,7 @@ from django.contrib import admin
 from .models import *
 from django.core.mail import send_mail, EmailMultiAlternatives
 from import_export.admin import ImportExportModelAdmin
+from import_export import resources, fields, widgets
 
 # Register your models here.
 
@@ -34,10 +35,38 @@ class ProductosServiciosInline(admin.TabularInline):
 	extra = 1
 	max_num = 9
 
+class OrganizacionResource(resources.ModelResource):
+	class Meta:
+		model = Organizacion
+		fields = ('id','nombre','logo','objetivo','contacto_1','correo_1','telefono_1','contacto_2',
+					'correo_2','telefono_2','pais_sede','ciudad','location','tipo_organizacion',
+					'tipo_actividad','participacion_cadena','servicios','ambito_accion',
+					'paises_labora','cobertura','periodo_permanencia','intercambio','sitio_web',
+					'miembros','tamano','actualizado','slug','ratings','usuario')
+
+	def dehydrate_pais_sede(self, org):
+		return '%s' % (org.pais_sede.nombre)
+
+	def dehydrate_tipo_actividad(self, org):
+		return '%s' % (",".join([p.nombre for p in org.tipo_actividad.all()]))
+
+	def dehydrate_participacion_cadena(self, org):
+		return '%s' % (",".join([p.nombre for p in org.participacion_cadena.all()]))
+
+	def dehydrate_servicios(self, org):
+		return '%s' % (",".join([p.nombre for p in org.servicios.all()]))
+
+	def dehydrate_paises_labora(self, org):
+		return '%s' % (",".join([p.nombre for p in org.paises_labora.all()]))
+
+	def dehydrate_intercambio(self, org):
+		return '%s' % (",".join([p.nombre for p in org.intercambio.all()]))
+
 class OrganizacionAdmin(ImportExportModelAdmin):
 	inlines = [ProductosServiciosInline,]
 	search_fields = ['nombre','objetivo','pais_sede__nombre','paises_labora__nombre']
 	list_filter = ['pais_sede','tipo_organizacion']
+	resource_class = OrganizacionResource
 	
 	def get_form(self, request, obj=None, **kwargs):
 		if not request.user.is_superuser:

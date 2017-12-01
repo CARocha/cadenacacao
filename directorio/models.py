@@ -113,7 +113,7 @@ class Organizacion(models.Model):
 	tamano = models.CharField(max_length=20,blank=True,null=True,verbose_name='Tamaño')
 	actualizado = models.DateField(editable=False,auto_now=True)
 	slug = models.SlugField(editable=False, max_length=450)
-	ratings = GenericRelation(Rating, related_query_name='orgs')
+	ratings = GenericRelation(Rating, related_query_name='object_list')
 	usuario = models.ForeignKey(User,blank=True,null=True)
 
 	def save(self, *args, **kwargs):
