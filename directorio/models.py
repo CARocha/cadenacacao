@@ -130,7 +130,7 @@ class Organizacion(models.Model):
 
 REDES_CHOICES = (('Sitio web','Sitio web'),('Facebook','Facebook'),('Twitter','Twitter'),('Youtube','Youtube'),
 					('Google+','Google+'),('Instagram','Instagram'),('Linkedin','Linkedin'),
-					('Flickr','Flickr'),('Pinterest','Pinterest'),('Otra','Otra'),)
+					('Flickr','Flickr'),('Pinterest','Pinterest'),('Vimeo','Vimeo'),('Otra','Otra'),)
 
 class Redes(models.Model):
 	organizacion = models.ForeignKey(Organizacion)

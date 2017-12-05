@@ -110,6 +110,8 @@ def detail_org(request,template='perfil.html',slug=None):
 	fotos = ProductosServicios.objects.filter(organizacion = object)
 	conteo = fotos.count()
 
+	redes = Redes.objects.filter(organizacion = object).order_by('id')
+
 	location = object.location.split(",")
 
 	return render(request, template, locals())
