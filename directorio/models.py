@@ -128,6 +128,19 @@ class Organizacion(models.Model):
 		verbose_name = 'Organización/Especialista'
 		verbose_name_plural = 'Organizaciones/Especialistas'
 
+REDES_CHOICES = (('Web','Web'),('Facebook','Facebook'),('Twitter','Twitter'),('Youtube','Youtube'),
+					('Google+','Google+'),('Instagram','Instagram'),('Linkedin','Linkedin'),
+					('Flickr','Flickr'),('Pinterest','Pinterest'),('Otra','Otra'),)
+
+class Redes(models.Model):
+	organizacion = models.ForeignKey(Organizacion)
+	opcion = models.CharField(max_length=25,choices=REDES_CHOICES)
+	url = models.URLField()
+
+	class Meta:
+		verbose_name = 'Red'
+		verbose_name_plural = 'Redes'
+
 class ProductosServicios(models.Model):
 	organizacion = models.ForeignKey(Organizacion)
 	nombre = models.CharField(max_length=255)

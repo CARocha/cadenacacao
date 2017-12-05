@@ -35,6 +35,10 @@ class ProductosServiciosInline(admin.TabularInline):
 	extra = 1
 	max_num = 9
 
+class RedesInline(admin.TabularInline):
+	model = Redes
+	extra = 1
+
 class OrganizacionResource(resources.ModelResource):
 	class Meta:
 		model = Organizacion
@@ -63,7 +67,7 @@ class OrganizacionResource(resources.ModelResource):
 		return '%s' % (",".join([p.nombre for p in org.intercambio.all()]))
 
 class OrganizacionAdmin(ImportExportModelAdmin):
-	inlines = [ProductosServiciosInline,]
+	inlines = [RedesInline,ProductosServiciosInline]
 	search_fields = ['nombre','objetivo','pais_sede__nombre','paises_labora__nombre']
 	list_filter = ['pais_sede','tipo_organizacion']
 	resource_class = OrganizacionResource
