@@ -1,13 +1,16 @@
  {% extends "base.html" %}
  {% load thumbnail %}
  {% load ratings %}
-  
+{% block extra_css %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock extra_css %}
 {% block content %}
 <style type="text/css">
 .star-ratings ul {
     height: 18.5px !important
 }
 </style>
+
       <!--begin section-white -->
     <section class="section-white small-padding">
         
@@ -212,28 +215,42 @@
                         </div>
                         <div class="panel-body no-padding">
                             <ul class="list-group">
-                                        <li class="list-group-item">
-                                            <b> Tipo de organización:</b> {{object.tipo_organizacion}}
-                                        </li>
-                                        <li class="list-group-item">
-                                            <b> Tipo de actividad:</b>
-                                            {% for actividad in object.tipo_actividad.all %}{{actividad}}{% if not forloop.last %}, {% endif %}{% endfor %}
-                                        </li>
-                                        <li class="list-group-item">
-                                            <b>Servicios a la cadena de valor:</b> {% for servicio in object.servicios.all %}{{servicio}}{% if not forloop.last %}, {% endif %}{% endfor %}
-                                        </li>
-                                        <li class="list-group-item">
-                                            <b>Período de permanencia:</b> {{object.periodo_permanencia}}
-                                        </li>
-                                        <li class="list-group-item">
-                                            <b>Intercambio de tecnologías: </b> {% for intercambio in object.intercambio.all %}{{intercambio}}{% if not forloop.last %}, {% endif %}{% endfor %}
-                                        </li>
-                                        {% if object.sitio_web %}
-                                        <li class="list-group-item">
-                                            <b>Sitio web: </b> <a href="{{object.sitio_web}}" target="_blank">Enlace</a>
-                                        </li>
-                                        {% endif %}
-                                    </ul>
+                                <li class="list-group-item">
+                                    <b> Tipo de organización:</b> {{object.tipo_organizacion}}
+                                </li>
+                                <li class="list-group-item">
+                                    <b> Tipo de actividad:</b>
+                                    {% for actividad in object.tipo_actividad.all %}{{actividad}}{% if not forloop.last %}, {% endif %}{% endfor %}
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Servicios a la cadena de valor:</b> {% for servicio in object.servicios.all %}{{servicio}}{% if not forloop.last %}, {% endif %}{% endfor %}
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Período de permanencia:</b> {{object.periodo_permanencia}}
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Intercambio de tecnologías: </b> {% for intercambio in object.intercambio.all %}{{intercambio}}{% if not forloop.last %}, {% endif %}{% endfor %}
+                                </li>
+                                {% if object.sitio_web %}
+                                <li class="list-group-item">
+                                    <b>Sitio web: </b> <a href="{{object.sitio_web}}" target="_blank">Enlace</a>
+                                </li>
+                                {% endif %}
+                                <li class="list-group-item">
+                                    <b>Redes sociales: </b> <br>
+                                        <a href="#" class="fa fa-facebook"></a>
+                                        <a href="#" class="fa fa-twitter"></a>
+                                        <a href="#" class="fa fa-google"></a>
+                                        <a href="#" class="fa fa-linkedin"></a>
+                                        <a href="#" class="fa fa-youtube"></a>
+                                        <a href="#" class="fa fa-instagram"></a>
+                                        <a href="#" class="fa fa-pinterest"></a>
+                                        <a href="#" class="fa fa-vimeo"></a>
+                                        <a href="#" class="fa fa-flickr"></a>
+                                        <a href="#" class="fa fa-globe"></a>
+                                        <a href="#" class="fa fa-link"></a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
