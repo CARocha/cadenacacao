@@ -128,7 +128,7 @@ class Organizacion(models.Model):
 		verbose_name = 'Organización/Especialista'
 		verbose_name_plural = 'Organizaciones/Especialistas'
 
-REDES_CHOICES = (('Web','Web'),('Facebook','Facebook'),('Twitter','Twitter'),('Youtube','Youtube'),
+REDES_CHOICES = (('Sitio web','Sitio web'),('Facebook','Facebook'),('Twitter','Twitter'),('Youtube','Youtube'),
 					('Google+','Google+'),('Instagram','Instagram'),('Linkedin','Linkedin'),
 					('Flickr','Flickr'),('Pinterest','Pinterest'),('Otra','Otra'),)
 
