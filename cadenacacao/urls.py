@@ -24,6 +24,7 @@ from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
+    url(r'^$', index, name='index'),
     url(r'^admin/', admin.site.urls),
     url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
@@ -42,7 +43,6 @@ urlpatterns = [
     url(r'^reset/done/$', auth_views.password_reset_complete, name='password_reset_complete'),
 
     url(r'^accounts/', include('registration.backends.hmac.urls')),
-    url(r'^$', index, name='index'),
     url(r'^buscador/$', buscador, name='search'),
     url(r'^actores/$', consulta, name='consulta'),
     url(r'^actores/perfil/(?P<slug>[\w-]+)/$', detail_org, name='detail-org'),
