@@ -12,7 +12,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.mail import send_mail, EmailMultiAlternatives
 import json as simplejson
 from django.forms import inlineformset_factory
-from django.contrib.postgres.search import SearchVector
+# from django.contrib.postgres.search import SearchVector
 
 # Create your views here.
 def index(request,template='index.html'):
