@@ -23,7 +23,7 @@ SECRET_KEY = '90lsxcc-_v^t2=8%1zf8j)86#c45xg3^a6e_e+a&iz-1@jl0dk'
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
-    # 'django.contrib.sites',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -35,10 +35,13 @@ INSTALLED_APPS = [
     'sorl.thumbnail',
     'star_ratings',
     'el_pagination',
-    # 'disqus',
+    'disqus',
     'import_export',
     'ckeditor',
 ]
+
+DISQUS_API_KEY = 'ivkMjZNobjdzF9S4xS9vvHLQgCJGim1BTlbi5l0Gl4Cak27oEYNKkJHCTTvzeyIl'
+DISQUS_WEBSITE_SHORTNAME = 'http-directorio-plasystem-net'
 
 HAYSTACK_SEARCH_RESULTS_PER_PAGE = 10
 
@@ -146,7 +149,7 @@ STAR_RATINGS_STAR_SPRITE = '/static/stars.png'
 
 #######
 ACCOUNT_ACTIVATION_DAYS = 7
-# SITE_ID = 1
+SITE_ID = 1
 
 GOOGLE_MAPS_API_KEY = "AIzaSyBaguICGAyEp7DdwkG2Z-odTyjLVYMicmg"
 

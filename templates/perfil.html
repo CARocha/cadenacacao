@@ -272,10 +272,9 @@
                 </div>
             </div>
             <h5>Comentarios</h5>
-            <img src="/static/images/disqus.png" alt="" width="100%">
-
-        </div>
-        <!--end container-->
+            <!--<img src="/static/images/disqus.png" alt="" width="100%">-->
+            {% load disqus_tags %}
+            {% disqus_show_comments %}
     
     </section>
 {% endblock content %}
