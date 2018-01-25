@@ -183,18 +183,22 @@ from django.contrib.auth.views import password_reset
 def editar_org(request,template='editar_org.html',slug=None):
 	object = Organizacion.objects.get(slug=slug)
 	FormSetInit = inlineformset_factory(Organizacion, ProductosServicios, form=ProductosServiciosFrom,max_num=9,extra=9)
+	FormSetInit2 = inlineformset_factory(Organizacion, Redes, form=RedesFrom,extra=11,max_num=11)
 
 	if request.method == 'POST':
 		form = OrgForm(request.POST, instance=object)
 		formset = FormSetInit(request.POST,request.FILES,instance=object)
-		if form.is_valid() and formset.is_valid():
+		formset2 = FormSetInit2(request.POST,request.FILES,instance=object)
+		if form.is_valid() and formset.is_valid() and formset2.is_valid():
 			form.save()
 			formset.save()
+			formset2.save()
 			return HttpResponseRedirect('/accounts/profile/')
 
 	else:
 		form = OrgForm(instance=object)
 		formset = FormSetInit(instance=object)
+		formset2 = FormSetInit2(instance=object)
 
 	return render(request, template, locals())
 

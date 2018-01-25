@@ -207,13 +207,13 @@
 
 								</div>
 					    	</div>
-					    	<div class="col-xs-12 col-sm-6 col-md-6">
+					    	<!--<div class="col-xs-12 col-sm-6 col-md-6">
 					    		<div class="input-group group-costum-2">
 					                <span class="input-group-addon " id="sizing-addon2">Sitio web</span>
 									{{ form.sitio_web }}
 
 								</div>
-					    	</div>
+					    	</div>-->
 					    	<div class="col-xs-12 col-sm-6 col-md-6">
 					    		<div class="input-group group-costum-2">
 					                <span class="input-group-addon " id="sizing-addon2">N° de Miembros/Socio</span>
@@ -230,9 +230,36 @@
 					    	</div>
 					    </div>
 						
+						<div class="row">
+							
+							<div class="col-xs-12 col-sm-6 col-md-6">
+						    	<h5 class="border-bottom-black">Redes</h5>
+						    	{{ formset2.management_form }}
+						    	<script type="text/html" id="redes-template">
+								  <fieldset class="redes-fieldset-__prefix__" style="display: none;">
+								      {{ formset2.empty_form.as_p }}
+								  </fieldset>
+							</script>
+								<div id="redes-container">
+								    {% for form2 in formset2 %}
+								      <fieldset class="redes-fieldset-{{ forloop.counter0 }}">
+								        {{ form2.as_p }}
+								      </fieldset>
+								    {% endfor %}
+								  </div>
+								<div>
+								    <!--<button id="add-red" type="button">Agregar red</button>-->
+								</div>
+								
+						    </div>
 
-						<h5 class="border-bottom-black">Productos/Servicios</h5>
-						{{ formset.as_p }}
+						    <div class="col-xs-12 col-sm-6 col-md-6">
+						    	<h5 class="border-bottom-black">Productos/Servicios</h5>
+								{{ formset.as_p }}
+						    </div>
+						</div>
+					    
+						
 						<input type="submit" name="Editar" class="contact-submit" value="Actualizar">
 					</form>
         		</div>
@@ -247,6 +274,7 @@
 
 {% block extra_js %}
 <script src="/static/js/bootstrap-select.min.js"></script>
+<script src="/static/js/django-inline-form.js"></script>
 
 <script type="text/javascript">
     $('#id_participacion_cadena, #id_servicios, #id_paises_labora,#id_intercambio,#id_tipo_actividad').selectpicker({
@@ -267,8 +295,19 @@
 	$('select:not([multiple])').addClass( "form-control" );
 	$('textarea').addClass( "form-control" );
 	$('.bootstrap-select').addClass( "form-control" );
-	
 
+$('#add-red').click(function() {
+  	x = $('input[name=redes_set-TOTAL_FORMS]').val();
+  	y = parseInt(x) + 1;
+  	$('input[name=redes_set-TOTAL_FORMS]').val(y);
+  	count = parseInt(x)
+  	$('#id_redes_set-'+count+'-opcion').addClass('form-control');
+});
+
+$('#add-red').djangoInlineFormAdd({
+  prefix: "redes",
+  // deleteButtonId: "delete-author"
+});
 	
 </script>
 

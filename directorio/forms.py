@@ -55,6 +55,12 @@ class ProductosServiciosFrom(forms.ModelForm):
 		fields = '__all__'
 		exclude = ['organizacion',]
 
+class RedesFrom(forms.ModelForm):
+	class Meta:
+		model = Redes
+		fields = '__all__'
+		exclude = ['organizacion',]
+		
 class EmailForm(forms.Form):
       mensaje = forms.CharField(widget=forms.Textarea,label="Descripción breve")
 
