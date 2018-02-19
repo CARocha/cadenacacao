@@ -95,7 +95,8 @@ class OrganizacionAdmin(ImportExportModelAdmin):
 				subject, from_email = 'Perfil activo en Sistema Cadena de cacao', 'noreply@unag-datos.org'
 				text_content = 'Se ha asignado la Organizacion/Especialista ' + str(obj.nombre) +  'usuario ' + str(obj.usuario) 
 
-				html_content = 'Se ha asignado el usuario ' + str(obj.usuario)
+				html_content = 'Se ha asignado al usuario ' + str(obj.usuario) + 'la Organzación' + str(obj.nombre) + \
+								'Diríjase a la siguiente direccion: directorio.info/accounts/profile/'
 
 				msg = EmailMultiAlternatives(subject, text_content, from_email, [obj.usuario.email,])
 				msg.attach_alternative(html_content, "text/html")

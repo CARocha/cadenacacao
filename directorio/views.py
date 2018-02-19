@@ -142,7 +142,7 @@ def user_profile(request,template='perfil_user.html'):
 		if form.is_valid():
 			mensaje = form.cleaned_data['mensaje']
 		try:
-			subject, from_email = 'Solicitud ingreso de organización o especialista a Sistema Cadena de cacao', 'noreply@unag-datos.org'
+			subject, from_email = 'Solicitud ingreso de organización o especialista a Sistema Cadena de cacao', 'vecomesoamerica@gmail.com'
 			text_content = 'Usuario: ' + str(user.username) + '<br>'  + \
 							'Correo: ' + str(user.email) + '<br>'  + \
 							'Mensaje: ' + str(mensaje)
