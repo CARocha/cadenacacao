@@ -92,11 +92,12 @@ class OrganizacionAdmin(ImportExportModelAdmin):
 		if obj.usuario:
 			print obj.usuario.email
 			try:
-				subject, from_email = 'Perfil activo en Sistema Cadena de cacao', 'noreply@unag-datos.org'
-				text_content = 'Se ha asignado la Organizacion/Especialista ' + str(obj.nombre) +  'usuario ' + str(obj.usuario) 
+				subject, from_email = 'Perfil activo en Sistema Cadena de cacao', 'vecomesoamerica@gmail.com'
+				text_content = 'Se ha asignado al usuario ' + str(obj.usuario) + 'la Organizacion/Especialista' + str(obj.nombre) + \
+								'Diríjase a la siguiente direccion: directoriocacao.info/accounts/profile/'
 
-				html_content = 'Se ha asignado al usuario ' + str(obj.usuario) + 'la Organzación' + str(obj.nombre) + \
-								'Diríjase a la siguiente direccion: directorio.info/accounts/profile/'
+				html_content = 'Se ha asignado al usuario ' + str(obj.usuario) + 'la Organizacion/Especialista' + str(obj.nombre) + \
+								'Diríjase a la siguiente direccion: directoriocacao.info/accounts/profile/'
 
 				msg = EmailMultiAlternatives(subject, text_content, from_email, [obj.usuario.email,])
 				msg.attach_alternative(html_content, "text/html")
