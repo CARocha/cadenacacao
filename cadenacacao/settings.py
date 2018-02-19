@@ -157,7 +157,7 @@ LOCATION_FIELD = {
 'map.provider': 'google',
 # 'map.zoom': 15,
 'search.provider': 'google',
-'provider.google.api': '//maps.google.com/maps/api/js?sensor=false',
+'provider.google.api': 'https://maps.google.com/maps/api/js?sensor=false',
 'provider.google.api_key': GOOGLE_MAPS_API_KEY,
 'provider.google.map.type': 'ROADMAP',
 }
