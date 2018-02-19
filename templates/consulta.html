@@ -173,8 +173,6 @@
                                                 <ul class="list-inline">
                                                     <li class="">
                                                         <b>Calificación: </b>{% ratings obj %}
-                                                        
-                                                        
                                                     </li>
                                                     <li class="">
                                                         <i class="icon-calendar"> </i> <b>Actualización: </b>{{obj.actualizado}}
@@ -208,7 +206,14 @@
                     <li>
                         <div class="box">
                             <div class="row">
-                                <div class="col-xs-12 col-sm-12">
+                                <div class="col-xs-12 col-sm-3">
+                                    <div class="thumb">
+                                        <a class="img-thumb" href="{% url "detail-org" obj.slug %}">
+                                            <img src="/static/images/generica.jpg" alt="img" height="210" width="210">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-9">
                                     <div class="text-col p-15">
                                         <h5><a href="{% url "detail-org" obj.slug %}">{{obj.nombre}}</a></h5>
                                         <div class="row">
@@ -216,8 +221,6 @@
                                                 <ul class="list-inline">
                                                     <li class="">
                                                         <b>Calificación: </b>{% ratings obj %}
-                                                        
-                                                        
                                                     </li>
                                                     <li class="">
                                                         <i class="icon-calendar"> </i> <b>Actualización: </b>{{obj.actualizado}}
