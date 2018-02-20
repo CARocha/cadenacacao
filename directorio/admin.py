@@ -71,6 +71,7 @@ class OrganizacionAdmin(ImportExportModelAdmin):
 	search_fields = ['nombre','objetivo','pais_sede__nombre','paises_labora__nombre']
 	list_filter = ['pais_sede','tipo_organizacion']
 	resource_class = OrganizacionResource
+	exclude = ['sitio_web',]
 	
 	def get_form(self, request, obj=None, **kwargs):
 		if not request.user.is_superuser:
