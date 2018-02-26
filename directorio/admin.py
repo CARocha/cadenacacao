@@ -6,6 +6,7 @@ from .models import *
 from django.core.mail import send_mail, EmailMultiAlternatives
 from import_export.admin import ImportExportModelAdmin
 from import_export import resources, fields, widgets
+from .forms import *
 
 # Register your models here.
 
@@ -66,12 +67,28 @@ class OrganizacionResource(resources.ModelResource):
 	def dehydrate_intercambio(self, org):
 		return '%s' % (",".join([p.nombre for p in org.intercambio.all()]))
 
+# cambiar str user en el admin
+class CustomModelChoiceField(forms.ModelChoiceField):
+	 def label_from_instance(self, obj):
+	 	if obj.first_name or obj.last_name:
+	 		return "%s %s / %s" % (obj.first_name, obj.last_name, obj.username)
+	 	else:
+	 		return obj.username
+
+class MyInvoiceAdminForm(forms.ModelForm):
+	usuario = CustomModelChoiceField(queryset=User.objects.all()) 
+	class Meta:
+		  model = Organizacion
+		  fields = ('__all__')
+######
+
 class OrganizacionAdmin(ImportExportModelAdmin):
 	inlines = [RedesInline,ProductosServiciosInline]
 	search_fields = ['nombre','objetivo','pais_sede__nombre','paises_labora__nombre']
 	list_filter = ['pais_sede','tipo_organizacion']
 	resource_class = OrganizacionResource
 	exclude = ['sitio_web',]
+	form = MyInvoiceAdminForm
 	
 	def get_form(self, request, obj=None, **kwargs):
 		if not request.user.is_superuser:
@@ -105,5 +122,12 @@ class OrganizacionAdmin(ImportExportModelAdmin):
 				msg.send()
 			except Exception as e:
 				print e
+
+	class Media:
+		css = {
+			'all': ('css/select2.min.css',)
+		}
+		js = ('js/jquery-1.11.3.min.js','js/select2.min.js','js/admin.js',)
+
 
 admin.site.register(Organizacion,OrganizacionAdmin)
