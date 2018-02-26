@@ -74,8 +74,9 @@
 			{% if enviado == 1 %}
 				<div class="text-success">Su mensaje ha sido enviado correctamente!!!</div>
 				{% endif %}
-			<p>Enviar mensaje al administrador del sistema si desea que su perfil se asocie a una organización o especialista o se cree uno nuevo</p>
-			Descripción breve: {{form.mensaje}} <br>
+			<p>Enviar mensaje al administrador del sistema si desea que su perfil se asocie a una organización/especialista o se cree uno nuevo</p>
+			<p>Adjuntar información básica para el registro de la misma</p>
+			Mensaje: {{form.mensaje}} <br>
 			<input type="submit" name="Enviar" value="Enviar mensaje">
 		</form>
 	{% endif %}
