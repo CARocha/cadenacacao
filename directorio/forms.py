@@ -12,7 +12,7 @@ def paises_labora():
 	return Pais.objects.filter(id__in=foo)
 
 AMBITO_CHOICES = (
-		('','Seleccione'),('Internacional','Internacional'),('Regional','Regional'),
+		('','------'),('Internacional','Internacional'),('Regional','Regional'),
 		('Nacional','Nacional'),('Local','Local')
 	)
 

@@ -102,7 +102,7 @@ class Organizacion(models.Model):
 	tipo_organizacion = models.CharField(max_length=20,choices=TIPO_CHOICES,verbose_name='Tipo de Organización')
 	tipo_actividad = models.ManyToManyField(TipoActividad,verbose_name='Tipo de Actividad')
 	participacion_cadena = models.ManyToManyField(Participacion,verbose_name='Participación en la Cadena de Valor')
-	servicios = models.ManyToManyField(ServiciosCadena,verbose_name='Servicios  en la Cadena de Valor')
+	servicios = models.ManyToManyField(ServiciosCadena,verbose_name='Servicios que brinda la Organización')
 	ambito_accion = models.CharField(max_length=20,choices=AMBITO_CHOICES,verbose_name='Ámbito de Acción')
 	paises_labora = models.ManyToManyField(Pais,related_name='Paises',verbose_name='Países donde Labora')
 	cobertura = models.CharField(max_length=255,verbose_name='Cobertura Geográfica')
@@ -114,7 +114,7 @@ class Organizacion(models.Model):
 	actualizado = models.DateField(editable=False,auto_now=True)
 	slug = models.SlugField(editable=False, max_length=450)
 	ratings = GenericRelation(Rating, related_query_name='object_list')
-	usuario = models.ForeignKey(User,blank=True,null=True)
+	usuario = models.ManyToManyField(User,blank=True)
 
 	def save(self, *args, **kwargs):
 		# if not self.id:

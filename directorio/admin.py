@@ -8,6 +8,27 @@ from import_export.admin import ImportExportModelAdmin
 from import_export import resources, fields, widgets
 from .forms import *
 
+from django.contrib.flatpages.models import FlatPage
+# Note: we are renaming the original Admin and Form as we import them!
+#flatpages admin ckeditor start ----------------------------------------------
+from django.contrib.flatpages.admin import FlatPageAdmin as FlatPageAdminOld
+from django.contrib.flatpages.forms import FlatpageForm as FlatpageFormOld
+
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
+ 
+class FlatpageForm(FlatpageFormOld):
+	content = forms.CharField(widget=CKEditorUploadingWidget(),required=False)
+	class Meta:
+		model = FlatPage # this is not automatically inherited from FlatpageFormOld
+		fields = '__all__'
+ 
+class FlatPageAdmin(FlatPageAdminOld):
+	form = FlatpageForm
+
+admin.site.unregister(FlatPage)
+admin.site.register(FlatPage, FlatPageAdmin)
+#flatpages admin ckeditor end-----------------------------------------------------
+
 # Register your models here.
 
 class PaisAdmin(ImportExportModelAdmin):
@@ -68,7 +89,7 @@ class OrganizacionResource(resources.ModelResource):
 		return '%s' % (",".join([p.nombre for p in org.intercambio.all()]))
 
 # cambiar str user en el admin
-class CustomModelChoiceField(forms.ModelChoiceField):
+class CustomModelChoiceField(forms.ModelMultipleChoiceField):
 	 def label_from_instance(self, obj):
 	 	if obj.first_name or obj.last_name:
 	 		return "%s %s / %s" % (obj.first_name, obj.last_name, obj.username)
@@ -76,7 +97,7 @@ class CustomModelChoiceField(forms.ModelChoiceField):
 	 		return obj.username
 
 class MyInvoiceAdminForm(forms.ModelForm):
-	usuario = CustomModelChoiceField(queryset=User.objects.all()) 
+	usuario = CustomModelChoiceField(queryset=User.objects.all(),required=False) 
 	class Meta:
 		  model = Organizacion
 		  fields = ('__all__')
@@ -108,20 +129,20 @@ class OrganizacionAdmin(ImportExportModelAdmin):
 			obj.save() 
 
 		if obj.usuario:
-			print obj.usuario.email
-			try:
-				subject, from_email = 'Perfil activo en Sistema Cadena de cacao', 'vecomesoamerica@gmail.com'
-				text_content = 'Se ha asignado una Organización/Especialista al usuario ' + str(obj.usuario) + '<br>' \
-								'Ir a la dirección www.directoriocacao.info/accounts/login/'
+			for x in obj.usuario.all():
+				try:
+					subject, from_email = 'Perfil activo en Sistema Cadena de cacao', 'vecomesoamerica@gmail.com'
+					text_content = 'Se ha asignado una Organización/Especialista al usuario ' + str(x.username) + '<br>' \
+									'Ir a la dirección www.directoriocacao.info/accounts/login/'
 
-				html_content = 'Se ha asignado una Organización/Especialista al usuario ' + str(obj.usuario) + '<br>' \
-								'Ir a la dirección www.directoriocacao.info/accounts/login/' 
+					html_content = 'Se ha asignado una Organización/Especialista al usuario ' + str(x.username) + '<br>' \
+									'Ir a la dirección www.directoriocacao.info/accounts/login/' 
 
-				msg = EmailMultiAlternatives(subject, text_content, from_email, [obj.usuario.email,])
-				msg.attach_alternative(html_content, "text/html")
-				msg.send()
-			except Exception as e:
-				print e
+					msg = EmailMultiAlternatives(subject, text_content, from_email, [x.email,])
+					msg.attach_alternative(html_content, "text/html")
+					msg.send()
+				except Exception as e:
+					print e
 
 	class Media:
 		css = {

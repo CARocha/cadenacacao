@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.postgres',
+    'django.contrib.flatpages',
     'haystack',
     'directorio',
     'location_field.apps.DefaultConfig',
@@ -64,6 +65,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 ]
 
 ROOT_URLCONF = 'cadenacacao.urls'
@@ -153,14 +155,48 @@ SITE_ID = 1
 
 GOOGLE_MAPS_API_KEY = "AIzaSyBaguICGAyEp7DdwkG2Z-odTyjLVYMicmg"
 
+LOCATION_FIELD_PATH = STATIC_URL + 'location_field'
+
 LOCATION_FIELD = {
-'map.provider': 'google',
-# 'map.zoom': 15,
-'search.provider': 'google',
-'provider.google.api': 'https://maps.google.com/maps/api/js?sensor=false',
-'provider.google.api_key': GOOGLE_MAPS_API_KEY,
-'provider.google.map.type': 'ROADMAP',
+    'map.provider': 'openstreetmap',
+    'map.zoom': 15,
+
+    'search.provider': 'google',
+    'search.suffix': '',
+
+    # Google
+    'provider.google.api': '//maps.google.com/maps/api/js?sensor=false',
+    'provider.google.api_key': GOOGLE_MAPS_API_KEY,
+    'provider.google.api_libraries': '',
+    'provider.google.map.type': 'ROADMAP',
+
+     # Mapbox
+    'provider.mapbox.access_token': '',
+    'provider.mapbox.max_zoom': 18,
+    'provider.mapbox.id': 'mapbox.streets',
+
+    # OpenStreetMap
+    'provider.openstreetmap.max_zoom': 15,
+
+    # misc
+    'resources.root_path': LOCATION_FIELD_PATH,
+    'resources.media': {
+        'js': (
+            LOCATION_FIELD_PATH + '/js/jquery.livequery.js',
+            LOCATION_FIELD_PATH + '/js/form.js',
+        ),
+    },
 }
+
+# LOCATION_FIELD = {
+# 'map.provider': 'google',
+# # 'map.zoom': 15,
+# 'search.provider': 'google',
+# 'provider.google.api': '//maps.google.com/maps/api/js?sensor=false',
+# 'provider.google.api_key': GOOGLE_MAPS_API_KEY,
+# 'provider.google.api_libraries': '',
+# 'provider.google.map.type': 'ROADMAP',
+# }
 
 # CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
 CKEDITOR_UPLOAD_PATH = "uploads/"

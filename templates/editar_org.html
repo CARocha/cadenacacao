@@ -15,7 +15,7 @@
         	<div class="row">
 
         		<div class="col-xs-12 col-md-12">
-        			<h4 class="border-bottom-black">Editar perfil de la organnización</h4>
+        			<h4 class="border-bottom-black">Editar perfil de la organización</h4>
         			{% if form.errors %}
         				<p>{{form.errors}}</p>
         			{% endif %}
@@ -133,7 +133,7 @@
 
 									</div>
 						    		<div class="input-group group-costum-2">
-						                <label class="label" for="">Location</label>
+						                <label class="label" for="">Ubicación</label>
 						               
 										{{ form.location }}
 
@@ -160,28 +160,28 @@
 					    	</div>
 					    	<div class="col-xs-12 col-sm-6 col-md-6">
 					    		<div class="input-group group-costum-2">
-					                <span class="input-group-addon " id="sizing-addon2">Participacion cadena</span>
+					                <span class="input-group-addon " id="sizing-addon2">Participación cadena</span>
 									{{ form.participacion_cadena }}
 
 								</div>
 					    	</div>
 					    	<div class="col-xs-12 col-sm-6 col-md-6">
 					    		<div class="input-group group-costum-2">
-					                <span class="input-group-addon " id="sizing-addon2">Servicios</span>
+					                <span class="input-group-addon " id="sizing-addon2">Servicios que brinda</span>
 									{{ form.servicios }}
 
 								</div>
 					    	</div>
 					    	<div class="col-xs-12 col-sm-6 col-md-6">
 					    		<div class="input-group group-costum-2">
-					                <span class="input-group-addon " id="sizing-addon2">Ambito accion</span>
+					                <span class="input-group-addon " id="sizing-addon2">Ámbito acción</span>
 									{{ form.ambito_accion }}
 
 								</div>
 					    	</div>
 					    	<div class="col-xs-12 col-sm-6 col-md-6">
 					    		<div class="input-group group-costum-2">
-					                <span class="input-group-addon " id="sizing-addon2">Paises labora</span>
+					                <span class="input-group-addon " id="sizing-addon2">Países donde labora</span>
 									{{ form.paises_labora }}
 
 								</div>
@@ -195,7 +195,7 @@
 					    	</div>
 					    	<div class="col-xs-12 col-sm-6 col-md-6">
 					    		<div class="input-group group-costum-2">
-					                <span class="input-group-addon " id="sizing-addon2">Periodo permanencia</span>
+					                <span class="input-group-addon " id="sizing-addon2">Período permanencia</span>
 									{{ form.periodo_permanencia }}
 
 								</div>
@@ -216,7 +216,7 @@
 					    	</div>-->
 					    	<div class="col-xs-12 col-sm-6 col-md-6">
 					    		<div class="input-group group-costum-2">
-					                <span class="input-group-addon " id="sizing-addon2">N° de Miembros/Socio</span>
+					                <span class="input-group-addon " id="sizing-addon2">N° de Miembros/Socios</span>
 									{{ form.miembros }}
 
 								</div>
@@ -275,6 +275,7 @@
 {% block extra_js %}
 <script src="/static/js/bootstrap-select.min.js"></script>
 <script src="/static/js/django-inline-form.js"></script>
+<script src="/static/location_field/leaflet.js"></script>
 
 <script type="text/javascript">
     $('#id_participacion_cadena, #id_servicios, #id_paises_labora,#id_intercambio,#id_tipo_actividad').selectpicker({
@@ -283,7 +284,7 @@
       liveSearch: 'true',
       title: 'Seleccione',
       selectedTextFormat: 'count',
-      countSelectedText: '{0} seleccinados',
+      countSelectedText: '{0} seleccionados',
     });
 
 </script>

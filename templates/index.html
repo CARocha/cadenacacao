@@ -24,15 +24,17 @@
             <div class="col-md-6">
                 
                 <div class="tabs">
-                    <h4>Cadena de valor del cacao | Actores</h4>
-                    <div class="tab-content text-left" data-tab="1">
-
-                            <p class="margin-bottom-20">RIKOLTO Mesoamérica, pone a su disposición el Directorio Virtual Regional de Miembros de la Cadena de Valor del Cacao en la región con el propósito de facilitar los procesos de intercambio en la región y la búsqueda de información del sector que dinamice las oportunidades de negocio. </p>
-
-                            <p class="margin-bottom-20">El Directorio permita enlistar información de contacto, ubicación geográfica, descripción del servicio, sitio web, entre otros datos de los miembros de la cadena de valor, al igual que de entidades que facilitan servicios relacionados a la producción y comercialización del cacao; por ejemplo, oficinas de gobierno, especialistas, ONGs, entre otros. La herramienta estará dirigida a miembros de la cadena de valor, así como inversionistas u otras entidades interesadas en conocer las organizaciones que operan en los países de Guatemala, El Salvador, Honduras y Nicaragua.</p>
-
-
-                        </div>
+                    {% load flatpages %}
+                        {% get_flatpages as flatpages %}
+                            {% for page in flatpages %}
+                                {% if page.url == '/informacion-index/' %}
+                                    <h4>{{page.title}}</h4>
+                                    <div class="tab-content text-left" data-tab="1">
+                                         {{ page.content|safe}}
+                                    </div>
+                                {% endif %} 
+                            {% endfor %}
+                    
 
                 </div>
             </div>    
@@ -48,41 +50,30 @@
 <!--end section-white-->
 
 <!--begin section-grey -->
-<!--<section class="section-grey">
-    
-    <div class="container">
+{% get_flatpages as flatpages %}
+    {% for page in flatpages %}
+        {% if page.url == '/video-index/' and page.content %}
+            <section class="section-grey">
+                
+                <div class="container">
 
-        <div class="row">
-        
-            <div class="col-md-12">
-                <h2 class="">Estudios</h2>
+                    <div class="row">
+                    
+                        <div class="col-md-12">
+                            <h4>{{page.title}}</h4>
+                            <div class="tab-content text-left" data-tab="1">
+                                 {{ page.content|safe}}
+                            </div>
+                                    
+                        </div>
+                    
+                    </div>
 
-                <p align="margin-bottom-20">
-                    Dado que se trata de información complementaria interesante a la provista por este buscador de actores de las cadenas del cacao de los países centroamericanos, ponemos a tu disposición los accesos directos a estos documentos, almacenados en nuestro <a href="http://cadenacacaoca.info/estudios-cacao/CEDOC/">Centro de Documentación:</a>
-                </p>
-                <p align="margin-bottom-20">
-                    - Uso actual y oferta de tecnologías sostenibles en las cadenas de valor del cacao en El Salvador para mejorar la seguridad alimentaria. <a href="http://cadenacacaoca.info/estudios-cacao/CEDOC/ficha.php?id=1563&amp;lang=es">Informe nacional | El Salvador</a>
-                </p>
-                <p align="margin-bottom-20">
-                    - Uso actual y oferta de tecnologías sostenibles en las cadenas de valor del cacao en Guatemala para mejorar la seguridad alimentaria. <a href="http://cadenacacaoca.info/estudios-cacao/CEDOC/ficha.php?id=1577&amp;lang=es">Informe nacional | Guatemala</a>
-                </p>
-                <p align="margin-bottom-20">
-                    - Uso actual y oferta de tecnologías sostenibles en las cadenas de valor del cacao en Honduras para mejorar la seguridad alimentaria. <a href="http://cadenacacaoca.info/estudios-cacao/CEDOC/ficha.php?id=1578&amp;lang=es">Informe nacional | Honduras</a>
-                </p>
-                <p align="margin-bottom-20">
-                    - Uso actual y oferta de tecnologías sostenibles en las cadenas de valor del cacao en Nicaragua para mejorar la seguridad alimentaria. <a href="http://cadenacacaoca.info/estudios-cacao/CEDOC/ficha.php?id=1579&amp;lang=es">Informe nacional | Nicaragua</a>
-                </p>
-                <p align="margin-bottom-20">
-                    - Oferta de tecnologías de producción de cacao. <a href="http://cadenacacaoca.info/estudios-cacao/CEDOC/ficha.php?id=1567&amp;lang=es">Informe mundial</a>
-                </p>
+                </div>
 
-            </div>
-        
-        </div>
-
-    </div>
-
-</section>-->
+            </section>
+    {% endif %} 
+{% endfor %}
 <!--end section-grey-->
 {% endblock content %}
 

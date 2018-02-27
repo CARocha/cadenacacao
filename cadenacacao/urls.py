@@ -26,6 +26,7 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     url(r'^$', index, name='index'),
     url(r'^admin/', admin.site.urls),
+    url(r'^pages/', include('django.contrib.flatpages.urls')),
     url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^actores/busqueda/', include('haystack.urls')),
