@@ -27,7 +27,7 @@
                     {% load flatpages %}
                         {% get_flatpages as flatpages %}
                             {% for page in flatpages %}
-                                {% if page.url == '/informacion-index/' %}
+                                {% if page.url == '/informacion-inicio/' %}
                                     <h4>{{page.title}}</h4>
                                     <div class="tab-content text-left" data-tab="1">
                                          {{ page.content|safe}}
@@ -52,7 +52,7 @@
 <!--begin section-grey -->
 {% get_flatpages as flatpages %}
     {% for page in flatpages %}
-        {% if page.url == '/video-index/' and page.content %}
+        {% if page.url == '/video-inicio/' and page.content %}
             <section class="section-grey">
                 
                 <div class="container">
