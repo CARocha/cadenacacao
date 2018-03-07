@@ -151,7 +151,7 @@ def user_profile(request,template='perfil_user.html'):
 							'Correo: ' + str(user.email) + '<br>'  + \
 							'Mensaje: ' + str(mensaje)
 
-			msg = EmailMultiAlternatives(subject, text_content, from_email, ['cadenacacao@gmail.com',])
+			msg = EmailMultiAlternatives(subject, text_content, from_email, ['cadenacacao@gmail.com','vecomesoamerica@gmail.com'])
 			msg.attach_alternative(html_content, "text/html")
 			msg.send()
 
@@ -186,7 +186,7 @@ def editar_org(request,template='editar_org.html',slug=None):
 	FormSetInit2 = inlineformset_factory(Organizacion, Redes, form=RedesFrom,extra=11,max_num=11)
 
 	if request.method == 'POST':
-		form = OrgForm(request.POST, instance=object)
+		form = OrgForm(request.POST,request.FILES,instance=object)
 		formset = FormSetInit(request.POST,request.FILES,instance=object)
 		formset2 = FormSetInit2(request.POST,request.FILES,instance=object)
 		if form.is_valid() and formset.is_valid() and formset2.is_valid():

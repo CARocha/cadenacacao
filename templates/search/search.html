@@ -27,6 +27,10 @@
                 <li role="presentation" class="active">
                     <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Búsqueda</a>
                 </li>
+                <li>|</li>
+                <li role="presentation">
+                    <a href="#tab" aria-controls="tab" role="tab" data-toggle="tab">Búsqueda avanzada</a>
+                </li>
             </ul>
             
         </div>
@@ -45,6 +49,82 @@
                     </div>
                 </div>
                 
+            </div>
+            <div role="tabpanel" class="tab-pane {% if request.POST %}active{% endif %}" id="tab">
+                <!--begin contact form -->
+                <form id="contact-form" class="contact" action="/actores/" method="post">{% csrf_token %}
+                    <!--begin row-->
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="input-group group-costum">
+                                <span class="input-group-addon" id="sizing-addon2">País sede *</span>
+                                {{asd.pais_sede}}
+
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group group-costum">
+                                <span class="input-group-addon" id="sizing-addon2">Ámbito de acción</span>
+                                {{asd.ambito_accion}}
+
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group group-costum">
+
+                                <span class="input-group-addon" id="sizing-addon2">Tipo de actor</span>
+                                {{asd.tipo_organizacion}}
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group group-costum">
+                                <span class="input-group-addon" id="sizing-addon2">País(es) donde labora</span>
+                                {{asd.paises_labora}}
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group group-costum">
+                                <span class="input-group-addon" id="sizing-addon2">Participación en la cadena de valor</span>
+                                {{asd.participacion_cadena}}
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group group-costum">
+                                <span class="input-group-addon" id="sizing-addon2">Servicios que brindan</span>
+                                {{asd.servicios}}
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group group-costum">
+                                <span class="input-group-addon" id="sizing-addon2">Intercambio de tecnologías</span>
+                                {{asd.intercambio}}
+                            </div>
+                        </div>
+                        <!--<div class="col-sm-4">
+                            <div class="input-group group-costum">
+                                <span class="input-group-addon" id="sizing-addon2">Tipo</span>
+                                {{asd.tipo}}
+
+                            </div>
+                        </div>-->
+                        <div class="col-sm-4">
+                            <div class="input-group group-costum">
+                                <span class="input-group-addon" id="sizing-addon2">Tipo de actividad</span>
+                                {{asd.tipo_actividad}}
+
+                            </div>
+                        </div>
+                        
+
+                        <div class="col-sm-4">
+                            <input value="Consultar" id="submit-button" class="contact-submit" type="submit">
+                        </div>
+
+                        
+                    </div>
+                    <!--end row-->
+                </form>
+                <!--end contact form --> 
             </div>
         </div>
                   
