@@ -133,10 +133,10 @@ class OrganizacionAdmin(ImportExportModelAdmin):
 				try:
 					subject, from_email = 'Perfil activo en Sistema Cadena de cacao', 'vecomesoamerica@gmail.com'
 					text_content = 'Se ha asignado una Organización/Especialista al usuario ' + str(x.username) + '<br>' \
-									'Ir a la dirección www.directoriocacao.info/accounts/login/'
+									'Ir a la dirección www.directoriocacao.info/accounts/profile/'
 
 					html_content = 'Se ha asignado una Organización/Especialista al usuario ' + str(x.username) + '<br>' \
-									'Ir a la dirección www.directoriocacao.info/accounts/login/' 
+									'Ir a la dirección www.directoriocacao.info/accounts/profile/' 
 
 					msg = EmailMultiAlternatives(subject, text_content, from_email, [x.email,])
 					msg.attach_alternative(html_content, "text/html")
