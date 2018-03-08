@@ -62,7 +62,7 @@ class RedesFrom(forms.ModelForm):
 		exclude = ['organizacion',]
 		
 class EmailForm(forms.Form):
-    mensaje = forms.CharField(widget=forms.Textarea,label="Descripción breve")
+    mensaje = forms.CharField(widget=forms.Textarea,label="Descripción breve",max_length=2000)
 
 class UserForm(forms.ModelForm):
 	class Meta:

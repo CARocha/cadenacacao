@@ -1,6 +1,17 @@
 {% extends "base.html" %}
 {% load el_pagination_tags %}
 {% block content %}
+
+<style type="text/css">
+	.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    color: #555;
+    cursor: default;
+    background-color: #b5be14 !important;
+    border: 1px solid #3d3a35 !important;
+    border-bottom-color: transparent;
+}
+
+</style>
 	<section class="section-grey small-padding">
         
         <!--begin container-->
@@ -45,11 +56,17 @@
         		</div>
         		<div class="col-xs-12 col-sm-7">
         			{% if organizaciones %}
-        			<div class="panel panel-primary">
-		        		<div class="panel-heading">
-		                    <h3 class="panel-title">Organizaciones</h3>
-		                </div>
-		        		<div class="panel-body no-padding">
+
+        			<ul class="nav nav-tabs" id="myTab" role="tablist">
+					  <li class="nav-item">
+					    <a class="nav-link active panel-title" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Organizaciones</a>
+					  </li>
+					  <li class="nav-item">
+					    <a class="nav-link panel-title" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Solicitar vinculación</a>
+					  </li>
+					</ul>
+					<div class="tab-content" id="myTabContent">
+					  <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
 		        			<ul class="list-group margin-bottom-0">
 		        				{% paginate 5 organizaciones %}
 		        				{% for org in organizaciones %}
@@ -67,19 +84,35 @@
 					            </ul>
 					        </nav>
 
-		        		</div>
-		        	</div>
+		        		
+					  </div>
+					  <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+					  	<form method="POST" id="contact-form">{% csrf_token %}
+							{% if enviado == 1 %}
+								<div class="text-success">Su mensaje ha sido enviado correctamente!!!</div>
+								{% endif %}
+							<p>Enviar mensaje al administrador del sistema si desea que su perfil se asocie a una organización/especialista o se cree uno nuevo</p>
+							<p>Adjuntar información básica para el registro de la misma</p>
+							Mensaje: {{form.mensaje}} <br>
+							<input type="submit" name="Enviar" value="Enviar mensaje">
+						</form>
+					  </div>
+					</div>
+
+
+
+        			
 		        	{% else %}
 		        	<form method="POST" id="contact-form">{% csrf_token %}
-			{% if enviado == 1 %}
-				<div class="text-success">Su mensaje ha sido enviado correctamente!!!</div>
+						{% if enviado == 1 %}
+							<div class="text-success">Su mensaje ha sido enviado correctamente!!!</div>
+							{% endif %}
+						<p>Enviar mensaje al administrador del sistema si desea que su perfil se asocie a una organización/especialista o se cree uno nuevo</p>
+						<p>Adjuntar información básica para el registro de la misma</p>
+						Mensaje: {{form.mensaje}} <br>
+						<input type="submit" name="Enviar" value="Enviar mensaje">
+					</form>
 				{% endif %}
-			<p>Enviar mensaje al administrador del sistema si desea que su perfil se asocie a una organización/especialista o se cree uno nuevo</p>
-			<p>Adjuntar información básica para el registro de la misma</p>
-			Mensaje: {{form.mensaje}} <br>
-			<input type="submit" name="Enviar" value="Enviar mensaje">
-		</form>
-	{% endif %}
 
 
         		</div>
@@ -91,3 +124,9 @@
 
 		
 {% endblock content %}
+
+{% block extra_js %}
+<script type="text/javascript">
+	$('#myTab li:first-child a').tab('show') // Select first tab
+</script>
+{% endblock extra_js %}

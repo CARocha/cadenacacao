@@ -11,7 +11,10 @@
                 <div class="detalle-user login-user">
                     <h4 class="border-bottom-black">Inicio de sesion</h4>
             		<form action="/accounts/login/" method="POST" id="contact-form" class="contact">{% csrf_token %}
-                        <div class="row">   
+                        <div class="row">  
+                        {% if form.errors %}
+                            <p>Por favor, introduzca un nombre de usuario y clave correctos. Observe que ambos campos pueden ser sensibles a mayúsculas.</p>
+                         {% endif %} 
                 			<div class="col-sm-12">
                 				{{form.username}}
                             </div>
