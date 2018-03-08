@@ -141,7 +141,7 @@ SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 
 THUMBNAIL_DEBUG = True
 
-# STAR_RATINGS_ANONYMOUS = True
+STAR_RATINGS_ANONYMOUS = True
 
 STAR_RATINGS_STAR_HEIGHT = 20
 
