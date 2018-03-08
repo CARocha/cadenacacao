@@ -1,6 +1,6 @@
 Para acceder al sistema deberá darle clic al siguiente enlace para que el usuario {{user}} se active:
 
-{{ protocol }}://{{site}}/accounts/activate/{{activation_key}}
+{{site}}/accounts/activate/{{activation_key}}
 
 Este link estará activo por los siguientes {{expiration_days}} días.
 
