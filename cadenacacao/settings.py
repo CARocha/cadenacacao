@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'disqus',
     'import_export',
     'ckeditor',
+    'ckeditor_uploader',
 ]
 
 DISQUS_API_KEY = 'ivkMjZNobjdzF9S4xS9vvHLQgCJGim1BTlbi5l0Gl4Cak27oEYNKkJHCTTvzeyIl'
@@ -204,7 +205,24 @@ CKEDITOR_IMAGE_BACKEND = "pillow"
 
 CKEDITOR_CONFIGS = {
     'default': {
-        'extraPlugins': 'image2',
+        'extraPlugins': ','.join([
+            # 'image2',
+            'uploadimage', # the upload image feature
+            # your extra plugins here
+            'div',
+            'autolink',
+            'embed',
+            'autoembed',
+            
+            'autogrow',
+            # 'devtools',
+            'widget',
+            'lineutils',
+            'clipboard',
+            'dialog',
+            'dialogui',
+            'elementspath'
+        ]),
         'toolbar': [
             { 'name': 'document', 'groups': [ 'mode', 'document', 'doctools' ], 'items': [ 'Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates' ] },
             { 'name': 'clipboard', 'groups': [ 'clipboard', 'undo' ], 'items': [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },
@@ -219,11 +237,14 @@ CKEDITOR_CONFIGS = {
             { 'name': 'styles', 'items': [ 'Styles', 'Format', 'Font', 'FontSize' ] },
             { 'name': 'colors', 'items': [ 'TextColor', 'BGColor' ] },
             { 'name': 'tools', 'items': [ 'Maximize', 'ShowBlocks', ] },
+             {
+    }
 
         ],
         'height': '300px',
         'width': 'auto',
     },
+
 }
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
