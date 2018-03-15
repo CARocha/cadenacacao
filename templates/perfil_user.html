@@ -89,7 +89,7 @@
 					  <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 					  	<form method="POST" id="contact-form">{% csrf_token %}
 							{% if enviado == 1 %}
-								<div class="text-success">Su mensaje ha sido enviado correctamente!!!</div>
+								<div class="alert alert-success" role="alert">Su mensaje ha sido enviado correctamente!!!</div>
 								{% endif %}
 							<p>Enviar mensaje al administrador del sistema si desea que su perfil se asocie a una organización/especialista o se cree uno nuevo</p>
 							<p>Adjuntar información básica para el registro de la misma</p>
@@ -105,7 +105,7 @@
 		        	{% else %}
 		        	<form method="POST" id="contact-form">{% csrf_token %}
 						{% if enviado == 1 %}
-							<div class="text-success">Su mensaje ha sido enviado correctamente!!!</div>
+							<div class="alert alert-success" role="alert">Su mensaje ha sido enviado correctamente!!!</div>
 							{% endif %}
 						<p>Enviar mensaje al administrador del sistema si desea que su perfil se asocie a una organización/especialista o se cree uno nuevo</p>
 						<p>Adjuntar información básica para el registro de la misma</p>
