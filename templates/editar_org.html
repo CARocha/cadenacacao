@@ -256,6 +256,9 @@
 
 						    <div class="col-xs-12 col-sm-6 col-md-6">
 						    	<h5 class="border-bottom-black">Productos/Servicios</h5>
+						    	{% if formset.erros %}
+						    		<p>{{formset.errors}}</p>
+						    	{% endif %}
 								{{ formset.as_p }}
 						    </div>
 						</div>
