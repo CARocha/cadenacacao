@@ -4,6 +4,7 @@
 {% load thumbnail %}
 {% block extra_css %}
     <link rel="stylesheet" href="/static/css/bootstrap-select.min.css">
+    <link href="/static/css/font-awesome.css" rel="stylesheet">
 {% endblock extra_css %}
 {% block content %}
 <style type="text/css">
@@ -94,12 +95,12 @@
                                 {{asd.servicios}}
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <!--<div class="col-sm-4">
                             <div class="input-group group-costum">
                                 <span class="input-group-addon" id="sizing-addon2">Intercambio de tecnologías</span>
                                 {{asd.intercambio}}
                             </div>
-                        </div>
+                        </div>-->
                         <!--<div class="col-sm-4">
                             <div class="input-group group-costum">
                                 <span class="input-group-addon" id="sizing-addon2">Tipo</span>
@@ -179,11 +180,39 @@
                                             </div>
                                         </div>
                                         <div class="clearfix"></div>
+                                        <div class="desc-obj"><b>Descripción de la Organización: </b>{{result.object.objetivo|safe|truncatewords:35}}</div>
                                         <div class="">
                                             <ul class="list-inline">
                                                 
-                                                <li><i class="icon-pin-map"></i><b> País: </b>{{result.object.pais_sede}} - <b>Labora: </b>{% for pais in result.object.paises_labora.all %}{{pais}}{% if not forloop.last %}, {% endif %}{% endfor %}</li>
-                                                <li><i class="icon-pin-map"></i><b> Ámbito de acción: </b>{{result.object.ambito_accion}}</li>
+                                                <li><i class="icon-pin-map"></i><b> País: </b>{{result.object.pais_sede}}</li>
+                                                <li>
+                                                    {% for red in result.object.redes_set.all %}
+                                                        <a href="{{red.url}}" class="
+                                                            {% if red.opcion == 'Sitio web' %}
+                                                                fa fa-globe
+                                                            {% elif red.opcion == 'Facebook' %}
+                                                                fa fa-facebook
+                                                            {% elif red.opcion == 'Twitter' %}
+                                                                fa fa-twitter
+                                                            {% elif red.opcion == 'Youtube' %}
+                                                                fa fa-youtube
+                                                            {% elif red.opcion == 'Google+' %}
+                                                                fa fa-google
+                                                            {% elif red.opcion == 'Instagram' %}
+                                                                fa fa-instagram
+                                                            {% elif red.opcion == 'Linkedin' %}
+                                                                fa fa-linkedin
+                                                            {% elif red.opcion == 'Flickr' %}
+                                                                fa fa-flickr
+                                                            {% elif red.opcion == 'Pinterest' %}
+                                                                fa fa-pinterest
+                                                            {% elif red.opcion == 'Vimeo' %}
+                                                                fa fa-vimeo
+                                                            {% elif red.opcion == 'Otra' %}
+                                                                fa fa-link
+                                                            {% endif %}" target="_blank"></a>
+                                                    {% endfor %}
+                                                </li>
                                             </ul>
                                         </div>
                                         <div class="clearfix"></div>
@@ -194,7 +223,7 @@
                                                 <li><i class="icon-call-phone"></i><b> Teléfono: </b>{{result.object.telefono_1|default:"Sin teléfono"}}</li>
                                             </ul>
                                         </div>
-                                        <div class="desc-obj"><b>Objetivo: </b>{{result.object.objetivo|safe|truncatewords:30}}</div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -227,11 +256,39 @@
                                             </div>
                                         </div>
                                         <div class="clearfix"></div>
+                                        <div class="desc-obj"><b>Descripción de la Organización: </b>{{result.object.objetivo|safe|truncatewords:35}}</div>
                                         <div class="">
                                             <ul class="list-inline">
                                                 
-                                                <li><i class="icon-pin-map"></i><b> País: </b>{{result.object.pais_sede}} - <b>Labora: </b>{% for pais in result.object.paises_labora.all %}{{pais}}{% if not forloop.last %}, {% endif %}{% endfor %}</li>
-                                                <li><i class="icon-pin-map"></i><b> Ámbito de acción: </b>{{result.object.ambito_accion}}</li>
+                                                <li><i class="icon-pin-map"></i><b> País: </b>{{result.object.pais_sede}}</li>
+                                                <li>
+                                                    {% for red in result.object.redes_set.all %}
+                                                        <a href="{{red.url}}" class="
+                                                            {% if red.opcion == 'Sitio web' %}
+                                                                fa fa-globe
+                                                            {% elif red.opcion == 'Facebook' %}
+                                                                fa fa-facebook
+                                                            {% elif red.opcion == 'Twitter' %}
+                                                                fa fa-twitter
+                                                            {% elif red.opcion == 'Youtube' %}
+                                                                fa fa-youtube
+                                                            {% elif red.opcion == 'Google+' %}
+                                                                fa fa-google
+                                                            {% elif red.opcion == 'Instagram' %}
+                                                                fa fa-instagram
+                                                            {% elif red.opcion == 'Linkedin' %}
+                                                                fa fa-linkedin
+                                                            {% elif red.opcion == 'Flickr' %}
+                                                                fa fa-flickr
+                                                            {% elif red.opcion == 'Pinterest' %}
+                                                                fa fa-pinterest
+                                                            {% elif red.opcion == 'Vimeo' %}
+                                                                fa fa-vimeo
+                                                            {% elif red.opcion == 'Otra' %}
+                                                                fa fa-link
+                                                            {% endif %}" target="_blank"></a>
+                                                    {% endfor %}
+                                                </li>
                                             </ul>
                                         </div>
                                         <div class="clearfix"></div>
@@ -242,7 +299,6 @@
                                                 <li><i class="icon-call-phone"></i><b> Teléfono: </b>{{result.object.telefono_1|default:"Sin teléfono"}}</li>
                                             </ul>
                                         </div>
-                                        <div class="desc-obj"><b>Objetivo: </b>{{result.object.objetivo|safe|truncatewords:30}}</div>
                                     </div>
                                 </div>
                             </div>

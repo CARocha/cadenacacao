@@ -18,7 +18,18 @@
         			<h4 class="border-bottom-black">Editar perfil de la organización</h4>
         			<p>Campos con (*) son requeridos</p>
         			{% if form.errors %}
-        				<p>{{form.errors}}</p>
+        				<ul class="alert alert-warning" role="alert">
+					    {% for field in form %}
+					        {% for error in field.errors %}
+					            <li>
+					              {% if field != '__all__' %}
+					                <strong>{{ field.label }}:</strong>
+					              {% endif %}
+					              {{ error }}
+					            </li>
+					        {% endfor %}
+					    {% endfor %}
+					    </ul>
         			{% endif %}
         			
         			<form action="." method="POST" id="contact-form" class="contact form-edit-org" enctype="multipart/form-data">{% csrf_token %}
@@ -46,7 +57,7 @@
 					    </div>
 					    <div class="row">
 					    	<div class="col-xs-12">
-					    		<h5 class="border-bottom-black">Objetivo*</h5>
+					    		<h5 class="border-bottom-black">Descripción de la Organización*</h5>
 								{{ form.objetivo }}
 					    	</div>
 					    </div>
@@ -194,7 +205,7 @@
 
 								</div>
 					    	</div>
-					    	<div class="col-xs-12 col-sm-6 col-md-6">
+					    	<!--<div class="col-xs-12 col-sm-6 col-md-6">
 					    		<div class="input-group group-costum-2">
 					                <span class="input-group-addon " id="sizing-addon2">Período permanencia*</span>
 									{{ form.periodo_permanencia }}
@@ -207,7 +218,7 @@
 									{{ form.intercambio }}
 
 								</div>
-					    	</div>
+					    	</div>-->
 					    	<!--<div class="col-xs-12 col-sm-6 col-md-6">
 					    		<div class="input-group group-costum-2">
 					                <span class="input-group-addon " id="sizing-addon2">Sitio web</span>
@@ -215,20 +226,20 @@
 
 								</div>
 					    	</div>-->
-					    	<div class="col-xs-12 col-sm-6 col-md-6">
+					    	<div class="col-xs-12 col-sm-6 col-md-6" id="miembros">
 					    		<div class="input-group group-costum-2">
 					                <span class="input-group-addon " id="sizing-addon2">N° de Miembros/Socios</span>
 									{{ form.miembros }}
 
 								</div>
 					    	</div>
-					    	<div class="col-xs-12 col-sm-6 col-md-6">
+					    	<!--<div class="col-xs-12 col-sm-6 col-md-6">
 					    		<div class="input-group group-costum-2">
 					                <span class="input-group-addon " id="sizing-addon2">Tamaño</span>
 									{{ form.tamano }}
 
 								</div>
-					    	</div>
+					    	</div>-->
 					    </div>
 						
 						<div class="row">
@@ -242,6 +253,9 @@
 								  </fieldset>
 							</script>
 								<div id="redes-container">
+									{% if formset2.erros %}
+							    		<p>{{formset2.errors}}</p>
+							    	{% endif %}
 								    {% for form2 in formset2 %}
 								      <fieldset class="redes-fieldset-{{ forloop.counter0 }}">
 								        {{ form2.as_p }}
@@ -301,6 +315,21 @@
 	$('textarea').addClass( "form-control" );
 	$('.bootstrap-select').addClass( "form-control" );
 
+	val1 = $('#id_tipo_organizacion').val();
+	if(val1 == 'Asociacion' || val1 == 'Cooperativa'){
+		$('#miembros').show();
+	}else{
+		$('#miembros').hide();
+	}
+	$(document).on('change','#id_tipo_organizacion',function(){
+		val = $('#id_tipo_organizacion').val();
+		if(val == 'Asociacion' || val == 'Cooperativa'){
+			$('#miembros').show();
+		}else{
+			$('#miembros').hide();
+		}
+	});
+
 $('#add-red').click(function() {
   	x = $('input[name=redes_set-TOTAL_FORMS]').val();
   	y = parseInt(x) + 1;
@@ -313,6 +342,8 @@ $('#add-red').djangoInlineFormAdd({
   prefix: "redes",
   // deleteButtonId: "delete-author"
 });
+
+$('.errorlist').addClass('alert alert-warning')
 	
 </script>
 

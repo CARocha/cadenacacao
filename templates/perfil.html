@@ -84,7 +84,7 @@
                     </div>
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Objetivo</h3>
+                            <h3 class="panel-title">Descripción de la Organización</h3>
                         </div>
                         <div class="panel-body">
                             
@@ -211,7 +211,7 @@
                     {% endif %}
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Detalles organización</h3>
+                            <h3 class="panel-title">Más información</h3>
                         </div>
                         <div class="panel-body no-padding">
                             <ul class="list-group">
@@ -225,12 +225,12 @@
                                 <li class="list-group-item">
                                     <b>Servicios a la cadena de valor:</b> {% for servicio in object.servicios.all %}{{servicio}}{% if not forloop.last %}, {% endif %}{% endfor %}
                                 </li>
-                                <li class="list-group-item">
+                                <!--<li class="list-group-item">
                                     <b>Período de permanencia:</b> {{object.periodo_permanencia}}
                                 </li>
                                 <li class="list-group-item">
                                     <b>Intercambio de tecnologías: </b> {% for intercambio in object.intercambio.all %}{{intercambio}}{% if not forloop.last %}, {% endif %}{% endfor %}
-                                </li>
+                                </li>-->
                                 {% if redes %}
                                 <!--<li class="list-group-item">
                                     <b>Sitio web: </b> <a href="{{object.sitio_web}}" target="_blank">Enlace</a>

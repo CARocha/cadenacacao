@@ -2,6 +2,7 @@
 from django.db import models
 from .models import *
 from django import forms
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 def paises():
 	foo = Organizacion.objects.order_by('pais_sede').distinct().values_list('pais_sede__id', flat=True)
@@ -34,7 +35,7 @@ class OrganizacionForm(forms.Form):
 		self.fields['paises_labora'] = forms.ModelMultipleChoiceField(queryset=paises_labora(),required=False)
 		self.fields['participacion_cadena'] = forms.ModelMultipleChoiceField(queryset=Participacion.objects.all(),required=False)
 		self.fields['servicios'] = forms.ModelMultipleChoiceField(queryset=ServiciosCadena.objects.all(),required=False)
-		self.fields['intercambio'] = forms.ModelMultipleChoiceField(queryset=IntercambioTecnologia.objects.all(),required=False)
+		# self.fields['intercambio'] = forms.ModelMultipleChoiceField(queryset=IntercambioTecnologia.objects.all(),required=False)
 		# self.fields['tipo'] = forms.ChoiceField(choices=ESP_ORG_CHOICES,required=False)
 		self.fields['tipo_actividad'] = forms.ModelMultipleChoiceField(queryset=TipoActividad.objects.all(),required=False)
 
@@ -44,12 +45,14 @@ class BuscadorForm(forms.Form):
 		self.fields['q'] = forms.CharField()
 
 class OrgForm(forms.ModelForm):
+	objetivo = forms.CharField(label='Descripción de la Organización',max_length=3000,widget=CKEditorUploadingWidget)
 	class Meta:
 		model = Organizacion
 		fields = '__all__'
 		exclude = ['usuario',]
 
 class ProductosServiciosFrom(forms.ModelForm):
+	nombre = models.CharField(max_length=30)
 	class Meta:
 		model = ProductosServicios
 		fields = '__all__'
@@ -62,7 +65,7 @@ class RedesFrom(forms.ModelForm):
 		exclude = ['organizacion',]
 		
 class EmailForm(forms.Form):
-    mensaje = forms.CharField(widget=forms.Textarea,label="Descripción breve",max_length=2000)
+	mensaje = forms.CharField(widget=forms.Textarea,label="Descripción breve",max_length=2000)
 
 class UserForm(forms.ModelForm):
 	class Meta:

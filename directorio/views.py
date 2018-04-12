@@ -40,8 +40,8 @@ def _queryset_filtrado_afiliado(request):
 	if request.session['servicios']:
 		params['servicios__in'] = request.session['servicios']
 
-	if request.session['intercambio']:
-		params['intercambio__in'] = request.session['intercambio']
+	# if request.session['intercambio']:
+	# 	params['intercambio__in'] = request.session['intercambio']
 
 	# if request.session['tipo']:
 	# 	params['tipo'] = request.session['tipo']
@@ -70,7 +70,7 @@ def consulta(request,template='consulta.html'):
 			request.session['paises_labora'] = form.cleaned_data['paises_labora']
 			request.session['participacion_cadena'] = form.cleaned_data['participacion_cadena']
 			request.session['servicios'] = form.cleaned_data['servicios']
-			request.session['intercambio'] = form.cleaned_data['intercambio']
+			# request.session['intercambio'] = form.cleaned_data['intercambio']
 			# request.session['tipo'] = form.cleaned_data['tipo']
 			request.session['tipo_actividad'] = form.cleaned_data['tipo_actividad']
 
@@ -91,7 +91,7 @@ def consulta(request,template='consulta.html'):
 			del request.session['paises_labora']
 			del request.session['participacion_cadena']
 			del request.session['servicios']
-			del request.session['intercambio']
+			# del request.session['intercambio']
 			# del request.session['tipo']
 			del request.session['tipo_actividad']
 		except:
@@ -151,7 +151,7 @@ def user_profile(request,template='perfil_user.html'):
 							'Correo: ' + str(user.email) + '<br>'  + \
 							'Mensaje: ' + str(mensaje)
 
-			msg = EmailMultiAlternatives(subject, text_content, from_email, ['cadenacacao@gmail.com','vecomesoamerica@gmail.com'])
+			msg = EmailMultiAlternatives(subject, text_content, from_email, ['cadenacacao@gmail.com','vecomesoamerica@gmail.com','guisselle.aleman@rikolto.org','selene.casanova@rikolto.org'])
 			msg.attach_alternative(html_content, "text/html")
 			msg.send()
 
