@@ -110,12 +110,15 @@
                                             {% for foto in fotos|slice:":3" %}
                                             <a href="/media/{{foto.foto}}" title="{{foto.nombre}}" class="col-xs-3 col-sm-4 margin-bottom-20">
                                                 <div class="thumbnail">
-                                                    <h6 class="margin-bottom-10 text-center">Este es un titulo corto para la imagen</h6>
+                                                    <h6 class="margin-bottom-10 text-center">{{foto.nombre}}</h6>
                                                     {% thumbnail foto.foto "200x150" crop='center' format='PNG' as img %}
                                                         <img src="/media/{{img}}">
                                                     {% endthumbnail %}
                                                     <div class="caption">
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum maximus lacus quis feugiat. Ut lobortis mi sed sem posuere, et amet.</p>
+                                                        {% if foto.descripcion %}
+                                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum maximus lacus quis feugiat. Ut lobortis mi sed sem posuere, et amet.</p>
+                                                        {% endif %}
+                                                        
                                                     </div>
                                                 
                                                 </div>
@@ -129,12 +132,14 @@
                                             {% for foto in fotos|slice:"3:6" %}
                                             <a href="/media/{{foto.foto}}" title="{{foto.nombre}}" class="col-xs-4 col-sm-4 margin-bottom-20">
                                                 <div class="thumbnail">
-                                                    <h6 class="margin-bottom-10 text-center">Este es un titulo corto para la imagen</h6>
+                                                    <h6 class="margin-bottom-10 text-center">{{foto.nombre}}</h6>
                                                     {% thumbnail foto.foto "200x150" crop='center' format='PNG' as img %}
                                                         <img src="/media/{{img}}">
                                                     {% endthumbnail %}
                                                     <div class="caption">
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum maximus lacus quis feugiat. Ut lobortis mi sed sem posuere, et amet.</p>
+                                                        {% if foto.descripcion %}
+                                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum maximus lacus quis feugiat. Ut lobortis mi sed sem posuere, et amet.</p>
+                                                        {% endif %}
                                                     </div>
                                                 
                                                 </div>
@@ -148,12 +153,14 @@
                                             {% for foto in fotos|slice:"6:9" %}
                                             <a href="/media/{{foto.foto}}" title="{{foto.nombre}}" class="col-xs-4 col-sm-4 margin-bottom-20">
                                                 <div class="thumbnail">
-                                                    <h6 class="margin-bottom-10 text-center">Este es un titulo corto para la imagen</h6>
+                                                    <h6 class="margin-bottom-10 text-center">{{foto.nombre}}</h6>
                                                     {% thumbnail foto.foto "200x150" crop='center' format='PNG' as img %}
                                                         <img src="/media/{{img}}">
                                                     {% endthumbnail %}
                                                     <div class="caption">
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum maximus lacus quis feugiat. Ut lobortis mi sed sem posuere, et amet.</p>
+                                                        {% if foto.descripcion %}
+                                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum maximus lacus quis feugiat. Ut lobortis mi sed sem posuere, et amet.</p>
+                                                        {% endif %}
                                                     </div>
                                                 
                                                 </div> %}
