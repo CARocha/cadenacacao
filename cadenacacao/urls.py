@@ -32,10 +32,10 @@ urlpatterns = [
     url(r'^actores/busqueda/', include('haystack.urls')),
     # url(r'^accounts/register/$',MyRegistrationView.as_view(),name='registration_register'),
 
-    url(r'^accounts/logout/$', auth_views.logout,{'next_page': '/'}),
+    # url(r'^accounts/logout/$', auth_views.logout,{'next_page': '/'}),
     url(r'^accounts/profile/$',user_profile,name='profile'),
-    url(r'^accounts/profile/editar/(?P<slug>[\w-]+)/$',editar_org,name='editar-org'),
-    url(r'^accounts/profile/user/editar/$',editar_user,name='editar-user'),
+    # url(r'^accounts/profile/editar/(?P<slug>[\w-]+)/$',editar_org,name='editar-org'),
+    # url(r'^accounts/profile/user/editar/$',editar_user,name='editar-user'),
 
     url(r'^password_reset/$', auth_views.password_reset, name='password_reset'),
     url(r'^password_reset/done/$', auth_views.password_reset_done, name='password_reset_done'),
@@ -43,11 +43,12 @@ urlpatterns = [
         auth_views.password_reset_confirm, name='password_reset_confirm'),
     url(r'^reset/done/$', auth_views.password_reset_complete, name='password_reset_complete'),
 
-    url(r'^accounts/', include('registration.backends.hmac.urls')),
+    #url(r'^accounts/', include('registration.backends.hmac.urls')),
     url(r'^buscador/$', buscador, name='search'),
     url(r'^actores/$', consulta, name='consulta'),
     url(r'^actores/perfil/(?P<slug>[\w-]+)/$', detail_org, name='detail-org'),
     url(r'^mapa/$', obtener_lista, name='obtener-lista'),
+    url(r'^accounts/', include('allauth.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()

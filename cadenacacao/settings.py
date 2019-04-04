@@ -30,6 +30,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.postgres',
     'django.contrib.flatpages',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    #'allauth.socialaccount.providers.twitter',
+    #'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
     'haystack',
     'directorio',
     'location_field.apps.DefaultConfig',
@@ -57,6 +63,11 @@ HAYSTACK_CONNECTIONS = {
         'PATH': WHOOSH_INDEX,
     },
 }
+
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -153,6 +164,7 @@ STAR_RATINGS_STAR_SPRITE = '/static/stars.png'
 #######
 ACCOUNT_ACTIVATION_DAYS = 7
 SITE_ID = 1
+LOGIN_REDIRECT_URL = 'profile'
 
 GOOGLE_MAPS_API_KEY = "AIzaSyBaguICGAyEp7DdwkG2Z-odTyjLVYMicmg"
 
@@ -189,17 +201,6 @@ LOCATION_FIELD = {
     },
 }
 
-# LOCATION_FIELD = {
-# 'map.provider': 'google',
-# # 'map.zoom': 15,
-# 'search.provider': 'google',
-# 'provider.google.api': '//maps.google.com/maps/api/js?sensor=false',
-# 'provider.google.api_key': GOOGLE_MAPS_API_KEY,
-# 'provider.google.api_libraries': '',
-# 'provider.google.map.type': 'ROADMAP',
-# }
-
-# CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_IMAGE_BACKEND = "pillow"
 
