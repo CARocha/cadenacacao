@@ -13,11 +13,11 @@
 
 	<!-- LOAD JQUERY LIBRARY -->
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.js"></script>
-	
+
     <!-- Loading Bootstrap -->
     <link href="/static/css/bootstrap.css" rel="stylesheet">
 
-    
+
     <!-- Font Awesome -->
     <link href="/static/css/fonts.css" rel="stylesheet">
     <link href="/static/font/flaticon.css" rel="stylesheet">
@@ -34,7 +34,7 @@
     <link href="https://fonts.googleapis.com/css?family=Oleo+Script+Swash+Caps" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lobster|Oleo+Script+Swash+Caps" rel="stylesheet">
 
-    <!-- LOADING FONTS AND ICONS -->        
+    <!-- LOADING FONTS AND ICONS -->
     <!-- <link rel="stylesheet" type="text/css" href="revolution/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css">
     <link rel="stylesheet" type="text/css" href="revolution/fonts/font-awesome/css/font-awesome.min.css"> -->
 
@@ -47,7 +47,7 @@
       <script src="js/html5shiv.js"></script>
       <script src="js/respond.min.js"></script>
     <![endif]-->
-    
+
     <!--headerIncludes-->
 
     <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
@@ -64,16 +64,16 @@
 
 </head>
 <body>
-    
+
     <!--begin top-intro -->
     <div class="top-intro" id="top-intro">
-    
+
         <!--begin container-->
-        <div class="container"> 
+        <div class="container">
 
             <!--begin row-->
             <div class="row">
-            
+
                 <!--begin col-sm-4-->
                 <div class="col-sm-12 details-wrapper">
 
@@ -100,14 +100,14 @@
 
                 </div>
                 <!--end col-sm-4 -->
-                 
-                       
+
+
             </div>
             <!--end row -->
-                    
+
         </div>
         <!--end container -->
-                
+
     </div>
     <!--end top-intro -->
 
@@ -116,7 +116,7 @@
 
         <!-- begin navbar -->
         <div class="navbar yamm navbar-default ">
-          
+
             <!-- begin container -->
             <div class="container">
 
@@ -134,7 +134,7 @@
 
                 <!-- begin navbar -->
                 <div id="navbar-collapse-02" class="navbar-collapse collapse">
-                    
+
                     <!-- begin nav -->
                     <ul class="nav navbar-nav text-right">
 
@@ -150,11 +150,11 @@
                               </ul>
                             </li>
                         {% else %}
-                            <li><a href="/accounts/register/" class="menu-last">Registrarse</a></li>
+                            <li><a href="/accounts/signup/" class="menu-last">Registrarse</a></li>
                             <li><a href="/accounts/login/" class="menu-last">Iniciar Sesion</a></li>
                         {% endif %}
                         <li><a href="/static/ManualDirectorioCacao.pdf" class="menu-last" target="_blank">Manual</a></li>
-                       
+
                         <li><a class="" type="button" data-toggle="collapse" data-target="#collapsebuscador" aria-expanded="true" aria-controls="collapsebuscador"><i class="icon-search-find"></i></a></li>
                         <li class="visible-xs visible-sm">
                             <form action="/actores/" method="GET">
@@ -162,7 +162,7 @@
                             </form>
                         </li>
 
-                
+
                     </ul>
                     <!-- end nav -->
 
@@ -184,12 +184,12 @@
     <!--end header -->
 
     {% block content %}
-        
+
     {% endblock content %}
 
     <!--begin section-white-->
     <div class="section-white sponsors-padding">
-        
+
         <!--begin container-->
         <div class="container">
 
@@ -198,108 +198,108 @@
                 <!--begin col-sm-12-->
                 <div class="col-sm-12 sponsors">
                     <img src="/static/images/footer-banner.png" class="sponsor" alt="image">
-                    
+
                 </div>
                 <!--end col-sm-12-->
-                
+
             </div>
             <!--end row-->
-            
+
         </div>
         <!--end container-->
-    
-    </div> 
+
+    </div>
     <!--end section-white-->
 
         <!--begin footer -->
     <footer class="footer">
-            
+
         <!--begin container -->
         <div class="container">
-        
+
             <!--begin row -->
             <div class="row footer-top">
-            
+
                 <!--begin col-md-4 -->
                 <div class="col-md-4 padding-bottom-20">
-                
+
                     <h4>ACERCA DE</h4>
-                    
+
                     <p class="margin-bottom-20">El Proyecto Gestión del Conocimiento en la Cadena de Valor del Cacao en Centroamérica, ejecutado por RIKOLTO, tiene como fin, contribuir en el mejoramiento de la competitividad e inclusividad en la cadena de valor del cacao a nivel regional,</p>
 
                     <a href="http://cadenacacaoca.info/conocenos/" class="btn-sm btn-blue" target="_blank">Conocer más</a>
-                                        
+
                 </div>
                 <!--end col-md-4 -->
-                
+
                 <!--begin col-md-4 -->
                 <div class="col-md-4 padding-bottom-50">
-                
+
                     <h4>ENLACES DE INTERÉS</h4>
-                    
+
                     <ul class="footer-list">
-                        
+
                         <li class="first"><a href="http://cadenacacaoca.info/" target="blank">Cadena cacao CA</a></li>
-                        
+
                         <li><a href="http://cadenacacaoca.info/noticias/" target="blank">Noticias</a></li>
-                        
+
                         <li><a href="http://cadenacacaoca.info/biblioteca-virtual/" target="blank">Biblioteca virtual</a></li>
 
                         <li><a href="http://cadenacacaoca.info/cacao-movil/" target="blank">Cacao móvil</a></li>
-                        
-                        
+
+
                     </ul>
-                    
+
                 </div>
                 <!--end col-md-4 -->
-                
+
                 <!--begin col-md-4 -->
                 <div class="col-md-4 padding-bottom-50">
-                
+
                     <h4>DETALLES DE CONTACTO</h4>
-                    
+
                     <p class="contact_info"><i class="icon icon-pin-map"></i> Altamira este, SINSA Cerámicas 100mts Este y 50mts Norte Casa # 650 Managua, Nicaragua.</p>
-                    
+
                     <p class="contact_info"><i class="icon icon-email-envelope"></i> <a href="mailto:contact@email.com">info@cadenacacao.org</a></p>
-                    
+
                     <p class="contact_info"><i class="icon icon-call-phone"></i> +505 2278-3775 | 2278-1358</p>
-                
+
                 </div>
                 <!--end col-md-4 -->
-                
+
             </div>
             <!--end row -->
-            
+
             <!--begin row -->
             <div class="row">
-                
+
                 <!--begin footer-bottom -->
                 <div class="footer-bottom">
-                
+
                     <!--begin col-md-5 -->
                     <div class="col-md-5">
-                        
+
                         <!--begin copyright -->
                         <div class="copyright ">
                             <p>© <script>document.write(new Date().getFullYear())</script> <a href="http://cadenacacaoca.info/">Cadenacacaoca</a>.<!-- Diseñado por <a href="www.simas.org.ni/" target="_blank">SIMAS</a> --></p>
-                            
+
                         </div>
                         <!--end copyright -->
-                       
+
                     </div>
                     <!--end col-md-5 -->
-                    
+
                     <!--begin col-md-2 -->
                     <div class="col-md-2 text-center">
-                    
+
                         <a href="#top-intro" class="scrool top-scroll back-to-top"><i class="icon icon-angle-up"></i></a>
-                        
+
                     </div>
                     <!--end col-md-2 -->
-                    
+
                     <!--begin col-md-5 -->
                     <div class="col-md-5">
-                                                        
+
                         <!--begin footer_social -->
                         <ul class="footer_social">
                             <li>
@@ -324,26 +324,26 @@
 
                         </ul>
                         <!--end footer_social -->
-                        
+
                     </div>
                     <!--end col-md-5 -->
-                        
+
                 </div>
                 <!--end footer-bottom -->
-                        
+
             </div>
             <!--end row -->
-            
+
         </div>
         <!--end container -->
-                
+
     </footer>
     <!--end footer -->
 
      <script type="text/javascript">
 
         console.log(" Itchy " != " Scratchy ")
-            
+
             $('a.back-to-top').click(function() {
                 $('html, body').animate({
                     scrollTop: 0
@@ -360,14 +360,14 @@
     <script src="/static/js/bootstrap.min.js"></script>
     <script src="/static/js/jquery.scrollTo-min.js"></script>
     <script src="/static/js/jquery.magnific-popup.min.js"></script>
-    <!-- <script src="../static_media/js/plugins.js"></script> 
+    <!-- <script src="../static_media/js/plugins.js"></script>
     <script src="../static_media/js/custom.js"></script>-->
-    
+
     <script type="text/javascript">
         $( ".buscador #id_q" ).addClass("form-control contact-input white-input").attr("placeholder", "Buscar ....");
         $( ".nav #id_q" ).addClass("form-control contact-input white-input").attr("placeholder", "Buscar ....");
     </script>
     {% block extra_js %}{% endblock extra_js %}
-   
-    
+
+
 </body></html>

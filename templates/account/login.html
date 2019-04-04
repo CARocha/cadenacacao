@@ -1,38 +1,54 @@
 {% extends "base.html" %}
 
+{% load account socialaccount %}
+{% block head_title %}Iniciar sesion{% endblock %}
+
 {% block content %}
 <!--begin section-white -->
 <section class="section-grey small-padding">
-    
+
     <!--begin container-->
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-md-6 col-md-offset-3">
                 <div class="detalle-user login-user">
                     <h4 class="border-bottom-black">Inicio de sesion</h4>
-            		<form action="/accounts/login/" method="POST" id="contact-form" class="contact">{% csrf_token %}
-                        <div class="row">  
-                        {% if form.errors %}
-                            <p>Por favor, introduzca un nombre de usuario y clave correctos. Observe que ambos campos pueden ser sensibles a mayúsculas.</p>
-                         {% endif %} 
-                			<div class="col-sm-12">
-                				{{form.username}}
-                            </div>
-                            <div class="col-sm-12">
-                				{{form.password}}				
-                            </div>
-                            <div class="clearfix"></div>
+                    {% get_providers as socialaccount_providers %}
+                    {% if socialaccount_providers %}
+                        <p>{% with site.name as site_name %}Por favor inicie sesion con uno de los siguientes metodos de autenticacion!!. {%endwith%}</p>
+
+                        <div class="socialaccount_ballot">
+
+                          <ul class="socialaccount_providers">
+                            {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+                          </ul>
+
+                          <div class="login-or">o</div><br>
+
+                        </div>
+
+                        {% include "socialaccount/snippets/login_extra.html" %}
+
+                        {% else %}
+                        <p>Si aún no ha creado una cuenta, por favor
+                        <a href="{{ signup_url }}">Registrarse</a> primero</p>
+                    {% endif %}
+                    <p>Por favor, introduzca un nombre de usuario y clave correctos. Observe que ambos campos pueden ser sensibles a mayúsculas.</p>
+            		<form class="login" method="POST" action="{% url 'account_login' %}">
+                          {% csrf_token %}
+                          {{ form.as_p }}
+                          {% if redirect_field_value %}
+                          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                          {% endif %}
+                          <div class="clearfix"></div>
                             <div class="col-sm-12">
                                 <ul class="list-inline">
-                                    <li><a href="/password_reset/">Olvidé mi contraseña</a></li>
-                                    <li>No esta registrado? <a href="/accounts/register/">Registrarse</a></li>
+                                    <li><a class="button secondaryAction" href="{% url 'account_reset_password' %}">Olvidé mi contraseña</a></li>
+                                    <li>Si aún no ha creado una cuenta, por favor <a href="{{ signup_url }}">Registrarse</a></li>
                                 </ul>
-                                <input type="submit" name="Login" id="submit-button" class="contact-submit pull-right" value="Iniciar sesión">
+                                <button class="primaryAction contact-submit pull-right btn btn-warning"  type="submit">Iniciar sesion</button>
                             </div>
-                        <p></p>
-            			
-                        </div>
-            		</form>
+                    </form>
                 </div>
             </div>
         </div>
@@ -42,7 +58,7 @@
 
 {% block extra_js %}
 <script type="text/javascript">
-    $( "#id_username" ).addClass("contact-input white-input").attr("placeholder", "Nombre de usuario*");
+    $( "#id_login" ).addClass("contact-input white-input").attr("placeholder", "Nombre de usuario*");
     $( "#id_password" ).addClass("contact-input white-input").attr("placeholder", "Contraseña*");
 
 </script>
