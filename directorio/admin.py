@@ -15,13 +15,13 @@ from django.contrib.flatpages.admin import FlatPageAdmin as FlatPageAdminOld
 from django.contrib.flatpages.forms import FlatpageForm as FlatpageFormOld
 
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
- 
+
 class FlatpageForm(FlatpageFormOld):
 	content = forms.CharField(widget=CKEditorUploadingWidget(),required=False)
 	class Meta:
 		model = FlatPage # this is not automatically inherited from FlatpageFormOld
 		fields = '__all__'
- 
+
 class FlatPageAdmin(FlatPageAdminOld):
 	form = FlatpageForm
 
@@ -61,6 +61,10 @@ class RedesInline(admin.TabularInline):
 	model = Redes
 	extra = 1
 
+class LinkVideosInline(admin.TabularInline):
+	model = LinkVideos
+	extra = 1
+
 class OrganizacionResource(resources.ModelResource):
 	class Meta:
 		model = Organizacion
@@ -97,20 +101,20 @@ class CustomModelChoiceField(forms.ModelMultipleChoiceField):
 	 		return obj.username
 
 class MyInvoiceAdminForm(forms.ModelForm):
-	usuario = CustomModelChoiceField(queryset=User.objects.all(),required=False) 
+	usuario = CustomModelChoiceField(queryset=User.objects.all(),required=False)
 	class Meta:
 		  model = Organizacion
 		  fields = ('__all__')
 ######
 
 class OrganizacionAdmin(ImportExportModelAdmin):
-	inlines = [RedesInline,ProductosServiciosInline]
+	inlines = [LinkVideosInline,RedesInline,ProductosServiciosInline]
 	search_fields = ['nombre','objetivo','pais_sede__nombre','paises_labora__nombre']
 	list_filter = ['pais_sede','tipo_organizacion']
 	resource_class = OrganizacionResource
 	exclude = ['sitio_web',]
 	form = MyInvoiceAdminForm
-	
+
 	def get_form(self, request, obj=None, **kwargs):
 		if not request.user.is_superuser:
 			self.exclude = ('usuario',)
@@ -126,7 +130,7 @@ class OrganizacionAdmin(ImportExportModelAdmin):
 			obj.save()
 		else:
 			obj.usuario = request.user
-			obj.save() 
+			obj.save()
 
 		if obj.usuario:
 			for x in obj.usuario.all():
@@ -136,7 +140,7 @@ class OrganizacionAdmin(ImportExportModelAdmin):
 									'Ir a la dirección www.directoriocacao.info/accounts/profile/'
 
 					html_content = 'Se ha asignado una Organización/Especialista al usuario ' + str(x.username) + '<br>' \
-									'Ir a la dirección www.directoriocacao.info/accounts/profile/' 
+									'Ir a la dirección www.directoriocacao.info/accounts/profile/'
 
 					msg = EmailMultiAlternatives(subject, text_content, from_email, [x.email,])
 					msg.attach_alternative(html_content, "text/html")

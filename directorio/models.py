@@ -132,6 +132,15 @@ REDES_CHOICES = (('Sitio web','Sitio web'),('Facebook','Facebook'),('Twitter','T
 					('Google+','Google+'),('Instagram','Instagram'),('Linkedin','Linkedin'),
 					('Flickr','Flickr'),('Pinterest','Pinterest'),('Vimeo','Vimeo'),('Otra','Otra'),)
 
+class LinkVideos(models.Model):
+	organizacion = models.ForeignKey(Organizacion)
+	titulo = models.CharField(max_length=250, null=True)
+	url = models.URLField()
+
+	class Meta:
+		verbose_name = 'Link de Videos'
+		verbose_name_plural = 'Link de Videos'
+
 class Redes(models.Model):
 	organizacion = models.ForeignKey(Organizacion)
 	opcion = models.CharField(max_length=25,choices=REDES_CHOICES)
