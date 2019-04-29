@@ -1,0 +1,350 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+
+ <link rel="stylesheet" href="/static/css/bootstrap-select.min.css">
+{% endblock extra_css %}
+
+{% block content %}
+<section class="section-grey small-padding">
+
+        <!--begin container-->
+        <div class="container detalle-user">
+
+            <div class="row">
+
+                <div class="col-xs-12 col-md-12">
+                    <h4 class="border-bottom-black">Crear perfil de la organización</h4>
+                    <p>Campos con (*) son requeridos</p>
+                    {% if form.errors %}
+                        <ul class="alert alert-warning" role="alert">
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <li>
+                                  {% if field != '__all__' %}
+                                    <strong>{{ field.label }}:</strong>
+                                  {% endif %}
+                                  {{ error }}
+                                </li>
+                            {% endfor %}
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+
+                    <form action="." method="POST" id="contact-form" class="contact form-edit-org" enctype="multipart/form-data">{% csrf_token %}
+                        {{ form.media }}
+
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6">
+                                <div class="input-group group-costum-2">
+                                    <span class="input-group-addon " id="sizing-addon2">Nombre*</span>
+                                    {{ form.nombre }}
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+
+                                    <h5 class="border-bottom-black">Logo</h5>
+
+                                    {{ form.logo }}
+                                    <br>
+                                    <br>
+                                    <p>Nota: {{form.logo.help_text}}    </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h5 class="border-bottom-black">Descripción de la Organización*</h5>
+                                {{ form.objetivo }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6">
+
+                                    <h5 class="border-bottom-black">Información de contacto 1</h5>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6">
+                                            <div class="input-group group-costum-2">
+                                                <span class="input-group-addon " id="sizing-addon2">Nombre</span>
+                                                {{ form.contacto_1 }}
+
+                                            </div>
+
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6">
+                                            <div class="input-group group-costum-2">
+                                                <span class="input-group-addon " id="sizing-addon2">Correo</span>
+                                                {{ form.correo_1 }}
+
+                                            </div>
+
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6">
+                                            <div class="input-group group-costum-2">
+                                                <span class="input-group-addon " id="sizing-addon2">Teléfono</span>
+                                                {{ form.telefono_1 }}
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                            </div>
+                            <div class="col-xs-12 col-sm-6">
+
+                                    <h5 class="border-bottom-black">Información de contacto 2</h5>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6">
+                                            <div class="input-group group-costum-2">
+                                                <span class="input-group-addon " id="sizing-addon2">Nombre</span>
+                                                {{ form.contacto_2 }}
+
+                                            </div>
+
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6">
+                                            <div class="input-group group-costum-2">
+                                                <span class="input-group-addon " id="sizing-addon2">Correo</span>
+                                                {{ form.correo_2 }}
+
+                                            </div>
+
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6">
+                                            <div class="input-group group-costum-2">
+                                                <span class="input-group-addon " id="sizing-addon2">Teléfono</span>
+                                                {{ form.telefono_2 }}
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12">
+                                <h5 class="border-bottom-black">Ubicación</h5>
+                            </div>
+
+                                <div class="col-xs-12 col-sm-6">
+                                    <div class="input-group group-costum-2">
+                                        <span class="input-group-addon " id="sizing-addon2">País sede*</span>
+                                        {{ form.pais_sede }}
+
+                                    </div>
+                                    <div class="input-group group-costum-2">
+                                        <label class="label" for="">Dirección</label>
+
+                                        {{ form.ciudad }}
+
+                                    </div>
+                                    <div class="input-group group-costum-2">
+                                        <label class="label" for="">Ubicación</label>
+
+                                        {{ form.location }}
+
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12">
+                                <h5 class="border-bottom-black">Detalles</h5>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="input-group group-costum-2">
+                                    <span class="input-group-addon " id="sizing-addon2">Tipo organización*</span>
+                                    {{ form.tipo_organizacion }}
+
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="input-group group-costum-2">
+                                    <span class="input-group-addon " id="sizing-addon2">Tipo actividad*</span>
+                                    {{ form.tipo_actividad }}
+
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="input-group group-costum-2">
+                                    <span class="input-group-addon " id="sizing-addon2">Participación cadena*</span>
+                                    {{ form.participacion_cadena }}
+
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="input-group group-costum-2">
+                                    <span class="input-group-addon " id="sizing-addon2">Servicios que brinda*</span>
+                                    {{ form.servicios }}
+
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="input-group group-costum-2">
+                                    <span class="input-group-addon " id="sizing-addon2">Ámbito acción*</span>
+                                    {{ form.ambito_accion }}
+
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="input-group group-costum-2">
+                                    <span class="input-group-addon " id="sizing-addon2">Países donde labora*</span>
+                                    {{ form.paises_labora }}
+
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="input-group group-costum-2">
+                                    <span class="input-group-addon " id="sizing-addon2">Cobertura*</span>
+                                    {{ form.cobertura }}
+
+                                </div>
+                            </div>
+                            <!--<div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="input-group group-costum-2">
+                                    <span class="input-group-addon " id="sizing-addon2">Período permanencia*</span>
+                                    {{ form.periodo_permanencia }}
+
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="input-group group-costum-2">
+                                    <span class="input-group-addon " id="sizing-addon2">Intercambio de Tecnología*</span>
+                                    {{ form.intercambio }}
+
+                                </div>
+                            </div>-->
+                            <!--<div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="input-group group-costum-2">
+                                    <span class="input-group-addon " id="sizing-addon2">Sitio web</span>
+                                    {{ form.sitio_web }}
+
+                                </div>
+                            </div>-->
+                            <div class="col-xs-12 col-sm-6 col-md-6" id="miembros">
+                                <div class="input-group group-costum-2">
+                                    <span class="input-group-addon " id="sizing-addon2">N° de Miembros/Socios</span>
+                                    {{ form.miembros }}
+
+                                </div>
+                            </div>
+                            <!--<div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="input-group group-costum-2">
+                                    <span class="input-group-addon " id="sizing-addon2">Tamaño</span>
+                                    {{ form.tamano }}
+
+                                </div>
+                            </div>-->
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <h5 class="border-bottom-black">Redes</h5>
+                                {{ formset2.management_form }}
+                                <script type="text/html" id="redes-template">
+                                  <fieldset class="redes-fieldset-__prefix__" style="display: none;">
+                                      {{ formset2.empty_form.as_p }}
+                                  </fieldset>
+                            </script>
+                                <div id="redes-container">
+                                    {% if formset2.erros %}
+                                        <p>{{formset2.errors}}</p>
+                                    {% endif %}
+                                    {% for form2 in formset2 %}
+                                      <fieldset class="redes-fieldset-{{ forloop.counter0 }}">
+                                        {{ form2.as_p }}
+                                      </fieldset>
+                                    {% endfor %}
+                                  </div>
+                                <div>
+                                    <!--<button id="add-red" type="button">Agregar red</button>-->
+                                </div>
+
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <h5 class="border-bottom-black">Productos/Servicios</h5>
+                                {% if formset.erros %}
+                                    <p>{{formset.errors}}</p>
+                                {% endif %}
+                                {{ formset.as_p }}
+                            </div>
+                        </div>
+
+
+                        <input type="submit" name="Editar" class="contact-submit" value="Guardar">
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+{% endblock content %}
+
+{% block extra_js %}
+<script src="/static/js/bootstrap-select.min.js"></script>
+<script src="/static/js/django-inline-form.js"></script>
+<script src="/static/location_field/leaflet.js"></script>
+
+<script type="text/javascript">
+    $('#id_participacion_cadena, #id_servicios, #id_paises_labora,#id_intercambio,#id_tipo_actividad').selectpicker({
+      style: 'btn-default',
+      size: 4,
+      liveSearch: 'true',
+      title: 'Seleccione',
+      selectedTextFormat: 'count',
+      countSelectedText: '{0} seleccionados',
+    });
+
+</script>
+<script type="text/javascript">
+    $('input[type=text]').addClass( "form-control" );
+    $('input[type=email]').addClass( "form-control" );
+    $('input[type=url]').addClass( "form-control" );
+    $('input[type=number]').addClass( "form-control" );
+    $('select:not([multiple])').addClass( "form-control" );
+    $('textarea').addClass( "form-control" );
+    $('.bootstrap-select').addClass( "form-control" );
+
+    val1 = $('#id_tipo_organizacion').val();
+    if(val1 == 'Asociacion' || val1 == 'Cooperativa'){
+        $('#miembros').show();
+    }else{
+        $('#miembros').hide();
+    }
+    $(document).on('change','#id_tipo_organizacion',function(){
+        val = $('#id_tipo_organizacion').val();
+        if(val == 'Asociacion' || val == 'Cooperativa'){
+            $('#miembros').show();
+        }else{
+            $('#miembros').hide();
+        }
+    });
+
+$('#add-red').click(function() {
+    x = $('input[name=redes_set-TOTAL_FORMS]').val();
+    y = parseInt(x) + 1;
+    $('input[name=redes_set-TOTAL_FORMS]').val(y);
+    count = parseInt(x)
+    $('#id_redes_set-'+count+'-opcion').addClass('form-control');
+});
+
+$('#add-red').djangoInlineFormAdd({
+  prefix: "redes",
+  // deleteButtonId: "delete-author"
+});
+
+$('.errorlist').addClass('alert alert-warning')
+
+</script>
+
+{% endblock extra_js %}

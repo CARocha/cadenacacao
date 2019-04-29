@@ -2,16 +2,19 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render
-from .models import *
-from .forms import *
+from django.contrib.auth.views import password_reset
 from django.db.models import Q
-from registration.backends.hmac.views import *
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.mail import send_mail, EmailMultiAlternatives
-import json as simplejson
 from django.forms import inlineformset_factory
+from registration.backends.hmac.views import *
+
+from .models import *
+from .forms import *
+
+import json as simplejson
 # from django.contrib.postgres.search import SearchVector
 
 # Create your views here.
@@ -177,7 +180,36 @@ def editar_user(request,template='editar_user.html'):
 
 	return render(request, template, locals())
 
-from django.contrib.auth.views import password_reset
+
+
+@login_required
+def crear_org(request,template='crear_org.html'):
+	FormSetInit = inlineformset_factory(Organizacion, ProductosServicios,
+	                                    form=ProductosServiciosFrom,
+	                                    max_num=9,extra=9)
+	FormSetInit2 = inlineformset_factory(Organizacion, Redes,
+	                                     form=RedesFrom,
+	                                     extra=11,max_num=11)
+
+	if request.method == 'POST':
+		form = OrgForm(request.POST,request.FILES)
+		formset = FormSetInit(request.POST,request.FILES)
+		formset2 = FormSetInit2(request.POST,request.FILES)
+		if form.is_valid() and formset.is_valid() and formset2.is_valid():
+			uncommit = form.save(commit=False)
+			uncommit.usuario = request.user
+			uncommit.save()
+			formset.save()
+			formset2.save()
+			return HttpResponseRedirect('/accounts/profile/')
+
+	else:
+		form = OrgForm()
+		formset = FormSetInit()
+		formset2 = FormSetInit2()
+
+	return render(request, template, locals())
+
 
 @login_required
 def editar_org(request,template='editar_org.html',slug=None):
