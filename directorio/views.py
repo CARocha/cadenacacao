@@ -198,11 +198,9 @@ def crear_org(request,template='crear_org.html'):
 
 		if form.is_valid() and formset.is_valid() and formset2.is_valid():
 			org = form.save(commit=False)
-			#org.usuario.add(request.user)
 			org.save()
-			#form.save()
-			form.usuario.add(request.user)
-			#form.save_m2m()
+			org.usuario.add(request.user)
+			org.save()
 			formset.save()
 			formset2.save()
 			return HttpResponseRedirect('/accounts/profile/')
