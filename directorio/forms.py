@@ -49,7 +49,8 @@ class OrgForm(forms.ModelForm):
 	class Meta:
 		model = Organizacion
 		fields = '__all__'
-		#exclude = ['usuario',]
+		exclude = ['usuario',]
+
 
 class ProductosServiciosFrom(forms.ModelForm):
 	nombre = models.CharField(max_length=30)

@@ -195,10 +195,14 @@ def crear_org(request,template='crear_org.html'):
 		form = OrgForm(request.POST,request.FILES)
 		formset = FormSetInit(request.POST,request.FILES)
 		formset2 = FormSetInit2(request.POST,request.FILES)
+
 		if form.is_valid() and formset.is_valid() and formset2.is_valid():
-			uncommit = form.save(commit=False)
-			uncommit.usuario = request.user
-			uncommit.save()
+			org = form.save(commit=False)
+			#org.usuario.add(request.user)
+			org.save()
+			#form.save()
+			form.usuario.add(request.user)
+			#form.save_m2m()
 			formset.save()
 			formset2.save()
 			return HttpResponseRedirect('/accounts/profile/')
