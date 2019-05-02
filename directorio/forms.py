@@ -72,3 +72,8 @@ class UserForm(forms.ModelForm):
 	class Meta:
 		model = User
 		fields = ('username','email','first_name', 'last_name',)
+
+class PermisoFormOrganizacion(forms.ModelForm):
+	class Meta:
+		model = Organizacion
+		fields = ('nombre','usuario',)

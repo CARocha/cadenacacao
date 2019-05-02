@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.views import password_reset
 from django.db.models import Q
 from django.contrib.auth.models import User
@@ -140,6 +140,7 @@ def user_profile(request,template='perfil_user.html'):
 	user = User.objects.get(username = request.user)
 	organizaciones = Organizacion.objects.filter(usuario = user)
 
+
 	if request.method == 'POST':
 		form = EmailForm(request.POST)
 		if form.is_valid():
@@ -166,6 +167,22 @@ def user_profile(request,template='perfil_user.html'):
 	else:
 		form = EmailForm()
 
+	return render(request, template, locals())
+
+@login_required
+def permisos_organizacion(request,template='editar_permisos.html',slug=None):
+	org = get_object_or_404(Organizacion, slug=slug)
+	if request.method == 'POST':
+		form = PermisoFormOrganizacion(request.POST,request.FILES,instance=org)
+		if form.is_valid():
+			form.save()
+			obj = form.save(commit=False)
+			obj.usuario.add(request.user)
+			obj.save()
+			return HttpResponseRedirect('/accounts/profile/')
+
+	else:
+		form = PermisoFormOrganizacion(instance=org)
 	return render(request, template, locals())
 
 @login_required
@@ -197,10 +214,11 @@ def crear_org(request,template='crear_org.html'):
 		formset2 = FormSetInit2(request.POST,request.FILES)
 
 		if form.is_valid() and formset.is_valid() and formset2.is_valid():
+			form.save()
 			org = form.save(commit=False)
-			org.save()
 			org.usuario.add(request.user)
 			org.save()
+			#guarda formsets inlines
 			formset.save()
 			formset2.save()
 			return HttpResponseRedirect('/accounts/profile/')

@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+
+ <link rel="stylesheet" href="/static/css/bootstrap-select.min.css">
+{% endblock extra_css %}
+
+{% block content %}
+<section class="section-grey small-padding">
+
+        <!--begin container-->
+        <div class="container detalle-user">
+
+            <div class="row">
+
+                <div class="col-xs-12 col-md-12">
+                    <h4 class="border-bottom-black">Editar Permisos de la organización</h4>
+                    <p>Campos con (*) son requeridos</p>
+                    {% if form.errors %}
+                        <ul class="alert alert-warning" role="alert">
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <li>
+                                  {% if field != '__all__' %}
+                                    <strong>{{ field.label }}:</strong>
+                                  {% endif %}
+                                  {{ error }}
+                                </li>
+                            {% endfor %}
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+
+                    <form action="." method="POST" id="contact-form" class="contact form-edit-org" enctype="multipart/form-data">{% csrf_token %}
+
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6">
+                                <div class="input-group group-costum-2">
+                                    <span class="input-group-addon " id="sizing-addon2">Nombre*</span>
+                                    {{ form.nombre }}
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6">
+                                <div class="input-group group-costum-2">
+                                    <span class="input-group-addon " id="sizing-addon2">Usuarios*</span>
+                                    {{ form.usuario }}
+
+                                </div>
+                            </div>
+                        </div>
+                        <input type="submit" name="Editar" class="contact-submit" value="Actualizar permisos">
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+{% endblock content %}

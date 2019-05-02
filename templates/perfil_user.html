@@ -67,6 +67,9 @@
 					  <li class="nav-item">
 					    <a class="nav-link panel-title" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Solicitar vinculación</a>
 					  </li>
+                      <li class="nav-item">
+                        <a class="nav-link panel-title" id="profile-tab" data-toggle="tab" href="#profilepermisso" role="tab" aria-controls="profilepermisso" aria-selected="false">Permisos</a>
+                      </li>
 					</ul>
 					<div class="tab-content" id="myTabContent">
 					  <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -75,7 +78,8 @@
 		        				{% for org in organizaciones %}
 		        				<li class="list-group-item">
 
-									<p>	<b>{{org.nombre}} </b><a href="{% url "detail-org" org.slug %}">Perfil </a>| <a href="{% url "editar-org" org.slug %}">Editar</a></p>
+									<p>	<b>{{org.nombre}} </b><a href="{% url "detail-org" org.slug %}">Perfil </a>| <a href="{% url "editar-org" org.slug %}">Editar</a> | Usuarios: {% for users in org.usuario.all%} {{users}}{% if forloop.last%}{%else%},{%endif%}{% endfor %}
+                                    </p>
 		                        </li>
 		                       {% endfor %}
 		        			</ul>
@@ -86,8 +90,6 @@
 					                </li>
 					            </ul>
 					        </nav>
-
-
 					  </div>
 					  <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 					  	<form method="POST" id="contact-form">{% csrf_token %}
@@ -100,10 +102,19 @@
 							<input type="submit" name="Enviar" value="Enviar mensaje">
 						</form>
 					  </div>
+
+                      <div class="tab-pane" id="profilepermisso" role="tabpanel" aria-labelledby="profile-tab">
+
+                        {% for org in organizaciones %}
+                        <li class="list-group-item">
+                            <p> <b>{{org.nombre}} </b> |
+                                <a href="{% url "editar-permisos-user" org.slug %}">Editar Permiso</a>
+                            </p>
+                        </li>
+                        {% endfor %}
+                      </div>
+
 					</div>
-
-
-
 
 		        	{% else %}
 		        	<form method="POST" id="contact-form">{% csrf_token %}
