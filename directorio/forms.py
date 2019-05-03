@@ -77,3 +77,11 @@ class PermisoFormOrganizacion(forms.ModelForm):
 	class Meta:
 		model = Organizacion
 		fields = ('nombre','usuario',)
+
+class PedirPermisoForm(forms.Form):
+	cual_org = forms.ModelChoiceField(queryset=Organizacion.objects.all(),
+	                                           required=True,
+	                                           label="Organización")
+	asunto = forms.CharField( widget=forms.Textarea )
+
+

@@ -141,10 +141,38 @@ def user_profile(request,template='perfil_user.html'):
 	organizaciones = Organizacion.objects.filter(usuario = user)
 
 
+	# if request.method == 'POST':
+	# 	form = EmailForm(request.POST)
+	# 	if form.is_valid():
+	# 		mensaje = form.cleaned_data['mensaje']
+	# 	try:
+	# 		subject, from_email = 'Solicitud ingreso de organización o especialista a Sistema Cadena de cacao', 'vecomesoamerica@gmail.com'
+	# 		text_content = 'Usuario: ' + str(user.username) + '<br>'  + \
+	# 						'Correo: ' + str(user.email) + '<br>'  + \
+	# 						'Mensaje: ' + str(mensaje)
+
+	# 		html_content = 'Usuario: ' + str(user.username) + '<br>'  + \
+	# 						'Correo: ' + str(user.email) + '<br>'  + \
+	# 						'Mensaje: ' + str(mensaje)
+
+	# 		msg = EmailMultiAlternatives(subject, text_content, from_email, ['cadenacacao@gmail.com','vecomesoamerica@gmail.com','guisselle.aleman@rikolto.org','selene.casanova@rikolto.org'])
+	# 		msg.attach_alternative(html_content, "text/html")
+	# 		msg.send()
+
+	# 		enviado = 1
+	# 		form = EmailForm()
+	# 	except:
+	# 		pass
+
+	# else:
+	# 	form = EmailForm()
+
 	if request.method == 'POST':
-		form = EmailForm(request.POST)
-		if form.is_valid():
-			mensaje = form.cleaned_data['mensaje']
+		form1 = PedirPermisoForm(request.POST)
+		if form1.is_valid():
+			org_slug = form1.cleaned_data['cual_org']
+			orga = get_object_or_404(Organizacion, slug=org_slug)
+			mensaje = form1.cleaned_data['asunto']
 		try:
 			subject, from_email = 'Solicitud ingreso de organización o especialista a Sistema Cadena de cacao', 'vecomesoamerica@gmail.com'
 			text_content = 'Usuario: ' + str(user.username) + '<br>'  + \
@@ -155,17 +183,18 @@ def user_profile(request,template='perfil_user.html'):
 							'Correo: ' + str(user.email) + '<br>'  + \
 							'Mensaje: ' + str(mensaje)
 
-			msg = EmailMultiAlternatives(subject, text_content, from_email, ['cadenacacao@gmail.com','vecomesoamerica@gmail.com','guisselle.aleman@rikolto.org','selene.casanova@rikolto.org'])
+			msg = EmailMultiAlternatives(subject, text_content, from_email,
+			                             [obj.email for obj in orga.usuario.all()])
 			msg.attach_alternative(html_content, "text/html")
 			msg.send()
 
 			enviado = 1
-			form = EmailForm()
+			form1 = PedirPermisoForm()
 		except:
 			pass
 
 	else:
-		form = EmailForm()
+		form1 = PedirPermisoForm()
 
 	return render(request, template, locals())
 

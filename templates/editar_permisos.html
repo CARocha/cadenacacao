@@ -62,3 +62,9 @@
 
 
 {% endblock content %}
+
+{% block extra_js %}
+<script type="text/javascript">
+    $("#id_nombre").prop("readonly", true);
+</script>
+{% endblock extra_js %}

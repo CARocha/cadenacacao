@@ -127,6 +127,7 @@ class Organizacion(models.Model):
 	class Meta:
 		verbose_name = 'Organización/Especialista'
 		verbose_name_plural = 'Organizaciones/Especialistas'
+		ordering = ['-id']
 
 REDES_CHOICES = (('Sitio web','Sitio web'),('Facebook','Facebook'),('Twitter','Twitter'),('Youtube','Youtube'),
 					('Google+','Google+'),('Instagram','Instagram'),('Linkedin','Linkedin'),

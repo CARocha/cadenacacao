@@ -93,14 +93,15 @@
 					  </div>
 					  <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 					  	<form method="POST" id="contact-form">{% csrf_token %}
-							{% if enviado == 1 %}
-								<div class="alert alert-success" role="alert">Su mensaje ha sido enviado correctamente!!!</div>
-								{% endif %}
-							<p>Enviar mensaje al administrador del sistema si desea que su perfil se asocie a una organización/especialista o se cree uno nuevo</p>
-							<p>Adjuntar información básica para el registro de la misma</p>
-							Mensaje: {{form.mensaje}} <br>
-							<input type="submit" name="Enviar" value="Enviar mensaje">
-						</form>
+                        {% if enviado == 1 %}
+                            <div class="alert alert-success" role="alert">Su mensaje ha sido enviado correctamente!!!</div>
+                            {% endif %}
+                        <p>Enviar mensaje al administrador del sistema si desea que su perfil se asocie a una organización/especialista</p>
+                        <p>Adjuntar información básica para el registro de la misma</p>
+                        Organizacion: {{form1.cual_org}} <br>
+                        Asunto: {{form1.asunto}}<br>
+                        <input type="submit" name="Enviar" value="Enviar mensaje">
+                    </form>
 					  </div>
 
                       <div class="tab-pane" id="profilepermisso" role="tabpanel" aria-labelledby="profile-tab">
@@ -121,9 +122,10 @@
 						{% if enviado == 1 %}
 							<div class="alert alert-success" role="alert">Su mensaje ha sido enviado correctamente!!!</div>
 							{% endif %}
-						<p>Enviar mensaje al administrador del sistema si desea que su perfil se asocie a una organización/especialista o se cree uno nuevo</p>
+						<p>Enviar mensaje al administrador del sistema si desea que su perfil se asocie a una organización/especialista</p>
 						<p>Adjuntar información básica para el registro de la misma</p>
-						Mensaje: {{form.mensaje}} <br>
+                        Organizacion: {{form1.cual_org}} <br>
+						Asunto: {{form1.asunto}}<br>
 						<input type="submit" name="Enviar" value="Enviar mensaje">
 					</form>
 				{% endif %}
@@ -139,8 +141,26 @@
 
 {% endblock content %}
 
+{% block extra_css %}
+ <link rel="stylesheet" href="/static/css/bootstrap-select.min.css">
+{% endblock extra_css %}
 {% block extra_js %}
+<script src="/static/js/bootstrap-select.min.js"></script>
 <script type="text/javascript">
-	$('#myTab li:first-child a').tab('show') // Select first tab
+    $('#id_cual_org').addClass( "form-control" );
+    $(document).ready(function() {
+        $('#myTab li:first-child a').tab('show') // Select first tab
+
+        $('#id_cual_org').selectpicker({
+            style: 'btn-default',
+            size: 4,
+            liveSearch: 'true',
+            title: 'Seleccione',
+            selectedTextFormat: 'count',
+            countSelectedText: '{0} seleccionados',
+        });
+
+    });
+
 </script>
 {% endblock extra_js %}
