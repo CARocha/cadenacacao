@@ -208,6 +208,7 @@ def permisos_organizacion(request,template='editar_permisos.html',slug=None):
 			obj = form.save(commit=False)
 			obj.usuario.add(request.user)
 			obj.save()
+			mandar_aviso(request,org)
 			return HttpResponseRedirect('/accounts/profile/')
 
 	else:
@@ -297,3 +298,24 @@ def obtener_lista(request):
 
 		serializado = simplejson.dumps(lista)
 		return HttpResponse(serializado, content_type = 'application/json')
+
+def mandar_aviso(request, org=None):
+	user = User.objects.get(username = request.user)
+	org_slug = form1.cleaned_data['nombre'].id
+	orga = get_object_or_404(Organizacion, pk=org_slug)
+
+	subject, from_email = 'Permiso otorgado!!', 'vecomesoamerica@gmail.com'
+	text_content = 'Usuario: ' + str(user.username) + '<br>'  + \
+					'Correo: ' + str(user.email) + '<br>'  + \
+					'Mensaje: ' + str(mensaje)
+
+	html_content = 'Usuario: ' + str(user.username) + '<br>'  + \
+					'Correo: ' + str(user.email) + '<br>'  + \
+					'Mensaje: ' + str(mensaje)
+
+	msg = EmailMultiAlternatives(subject, text_content, from_email,
+	                             [obj.email for obj in orga.usuario.all()])
+	msg.attach_alternative(html_content, "text/html")
+	msg.send()
+
+	return 1
