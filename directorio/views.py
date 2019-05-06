@@ -170,8 +170,8 @@ def user_profile(request,template='perfil_user.html'):
 	if request.method == 'POST':
 		form1 = PedirPermisoForm(request.POST)
 		if form1.is_valid():
-			org_slug = form1.cleaned_data['cual_org']
-			orga = get_object_or_404(Organizacion, slug=org_slug)
+			org_slug = form1.cleaned_data['cual_org'].id
+			orga = get_object_or_404(Organizacion, pk=org_slug)
 			mensaje = form1.cleaned_data['asunto']
 		try:
 			subject, from_email = 'Solicitud ingreso de organización o especialista a Sistema Cadena de cacao', 'vecomesoamerica@gmail.com'
