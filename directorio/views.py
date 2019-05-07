@@ -301,17 +301,16 @@ def obtener_lista(request):
 
 def mandar_aviso(request, org=None):
 	user = User.objects.get(username = request.user)
-	org_slug = form1.cleaned_data['nombre'].id
-	orga = get_object_or_404(Organizacion, pk=org_slug)
+	orga = get_object_or_404(Organizacion, pk=org.id)
 
 	subject, from_email = 'Permiso otorgado!!', 'vecomesoamerica@gmail.com'
 	text_content = 'Usuario: ' + str(user.username) + '<br>'  + \
 					'Correo: ' + str(user.email) + '<br>'  + \
-					'Mensaje: ' + str(mensaje)
+					'Mensaje: ' + 'Ha otorgado permiso!'
 
 	html_content = 'Usuario: ' + str(user.username) + '<br>'  + \
 					'Correo: ' + str(user.email) + '<br>'  + \
-					'Mensaje: ' + str(mensaje)
+					'Mensaje: ' + 'Ha otorgado permiso!'
 
 	msg = EmailMultiAlternatives(subject, text_content, from_email,
 	                             [obj.email for obj in orga.usuario.all()])
