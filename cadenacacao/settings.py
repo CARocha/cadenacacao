@@ -162,7 +162,21 @@ STAR_RATINGS_STAR_HEIGHT = 20
 STAR_RATINGS_STAR_SPRITE = '/static/stars.png'
 
 #######
+#SOCIALACCOUNT_EMAIL_REQUIRED = True
+SOCIALACCOUNT_QUERY_EMAIL = True
+SOCIALACCOUNT_ADAPTER = 'directorio.my_adapter.SocialAccountAdapter'
 ACCOUNT_ACTIVATION_DAYS = 7
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'offline',
+        }
+    }
+}
 SITE_ID = 1
 LOGIN_REDIRECT_URL = 'profile'
 
