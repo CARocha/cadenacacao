@@ -1,6 +1,47 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div id="carousel-id" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-id" data-slide-to="0" class=""></li>
+        <li data-target="#carousel-id" data-slide-to="1" class=""></li>
+        <li data-target="#carousel-id" data-slide-to="2" class="active"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="item">
+            <img data-src="holder.js/900x500/auto/#777:#7a7a7a/text:First slide" alt="First slide" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzc3NyI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojN2E3YTdhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjU2cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+Rmlyc3Qgc2xpZGU8L3RleHQ+PC9zdmc+">
+            <div class="container">
+                <div class="carousel-caption">
+                    <h1>Example headline.</h1>
+                    <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
+                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <img data-src="holder.js/900x500/auto/#666:#6a6a6a/text:Second slide" alt="Second slide" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzY2NiI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojNmE2YTZhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjU2cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+U2Vjb25kIHNsaWRlPC90ZXh0Pjwvc3ZnPg==">
+            <div class="container">
+                <div class="carousel-caption">
+                    <h1>Another example headline.</h1>
+                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="item active">
+            <img data-src="holder.js/900x500/auto/#555:#5a5a5a/text:Third slide" alt="Third slide" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzU1NSI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojNWE1YTVhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjU2cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+VGhpcmQgc2xpZGU8L3RleHQ+PC9zdmc+">
+            <div class="container">
+                <div class="carousel-caption">
+                    <h1>One more for good measure.</h1>
+                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="left carousel-control" href="#carousel-id" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+    <a class="right carousel-control" href="#carousel-id" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+</div>
 <!--begin section-white -->
 <section class="section-white-xs">
     
@@ -47,7 +88,199 @@
     <!--end container-->
 
 </section>
+
 <!--end section-white-->
+
+<section class="section-white-services">
+        
+        <!--begin container-->
+        <div class="container">
+
+            <!--begin row-->
+            <div class="row">
+            
+                <!--begin col-md-6-->
+                <div class="col-md-6 text-center wow fadeIn" data-wow-delay="0.15s">
+
+                    <div class="video-wrapper">
+
+                        <!--begin popup-gallery-->
+                        <div class="popup-gallery">
+                            <a class="popup4 video-icon" href="https://www.youtube.com/watch?v=FPfQMVf4vwQ"><i class="icon icon-play"></i></a>
+                        </div>
+                        <!--end popup-gallery-->
+
+                    </div>
+
+                </div>
+                <!--end col-sm-6-->
+                
+                <!--begin col-md-6-->
+                <div class="col-md-6">
+
+                    <h3>Alpha Financial originated in 2000 with five strong principles</h3>
+                    
+                    <p class="medium-paragraph margin-bottom-40">Nemo enim ipsam voluptatem quia voluptas sit aspernatur netsum loris fugit, sed quia magni dolores eos qui ratione sequi nesciunt. Neque ets poris ratione fugit, sed quia magni dolores eos qui ratione sequi nesciunt. Neque etus quis sequi enim ipsam voluptatem quias net volupti etsim et netus tempor.</p>
+
+                    <!--begin testimonials_item -->
+                    <div class="testimonials_item4">
+                    
+                        <div class="testimonials_box4">
+                            <p>"Pellentesque etsum is laoret mauris, dapibis etim etsum, vivamus eti nibh ligula saepe present. Quis netsi etsa lorem nibh ligula et evenit praesent autim fugit justo et sed tempor."</p>
+                            <span class="testimonials_arrow"></span>
+                        </div>
+                        
+                        <img src="http://placehold.it/200x200" alt="Picture" class="autor_pic">
+                        
+                        <p class="autor"><span>Cristina Richards</span><br> CEO - Your Company </p>
+                    
+                    </div>
+                    <!--end testimonials_item -->
+                    
+                </div>
+                <!--end col-sm-6-->
+            
+            </div>
+            <!--end row-->
+    
+        </div>
+        <!--end container-->
+    
+    </section>
+
+<!--begin blog -->
+<section class="section-grey">
+    
+    <!--begin container-->
+    <div class="container">
+
+        <!--begin row-->
+        <div class="row margin-bottom-20">
+        
+            <!--begin col-md-12-->
+            <div class="col-md-10 col-md-offset-1 text-center">
+                <h2 class="section-title">Financial News</h2>
+                
+                <p class="section-subtitle">There are many variations of passages of Lorem Ipsum available, but the majority<br>have suffered alteration, by injected humour, or new randomised words.</p>
+            </div>
+            <!--end col-md-12-->
+        
+        </div>
+        <!--end row-->
+        
+        <!--begin row-->
+        <div class="row">
+
+            <!--begin col-sm-4 -->
+            <div class="col-sm-4">
+                
+                <!--begin blog-item -->
+                <div class="blog-item">
+                    
+                    <!--begin popup image -->
+                    <div class="popup-wrapper">
+                        <div class="popup-gallery">
+                            <a href="#"><img src="http://placehold.it/360x315" class="width-100" alt="pic"><span class="eye-wrapper2"><i class="icon icon-link eye-icon"></i></span></a>
+                        </div>
+                    </div>
+                    <!--begin popup image -->
+                        
+                    <!--begin blog-item_inner -->
+                    <div class="blog-item-inner">
+                    
+                        <h3 class="blog-title"><a href="#">Financial Planning</a></h3>
+                        
+                        <a href="#" class="blog-icons"><i class="icon icon-user"></i> Paul Smith</a>
+                        
+                        <a href="#" class="blog-icons last"><i class="icon icon-tags"></i> Finance</a>
+                        
+                        <p>Quis autem velis etis reprehender etims quiste voluptate velite esse quam nihil etsa illum sedit consequatur netsum...</p>
+                                                                           
+                    </div>
+                    <!--end blog-item-inner -->
+                    
+                </div>
+                <!--end blog-item -->
+                    
+            </div>
+            <!--end col-sm-4-->
+            
+            <!--begin col-sm-4 -->
+            <div class="col-sm-4">
+                
+                <!--begin blog-item -->
+                <div class="blog-item">
+                    
+                    <!--begin popup image -->
+                    <div class="popup-wrapper">
+                        <div class="popup-gallery">
+                            <a href="#"><img src="http://placehold.it/360x315" class="width-100" alt="pic"><span class="eye-wrapper2"><i class="icon icon-link eye-icon"></i></span></a>
+                        </div>
+                    </div>
+                    <!--begin popup image -->
+                        
+                    <!--begin blog-item_inner -->
+                    <div class="blog-item-inner">
+                    
+                        <h3 class="blog-title"><a href="#">Financial Solutions</a></h3>
+                        
+                        <a href="#" class="blog-icons"><i class="icon icon-user"></i> By John Doe</a>
+                        
+                        <a href="#" class="blog-icons last"><i class="icon icon-tags"></i> Startups</a>
+                        
+                        <p>Quis autem velis etis reprehender etims quiste voluptate velite esse quam nihil etsa illum sedit consequatur netsum...</p>
+
+                    </div>
+                    <!--end blog-item-inner -->
+                    
+                </div>
+                <!--end blog-item -->
+                    
+            </div>
+            <!--end col-sm-4-->
+            
+            <!--begin col-sm-4 -->
+            <div class="col-sm-4">
+                
+                <!--begin blog-item -->
+                <div class="blog-item">
+                    
+                    <!--begin popup image -->
+                    <div class="popup-wrapper">
+                        <div class="popup-gallery">
+                            <a href="#"><img src="http://placehold.it/360x315" class="width-100" alt="pic"><span class="eye-wrapper2"><i class="icon icon-link eye-icon"></i></span></a>
+                        </div>
+                    </div>
+                    <!--begin popup image -->
+                        
+                    <!--begin blog-item_inner -->
+                    <div class="blog-item-inner">
+                    
+                        <h3 class="blog-title"><a href="#">Business 2017</a></h3>
+                        
+                        <a href="#" class="blog-icons"><i class="icon icon-user"></i> By Joe Smith</a>
+                        
+                        <a href="#" class="blog-icons last"><i class="icon icon-tags"></i> Business</a>
+                        
+                        <p>Quis autem velis etis reprehender etims quiste voluptate velite esse quam nihil etsa illum sedit consequatur netsum...</p>
+
+                    </div>
+                    <!--end blog-item-inner -->
+                    
+                </div>
+                <!--end blog-item -->
+                    
+            </div>
+            <!--end col-sm-4-->
+         
+        </div>
+        <!--end row-->
+
+    </div>
+    <!--end container-->
+
+</section>
+<!--end blog -->    
 
 <!--begin section-grey -->
 {% get_flatpages as flatpages %}

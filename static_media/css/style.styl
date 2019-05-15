@@ -1,6 +1,6 @@
 blacktext = rgba(0, 0, 0, 0.7)
-letratext = 'Lato', sans-serif
-letratitulo = 'Roboto', sans-serif
+letratext = 'DINOT', sans-serif
+letratitulo = 'HKGrotesk', sans-serif
 colorlink = #d93
 negro = #3D3935
 verde = #B5BD00
@@ -19,32 +19,50 @@ box-shadow()
   -moz-box-shadow arguments
   -webkit-box-shadow arguments
   box-shadow arguments
-
+@font-face
+    font-family "DINOT"
+    src url("../fonts/DINOT.ttf")
+@font-face
+    font-family "HKGrotesk"
+    src url("../fonts/HKGrotesk.otf")
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 body
-    font-family: 'Open Sans', sans-serif    
+    font-family letratext
+h2,
+h3,
+h4,
+h5,
+h6
+    font-family letratitulo
 .display-inline
     display inline-block
 /*MENU*/
 .navbar-default
     box-shadow 0 0 7px rgba(0, 0, 0, 0.3)
     border-radius 0px
+    
     .navbar-nav > li > a, .dropdown-menu li a
         text-transform initial
-        font-size 16px !important
+        font-size 18px !important
         font-weight bold
         font-family letratext
         color blacktext
         &.selected
         &:hover
             color colorlink !important
+    .navbar-brand
+        height auto
+        padding 10px
+        img
+            max-height 80px
         
 #logo
     font-size 18px
     font-family letratitulo 
     font-weight 500
+    margin-top 0px
     color blacktext
     &:hover
         color colorlink !important
@@ -242,22 +260,22 @@ select#input
     background-color negro
     color white
     font-size 16px
-    font-family: 'Lato', sans-serif;
+    font-family letratext
 #input-rate
     max-width 60px
     font-size 16px
-    font-family: 'Lato', sans-serif;
+    font-family letratext
     min-height 36px 
 #rate-btn
     display inline-block
     font-size 16px
-    font-family: 'Lato', sans-serif;
+    font-family letratext
     button
         background-color verde
         color white
         border-color verde
         font-size 16px
-        font-family: 'Lato', sans-serif;
+        font-family letratext
         &:hover
             background-color white
             color verde
