@@ -1,33 +1,4 @@
-blacktext = rgba(0, 0, 0, 0.7)
-letratext = 'DINOT', sans-serif
-letratitulo = 'HKGrotesk', sans-serif
-colorlink = #d93
-negro = #3D3935
-verde = #B5BD00
-
-vendor(prop, args)
-    -webkit-{prop} args
-    -moz-{prop} args
-    -o-{prop} args
-    {prop} args
-
-transition()
-    vendor('transition', arguments)
-border-radius()
-    vendor('border-radius', arguments)
-box-shadow() 
-  -moz-box-shadow arguments
-  -webkit-box-shadow arguments
-  box-shadow arguments
-@font-face
-    font-family "DINOT"
-    src url("../fonts/DINOT.ttf")
-@font-face
-    font-family "HKGrotesk"
-    src url("../fonts/HKGrotesk.otf")
-
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
-
+@import 'variables-mixin.styl'
 body
     font-family letratext
 h2,
@@ -36,12 +7,30 @@ h4,
 h5,
 h6
     font-family letratitulo
+    color cafe
+    font-weight 500
+p
+    line-height 30px
+    a
+        color rojo
+.m-0
+    margin 0px
+.mb-10
+    margin-bottom 10px
 .display-inline
     display inline-block
+.text-white
+    color white
 /*MENU*/
+.top-intro
+    background-color cafe
+    ul.header_social li a i
+        color white
+        border-right-color white
 .navbar-default
-    box-shadow 0 0 7px rgba(0, 0, 0, 0.3)
+    box-shadow  0 8px 7px rgba(0, 0, 0, 0.3)
     border-radius 0px
+    max-height 100px
     
     .navbar-nav > li > a, .dropdown-menu li a
         text-transform initial
@@ -49,9 +38,12 @@ h6
         font-weight bold
         font-family letratext
         color blacktext
+        padding-top 0px
+        padding-bottom 0px
+        margin-top 27px
         &.selected
         &:hover
-            color colorlink !important
+            color rojo !important
     .navbar-brand
         height auto
         padding 10px
@@ -65,9 +57,9 @@ h6
     margin-top 0px
     color blacktext
     &:hover
-        color colorlink !important
+        color rojo !important
 ol.breadcrumb li a:hover
-    color colorlink
+    color rojo
 /*Secciones*/
 
 .section-white-xs
@@ -75,10 +67,11 @@ ol.breadcrumb li a:hover
     margin-bottom 20px
 .section-grey
     padding 30px 0px
-h1, h2, h3, h4, h5, h6
-    color blacktext
-p a
-    color colorlink
+
+
+#map-canvas
+    border-radius 8px
+
 .titulo-map
     background negro
     padding 10px
@@ -102,21 +95,28 @@ p a
     padding 17px 0
     border-top 1px solid rgba(61, 57, 53, 0.5)
 /*footer*/
-.footer, .top-intro
-    background negro
+.footer
+    background linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url('../images/fondo.jpg')
+    background-size cover
+    p, a
+        color white
+    ul.footer-list li
+        border-bottom-color white
+    ul.footer_social li, ul.footer_social li a i
+        color white
 a.top-scroll:hover
-    background colorlink
-    border-color colorlink
+    background rojo
+    border-color rojo
 ul.footer_social li a i:hover, .footer p a:hover, ul.footer-list li a:hover
-    color colorlink
+    color rojo
 
 .btn-blue, .btn-blue:focus, .btn-blue:active, .btn-blue-full, .btn-blue-full:focus, .btn-blue-full:active, input.contact-submit
-    background colorlink
-    border-color colorlink
+    background rojo
+    border-color rojo
     padding 10px
 .btn-sm.btn-blue:hover, input.contact-submit:hover
-    border-color colorlink
-    color colorlink
+    border-color rojo
+    color rojo
     cursor pointer
     
 .footer-top
@@ -161,8 +161,8 @@ select#input
 .pagination > li > a, .pagination > li > span
     color negro
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus
-    background-color colorlink
-    border-color colorlink
+    background-color rojo
+    border-color rojo
 .form-busca
     input.contact-submit
         margin-top 0px
@@ -179,7 +179,7 @@ select#input
     color negro !important
     font-size 16px
 .bootstrap-select.btn-group .dropdown-menu li.selected a
-    color colorlink !important
+    color rojo !important
 .form-edit-org
     label
         font-size 16px
@@ -209,7 +209,7 @@ select#input
 .login-user
     margin-bottom 40px
     a 
-        color colorlink
+        color rojo
 .modal-footer .btn + .btn
     margin-bottom 10px
 .text-col 
@@ -243,7 +243,7 @@ select#input
             font-size 16px
             color negro
             a
-                color colorlink    
+                color rojo    
 .panel-body a.pull-right
     color negro
     font-weight bold
@@ -304,7 +304,7 @@ select#input
         font-weight bold
         color negro
     li.active a
-        color colorlink
+        color rojo
 .endless_page_current
     background-color verde !important
     color white !important
@@ -324,7 +324,7 @@ select#input
 .no-padding-top
     padding-top 0px
 .carousel.carousel1 .carousel-indicators li.active
-    background-color colorlink
+    background-color rojo
 
 // .section-image-contact
 //     margin 20px 0px
@@ -334,11 +334,11 @@ select#input
 // .contact-wrapper
 //     background negro
 // input.contact-submit
-//     background colorlink
-//     border-color colorlink
+//     background rojo
+//     border-color rojo
 //     &:hover
-//         border-color colorlink
-//         color colorlink
+//         border-color rojo
+//         color rojo
 //         cursor pointer
 // .contact-wrapper
 //     padding 15px
@@ -383,7 +383,7 @@ select#input
 .list-group
     color negro
     .list-group-item a
-        color colorlink
+        color rojo
         font-weight bold
 .list-group .list-group-item a.fa
     color white

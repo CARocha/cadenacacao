@@ -1,144 +1,182 @@
 {% extends "base.html" %}
-
+{% block extra_css %}
+    <link rel="stylesheet" href="/static/css/bootstrap-select.min.css">
+    <link href="/static/css/font-awesome.css" rel="stylesheet">
+{% endblock extra_css %}
 {% block content %}
 <div id="carousel-id" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
-        <li data-target="#carousel-id" data-slide-to="0" class=""></li>
+        <li data-target="#carousel-id" data-slide-to="0" class="active"></li>
         <li data-target="#carousel-id" data-slide-to="1" class=""></li>
-        <li data-target="#carousel-id" data-slide-to="2" class="active"></li>
+        <li data-target="#carousel-id" data-slide-to="2" class=""></li>
     </ol>
     <div class="carousel-inner">
-        <div class="item">
-            <img data-src="holder.js/900x500/auto/#777:#7a7a7a/text:First slide" alt="First slide" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzc3NyI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojN2E3YTdhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjU2cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+Rmlyc3Qgc2xpZGU8L3RleHQ+PC9zdmc+">
-            <div class="container">
+        <div class="item active">
+            <img  alt="First slide" src="/static/images/banner/1.jpg" width="100%">
+<!--             <div class="container">
                 <div class="carousel-caption">
                     <h1>Example headline.</h1>
                     <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
                     <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
                 </div>
-            </div>
+            </div> -->
         </div>
         <div class="item">
-            <img data-src="holder.js/900x500/auto/#666:#6a6a6a/text:Second slide" alt="Second slide" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzY2NiI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojNmE2YTZhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjU2cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+U2Vjb25kIHNsaWRlPC90ZXh0Pjwvc3ZnPg==">
-            <div class="container">
-                <div class="carousel-caption">
-                    <h1>Another example headline.</h1>
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
-                </div>
-            </div>
+            <img  alt="Second slide" src="/static/images/banner/2.jpg" width="100%">
         </div>
-        <div class="item active">
-            <img data-src="holder.js/900x500/auto/#555:#5a5a5a/text:Third slide" alt="Third slide" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzU1NSI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojNWE1YTVhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjU2cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+VGhpcmQgc2xpZGU8L3RleHQ+PC9zdmc+">
-            <div class="container">
-                <div class="carousel-caption">
-                    <h1>One more for good measure.</h1>
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
-                </div>
-            </div>
+        <div class="item ">
+            <img  alt="Third slide" src="/static/images/banner/3.jpg" width="100%">
         </div>
     </div>
     <a class="left carousel-control" href="#carousel-id" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
     <a class="right carousel-control" href="#carousel-id" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
 </div>
-<!--begin section-white -->
-<section class="section-white-xs">
-    
+
+<section class="section-white small-padding">
+
     <!--begin container-->
     <div class="container">
-
-        <!--begin row-->
-        <div class="row">
-
-            <!--begin col-md-6-->
-            <div class="col-md-6">
-                <div class="titulo-map">
-                    <h4>Mapeo de cadena de valor de cacao</h4>
-                    <a href="/actores/" class="btn-sm btn-blue btn-map" target="_blank">Directorio</a>
-                </div>
-                <div id="map-canvas" style="width:100%; height:400px"></div>                               
-            </div>
-            <!--end col-md-6-->
+        <div role="tabpanel">
+            <!-- Nav tabs -->
+            <ul class="list-inline border-bottom-black tab-busca" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Búsqueda</a>
+                </li>
+                <li>|</li>
+                <li role="presentation">
+                    <a href="#tab" aria-controls="tab" role="tab" data-toggle="tab">Búsqueda avanzada</a>
+                </li>
+            </ul>
             
-            <!--begin col-md-6-->
-            <div class="col-md-6">
-                
-                <div class="tabs">
-                    {% load flatpages %}
-                        {% get_flatpages as flatpages %}
-                            {% for page in flatpages %}
-                                {% if page.url == '/informacion-inicio/' %}
-                                    <h4>{{page.title}}</h4>
-                                    <div class="tab-content text-left" data-tab="1">
-                                         {{ page.content|safe}}
-                                    </div>
-                                {% endif %} 
-                            {% endfor %}
-                    
-
-                </div>
-            </div>    
-            <!--end col-md-6-->
-        
         </div>
-        <!--end row-->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane {% if not request.POST %}active{% endif %}" id="home">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
+                        <form id="contact-form" class="contact form-busca" action="/actores/busqueda/" method="GET">
+                            <div class="input-group">
+                                {{search.q}}
+                                <span class="input-group-btn">
+                                    <input value="Buscar" id="submit-button" class="contact-submit" type="submit">
+                                </span>
+                            </div>
+                        </form>
+                        <!--<form id="search-form" action="/actores/search/", method="GET">
+                            <input id="search-input" type="text" role="search" value="Buscar..." name="q" id="q" onblur="if (this.value == '') { this.value = 'Buscar...';}" onfocus="if (this.value == 'Buscar...'){this.value = '';}" placeholder="Buscar...">
+                            <label for="search-input" class="ui-search"></label>-->
+                        </form>
+                    </div>
+                </div>
+                
+            </div>
+            <div role="tabpanel" class="tab-pane {% if request.POST %}active{% endif %}" id="tab">
+                <!--begin contact form -->
+                <form id="contact-form" class="contact" action="." method="post">{% csrf_token %}
+                    <!--begin row-->
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="input-group group-costum">
+                                <span class="input-group-addon" id="sizing-addon2">País sede *</span>
+                                {{form.pais_sede}}
+
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group group-costum">
+                                <span class="input-group-addon" id="sizing-addon2">Ámbito de acción</span>
+                                {{form.ambito_accion}}
+
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group group-costum">
+
+                                <span class="input-group-addon" id="sizing-addon2">Tipo de actor</span>
+                                {{form.tipo_organizacion}}
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group group-costum">
+                                <span class="input-group-addon" id="sizing-addon2">País(es) donde labora</span>
+                                {{form.paises_labora}}
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group group-costum">
+                                <span class="input-group-addon" id="sizing-addon2">Participación en la cadena de valor</span>
+                                {{form.participacion_cadena}}
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group group-costum">
+                                <span class="input-group-addon" id="sizing-addon2">Servicios que brindan</span>
+                                {{form.servicios}}
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group group-costum">
+                                <span class="input-group-addon" id="sizing-addon2">Tipo de actividad</span>
+                                {{form.tipo_actividad}}
+
+                            </div>
+                        </div>
+                        
+
+                        <div class="col-sm-4">
+                            <input value="Consultar" id="submit-button" class="contact-submit" type="submit">
+                        </div>
+
+                        
+                    </div>
+                    <!--end row-->
+                </form>
+                <!--end contact form --> 
+            </div>
+        </div>
+                  
+       
 
     </div>
     <!--end container-->
 
 </section>
 
-<!--end section-white-->
+<section>
+    <h3>Mapeo de cadena de valor de cacao</h3>
+    <div id="map-canvas" style="width:100%; height:400px"></div>
+</section>
 
-<section class="section-white-services">
+<section class="section-white small-padding">
         
         <!--begin container-->
         <div class="container">
-
+            
             <!--begin row-->
             <div class="row">
-            
                 <!--begin col-md-6-->
-                <div class="col-md-6 text-center wow fadeIn" data-wow-delay="0.15s">
+                <div class="col-md-12 text-center wow fadeIn" data-wow-delay="0.15s">
+                    
+                    
 
-                    <div class="video-wrapper">
-
-                        <!--begin popup-gallery-->
-                        <div class="popup-gallery">
-                            <a class="popup4 video-icon" href="https://www.youtube.com/watch?v=FPfQMVf4vwQ"><i class="icon icon-play"></i></a>
-                        </div>
-                        <!--end popup-gallery-->
-
-                    </div>
-
+                </div>
+                <!--end col-sm-6-->
+                <!--begin col-md-6-->
+                <div class="col-md-6">
+                    {% load flatpages %}
+                        {% get_flatpages as flatpages %}
+                            {% for page in flatpages %}
+                                {% if page.url == '/informacion-inicio/' %}
+                                    <h3>{{page.title}}</h3>
+                                    <div class="medium-paragraph margin-bottom-40 text-left">
+                                        {{ page.content|safe}}
+                                    </div>
+                                {% endif %} 
+                            {% endfor %}
                 </div>
                 <!--end col-sm-6-->
                 
-                <!--begin col-md-6-->
-                <div class="col-md-6">
-
-                    <h3>Alpha Financial originated in 2000 with five strong principles</h3>
-                    
-                    <p class="medium-paragraph margin-bottom-40">Nemo enim ipsam voluptatem quia voluptas sit aspernatur netsum loris fugit, sed quia magni dolores eos qui ratione sequi nesciunt. Neque ets poris ratione fugit, sed quia magni dolores eos qui ratione sequi nesciunt. Neque etus quis sequi enim ipsam voluptatem quias net volupti etsim et netus tempor.</p>
-
-                    <!--begin testimonials_item -->
-                    <div class="testimonials_item4">
-                    
-                        <div class="testimonials_box4">
-                            <p>"Pellentesque etsum is laoret mauris, dapibis etim etsum, vivamus eti nibh ligula saepe present. Quis netsi etsa lorem nibh ligula et evenit praesent autim fugit justo et sed tempor."</p>
-                            <span class="testimonials_arrow"></span>
-                        </div>
-                        
-                        <img src="http://placehold.it/200x200" alt="Picture" class="autor_pic">
-                        
-                        <p class="autor"><span>Cristina Richards</span><br> CEO - Your Company </p>
-                    
-                    </div>
-                    <!--end testimonials_item -->
-                    
-                </div>
-                <!--end col-sm-6-->
+                
+                
             
             </div>
             <!--end row-->
@@ -305,12 +343,35 @@
                 </div>
 
             </section>
-    {% endif %} 
-{% endfor %}
+        {% endif %} 
+    {% endfor %}
 <!--end section-grey-->
 {% endblock content %}
 
 {% block extra_js %}
+<script src="/static/js/bootstrap-select.min.js"></script>
+
+<script type="text/javascript">
+    $('#id_paises_labora, #id_tipo_organizacion, #id_participacion_cadena, #id_servicios, #id_intercambio, #id_tipo_actividad').selectpicker({
+      style: 'btn-default',
+      size: 4,
+      liveSearch: 'true',
+      title: '------'
+    });
+
+</script>
+<script type="text/javascript">
+    
+    $( ".bootstrap-select" ).removeClass( "input-group-btn" );
+    $( "#id_pais_sede" ).addClass("form-control");
+    $( "#id_ambito_accion" ).addClass("form-control");
+    $( "#id_tipo" ).addClass("form-control");
+    $( ".form-busca #id_q" ).addClass("form-control");
+    {% if search_text %}
+        $(".form-busca #id_q").val("{{search_text}}");
+    {% endif %} 
+
+</script>
  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBaguICGAyEp7DdwkG2Z-odTyjLVYMicmg" type="text/javascript"></script>
 <script type="text/javascript" src="/static/js/markerclusterer.js"></script>
 <script>
