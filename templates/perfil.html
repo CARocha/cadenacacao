@@ -207,12 +207,17 @@
                         </div>
                         <div class="panel-body no-padding">
                             <ul class="list-group margin-bottom-0">
-                                <li class="list-group-item">
-                                    <b>Correo:</b> <a href="mailto:{{object.correo_1}}">{{object.correo_1|default:"Sin correo"}} </a> 
-                                </li>
-                                <li class="list-group-item">
-                                    <b>Teléfono: </b><a href="tel:{{object.telefono_1}}">{{object.telefono_1|default:"Sin teléfono"}} </a>
-                                </li>
+                                {% if object.correo_1 %}
+                                   <li class="list-group-item">
+                                        <b>Correo:</b> <a href="mailto:{{object.correo_1}}">{{object.correo_1|default:"Sin correo"}} </a> 
+                                    </li> 
+                                {% endif %}
+                                {% if object.telefono_1 %}
+                                    <li class="list-group-item">
+                                        <b>Teléfono: </b><a href="tel:{{object.telefono_1}}">{{object.telefono_1|default:"Sin teléfono"}} </a>
+                                    </li>
+                                {% endif %}
+                                
                                 
                             </ul>
                         </div>
@@ -226,12 +231,18 @@
                         </div>
                         <div class="panel-body no-padding">
                             <ul class="list-group margin-bottom-0">
-                                <li class="list-group-item">
-                                    <b>Correo:</b> <a href="mailto:{{object.correo_2}}">{{object.correo_2|default:"Sin correo"}} </a> 
-                                </li>
-                                <li class="list-group-item">
-                                    <b>Teléfono: </b><a href="tel:{{object.telefono_2}}">{{object.telefono_2|default:"Sin teléfono"}} </a>
-                                </li>
+                                {% if object.correo_2 %}
+                                    <li class="list-group-item">
+                                        <b>Correo:</b> <a href="mailto:{{object.correo_2}}">{{object.correo_2|default:"Sin correo"}} </a> 
+                                    </li>
+                                {% endif %}
+                                {% if object.telefono_2 %}
+                                    <li class="list-group-item">
+                                        <b>Teléfono: </b><a href="tel:{{object.telefono_2}}">{{object.telefono_2|default:"Sin teléfono"}} </a>
+                                    </li>
+                                {% endif %}
+                                
+                                
                                 
                             </ul>
                         </div>

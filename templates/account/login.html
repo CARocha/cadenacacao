@@ -1,9 +1,44 @@
-{% extends "base.html" %}
-
 {% load account socialaccount %}
-{% block head_title %}Iniciar sesion{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Iniciar sesion</title>
+    <!-- LOAD JQUERY LIBRARY -->
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.js"></script>
 
-{% block content %}
+    <!-- Loading Bootstrap -->
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+
+
+    <!-- Font Awesome -->
+    <link href="/static/css/fonts.css" rel="stylesheet">
+    <link href="/static/font/flaticon.css" rel="stylesheet">
+
+    <!-- Loading Template CSS -->
+    <link href="/static/css/main.css" rel="stylesheet">
+    <link href="/static/css/style-magnific-popup.css" rel="stylesheet">
+    <link href="/static/css/login.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,400i,700,700i,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
+
+    <link rel="shortcut icon" type="image/png" href="/static/images/favicon.png" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114098281-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-114098281-1');
+    </script>
+</head>
+<body>
+
+
 <!--begin section-white -->
 <section class="section-grey small-padding">
 
@@ -12,20 +47,28 @@
         <div class="row">
             <div class="col-xs-12 col-md-6 col-md-offset-3">
                 <div class="detalle-user login-user">
-                    <h4 class="border-bottom-black">Inicio de sesion</h4>
+                    <div class="row">
+                        <!--begin col-md-12-->
+                        <div class="col-md-10 col-md-offset-1 text-center">
+                            <h4 class="section-title">Inicio de sesion</h4>
+                        </div>
+                        <!--end col-md-12-->
+                    </div>
                     {% get_providers as socialaccount_providers %}
                     {% if socialaccount_providers %}
-                        <p>{% with site.name as site_name %}Por favor inicie sesion con uno de los siguientes metodos de autenticacion!!. {%endwith%}</p>
-
-                        <div class="socialaccount_ballot">
+                        <!-- {% with site.name as site_name %}
+                                Por favor inicie sesion con uno de los siguientes metodos de autenticacion!!.
+                        {%endwith%} -->
+                        
+                        
+                      
 
                           <ul class="socialaccount_providers">
                             {% include "socialaccount/snippets/provider_list.html" with process="login" %}
                           </ul>
 
-                          <div class="login-or">o</div><br>
+                          <div class="or-seperator"><b>O</b></div>
 
-                        </div>
 
                         {% include "socialaccount/snippets/login_extra.html" %}
 
@@ -33,33 +76,42 @@
                         <p>Si aún no ha creado una cuenta, por favor
                         <a href="{{ signup_url }}">Registrarse</a> primero</p>
                     {% endif %}
-                    <p>Por favor, introduzca un nombre de usuario y clave correctos. Observe que ambos campos pueden ser sensibles a mayúsculas.</p>
-            		<form class="login" method="POST" action="{% url 'account_login' %}">
+                   <!--  <p>Por favor, introduzca un nombre de usuario y clave correctos. Observe que ambos campos pueden ser sensibles a mayúsculas.</p> -->
+                <form class="login" method="POST" action="{% url 'account_login' %}">
                           {% csrf_token %}
                           {{ form.as_p }}
                           {% if redirect_field_value %}
                           <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                           {% endif %}
                           <div class="clearfix"></div>
-                            <div class="col-sm-12">
-                                <ul class="list-inline">
+                          <div class="row">
+                              <div class="col-sm-12">
+                                <ul class="list">
                                     <li><a class="button secondaryAction" href="{% url 'account_reset_password' %}">Olvidé mi contraseña</a></li>
                                     <li>Si aún no ha creado una cuenta, por favor <a href="{{ signup_url }}">Registrarse</a></li>
                                 </ul>
                                 <button class="primaryAction contact-submit pull-right btn btn-warning"  type="submit">Iniciar sesion</button>
                             </div>
+                          </div>
+                            
                     </form>
                 </div>
             </div>
         </div>
-	</div>
+  </div>
 </div>
-{% endblock content %}
 
-{% block extra_js %}
 <script type="text/javascript">
     $( "#id_login" ).addClass("contact-input white-input").attr("placeholder", "Nombre de usuario*");
     $( "#id_password" ).addClass("contact-input white-input").attr("placeholder", "Contraseña*");
 
 </script>
-{% endblock extra_js %}
+</body>
+</html>
+
+
+
+
+
+
+

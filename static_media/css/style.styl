@@ -31,8 +31,11 @@ p
     box-shadow  0 8px 7px rgba(0, 0, 0, 0.3)
     border-radius 0px
     max-height 100px
+    .navbar-nav
+        margin-top 27px
     
-    .navbar-nav > li > a, .dropdown-menu li a
+    .navbar-nav > li > a
+    .dropdown-menu li a
         text-transform initial
         font-size 18px !important
         font-weight bold
@@ -40,10 +43,12 @@ p
         color blacktext
         padding-top 0px
         padding-bottom 0px
-        margin-top 27px
+
         &.selected
         &:hover
             color rojo !important
+    .dropdown-menu li a
+        margin 10px
     .navbar-brand
         height auto
         padding 10px
@@ -58,37 +63,40 @@ p
     color blacktext
     &:hover
         color rojo !important
-ol.breadcrumb li a:hover
-    color rojo
-/*Secciones*/
 
+/*Secciones*/
+.carousel-indicators li.active
+    background-color amarillo
 .section-white-xs
     margin-top 20px
     margin-bottom 20px
 .section-grey
     padding 30px 0px
 
-
-#map-canvas
-    border-radius 8px
-
-.titulo-map
-    background negro
+.mapa-container
+    background-color #f5f5f5
     padding 10px
-    h4
-        color #fff
-        margin 0px
-        padding 10px 10px
-        font-size 20px
-        display inline-block
-    .btn-map
-        display inline-block
-        margin-bottom 0px
+    border-radius 8px
+    
+/*Noticias*/
+.blog-item 
+    .popup-wrapper 
+        .popup-gallery
+            width 100%
+            img
+                max-height 202px
+    .blog-item-inner
+        background-color white
+    h3.blog-title a
+        color cafe
+        &:hover
+            color rojo
+        
 /*Sponsor*/
 .sponsors img.sponsor
     opacity 0.8
     height auto
-    width 100%
+    width 90%
     &:hover
         opacity 1
 .sponsors-padding
@@ -102,11 +110,14 @@ ol.breadcrumb li a:hover
         color white
     ul.footer-list li
         border-bottom-color white
-    ul.footer_social li, ul.footer_social li a i
+    ul.footer_social li, ul.footer_social li a i, .footer-bottom p a
         color white
-a.top-scroll:hover
-    background rojo
-    border-color rojo
+a.top-scroll
+    color white !important
+    border-color white
+    &:hover
+        background rojo
+        border-color rojo
 ul.footer_social li a i:hover, .footer p a:hover, ul.footer-list li a:hover
     color rojo
 
@@ -121,6 +132,7 @@ ul.footer_social li a i:hover, .footer p a:hover, ul.footer-list li a:hover
     
 .footer-top
     padding 20px 0 0px 0
+    border-bottom-color white
 .form-edit-org .group-costum-2
     width 100%
     
@@ -131,12 +143,13 @@ select#input
     color #7c8595
 
 /*consulta*/
+
 .group-costum
     padding 5px 0px
     position inherit
     display block
     .input-group-addon
-        background negro
+        background cafe
         color white
         line-height normal
         border-radius 0px
@@ -155,9 +168,6 @@ select#input
         line-height normal
         border-radius 0px
         border 0px
-.border-bottom-black
-    border-bottom 1px solid rgba(61,57,53,0.5)
-    padding-bottom 10px
 .pagination > li > a, .pagination > li > span
     color negro
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus
@@ -207,7 +217,7 @@ select#input
                 width 1em
                 font-size 17px
 .login-user
-    margin-bottom 40px
+    margin-bottom 0
     a 
         color rojo
 .modal-footer .btn + .btn
@@ -223,8 +233,16 @@ select#input
             b, i
                 color negro
                 
-#myList .box .text-col p
-    color #444
+#myList .box 
+    background-color #f8f9fb
+    margin 0 0 10px 0
+    border 1px solid #e9eef5
+    .text-col
+        h5 a
+            color rojo
+        b
+        li i
+            color cafe
 /*Detalle org*/
 .obj-org
     margin-bottom 10px
@@ -281,6 +299,54 @@ select#input
             color verde
             border-color verde      
 /*buscador*/
+.panel-search
+    position relative
+    margin-top -100px
+    box-shadow  0 8px 7px rgba(0, 0, 0, 0.3)
+    background-color transparent
+    .panel-heading
+        background-color naranja
+        padding 10px
+        font-weight bold
+        font-family letratitulo
+        color white
+        font-size 17px
+    .panel-body
+        background-color #F8F9FB 
+
+.tab-busca
+    margin 0
+    li a
+        font-size 17px
+        font-family letratext
+        font-weight bold
+        color rgba(255, 255, 255, .5)
+        &:before
+            content ''
+            content ''
+            width 13px
+            height 13px
+            display inline-block
+            border-radius 20px
+            line-height 17px
+            margin 0px 10px
+            background-color rgba(255, 255, 255, .5)
+    li.active a
+        color white
+        &:before
+            content ''
+            content ''
+            width 13px
+            height 13px
+            background-color white
+            display inline-block
+            border-radius 20px
+            line-height 17px
+            margin 0px 10px
+            border 3px solid white
+            background-color cafe
+
+
 .buscador
     position: absolute;
     width: 20%;
@@ -297,14 +363,7 @@ select#input
         color verde !important
         border-color verde !important
 
-.tab-busca
-    li a
-        font-size 17px
-        font-family letratext
-        font-weight bold
-        color negro
-    li.active a
-        color rojo
+
 .endless_page_current
     background-color verde !important
     color white !important
@@ -326,29 +385,7 @@ select#input
 .carousel.carousel1 .carousel-indicators li.active
     background-color rojo
 
-// .section-image-contact
-//     margin 20px 0px
-// .section-image-contact
-//     background url(../images/portada3.jpg) top center no-repeat
-//     background-size cover
-// .contact-wrapper
-//     background negro
-// input.contact-submit
-//     background rojo
-//     border-color rojo
-//     &:hover
-//         border-color rojo
-//         color rojo
-//         cursor pointer
-// .contact-wrapper
-//     padding 15px
-// h2.section-title
-    
-// @media (max-width: 768px)
-//     .section-image-contact
-//         background negro
 
-/**/
 @media (max-width : 480px)
     .lista-perfil .pull-right
         float left !important
@@ -377,7 +414,7 @@ select#input
         background-color verde
         border-color verde
         .panel-title
-            color negro
+            color white
         .panel-body
             color negro
 .list-group
@@ -416,10 +453,6 @@ select#input
   color: white;
 }
 
-.fa-linkedin {
-  background: #007bb5;
-  color: white;
-}
 
 .fa-youtube {
   background: #bb0000;
@@ -430,40 +463,19 @@ select#input
   background: #125688;
   color: white;
 }
+/*=============================================
+Responsive
+=============================================*/
+@media (max-width: 576px){}
+    
 
-.fa-pinterest {
-  background: #cb2027;
-  color: white;
-}
+// Medium devices (tablets, 768px and up)
+@media (max-width: 768px)
+    .panel-search
+        margin-top 30px
 
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {}
 
-.fa-skype {
-  background: #00aff0;
-  color: white;
-}
-
-
-.fa-globe {
-  background: #2c4762;
-  color: white;
-}
-
-.fa-vimeo {
-  background: #45bbff;
-  color: white;
-}
-
-.fa-tumblr {
-  background: #2c4762;
-  color: white;
-}
-
-.fa-flickr {
-  background: #f40083;
-  color: white;
-}
-
-.fa-link {
-  background: #430297;
-  color: white;
-}
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {}

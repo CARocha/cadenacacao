@@ -32,27 +32,13 @@
     <a class="right carousel-control" href="#carousel-id" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
 </div>
 
-<section class="section-white small-padding">
-
-    <!--begin container-->
+<section class="section-white no-padding">
     <div class="container">
-        <div role="tabpanel">
-            <!-- Nav tabs -->
-            <ul class="list-inline border-bottom-black tab-busca" role="tablist">
-                <li role="presentation" class="active">
-                    <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Búsqueda</a>
-                </li>
-                <li>|</li>
-                <li role="presentation">
-                    <a href="#tab" aria-controls="tab" role="tab" data-toggle="tab">Búsqueda avanzada</a>
-                </li>
-            </ul>
-            
-        </div>
-        <div class="tab-content">
-            <div role="tabpanel" class="tab-pane {% if not request.POST %}active{% endif %}" id="home">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+                <div class="panel panel-search">
+                   <div class="panel-heading">Búsqueda</div>
+                    <div class="panel-body">
                         <form id="contact-form" class="contact form-busca" action="/actores/busqueda/" method="GET">
                             <div class="input-group">
                                 {{search.q}}
@@ -61,91 +47,14 @@
                                 </span>
                             </div>
                         </form>
-                        <!--<form id="search-form" action="/actores/search/", method="GET">
-                            <input id="search-input" type="text" role="search" value="Buscar..." name="q" id="q" onblur="if (this.value == '') { this.value = 'Buscar...';}" onfocus="if (this.value == 'Buscar...'){this.value = '';}" placeholder="Buscar...">
-                            <label for="search-input" class="ui-search"></label>-->
-                        </form>
                     </div>
                 </div>
-                
-            </div>
-            <div role="tabpanel" class="tab-pane {% if request.POST %}active{% endif %}" id="tab">
-                <!--begin contact form -->
-                <form id="contact-form" class="contact" action="." method="post">{% csrf_token %}
-                    <!--begin row-->
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="input-group group-costum">
-                                <span class="input-group-addon" id="sizing-addon2">País sede *</span>
-                                {{form.pais_sede}}
-
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="input-group group-costum">
-                                <span class="input-group-addon" id="sizing-addon2">Ámbito de acción</span>
-                                {{form.ambito_accion}}
-
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="input-group group-costum">
-
-                                <span class="input-group-addon" id="sizing-addon2">Tipo de actor</span>
-                                {{form.tipo_organizacion}}
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="input-group group-costum">
-                                <span class="input-group-addon" id="sizing-addon2">País(es) donde labora</span>
-                                {{form.paises_labora}}
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="input-group group-costum">
-                                <span class="input-group-addon" id="sizing-addon2">Participación en la cadena de valor</span>
-                                {{form.participacion_cadena}}
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="input-group group-costum">
-                                <span class="input-group-addon" id="sizing-addon2">Servicios que brindan</span>
-                                {{form.servicios}}
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="input-group group-costum">
-                                <span class="input-group-addon" id="sizing-addon2">Tipo de actividad</span>
-                                {{form.tipo_actividad}}
-
-                            </div>
-                        </div>
-                        
-
-                        <div class="col-sm-4">
-                            <input value="Consultar" id="submit-button" class="contact-submit" type="submit">
-                        </div>
-
-                        
-                    </div>
-                    <!--end row-->
-                </form>
-                <!--end contact form --> 
             </div>
         </div>
-                  
-       
-
+        
     </div>
-    <!--end container-->
 
 </section>
-
-<section>
-    <h3>Mapeo de cadena de valor de cacao</h3>
-    <div id="map-canvas" style="width:100%; height:400px"></div>
-</section>
-
 <section class="section-white small-padding">
         
         <!--begin container-->
@@ -154,9 +63,12 @@
             <!--begin row-->
             <div class="row">
                 <!--begin col-md-6-->
-                <div class="col-md-12 text-center wow fadeIn" data-wow-delay="0.15s">
+                <div class="col-md-6 text-center wow fadeIn" data-wow-delay="0.15s">
                     
-                    
+                    <h3>Mapeo de cadena de valor de cacao</h3>
+                    <div class="mapa-container">
+                        <div id="map-canvas" style="width:100%; height:400px"></div>
+                    </div>
 
                 </div>
                 <!--end col-sm-6-->
@@ -197,9 +109,7 @@
         
             <!--begin col-md-12-->
             <div class="col-md-10 col-md-offset-1 text-center">
-                <h2 class="section-title">Financial News</h2>
-                
-                <p class="section-subtitle">There are many variations of passages of Lorem Ipsum available, but the majority<br>have suffered alteration, by injected humour, or new randomised words.</p>
+                <h2 class="section-title">Últimas noticias</h2>
             </div>
             <!--end col-md-12-->
         
@@ -218,7 +128,7 @@
                     <!--begin popup image -->
                     <div class="popup-wrapper">
                         <div class="popup-gallery">
-                            <a href="#"><img src="http://placehold.it/360x315" class="width-100" alt="pic"><span class="eye-wrapper2"><i class="icon icon-link eye-icon"></i></span></a>
+                            <a href="#"><img src="http://cadenacacaoca.info/wp-content/uploads/2018/12/IIFNC_inauguracion.jpg" class="width-100" alt="pic"><span class="eye-wrapper2"><i class="icon icon-link eye-icon"></i></span></a>
                         </div>
                     </div>
                     <!--begin popup image -->
@@ -226,13 +136,9 @@
                     <!--begin blog-item_inner -->
                     <div class="blog-item-inner">
                     
-                        <h3 class="blog-title"><a href="#">Financial Planning</a></h3>
+                        <h3 class="blog-title"><a href="#">II Foro Nacional de Cacao con actores de cadena de valor del cacao</a></h3>
                         
-                        <a href="#" class="blog-icons"><i class="icon icon-user"></i> Paul Smith</a>
-                        
-                        <a href="#" class="blog-icons last"><i class="icon icon-tags"></i> Finance</a>
-                        
-                        <p>Quis autem velis etis reprehender etims quiste voluptate velite esse quam nihil etsa illum sedit consequatur netsum...</p>
+                        <p>Este 13 y 14 de noviembre de 2018 se lleva a cabo el II Foro Nacional del Cacao con el objetivo de contribuir a la interacción y organización entre los actores de la cadena de valor del cacao, así como a promover su participación en el mercado local e internacional...</p>
                                                                            
                     </div>
                     <!--end blog-item-inner -->
@@ -252,7 +158,7 @@
                     <!--begin popup image -->
                     <div class="popup-wrapper">
                         <div class="popup-gallery">
-                            <a href="#"><img src="http://placehold.it/360x315" class="width-100" alt="pic"><span class="eye-wrapper2"><i class="icon icon-link eye-icon"></i></span></a>
+                            <a href="#"><img src="http://cadenacacaoca.info/wp-content/uploads/2017/05/IMG_20170622_134103916_HDR.jpg" class="width-100" alt="pic"><span class="eye-wrapper2"><i class="icon icon-link eye-icon"></i></span></a>
                         </div>
                     </div>
                     <!--begin popup image -->
@@ -260,13 +166,9 @@
                     <!--begin blog-item_inner -->
                     <div class="blog-item-inner">
                     
-                        <h3 class="blog-title"><a href="#">Financial Solutions</a></h3>
+                        <h3 class="blog-title"><a href="#">Conforman comisiòn centroamericana del cacao</a></h3>
                         
-                        <a href="#" class="blog-icons"><i class="icon icon-user"></i> By John Doe</a>
-                        
-                        <a href="#" class="blog-icons last"><i class="icon icon-tags"></i> Startups</a>
-                        
-                        <p>Quis autem velis etis reprehender etims quiste voluptate velite esse quam nihil etsa illum sedit consequatur netsum...</p>
+                        <p>Granada, Nicaragua, Septiembre 2017.Compartir experiencias entre países, dar y recibir información, profundizando sobre estrategias locales, o bien vacíos que es necesario superar, son parte del proceso de reflexión del Seminario de la Cadena de Valor del Cacao en Centroamérica...</p>
 
                     </div>
                     <!--end blog-item-inner -->
@@ -286,7 +188,7 @@
                     <!--begin popup image -->
                     <div class="popup-wrapper">
                         <div class="popup-gallery">
-                            <a href="#"><img src="http://placehold.it/360x315" class="width-100" alt="pic"><span class="eye-wrapper2"><i class="icon icon-link eye-icon"></i></span></a>
+                            <a href="#"><img src="http://cadenacacaoca.info/wp-content/uploads/2017/05/DSC05787.jpg" class="width-100" alt="pic"><span class="eye-wrapper2"><i class="icon icon-link eye-icon"></i></span></a>
                         </div>
                     </div>
                     <!--begin popup image -->
@@ -294,13 +196,9 @@
                     <!--begin blog-item_inner -->
                     <div class="blog-item-inner">
                     
-                        <h3 class="blog-title"><a href="#">Business 2017</a></h3>
+                        <h3 class="blog-title"><a href="#">Intercambio entre productores centroamericanos y República Dominicana</a></h3>
                         
-                        <a href="#" class="blog-icons"><i class="icon icon-user"></i> By Joe Smith</a>
-                        
-                        <a href="#" class="blog-icons last"><i class="icon icon-tags"></i> Business</a>
-                        
-                        <p>Quis autem velis etis reprehender etims quiste voluptate velite esse quam nihil etsa illum sedit consequatur netsum...</p>
+                        <p>Santo Domingo, República Dominicana, Septiembre 2017. El modelo organizativo de actores de la cadena de valor del Cacao en República Dominicana, sirvió de atractivo para que productores de Cacao Centroamericano, realizaran un viaje de intercambio con el propósito de aprender...</p>
 
                     </div>
                     <!--end blog-item-inner -->
@@ -320,32 +218,7 @@
 </section>
 <!--end blog -->    
 
-<!--begin section-grey -->
-{% get_flatpages as flatpages %}
-    {% for page in flatpages %}
-        {% if page.url == '/video-inicio/' and page.content %}
-            <section class="section-grey">
-                
-                <div class="container">
 
-                    <div class="row">
-                    
-                        <div class="col-md-12">
-                            <h4>{{page.title}}</h4>
-                            <div class="tab-content text-left" data-tab="1">
-                                 {{ page.content|safe}}
-                            </div>
-                                    
-                        </div>
-                    
-                    </div>
-
-                </div>
-
-            </section>
-        {% endif %} 
-    {% endfor %}
-<!--end section-grey-->
 {% endblock content %}
 
 {% block extra_js %}

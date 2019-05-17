@@ -31,8 +31,8 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,400i,700,700i,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Oleo+Script+Swash+Caps" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lobster|Oleo+Script+Swash+Caps" rel="stylesheet">
+
+
 
     <!-- LOADING FONTS AND ICONS -->
     <!-- <link rel="stylesheet" type="text/css" href="revolution/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css">
@@ -147,14 +147,13 @@
                         <li><a href="/actores/" class="menu-last {% if '/actores/' in request.path %}selected{% endif %}">Directorio</a></li>
                         {% if user.is_authenticated %}
                             <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.get_full_name|default:user.username}} <span class="caret"></span></a>
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.username}} <span class="caret"></span></a>
                               <ul class="dropdown-menu">
                                 <li><a href="/accounts/profile/">Ir al perfil</a></li>
                                 <li><a href="/accounts/logout/">Salir</a></li>
                               </ul>
                             </li>
                         {% else %}
-                            <li><a href="/accounts/signup/" class="menu-last">Registrarse</a></li>
                             <li><a href="/accounts/login/" class="menu-last">Iniciar Sesion</a></li>
                         {% endif %}
                         <li><a href="/static/ManualDirectorioCacao.pdf" class="menu-last" target="_blank">Manual</a></li>
@@ -201,7 +200,7 @@
             <div class="row text-center">
                 <!--begin col-sm-12-->
                 <div class="col-sm-12 sponsors">
-                    <img src="/static/images/footer-banner.png" class="sponsor" alt="image">
+                    <img src="/static/images/sponsor.jpg" class="sponsor" alt="image">
 
                 </div>
                 <!--end col-sm-12-->
