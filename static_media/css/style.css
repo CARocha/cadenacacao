@@ -4,6 +4,7 @@
 body {
   font-family: 'Roboto', sans-serif;
 }
+h1,
 h2,
 h3,
 h4,
@@ -12,6 +13,7 @@ h6 {
   font-family: 'Lato', sans-serif;
   color: #7e381a;
   font-weight: 500;
+  color: #7e381a;
 }
 p {
   line-height: 30px;

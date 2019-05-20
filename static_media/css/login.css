@@ -1,5 +1,39 @@
+    .socialaccount_providers{
+    	text-align: center;
+    	margin: 20px 0px;
+    }
+
+    .socialaccount_providers .socialaccount_provider{
+		border-radius: 50px;
+		text-align: center;
+		color: white;
+
+    }
+    .socialaccount_providers .btn{
+    	padding: 10px 30px;
+    }
+	.socialaccount_providers .google{
+		background-color: #dd4b39;
+	}
+
+	.socialaccount_providers .google:hover{
+		background-color: #be3423;
+	}
+	.socialaccount_providers .facebook{
+		background-color: #3b5998;
+	}
+
+	.socialaccount_providers .facebook:hover{
+		background-color: #192e59;
+	}
+	.socialaccount_providers .twitter{
+		background-color: #1da1f2;
+	}
+	.socialaccount_providers .twitter:hover{
+		background-color: #1c6ea1;
+	}
     .or-seperator {
-        margin: 15px 0 15px;
+        margin: 40px 0 15px;
         text-align: center;
         border-top: 1px solid #e0e0e0;
     }
@@ -18,37 +52,19 @@
         top: -22px;
         z-index: 1;
     }
-    .social-btn .btn {
-		color: #fff;
-        margin: 10px 0 0 30px;
-		font-size: 15px;
-        width: 55px;
-        height: 55px;
-        line-height: 38px;
-        border-radius: 50%;
-		font-weight: normal;
-        text-align: center;
-		border: none;
-		transition: all 0.4s;
-    }	
-	.social-btn .btn:first-child {
-		margin-left: 0;
+    .login-user form label{
+    	display: none;
+    }
+	.contact-submit{
+		background: #c22026;
+	    border-color: #c22026;
+	    padding: 10px;
+	    color: white;
+	    border: 2px solid #c22026;
 	}
-	.social-btn .btn:hover {
-		opacity: 0.8;
+	.contact-submit:hover{
+		border: 2px solid #c22026;
+    	color: #c22026;
+    	background-color: transparent;
 	}
-	.social-btn .btn-primary {
-		background: #507cc0;
-	}
-	.social-btn .btn-info {
-		background: #64ccf1;
-	}
-	.social-btn .btn-danger {
-		background: #df4930;
-	}
-	.social-btn .btn i {
-		font-size: 20px;
-	}
-	.section-grey.small-padding{
-		padding: 10px 0px;
-	}
+	
