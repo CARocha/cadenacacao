@@ -65,6 +65,12 @@ class RedesFrom(forms.ModelForm):
 		fields = '__all__'
 		exclude = ['organizacion',]
 
+class VideosForm(forms.ModelForm):
+	class Meta:
+		model = LinkVideos
+		fields = '__all__'
+		exclude = ['organizacion',]
+
 class EmailForm(forms.Form):
 	mensaje = forms.CharField(widget=forms.Textarea,label="Descripción breve",max_length=2000)
 

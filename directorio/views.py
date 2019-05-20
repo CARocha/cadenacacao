@@ -264,23 +264,27 @@ def crear_org(request,template='crear_org.html'):
 @login_required
 def editar_org(request,template='editar_org.html',slug=None):
 	object = Organizacion.objects.get(slug=slug)
-	FormSetInit = inlineformset_factory(Organizacion, ProductosServicios, form=ProductosServiciosFrom,max_num=9,extra=9)
-	FormSetInit2 = inlineformset_factory(Organizacion, Redes, form=RedesFrom,extra=11,max_num=11)
+	FormSetInit = inlineformset_factory(Organizacion, ProductosServicios, form=ProductosServiciosFrom,extra=1)
+	FormSetInit2 = inlineformset_factory(Organizacion, Redes, form=RedesFrom,extra=1)
+	FormSetInit3 = inlineformset_factory(Organizacion, LinkVideos, form=VideosForm,extra=1)
 
 	if request.method == 'POST':
 		form = OrgForm(request.POST,request.FILES,instance=object)
-		formset = FormSetInit(request.POST,request.FILES,instance=object)
+		formset1 = FormSetInit(request.POST,request.FILES,instance=object)
 		formset2 = FormSetInit2(request.POST,request.FILES,instance=object)
-		if form.is_valid() and formset.is_valid() and formset2.is_valid():
+		formset3 = FormSetInit3(request.POST,request.FILES,instance=object)
+		if form.is_valid() and formset1.is_valid() and formset2.is_valid() and formset3.is_valid():
 			form.save()
-			formset.save()
+			formset1.save()
 			formset2.save()
+			formset3.save()
 			return HttpResponseRedirect('/accounts/profile/')
 
 	else:
 		form = OrgForm(instance=object)
-		formset = FormSetInit(instance=object)
+		formset1 = FormSetInit(instance=object)
 		formset2 = FormSetInit2(instance=object)
+		formset3 = FormSetInit3(instance=object)
 
 	return render(request, template, locals())
 
