@@ -21,6 +21,7 @@ from directorio.views import *
 from context import *
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib.auth import views as auth_views
+from django.views.generic import TemplateView
 
 
 urlpatterns = [
@@ -51,6 +52,7 @@ urlpatterns = [
     url(r'^actores/perfil/(?P<slug>[\w-]+)/$', detail_org, name='detail-org'),
     url(r'^mapa/$', obtener_lista, name='obtener-lista'),
     url(r'^accounts/', include('allauth.urls')),
+    url(r'^politica-condiciones/$', TemplateView.as_view(template_name="policy-service.html")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()
