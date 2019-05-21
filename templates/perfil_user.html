@@ -2,37 +2,31 @@
 {% load el_pagination_tags static %}
 {% block content %}
 
-<style type="text/css">
-	.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
-    color: #555;
-    cursor: default;
-    background-color: #b5be14 !important;
-    border: 1px solid #3d3a35 !important;
-    border-bottom-color: transparent;
-}
+
 
 </style>
 	<section class="section-grey small-padding">
 
         <!--begin container-->
-        <div class="container detalle-user">
+        <div class="container ">
 
+        	
         	<div class="row">
-        		<ol class="breadcrumb">
-	        		<li>
-	        			<a href="/accounts/profile/user/editar">Editar perfil</a>
-	        		</li>
-	        		<li>
-	        			<a href="/accounts/password/reset/">Resetear contraseña</a>
-	        		</li>
-                    <li>
-                        <a href="/accounts/profile/crear/">Crear Organización</a>
-                    </li>
-	        	</ol>
-        	</div>
-        	<div class="row">
-        		<div class="col-xs-12 col-sm-5">
-        			<div class="panel panel-primary">
+        		<div class="col-xs-12 col-sm-5 detalle-user">
+        			<div class="row">
+		        		<ol class="breadcrumb">
+			        		<li>
+			        			<a href="/accounts/profile/user/editar">Editar perfil</a>
+			        		</li>
+			        		<li>
+			        			<a href="/accounts/password/reset/">Resetear contraseña</a>
+			        		</li>
+		                    <li>
+		                        <a href="/accounts/profile/crear/">Crear Organización</a>
+		                    </li>
+			        	</ol>
+		        	</div>
+        			<div class="panel panel-primary ">
 		        		<div class="panel-heading">
 		                    <h3 class="panel-title display-inline">Perfil de Usuario</h3>
 
@@ -58,64 +52,141 @@
 		        	</div>
         		</div>
         		<div class="col-xs-12 col-sm-7">
+					
+					
+
+
         			{% if organizaciones %}
+        			<div class="panel panel-listorg">
+        				<div class="panel-heading">
+        					<ul class="list-inline tab-admin" id="myTab" role="tablist">
+        						<li class="nav-item">
+        							<a class="nav-link active panel-title" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Organizaciones</a>
+        						</li>
+        						<li class="nav-item">
+        							<a class="nav-link panel-title" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Solicitar vinculación</a>
+        						</li>
+        						<li class="nav-item">
+        							<a class="nav-link panel-title" id="profile-tab" data-toggle="tab" href="#profilepermisso" role="tab" aria-controls="profilepermisso" aria-selected="false">Soporte</a>
+        						</li>
+        					</ul>
+        				</div>
+        				<div class="panel-body">
+        					<div class="tab-content" id="myTabContent">
+							  	<div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
+				        			
+				        				{% paginate 3 organizaciones %}
+				        				{% for org in organizaciones %}
+				        				<div class="bg-white item-org">
+				        					<div class="row">
+				        						
+				        						<div class="col-md-12">
+				        							<h5 class="m-0">{{org.nombre}}</h5>
+				        							<small class=""> <i class="icon-calendar"> </i> Actualización: {{org.actualizado}}</small>
+				        							<div class="">
+				        								<p><strong> <span class="badge">{{ org.usuario.all.count }}</span> Usuarios  :</strong>{% for users in org.usuario.all%} {{users}}{% if forloop.last%}{%else%},{%endif%}{% endfor %}</p>
+				        							</div>	
+				        							<!--
+				        							: {% for users in org.usuario.all%} {{users}}{% if forloop.last%}{%else%},{%endif%}{% endfor %}
+		                                    		</p>-->
+				        						
+				        						
+				        						</div>
+				        						<div class="col-md-12">
+				        							<ol class="breadcrumb pull-right m-0">
+										        		<li>
+										        			<a  href="{% url "detail-org" org.slug %}">Perfil </a>
+										        		</li>
+										        		<li>
+										        			<a  href="{% url "editar-org" org.slug %}">Editar</a>
+										        		</li>
+									                    <li>
+									                        <a  href="{% url "editar-permisos-user" org.slug %}">Permisos</a>
+									                    </li>
+										        	</ol>
+				        						</div>
+				        						
+				        					</div>
 
-        			<ul class="nav nav-tabs" id="myTab" role="tablist">
-					  <li class="nav-item">
-					    <a class="nav-link active panel-title" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Organizaciones</a>
-					  </li>
-					  <li class="nav-item">
-					    <a class="nav-link panel-title" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Solicitar vinculación</a>
-					  </li>
-                      <li class="nav-item">
-                        <a class="nav-link panel-title" id="profile-tab" data-toggle="tab" href="#profilepermisso" role="tab" aria-controls="profilepermisso" aria-selected="false">Permisos</a>
-                      </li>
-					</ul>
-					<div class="tab-content" id="myTabContent">
-					  <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
-		        			<ul class="list-group margin-bottom-0">
-		        				{% paginate 5 organizaciones %}
-		        				{% for org in organizaciones %}
-		        				<li class="list-group-item">
+											
+				                        </div>
+				                       {% endfor %}
+				        			
+				        			<nav class="Page navigation">
+							            <ul class="pagination pull-right">
+							                <li>
+							                    {% show_pages %}
+							                </li>
+							            </ul>
+							        </nav>
+							  	</div>
+							  	<div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+							  		<div class="bg-white p-15">
+							  			<form method="POST" id="contact-form">{% csrf_token %}
+							  				<div class="row">
+							  					<div class="col-md-12 mb-10">
+							  						{% if enviado == 1 %}
+						                            <div class="alert alert-success" role="alert">Su mensaje ha sido enviado correctamente!!!</div>
+						                            {% endif %}
+							                        <p>Enviar mensaje al administrador del sistema si desea que su perfil se asocie a una organización/especialista</p>
+							                        <p>Adjuntar información básica para el registro de la misma</p>
+							  					</div>
+							  					<div class="col-md-12 mb-10">
+							  						<label for="organizacion">Organización:</label>
+					                       			{{form1.cual_org}}
+							  					</div>
+							  					<div class="col-md-12 mb-10">
+							  						<label for="asunto">Asunto:</label> 
+						                        	{{form1.asunto}}
+							  					</div>
+							  					<div class="col-md-12">
+							  						<input class="btn btn-sm btn-blue" type="submit" name="Enviar" value="Enviar mensaje">
+							  					</div>
+					                        
+					                        
+						                        
+					                        
+					                       </div>
+					                    </form>
+							  		</div>
+								  	
+							  	</div>
 
-									<p>	<b>{{org.nombre}} </b><a href="{% url "detail-org" org.slug %}">Perfil </a>| <a href="{% url "editar-org" org.slug %}">Editar</a> | Usuarios: {% for users in org.usuario.all%} {{users}}{% if forloop.last%}{%else%},{%endif%}{% endfor %}
-                                    </p>
-		                        </li>
-		                       {% endfor %}
-		        			</ul>
-		        			<nav class="Page navigation">
-					            <ul class="pagination pull-right">
-					                <li>
-					                    {% show_pages %}
-					                </li>
-					            </ul>
-					        </nav>
-					  </div>
-					  <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-					  	<form method="POST" id="contact-form">{% csrf_token %}
-                        {% if enviado == 1 %}
-                            <div class="alert alert-success" role="alert">Su mensaje ha sido enviado correctamente!!!</div>
-                            {% endif %}
-                        <p>Enviar mensaje al administrador del sistema si desea que su perfil se asocie a una organización/especialista</p>
-                        <p>Adjuntar información básica para el registro de la misma</p>
-                        Organizacion: {{form1.cual_org}} <br>
-                        Asunto: {{form1.asunto}}<br>
-                        <input type="submit" name="Enviar" value="Enviar mensaje">
-                    </form>
-					  </div>
+		                      	<div class="tab-pane" id="profilepermisso" role="tabpanel" aria-labelledby="profile-tab">
 
-                      <div class="tab-pane" id="profilepermisso" role="tabpanel" aria-labelledby="profile-tab">
+			                        <div class="bg-white p-15">
+							  			<form method="POST" id="contact-form">{% csrf_token %}
+							  				<div class="row">
+							  					<div class="col-md-12 mb-10">
+							  						{% if enviado == 1 %}
+						                            <div class="alert alert-success" role="alert">Su mensaje ha sido enviado correctamente!!!</div>
+						                            {% endif %}
+							                        <p>Enviar mensaje al administrador del sistema si tiene algun problema en la plataforma.</p>
+							                        <p>Adjuntar información básica para el registro de la misma</p>
+							  					</div>
 
-                        {% for org in organizaciones %}
-                        <li class="list-group-item">
-                            <p> <b>{{org.nombre}} </b> |
-                                <a href="{% url "editar-permisos-user" org.slug %}">Editar Permiso</a>
-                            </p>
-                        </li>
-                        {% endfor %}
-                      </div>
+							  					<div class="col-md-12 mb-10">
+							  						<label for="asunto">Asunto:</label> 
+						                        	{{form1.asunto}}
+							  					</div>
+							  					<div class="col-md-12">
+							  						<input class="btn btn-sm btn-blue" type="submit" name="Enviar" value="Enviar mensaje">
+							  					</div>
+					                        
+					                        
+						                        
+					                        
+					                       </div>
+					                    </form>
+							  		</div>
+		                      	</div>
 
-					</div>
+							</div>
+        				</div>
+        			</div>
+
+        			
+					
 
 		        	{% else %}
 		        	<form method="POST" id="contact-form">{% csrf_token %}
@@ -148,6 +219,7 @@
 <script src="/static/js/bootstrap-select.min.js"></script>
 <script type="text/javascript">
     $('#id_cual_org').addClass( "form-control" );
+    $('#id_asunto').addClass( "form-control" );
     $(document).ready(function() {
         $('#myTab li:first-child a').tab('show') // Select first tab
 

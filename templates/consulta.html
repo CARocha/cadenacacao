@@ -160,21 +160,31 @@
                                         <div class="row">
                                             <div class="col-xs-12">
                                                 <ul class="list-inline">
+                                                    <li><i class="icon-pin-map"></i><b> País: </b>{{obj.pais_sede}}</li>
                                                     <li class="">
                                                         <b>Calificación: </b>{% ratings obj %}
                                                     </li>
                                                     <li class="">
                                                         <i class="icon-calendar"> </i> <b>Actualización: </b>{{obj.actualizado}}
                                                     </li>
+
                                                 </ul>
                                             </div>
                                         </div>
                                         <div class="clearfix"></div>
                                         <div class="desc-obj"><b>Descripción de la Organización: </b>{{obj.objetivo|safe|truncatewords:35}}</div>
+                                        
+                                        
                                         <div class="">
                                             <ul class="list-inline">
-                                                
-                                                <li><i class="icon-pin-map"></i><b> País: </b>{{obj.pais_sede}}</li>
+                                                <li><i class="icon-user"></i><b> Contacto: </b>{{obj.contacto_1|default:"Sin contacto"}}</li>
+                                                <li><i class="icon-email-envelope"></i><b> Correo: </b>{{obj.correo_1|default:"Sin correo"}}</li>
+                                                <li><i class="icon-call-phone"></i><b> Teléfono: </b>{{obj.telefono_1|default:"Sin teléfono"}}</li>
+                                            </ul>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="">
+                                            <ul class="list-inline">
                                                 <li>
                                                     {% for red in obj.redes_set.all %}
                                                         <a href="{{red.url}}" class="
@@ -203,14 +213,6 @@
                                                             {% endif %}" target="_blank"></a>
                                                     {% endfor %}
                                                 </li>
-                                            </ul>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                        <div class="">
-                                            <ul class="list-inline">
-                                                <li><i class="icon-user"></i><b> Contacto: </b>{{obj.contacto_1|default:"Sin contacto"}}</li>
-                                                <li><i class="icon-email-envelope"></i><b> Correo: </b>{{obj.correo_1|default:"Sin correo"}}</li>
-                                                <li><i class="icon-call-phone"></i><b> Teléfono: </b>{{obj.telefono_1|default:"Sin teléfono"}}</li>
                                             </ul>
                                         </div>
                                         
