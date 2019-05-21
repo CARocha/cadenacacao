@@ -33,8 +33,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    #'allauth.socialaccount.providers.twitter',
-    #'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.twitter',
+    'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
     'haystack',
     'directorio',
@@ -173,9 +173,43 @@ SOCIALACCOUNT_PROVIDERS = {
             'email',
         ],
         'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    },
+    'twitter': {
+        'SCOPE': [
+            'email',
+        ],
+        'AUTH_PARAMS': {
             'access_type': 'offline',
         }
-    }
+    },
+    'facebook': {
+        'SCOPE': [
+            'email',
+            'public_profile',
+            'user_friends',
+            ],
+        'AUTH_PARAMS': { 'auth_type': 'reauthenticate' },
+        'METHOD': 'oauth2',
+        'INIT_PARAMS': {'cookie': True},
+        'FIELDS': [
+            'id',
+            'email',
+            'name',
+            'first_name',
+            'last_name',
+            'verified',
+            'locale',
+            'timezone',
+            'link',
+            'gender',
+            'updated_time',
+        ],
+        'EXCHANGE_TOKEN': True,
+        'VERIFIED_EMAIL': False,
+        'VERSION': 'v2.12',
+        },
 }
 SITE_ID = 1
 LOGIN_REDIRECT_URL = 'profile'
