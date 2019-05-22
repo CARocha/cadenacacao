@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'haystack',
     'directorio',
+    'configuracion',
     'location_field.apps.DefaultConfig',
     'sorl.thumbnail',
     'star_ratings',
@@ -46,6 +47,7 @@ INSTALLED_APPS = [
     'import_export',
     'ckeditor',
     'ckeditor_uploader',
+    'solo.apps.SoloAppConfig',
 ]
 
 DISQUS_API_KEY = 'ivkMjZNobjdzF9S4xS9vvHLQgCJGim1BTlbi5l0Gl4Cak27oEYNKkJHCTTvzeyIl'
