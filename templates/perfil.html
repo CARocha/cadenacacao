@@ -13,10 +13,10 @@
 
       <!--begin section-white -->
     <section class="section-white small-padding">
-        
+
         <!--begin container-->
         <div class="container org-perfil">
-            
+
             <h5 class="border-bottom-black">
                {{object.nombre}}
             </h5>
@@ -26,8 +26,8 @@
                     <ul class="list-inline lista-perfil">
                         <li class="pull-left">
                             <a>Calificación: <!--<img src="/static/images/cacaoranking.png" alt="" width="150px"> -->{% ratings object %}</a>
-                            
-                            
+
+
                         </li>
                         <li class="pull-right">
                             <a ><i class="icon-calendar"> </i> Actualización: {{object.actualizado}} </a>
@@ -35,7 +35,7 @@
                     </ul>
                 </div>
             </div>
-            
+
             <div class="row">
                 <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
                     <div class="panel panel-primary">
@@ -63,7 +63,7 @@
                                         <li class="list-group-item">
                                             <i class="icon-pin-map"><b> Cobertura geográfica:</b> {{object.cobertura}}</i>
                                         </li>
-                                  
+
                                     </ul>
                                 </div>
 
@@ -79,7 +79,7 @@
 
 
                             </div>
-                            
+
                         </div>
                     </div>
                     <div class="panel panel-primary">
@@ -87,11 +87,26 @@
                             <h3 class="panel-title">Descripción de la Organización</h3>
                         </div>
                         <div class="panel-body">
-                            
+
                            <p>{{object.objetivo|safe}}</p>
-                  
+
                         </div>
                     </div>
+                    {% if object.linkvideos_set.all %}
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Videos</h3>
+                        </div>
+                        <div class="panel-body">
+                        {% for video in object.linkvideos_set.all %}
+                                <iframe width="420" height="315"
+                                    src="{{video.url}}">
+                                    </iframe>
+                        {% endfor %}
+
+                        </div>
+                    </div>
+                    {% endif %}
                     {% if fotos %}
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -99,12 +114,12 @@
                         </div>
                         <div class="panel-body ">
                             <div class="row">
-                
+
                                 <div id="myCarousel" class="carousel carousel1 slide  margin-bottom-30" data-interval="false">
-                                    
+
                                     <!-- Wrapper for slides -->
                                     <div class="carousel-inner">
-                                    
+
                                         <div class="item active popup-gallery">
 
                                             {% for foto in fotos|slice:":3" %}
@@ -118,14 +133,14 @@
                                                         {% if foto.descripcion %}
                                                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum maximus lacus quis feugiat. Ut lobortis mi sed sem posuere, et amet.</p>
                                                         {% endif %}
-                                                        
+
                                                     </div>
-                                                
+
                                                 </div>
                                             </a>
-                                                
-                                            {% endfor %}                                               
-                                
+
+                                            {% endfor %}
+
                                         </div>
                                         <div class="item popup-gallery">
 
@@ -141,10 +156,10 @@
                                                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum maximus lacus quis feugiat. Ut lobortis mi sed sem posuere, et amet.</p>
                                                         {% endif %}
                                                     </div>
-                                                
+
                                                 </div>
                                             </a>
-                                                
+
                                             {% endfor %}
                                         </div>
 
@@ -162,13 +177,13 @@
                                                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum maximus lacus quis feugiat. Ut lobortis mi sed sem posuere, et amet.</p>
                                                         {% endif %}
                                                     </div>
-                                                
+
                                                 </div> %}
                                             </a>
-                                                
+
                                             {% endfor %}
                                         </div>
-                                        
+
                                     </div>
 
                                     <!-- Indicators -->
@@ -181,7 +196,7 @@
                                             <li data-target="#myCarousel" data-slide-to="2"></li>
                                         {% endif %}
                                     </ol>
-                                    <!-- Left and right controls 
+                                    <!-- Left and right controls
                                       <a class="left carousel-control" href="#myCarousel" data-slide="prev">
                                         <span class="glyphicon glyphicon-chevron-left"></span>
                                         <span class="sr-only">Previous</span>
@@ -192,9 +207,9 @@
                                       </a>-->
 
                                 </div>
-                            
+
                             </div>
-                            
+
                         </div>
                     </div>
                     {% endif %}
@@ -209,21 +224,21 @@
                             <ul class="list-group margin-bottom-0">
                                 {% if object.correo_1 %}
                                    <li class="list-group-item">
-                                        <b>Correo:</b> <a href="mailto:{{object.correo_1}}">{{object.correo_1|default:"Sin correo"}} </a> 
-                                    </li> 
+                                        <b>Correo:</b> <a href="mailto:{{object.correo_1}}">{{object.correo_1|default:"Sin correo"}} </a>
+                                    </li>
                                 {% endif %}
                                 {% if object.telefono_1 %}
                                     <li class="list-group-item">
                                         <b>Teléfono: </b><a href="tel:{{object.telefono_1}}">{{object.telefono_1|default:"Sin teléfono"}} </a>
                                     </li>
                                 {% endif %}
-                                
-                                
+
+
                             </ul>
                         </div>
                     </div>
                     {% endif %}
-                    
+
                     {% if object.contacto_2 or object.correo_2 or object.telefono_2 %}
                     <div class="panel panel-primary">
                         <div class="panel-heading">
@@ -233,7 +248,7 @@
                             <ul class="list-group margin-bottom-0">
                                 {% if object.correo_2 %}
                                     <li class="list-group-item">
-                                        <b>Correo:</b> <a href="mailto:{{object.correo_2}}">{{object.correo_2|default:"Sin correo"}} </a> 
+                                        <b>Correo:</b> <a href="mailto:{{object.correo_2}}">{{object.correo_2|default:"Sin correo"}} </a>
                                     </li>
                                 {% endif %}
                                 {% if object.telefono_2 %}
@@ -241,9 +256,9 @@
                                         <b>Teléfono: </b><a href="tel:{{object.telefono_2}}">{{object.telefono_2|default:"Sin teléfono"}} </a>
                                     </li>
                                 {% endif %}
-                                
-                                
-                                
+
+
+
                             </ul>
                         </div>
                     </div>
@@ -304,7 +319,7 @@
                                         {% endfor %}
                                 </li>
                                 {% endif %}
-                                
+
                             </ul>
                         </div>
                     </div>
@@ -314,7 +329,7 @@
             <!--<img src="/static/images/disqus.png" alt="" width="100%">-->
             {% load disqus_tags %}
             {% disqus_show_comments %}
-    
+
     </section>
 {% endblock content %}
 
@@ -339,7 +354,7 @@
             }
         });
     });
-</script> 
+</script>
 
 <script>
       function initMap() {
