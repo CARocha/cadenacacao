@@ -448,6 +448,24 @@ select#input {
 .panel-search .panel-body {
   background-color: #f8f9fb;
 }
+.panel-perfil {
+  -moz-box-shadow: 0 8px 7px rgba(0,0,0,0.3);
+  -webkit-box-shadow: 0 8px 7px rgba(0,0,0,0.3);
+  box-shadow: 0 8px 7px rgba(0,0,0,0.3);
+}
+.panel-perfil .panel-heading {
+  background-color: #f47521;
+  padding: 10px;
+}
+.panel-perfil .panel-heading ul {
+  margin-bottom: 0px;
+}
+.panel-perfil .panel-heading ul li a {
+  font-weight: bold;
+  font-family: 'Lato', sans-serif;
+  color: #fff;
+  font-size: 17px;
+}
 .tab-busca,
 .tab-admin {
   margin: 0;
@@ -671,6 +689,12 @@ select#input {
 .panel-listorg .item-org .badge {
   background-color: #7e381a;
   color: #fff;
+}
+ol.breadcrumb {
+  margin: 10px;
+}
+ol.breadcrumb .active {
+  color: #89181c;
 }
 ol.breadcrumb li a:hover {
   color: #c22026;

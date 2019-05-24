@@ -5,30 +5,32 @@
 
 
 </style>
+	<section>
+		<ol class="breadcrumb">
+			<li class="active">Perfil de usuario</li>
+		</ol>
+	</section>
 	<section class="section-grey small-padding">
-
+	
         <!--begin container-->
         <div class="container ">
 
         	
         	<div class="row">
-        		<div class="col-xs-12 col-sm-12 col-md-5 detalle-user">
-        			<div class="row">
-		        		<ol class="breadcrumb">
-			        		<li>
-			        			<a href="/accounts/profile/user/editar">Editar perfil</a>
-			        		</li>
-			        		<li>
-			        			<a href="/accounts/password/reset/">Resetear contraseña</a>
-			        		</li>
-		                    <li>
-		                        <a href="/accounts/profile/crear/">Crear Organización</a>
-		                    </li>
-			        	</ol>
-		        	</div>
-        			<div class="panel panel-primary ">
+        		<div class="col-xs-12 col-sm-12 col-md-5">
+        			<div class="panel panel-perfil ">
 		        		<div class="panel-heading">
-		                    <h3 class="panel-title display-inline">Perfil de Usuario</h3>
+		                    <ul class="list-inline">
+				        		<li>
+				        			<a href="/accounts/profile/user/editar">Editar perfil</a>
+				        		</li>
+				        		<li>
+				        			<a href="/accounts/password/reset/">Resetear contraseña</a>
+				        		</li>
+			                    <li>
+			                        <a href="/accounts/profile/crear/">Crear Organización</a>
+			                    </li>
+				        	</ul>
 
 		                </div>
 		        		<div class="panel-body no-padding">
@@ -224,9 +226,11 @@
 
 {% block extra_css %}
  <link rel="stylesheet" href="/static/css/bootstrap-select.min.css">
+ <link rel="stylesheet" href="/static/css/toastr.min.css">
 {% endblock extra_css %}
 {% block extra_js %}
 <script src="/static/js/bootstrap-select.min.js"></script>
+<script src="/static/js/toastr.min.js"></script>
 <script type="text/javascript">
     $('#id_cual_org').addClass( "form-control" );
     $('#id_asunto').addClass( "form-control" );
@@ -243,6 +247,27 @@
         });
 
     });
-
+    toastr.options = {
+	  "closeButton": true,
+	  "debug": false,
+	  "newestOnTop": false,
+	  "progressBar": true,
+	  "positionClass": "toast-top-right",
+	  "preventDuplicates": false,
+	  "onclick": null,
+	  "showDuration": "300",
+	  "hideDuration": "1000",
+	  "timeOut": "5000",
+	  "extendedTimeOut": "1000",
+	  "showEasing": "swing",
+	  "hideEasing": "linear",
+	  "showMethod": "fadeIn",
+	  "hideMethod": "fadeOut"
+	}
+    {% if enviado == 1 %}
+    	toastr.success('Su mensaje ha sido enviado correctamente!!!', {timeOut: 5000})
+    {% endif %}
+	  
+	
 </script>
 {% endblock extra_js %}

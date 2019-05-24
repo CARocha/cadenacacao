@@ -7,6 +7,12 @@
 {% endblock extra_css %}
 
 {% block content %}
+    <section>
+        <ol class="breadcrumb">
+            <li><a href="/accounts/profile/">Perfil de usuario</a></li>
+            <li class="active">Crear Organización</li>
+        </ol>
+    </section>
 <section class="section-grey small-padding">
 
         <!--begin container-->
@@ -18,12 +24,12 @@
                     <h4 class="border-bottom-black">Crear perfil de la organización</h4>
                     <p>Campos con (*) son requeridos</p>
                     {% if form.errors %}
-                        <ul class="alert alert-warning" role="alert">
+                        <ul class="alert alert-danger" role="alert">
                         {% for field in form %}
                             {% for error in field.errors %}
                                 <li>
                                   {% if field != '__all__' %}
-                                    <strong>{{ field.label }}:</strong>
+                                    <strong>{{ field.label }} </strong>
                                   {% endif %}
                                   {{ error }}
                                 </li>
