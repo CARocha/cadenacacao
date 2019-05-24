@@ -1,5 +1,6 @@
  {% extends "base.html" %}
  {% load thumbnail %}
+ {% load embed_video_tags %}
  {% load ratings %}
 {% block extra_css %}
     <link href="/static/css/font-awesome.css" rel="stylesheet">
@@ -101,15 +102,10 @@
                             <div class="row">
                                 {% for video in object.linkvideos_set.all %}
                                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                    <iframe width="100%" height="315" src="{{video.url}}">
-                                    </iframe>
+                                    {% video video.url '420x315' %}
                                 </div>
                                 {% endfor %}
                             </div>
-                        
-                                
-                        
-
                         </div>
                     </div>
                     {% endif %}

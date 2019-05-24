@@ -198,6 +198,28 @@ def user_profile(request,template='perfil_user.html'):
 
 	return render(request, template, locals())
 
+
+@login_required
+def enviar_correo_administradores(request, org=None):
+	user = User.objects.get(username = request.user)
+	orga = get_object_or_404(Organizacion, pk=org.id)
+
+	subject, from_email = 'Permiso otorgado!!', 'vecomesoamerica@gmail.com'
+	text_content = 'Usuario: ' + str(user.username) + '<br>'  + \
+					'Correo: ' + str(user.email) + '<br>'  + \
+					'Mensaje: ' + 'Ha otorgado permiso!'
+
+	html_content = 'Usuario: ' + str(user.username) + '<br>'  + \
+					'Correo: ' + str(user.email) + '<br>'  + \
+					'Mensaje: ' + 'Ha otorgado permiso!'
+
+	msg = EmailMultiAlternatives(subject, text_content, from_email,
+	                             [obj.email for obj in orga.usuario.all()])
+	msg.attach_alternative(html_content, "text/html")
+	msg.send()
+
+	return 1
+
 @login_required
 def permisos_organizacion(request,template='editar_permisos.html',slug=None):
 	org = get_object_or_404(Organizacion, slug=slug)
@@ -233,30 +255,36 @@ def editar_user(request,template='editar_user.html'):
 def crear_org(request,template='crear_org.html'):
 	FormSetInit = inlineformset_factory(Organizacion, ProductosServicios,
 	                                    form=ProductosServiciosFrom,
-	                                    max_num=9,extra=9)
+	                                    max_num=9,extra=1)
 	FormSetInit2 = inlineformset_factory(Organizacion, Redes,
 	                                     form=RedesFrom,
-	                                     extra=11,max_num=11)
+	                                     extra=1,max_num=11)
+	FormSetInit3 = inlineformset_factory(Organizacion, LinkVideos,
+	                                     form=VideosForm,
+	                                     extra=1, max_num=5)
 
 	if request.method == 'POST':
 		form = OrgForm(request.POST,request.FILES)
-		formset = FormSetInit(request.POST,request.FILES)
+		formset1 = FormSetInit(request.POST,request.FILES)
 		formset2 = FormSetInit2(request.POST,request.FILES)
+		formset3 = FormSetInit3(request.POST,request.FILES)
 
-		if form.is_valid() and formset.is_valid() and formset2.is_valid():
+		if form.is_valid() and formset1.is_valid() and formset2.is_valid() and formset3.is_valid():
 			form.save()
 			org = form.save(commit=False)
 			org.usuario.add(request.user)
 			org.save()
 			#guarda formsets inlines
-			formset.save()
+			formset1.save()
 			formset2.save()
+			formset3.save()
 			return HttpResponseRedirect('/accounts/profile/')
 
 	else:
 		form = OrgForm()
-		formset = FormSetInit()
+		formset1 = FormSetInit()
 		formset2 = FormSetInit2()
+		formset3 = FormSetInit3()
 
 	return render(request, template, locals())
 

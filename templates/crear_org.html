@@ -7,6 +7,11 @@
 {% endblock extra_css %}
 
 {% block content %}
+<style>
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{
+    border:0px !important;
+}
+</style>
 <section class="section-grey small-padding">
 
         <!--begin container-->
@@ -243,39 +248,68 @@
                         </div>
 
                         <div class="row">
-
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <h5 class="border-bottom-black">Links de Videos</h5>
+                                    {{ formset3.management_form }}
+                                    <div id="form_set">
+                                        {% for form in formset3.forms %}
+                                            {{form.non_field_errors}}
+                                            {{form.errors}}
+                                            <table class='no_error'>
+                                                {{ form }}
+                                            </table>
+                                        {% endfor %}
+                                    </div>
+                                <input type="button" value="Añadir más" id="add_more">
+                                <div id="empty_form" style="display:none">
+                                    <table class='no_error'>
+                                        {{ formset3.empty_form }}
+                                    </table>
+                                </div>
+                            </div>
                             <div class="col-xs-12 col-sm-6 col-md-6">
                                 <h5 class="border-bottom-black">Redes</h5>
                                 {{ formset2.management_form }}
-                                <script type="text/html" id="redes-template">
-                                  <fieldset class="redes-fieldset-__prefix__" style="display: none;">
-                                      {{ formset2.empty_form.as_p }}
-                                  </fieldset>
-                            </script>
-                                <div id="redes-container">
-                                    {% if formset2.erros %}
-                                        <p>{{formset2.errors}}</p>
-                                    {% endif %}
-                                    {% for form2 in formset2 %}
-                                      <fieldset class="redes-fieldset-{{ forloop.counter0 }}">
-                                        {{ form2.as_p }}
-                                      </fieldset>
+                                <div id="form_set2">
+                                    {% for form in formset2.forms %}
+                                        {{form.non_field_errors}}
+                                        {{form.errors}}
+                                        <table class='no_error'>
+                                            {{ form }}
+                                        </table>
                                     {% endfor %}
-                                  </div>
-                                <div>
-                                    <!--<button id="add-red" type="button">Agregar red</button>-->
                                 </div>
-
-                            </div>
-
-                            <div class="col-xs-12 col-sm-6 col-md-6">
-                                <h5 class="border-bottom-black">Productos/Servicios</h5>
-                                {% if formset.erros %}
-                                    <p>{{formset.errors}}</p>
-                                {% endif %}
-                                {{ formset.as_p }}
+                                <input type="button" value="Añadir más" id="add_more2">
+                                <div id="empty_form2" style="display:none">
+                                    <table class='no_error'>
+                                        {{ formset2.empty_form }}
+                                    </table>
+                                </div>
                             </div>
                         </div>
+
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <h5 class="border-bottom-black">Productos/Servicios</h5>
+                                {{ formset1.management_form }}
+                                <div id="form_set3">
+                                    {% for form in formset1.forms %}
+                                        {{form.non_field_errors}}
+                                        {{form.errors}}
+                                        <table class='no_error'>
+                                            {{ form }}
+                                        </table>
+                                    {% endfor %}
+                                </div>
+                                <input type="button" value="Añadir más" id="add_more3">
+                                <div id="empty_form3" style="display:none">
+                                    <table class='no_error'>
+                                        {{ formset1.empty_form }}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
 
 
                         <input type="submit" name="Editar" class="contact-submit" value="Guardar">
@@ -294,6 +328,30 @@
 <script src="/static/js/bootstrap-select.min.js"></script>
 <script src="/static/js/django-inline-form.js"></script>
 <script src="/static/location_field/leaflet.js"></script>
+
+<script type="text/javascript">
+    $('#add_more').click(function() {
+    var form_idx = $('#id_form-TOTAL_FORMS').val();
+    $('#form_set').append($('#empty_form').html().replace(/__prefix__/g, form_idx));
+    $('#id_form-TOTAL_FORMS').val(parseInt(form_idx) + 1);
+});
+</script>
+
+<script type="text/javascript">
+    $('#add_more2').click(function() {
+    var form_idx = $('#id_form-TOTAL_FORMS').val();
+    $('#form_set2').append($('#empty_form2').html().replace(/__prefix__/g, form_idx));
+    $('#id_form-TOTAL_FORMS').val(parseInt(form_idx) + 1);
+});
+</script>
+
+<script type="text/javascript">
+    $('#add_more3').click(function() {
+    var form_idx = $('#id_form-TOTAL_FORMS').val();
+    $('#form_set3').append($('#empty_form3').html().replace(/__prefix__/g, form_idx));
+    $('#id_form-TOTAL_FORMS').val(parseInt(form_idx) + 1);
+});
+</script>
 
 <script type="text/javascript">
     $('#id_participacion_cadena, #id_servicios, #id_paises_labora,#id_intercambio,#id_tipo_actividad').selectpicker({
@@ -330,21 +388,12 @@
         }
     });
 
-$('#add-red').click(function() {
-    x = $('input[name=redes_set-TOTAL_FORMS]').val();
-    y = parseInt(x) + 1;
-    $('input[name=redes_set-TOTAL_FORMS]').val(y);
-    count = parseInt(x)
-    $('#id_redes_set-'+count+'-opcion').addClass('form-control');
-});
+</script>
 
-$('#add-red').djangoInlineFormAdd({
-  prefix: "redes",
-  // deleteButtonId: "delete-author"
-});
-
-$('.errorlist').addClass('alert alert-warning')
-
+<script type="text/javascript">
+  $('.errorlist').addClass('alert alert-warning');
+  $('table').addClass('table');
+  $('#add_more, #add_more2, #add_more3').addClass('btn btn-sm');
 </script>
 
 {% endblock extra_js %}
