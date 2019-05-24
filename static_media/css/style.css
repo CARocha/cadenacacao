@@ -229,7 +229,7 @@ select#input {
   position: inherit;
 }
 .group-costum-2 .input-group-addon {
-  background: #3d3935;
+  background: #7e381a;
   color: #fff;
   line-height: normal;
   -webkit-border-radius: 0px;
@@ -284,6 +284,15 @@ select#input {
 .detalle-user {
   background-color: #fff;
   padding: 20px;
+}
+.detalle-user .panel-heading {
+  padding: 8px 10px 8px 10px;
+}
+.detalle-user .panel-heading .panel-title {
+  color: #fff;
+}
+.detalle-user ol.breadcrumb li {
+  font-size: 15px;
 }
 .reset-pass ul,
 .registro-user ul {
@@ -666,10 +675,23 @@ ol.breadcrumb li a:hover {
 .btn-small {
   padding: 5px 10px;
   margin: 0px;
-  -webkit-border-radius: 50px;
-  -moz-border-radius: 50px;
-  -o-border-radius: 50px;
-  border-radius: 50px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+}
+.btn-red {
+  border: 2px solid #c22026;
+  color: #c22026;
+  font-size: 80%;
+}
+.btn-red:hover {
+  background-color: #c22026;
+  color: #fff;
+}
+.border-bottom-black {
+  border-bottom: 1px solid rgba(61,57,53,0.5);
+  padding-bottom: 10px;
 }
 small,
 .small {
@@ -681,6 +703,9 @@ Responsive
 @media (max-width: 480px) {
   .lista-perfil .pull-right {
     float: left !important;
+  }
+  .item-org .list-inline {
+    margin: 10px 0px;
   }
 }
 @media (max-width: 768px) {

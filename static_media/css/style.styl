@@ -162,7 +162,7 @@ select#input
     padding 5px 0px
     position inherit
     .input-group-addon
-        background negro
+        background cafe
         color white
         line-height normal
         border-radius 0px
@@ -198,6 +198,12 @@ select#input
 .detalle-user
     background-color white
     padding 20px
+    .panel-heading
+        padding 8px 10px 8px 10px
+        .panel-title
+            color white
+    ol.breadcrumb li
+        font-size 15px
 .reset-pass, .registro-user
     ul
         list-style square
@@ -469,13 +475,24 @@ select#input
             color cafe
         .badge
             background-color cafe
-            color white    
+            color white
+
 ol.breadcrumb li a:hover
     color rojo
 .btn-small
     padding 5px 10px
     margin 0px
-    border-radius 50px
+    border-radius 5px
+.btn-red
+    border 2px solid rojo
+    color rojo
+    font-size 80%
+    &:hover
+        background-color rojo
+        color white
+.border-bottom-black
+    border-bottom 1px solid rgba(61,57,53,0.5)
+    padding-bottom 10px       
 small
 .small
     font-size 95%
@@ -486,6 +503,8 @@ Responsive
 @media (max-width : 480px)
     .lista-perfil .pull-right
         float left !important
+    .item-org .list-inline
+        margin 10px 0px
         
 @media (max-width: 576px){}
     

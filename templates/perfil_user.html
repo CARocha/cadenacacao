@@ -12,7 +12,7 @@
 
         	
         	<div class="row">
-        		<div class="col-xs-12 col-sm-5 detalle-user">
+        		<div class="col-xs-12 col-sm-12 col-md-5 detalle-user">
         			<div class="row">
 		        		<ol class="breadcrumb">
 			        		<li>
@@ -51,7 +51,7 @@
 		        		</div>
 		        	</div>
         		</div>
-        		<div class="col-xs-12 col-sm-7">
+        		<div class="col-xs-12 col-sm-12 col-md-7">
 					
 					
 
@@ -80,19 +80,29 @@
 				        				<div class="bg-white item-org">
 				        					<div class="row">
 				        						
-				        						<div class="col-md-12">
+				        						<div class="col-xs-12 col-sm-6 col-md-6">
 				        							<h5 class="m-0">{{org.nombre}}</h5>
 				        							<small class=""> <i class="icon-calendar"> </i> Actualización: {{org.actualizado}}</small>
+				        						</div>
+				        						<div class="col-xs-12 col-sm-6 col-md-6">
+				        							<ol class="m-0 list-inline">
+										        		<li>
+										        			<a class="btn btn-small btn-sm btn-red" href="{% url "detail-org" org.slug %}">Perfil </a>
+										        		</li>
+										        		<li>
+										        			<a class="btn btn-small btn-sm btn-red" href="{% url "editar-org" org.slug %}">Editar</a>
+										        		</li>
+									                    <li>
+									                        <a class="btn btn-small btn-sm btn-red" href="{% url "editar-permisos-user" org.slug %}">Permisos</a>
+									                    </li>
+										        	</ol>
+				        						</div>
+				        						<div class="col-xs-12 col-sm-12 col-md-12">
 				        							<div class="">
 				        								<p><strong> <span class="badge">{{ org.usuario.all.count }}</span> Usuarios  :</strong>{% for users in org.usuario.all%} {{users}}{% if forloop.last%}{%else%},{%endif%}{% endfor %}</p>
-				        							</div>	
-				        							<!--
-				        							: {% for users in org.usuario.all%} {{users}}{% if forloop.last%}{%else%},{%endif%}{% endfor %}
-		                                    		</p>-->
-				        						
-				        						
+				        							</div>
 				        						</div>
-				        						<div class="col-md-12">
+				        						<!--<div class="col-md-12">
 				        							<ol class="breadcrumb pull-right m-0">
 										        		<li>
 										        			<a  href="{% url "detail-org" org.slug %}">Perfil </a>
@@ -104,7 +114,7 @@
 									                        <a  href="{% url "editar-permisos-user" org.slug %}">Permisos</a>
 									                    </li>
 										        	</ol>
-				        						</div>
+				        						</div>-->
 				        						
 				        					</div>
 

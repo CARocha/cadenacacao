@@ -4,9 +4,15 @@
 {% block extra_css %}
 
  <link rel="stylesheet" href="/static/css/bootstrap-select.min.css">
+
 {% endblock extra_css %}
 
 {% block content %}
+<style>
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{
+	border:0px !important;
+}
+</style>
 <section class="section-grey small-padding">
 
         <!--begin container-->
@@ -15,7 +21,7 @@
         	<div class="row">
 
         		<div class="col-xs-12 col-md-12">
-        			<h4 class="border-bottom-black">Editar perfil de la organización</h4>
+        			<h1 class="">Editar perfil de la organización</h1>
         			<p>Campos con (*) son requeridos</p>
         			{% if form.errors %}
         				<ul class="alert alert-warning" role="alert">
@@ -205,27 +211,7 @@
 
 								</div>
 					    	</div>
-					    	<!--<div class="col-xs-12 col-sm-6 col-md-6">
-					    		<div class="input-group group-costum-2">
-					                <span class="input-group-addon " id="sizing-addon2">Período permanencia*</span>
-									{{ form.periodo_permanencia }}
 
-								</div>
-					    	</div>
-					    	<div class="col-xs-12 col-sm-6 col-md-6">
-					    		<div class="input-group group-costum-2">
-					                <span class="input-group-addon " id="sizing-addon2">Intercambio de Tecnología*</span>
-									{{ form.intercambio }}
-
-								</div>
-					    	</div>-->
-					    	<!--<div class="col-xs-12 col-sm-6 col-md-6">
-					    		<div class="input-group group-costum-2">
-					                <span class="input-group-addon " id="sizing-addon2">Sitio web</span>
-									{{ form.sitio_web }}
-
-								</div>
-					    	</div>-->
 					    	<div class="col-xs-12 col-sm-6 col-md-6" id="miembros">
 					    		<div class="input-group group-costum-2">
 					                <span class="input-group-addon " id="sizing-addon2">N° de Miembros/Socios</span>
@@ -244,29 +230,25 @@
 
 					    <div class="row">
 					    	<div class="col-xs-12 col-sm-6 col-md-6">
-					    	<h5 class="border-bottom-black">Links de Videos</h5>
-						    	{{ formset3.management_form }}
-						    	<div id="form_set">
-								    {% for form in formset3.forms %}
-									    {{form.non_field_errors}}
-										{{form.errors}}
-								        <table class='no_error'>
-								            {{ form }}
-								        </table>
-								    {% endfor %}
+						    	<h5 class="border-bottom-black">Links de Videos</h5>
+							    	{{ formset3.management_form }}
+							    	<div id="form_set">
+									    {% for form in formset3.forms %}
+										    {{form.non_field_errors}}
+											{{form.errors}}
+									        <table class='no_error'>
+									            {{ form }}
+									        </table>
+									    {% endfor %}
+									</div>
+								<input type="button" value="Añadir más" id="add_more">
+								<div id="empty_form" style="display:none">
+								    <table class='no_error'>
+								        {{ formset3.empty_form }}
+								    </table>
 								</div>
-							<input type="button" value="Añadir más" id="add_more">
-							<div id="empty_form" style="display:none">
-							    <table class='no_error'>
-							        {{ formset3.empty_form }}
-							    </table>
-							</div>
 						    </div>
-					    </div>
-
-						<div class="row">
-
-							<div class="col-xs-12 col-sm-6 col-md-6">
+						    <div class="col-xs-12 col-sm-6 col-md-6">
 						    	<h5 class="border-bottom-black">Redes</h5>
 						    	{{ formset2.management_form }}
 						    	<div id="form_set2">
@@ -287,6 +269,11 @@
 
 
 						    </div>
+					    </div>
+
+						<div class="row">
+
+							
 
 						    <div class="col-xs-12 col-sm-6 col-md-6">
 						    	<h5 class="border-bottom-black">Productos/Servicios</h5>
@@ -312,7 +299,7 @@
 						</div>
 
 
-						<input type="submit" name="Editar" class="contact-submit" value="Actualizar">
+						<input type="submit" name="Editar" class="contact-submit pull-right" value="Actualizar">
 					</form>
         		</div>
         	</div>
@@ -389,7 +376,9 @@
 	});
 
 
-$('.errorlist').addClass('alert alert-warning')
+$('.errorlist').addClass('alert alert-warning');
+$('table').addClass('table');
+$('#add_more, #add_more2, #add_more3').addClass('btn btn-sm');
 
 </script>
 
