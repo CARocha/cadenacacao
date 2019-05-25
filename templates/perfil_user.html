@@ -18,14 +18,8 @@
         			<div class="panel panel-perfil ">
 		        		<div class="panel-heading">
 		                    <ul class="list-inline">
-				        		<li>
-				        			<a href="/accounts/profile/user/editar">Editar perfil</a>
-				        		</li>
-				        		<li>
-				        			<a href="/accounts/password/reset/">Resetear contraseña</a>
-				        		</li>
 			                    <li>
-			                        <a href="/accounts/profile/crear/">Crear Organización</a>
+			                        <a class="btn btn-danger" href="/accounts/profile/crear/">Crear Organización</a>
 			                    </li>
 				        	</ul>
 
@@ -45,7 +39,10 @@
 		                        <li class="list-group-item">
 		                            <span><b> Correo:</b> {{user.email}} </span>
 		                        </li>
-
+                                 <li class="list-group-item">
+                                    <span class=""><a href="/accounts/profile/user/editar">Editar perfil</a> </span>
+                                    <span class="pull-right"><a href="/accounts/password/reset/">Resetear contraseña</a> </span>
+                                </li>
 		                    </ul>
 		        		</div>
 		        	</div>
@@ -158,19 +155,24 @@
 		                      	<div class="tab-pane" id="profilepermisso" role="tabpanel" aria-labelledby="profile-tab">
 
 			                        <div class="bg-white p-15">
-							  			<form method="POST" id="contact-form">{% csrf_token %}
+							  			<form method="POST" action="{% url 'soporte-admin'%}"id="contact-form">{% csrf_token %}
 							  				<div class="row">
 							  					<div class="col-md-12 mb-10">
-							  						{% if enviado == 1 %}
-						                            <div class="alert alert-success" role="alert">Su mensaje ha sido enviado correctamente!!!</div>
-						                            {% endif %}
+                                                    {% if messages %}
+
+                                                        {% for message in messages %}
+                                                            {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                                                                <div class="alert alert-success" role="alert">Su mensaje ha sido enviado correctamente al administrador!!!</div>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    {% endif %}
 							                        <p>Enviar mensaje al administrador del sistema si tiene algun problema en la plataforma.</p>
 							                        <p>Adjuntar información básica para el registro de la misma</p>
 							  					</div>
 
 							  					<div class="col-md-12 mb-10">
 							  						<label for="asunto">Asunto:</label>
-						                        	{{form1.asunto}}
+						                        	{{form.mensaje}}
 							  					</div>
 							  					<div class="col-md-12">
 							  						<input class="btn btn-sm btn-blue" type="submit" name="Enviar" value="Enviar mensaje">
@@ -249,6 +251,15 @@
 	}
     {% if enviado == 1 %}
     	toastr.success('Su mensaje ha sido enviado correctamente!!!', {timeOut: 5000})
+    {% endif %}
+
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                toastr.success('Su mensaje ha sido enviado correctamente al administrador!!!', {timeOut: 5000})
+            {% endif %}
+        {% endfor %}
+
     {% endif %}
 
 

@@ -11,6 +11,20 @@
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{
     border:0px !important;
 }
+.panelink {
+    background: rgba(0,174,104, 0.2)!important;255,163,0
+}
+.panelredes {
+    background: rgba(255,163,0, 0.2)!important;
+}
+.panelsevicio {
+    background: rgba(129,97,60, 0.2)!important;
+}
+input.contact-submit  {
+    background: #34882a;
+    border-color: #296d1d;
+    padding: 10px;
+}
 </style>
 <section>
     <ol class="breadcrumb">
@@ -254,7 +268,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="col-xs-12 col-sm-6 col-md-6 panelink">
                                 <h5 class="border-bottom-black">Links de Videos</h5>
                                     {{ formset3.management_form }}
                                     <div id="form_set">
@@ -273,7 +287,7 @@
                                     </table>
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="col-xs-12 col-sm-6 col-md-6 panelredes">
                                 <h5 class="border-bottom-black">Redes</h5>
                                 {{ formset2.management_form }}
                                 <div id="form_set2">
@@ -295,7 +309,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="col-xs-12 col-sm-6 col-md-6 panelsevicio">
                                 <h5 class="border-bottom-black">Productos/Servicios</h5>
                                 {{ formset1.management_form }}
                                 <div id="form_set3">
@@ -318,7 +332,7 @@
 
 
 
-                        <input type="submit" name="Editar" class="contact-submit" value="Guardar">
+                        <input type="submit" name="Editar" class="contact-submit pull-right" value="Guardar">
                     </form>
                 </div>
             </div>
@@ -337,25 +351,25 @@
 
 <script type="text/javascript">
     $('#add_more').click(function() {
-    var form_idx = $('#id_form-TOTAL_FORMS').val();
+    var form_idx = $('#id_linkvideos_set-TOTAL_FORMS').val();
     $('#form_set').append($('#empty_form').html().replace(/__prefix__/g, form_idx));
-    $('#id_form-TOTAL_FORMS').val(parseInt(form_idx) + 1);
+    $('#id_linkvideos_set-TOTAL_FORMS').val(parseInt(form_idx) + 1);
 });
 </script>
 
 <script type="text/javascript">
     $('#add_more2').click(function() {
-    var form_idx = $('#id_form-TOTAL_FORMS').val();
+    var form_idx = $('#id_redes_set-TOTAL_FORMS').val();
     $('#form_set2').append($('#empty_form2').html().replace(/__prefix__/g, form_idx));
-    $('#id_form-TOTAL_FORMS').val(parseInt(form_idx) + 1);
+    $('#id_redes_set-TOTAL_FORMS').val(parseInt(form_idx) + 1);
 });
 </script>
 
 <script type="text/javascript">
     $('#add_more3').click(function() {
-    var form_idx = $('#id_form-TOTAL_FORMS').val();
+    var form_idx = $('#id_productosservicios_set-TOTAL_FORMS').val();
     $('#form_set3').append($('#empty_form3').html().replace(/__prefix__/g, form_idx));
-    $('#id_form-TOTAL_FORMS').val(parseInt(form_idx) + 1);
+    $('#id_productosservicios_set-TOTAL_FORMS').val(parseInt(form_idx) + 1);
 });
 </script>
 
@@ -399,7 +413,7 @@
 <script type="text/javascript">
   $('.errorlist').addClass('alert alert-warning');
   $('table').addClass('table');
-  $('#add_more, #add_more2, #add_more3').addClass('btn btn-sm');
+  $('#add_more, #add_more2, #add_more3').addClass('btn btn-sm btn-danger');
 </script>
 
 {% endblock extra_js %}

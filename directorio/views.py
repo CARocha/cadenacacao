@@ -5,6 +5,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.views import password_reset
 from django.db.models import Q
 from django.contrib.auth.models import User
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.mail import send_mail, EmailMultiAlternatives
@@ -139,33 +140,7 @@ class MyRegistrationView(RegistrationView):
 def user_profile(request,template='perfil_user.html'):
 	user = User.objects.get(username = request.user)
 	organizaciones = Organizacion.objects.filter(usuario = user)
-
-
-	# if request.method == 'POST':
-	# 	form = EmailForm(request.POST)
-	# 	if form.is_valid():
-	# 		mensaje = form.cleaned_data['mensaje']
-	# 	try:
-	# 		subject, from_email = 'Solicitud ingreso de organización o especialista a Sistema Cadena de cacao', 'vecomesoamerica@gmail.com'
-	# 		text_content = 'Usuario: ' + str(user.username) + '<br>'  + \
-	# 						'Correo: ' + str(user.email) + '<br>'  + \
-	# 						'Mensaje: ' + str(mensaje)
-
-	# 		html_content = 'Usuario: ' + str(user.username) + '<br>'  + \
-	# 						'Correo: ' + str(user.email) + '<br>'  + \
-	# 						'Mensaje: ' + str(mensaje)
-
-	# 		msg = EmailMultiAlternatives(subject, text_content, from_email, ['cadenacacao@gmail.com','vecomesoamerica@gmail.com','guisselle.aleman@rikolto.org','selene.casanova@rikolto.org'])
-	# 		msg.attach_alternative(html_content, "text/html")
-	# 		msg.send()
-
-	# 		enviado = 1
-	# 		form = EmailForm()
-	# 	except:
-	# 		pass
-
-	# else:
-	# 	form = EmailForm()
+	form = EmailForm()
 
 	if request.method == 'POST':
 		form1 = PedirPermisoForm(request.POST)
@@ -184,7 +159,7 @@ def user_profile(request,template='perfil_user.html'):
 							'Mensaje: ' + str(mensaje)
 
 			msg = EmailMultiAlternatives(subject, text_content, from_email,
-			                             [obj.email for obj in orga.usuario.all()])
+										 [obj.email for obj in orga.usuario.all()])
 			msg.attach_alternative(html_content, "text/html")
 			msg.send()
 
@@ -200,25 +175,34 @@ def user_profile(request,template='perfil_user.html'):
 
 
 @login_required
-def enviar_correo_administradores(request, org=None):
+def enviar_correo_administradores(request):
 	user = User.objects.get(username = request.user)
-	orga = get_object_or_404(Organizacion, pk=org.id)
+	if request.method == 'POST':
+		form = EmailForm(request.POST)
+		if form.is_valid():
+			mensaje = form.cleaned_data['mensaje']
+		try:
+			subject, from_email = 'Solicitud ingreso de organización o especialista a Sistema Cadena de cacao', 'vecomesoamerica@gmail.com'
+			text_content = 'Usuario: ' + str(user.username) + '<br>'  + \
+							'Correo: ' + str(user.email) + '<br>'  + \
+							'Mensaje: ' + str(mensaje)
 
-	subject, from_email = 'Permiso otorgado!!', 'vecomesoamerica@gmail.com'
-	text_content = 'Usuario: ' + str(user.username) + '<br>'  + \
-					'Correo: ' + str(user.email) + '<br>'  + \
-					'Mensaje: ' + 'Ha otorgado permiso!'
+			html_content = 'Usuario: ' + str(user.username) + '<br>'  + \
+							'Correo: ' + str(user.email) + '<br>'  + \
+							'Mensaje: ' + str(mensaje)
 
-	html_content = 'Usuario: ' + str(user.username) + '<br>'  + \
-					'Correo: ' + str(user.email) + '<br>'  + \
-					'Mensaje: ' + 'Ha otorgado permiso!'
+			msg = EmailMultiAlternatives(subject, text_content,
+																	from_email,
+																	[obj.email for obj in User.objects.filter(is_superuser=True)]
+																	)
+			msg.attach_alternative(html_content, "text/html")
+			msg.send()
+			messages.success(request, "2")
+			return HttpResponseRedirect('/accounts/profile/')
+		except:
+			pass
 
-	msg = EmailMultiAlternatives(subject, text_content, from_email,
-	                             [obj.email for obj in orga.usuario.all()])
-	msg.attach_alternative(html_content, "text/html")
-	msg.send()
-
-	return 1
+	return 2
 
 @login_required
 def permisos_organizacion(request,template='editar_permisos.html',slug=None):
@@ -254,14 +238,14 @@ def editar_user(request,template='editar_user.html'):
 @login_required
 def crear_org(request,template='crear_org.html'):
 	FormSetInit = inlineformset_factory(Organizacion, ProductosServicios,
-	                                    form=ProductosServiciosFrom,
-	                                    max_num=9,extra=1)
+										form=ProductosServiciosFrom,
+										max_num=9,extra=1)
 	FormSetInit2 = inlineformset_factory(Organizacion, Redes,
-	                                     form=RedesFrom,
-	                                     extra=1,max_num=11)
+										 form=RedesFrom,
+										 extra=1,max_num=11)
 	FormSetInit3 = inlineformset_factory(Organizacion, LinkVideos,
-	                                     form=VideosForm,
-	                                     extra=1, max_num=5)
+										 form=VideosForm,
+										 extra=1, max_num=5)
 
 	if request.method == 'POST':
 		form = OrgForm(request.POST,request.FILES)
@@ -275,9 +259,18 @@ def crear_org(request,template='crear_org.html'):
 			org.usuario.add(request.user)
 			org.save()
 			#guarda formsets inlines
-			formset1.save()
-			formset2.save()
-			formset3.save()
+			for form1 in formset1:
+				obj = form1.save(commit=False)
+				obj.organizacion = org
+				obj.save()
+			for form2 in formset2:
+				obj = form2.save(commit=False)
+				obj.organizacion = org
+				obj.save()
+			for form3 in formset3:
+				obj = form3.save(commit=False)
+				obj.organizacion = org
+				obj.save()
 			return HttpResponseRedirect('/accounts/profile/')
 
 	else:
@@ -303,9 +296,20 @@ def editar_org(request,template='editar_org.html',slug=None):
 		formset3 = FormSetInit3(request.POST,request.FILES,instance=object)
 		if form.is_valid() and formset1.is_valid() and formset2.is_valid() and formset3.is_valid():
 			form.save()
-			formset1.save()
-			formset2.save()
-			formset3.save()
+			org = form.save(commit=False)
+			org.save()
+			for form1 in formset1:
+				obj = form1.save(commit=False)
+				obj.organizacion = org
+				obj.save()
+			for form2 in formset2:
+				obj = form2.save(commit=False)
+				obj.organizacion = org
+				obj.save()
+			for form3 in formset3:
+				obj = form3.save(commit=False)
+				obj.organizacion = org
+				obj.save()
 			return HttpResponseRedirect('/accounts/profile/')
 
 	else:
@@ -345,7 +349,7 @@ def mandar_aviso(request, org=None):
 					'Mensaje: ' + 'Ha otorgado permiso!'
 
 	msg = EmailMultiAlternatives(subject, text_content, from_email,
-	                             [obj.email for obj in orga.usuario.all()])
+								 [obj.email for obj in orga.usuario.all()])
 	msg.attach_alternative(html_content, "text/html")
 	msg.send()
 

@@ -31,6 +31,7 @@ urlpatterns = [
     url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^actores/busqueda/', include('haystack.urls')),
+    url(r'^correo/admin/', enviar_correo_administradores, name="soporte-admin"),
     # url(r'^accounts/register/$',MyRegistrationView.as_view(),name='registration_register'),
 
     # url(r'^accounts/logout/$', auth_views.logout,{'next_page': '/'}),
