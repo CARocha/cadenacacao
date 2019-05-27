@@ -603,6 +603,9 @@ select#input {
 .org-perfil .panel-primary .panel-heading .panel-body {
   color: #3d3935;
 }
+.org-perfil .panel-primary iframe {
+  width: 100%;
+}
 .list-group {
   color: #3d3935;
 }
