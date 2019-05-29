@@ -21,7 +21,7 @@ class FotosPortada(models.Model):
     titulo = models.CharField(max_length=250)
     foto = models.FileField(upload_to='fotoportada/')
 
-    def __str__(self):
+    def __unicode__(self):
         return self.titulo
 
     class Meta:
@@ -32,7 +32,7 @@ class LinkVideos(models.Model):
     titulo = models.CharField(max_length=250)
     link_video = models.URLField()
 
-    def __str__(self):
+    def __unicode__(self):
         return self.titulo
 
     class Meta:

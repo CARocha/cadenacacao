@@ -1,5 +1,5 @@
-{% load static %}
-
+{% load static solo_tags %}
+{% get_solo 'configuracion.SiteConfiguration' as site_config %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,6 +51,7 @@
     <!--headerIncludes-->
 
     <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+    <link rel="stylesheet" href="/static/css/jquery.fancybox.min.css">
     <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114098281-1"></script>
@@ -145,25 +146,54 @@
                         <li><a href="/" class="menu-last {% if request.path == '/' %}selected{% endif %}">Inicio</a></li>
 
                         <li><a href="/actores/" class="menu-last {% if '/actores/' in request.path %}selected{% endif %}">Directorio</a></li>
+                        <li class="dropdown"><a href="about-us.html" data-toggle="dropdown" class="dropdown-toggle">Tutoriales</a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <div class="yamm-content">
+                                        <div class="row">
+                                            <ul class="col-sm-12 list-unstyled">
+                                                <li>
+                                                  <p class="nav-title">Manual PDF</p>
+                                                </li>
+                                                <li><a href="/static/ManualDirectorioCacao.pdf"><i class="fa fa-file-pdf-o"></i> Uso del sistema</a></li>
+                                            </ul>
+                                            {% if site_config.linkvideos_set.all %}
+                                            <ul class="col-sm-12 list-unstyled mt-10">
+                                                <li>
+                                                  <p class="nav-title">Videos</p>
+                                                </li>
+                                                {% for videos in site_config.linkvideos_set.all %}
+                                                    <li><a data-fancybox href="{{videos.link_video}}"><i class="fa fa-youtube-play"></i> {{videos.titulo}}</a></li>
+                                                    {% if forloop.last %}{%else%}<hr>{% endif %}
+                                                {% endfor %}
+                                            </ul>
+                                            {% endif %}
+
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
                         {% if user.is_authenticated %}
                             <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.username}} <span class="caret"></span></a>
                               <ul class="dropdown-menu">
-                                <li><a href="/accounts/profile/">Ir al perfil</a></li>
-                                <li><a href="/accounts/logout/">Salir</a></li>
+                                <li><a href="/accounts/profile/"><i class="fa fa-user"></i> Ir al perfil</a></li>
+                                <li><a href="/accounts/logout/"><i class="fa fa-sign-out"></i> Salir</a></li>
                               </ul>
                             </li>
                         {% else %}
                             <li><a href="/accounts/login/" class="menu-last">Iniciar Sesion</a></li>
                         {% endif %}
-                        <li><a href="/static/ManualDirectorioCacao.pdf" class="menu-last" target="_blank">Manual</a></li>
+                        <!--<li><a href="" class="menu-last" target="_blank">Manual</a></li>
 
                         <li><a class="" type="button" data-toggle="collapse" data-target="#collapsebuscador" aria-expanded="true" aria-controls="collapsebuscador"><i class="icon-search-find"></i></a></li>
                         <li class="visible-xs visible-sm">
                             <form action="/actores/" method="GET">
                                 {{search.q}}
                             </form>
-                        </li>
+                        </li>-->
+                        
 
 
                     </ul>
@@ -363,7 +393,9 @@
     <script src="/static/js/bootstrap.min.js"></script>
     <script src="/static/js/jquery.scrollTo-min.js"></script>
     <script src="/static/js/jquery.magnific-popup.min.js"></script>
-    <!-- <script src="../static_media/js/plugins.js"></script>
+    <script src="/static/js/jquery.fancybox.min.js"></script>
+
+    <!-- <script src="../static/js/jquery.fancybox.min.js"></script>
     <script src="../static_media/js/custom.js"></script>-->
 
     <script type="text/javascript">
