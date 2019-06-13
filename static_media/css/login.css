@@ -1,70 +1,153 @@
-    .socialaccount_providers{
-    	text-align: center;
-    	margin: 20px 0px;
-    }
+.socialaccount_providers{
+	text-align: center;
+	margin: 0px;
+}
 
-    .socialaccount_providers .socialaccount_provider{
-		border-radius: 50px;
-		text-align: center;
-		color: white;
+.socialaccount_providers .socialaccount_provider{
+	border-radius: 50px;
+	text-align: center;
+	color: white;
 
-    }
-    .socialaccount_providers .btn{
-    	padding: 10px 30px;
-    }
-	.socialaccount_providers .google{
-		background-color: #dd4b39;
-	}
+}
+.socialaccount_providers .btn{
+	padding: 10px 30px;
+}
+.socialaccount_providers .google{
+	background-color: #dd4b39;
+}
 
-	.socialaccount_providers .google:hover{
-		background-color: #be3423;
-	}
-	.socialaccount_providers .facebook{
-		background-color: #3b5998;
-	}
+.socialaccount_providers .google:hover{
+	background-color: #be3423;
+}
+.socialaccount_providers .facebook{
+	background-color: #3b5998;
+}
 
-	.socialaccount_providers .facebook:hover{
-		background-color: #192e59;
-	}
-	.socialaccount_providers .twitter{
-		background-color: #1da1f2;
-	}
-	.socialaccount_providers .twitter:hover{
-		background-color: #1c6ea1;
-	}
-    .or-seperator {
-        margin: 40px 0 15px;
-        text-align: center;
-        border-top: 1px solid #e0e0e0;
-    }
-    .or-seperator b {
-        padding: 0 10px;
-		width: 40px;
-		height: 40px;
-		font-size: 16px;
-		text-align: center;
-		line-height: 40px;
-		background: #fff;
-		display: inline-block;
-        border: 1px solid #e0e0e0;
-		border-radius: 50%;
-        position: relative;
-        top: -22px;
-        z-index: 1;
-    }
-    .login-user form label[for="id_password"], .login-user form label[for="id_login"]{
-    	display: none;
-    }
-	.contact-submit{
-		background: #c22026;
-	    border-color: #c22026;
-	    padding: 10px;
-	    color: white;
-	    border: 2px solid #c22026;
-	}
-	.contact-submit:hover{
-		border: 2px solid #c22026;
-    	color: #c22026;
-    	background-color: transparent;
-	}
-	
+.socialaccount_providers .facebook:hover{
+	background-color: #192e59;
+}
+.socialaccount_providers .twitter{
+	background-color: #1da1f2;
+}
+.socialaccount_providers .twitter:hover{
+	background-color: #1c6ea1;
+}
+.or-seperator {
+	margin: 25px 0 -20px;
+	text-align: center;
+	border-top: 1px solid #e0e0e0;
+}
+.or-seperator b {
+	padding: 0 10px;
+	width: 40px;
+	height: 40px;
+	font-size: 16px;
+	text-align: center;
+	line-height: 40px;
+	background: #fff;
+	display: inline-block;
+	border: 1px solid transparent;
+	border-radius: 50%;
+	position: relative;
+	top: -22px;
+	z-index: 1;
+}
+.login-user form label[for="id_password"], .login-user form label[for="id_login"]{
+	display: none;
+}
+.contact-submit{
+	background: #c22026;
+	border-color: #c22026;
+	padding: 10px;
+	color: white;
+	border: 2px solid #c22026;
+}
+.contact-submit:hover, .contact-submit:focus{
+	border: 2px solid #c22026;
+	color: #c22026;
+	background-color: transparent;
+}
+
+.login-user h5{
+	font-weight: 600;
+}
+.login-user a.contact-submit {
+	color: white;
+}
+.login-user a.contact-submit:hover, .login-user a.contact-submit:focus{
+	color: #c22026;
+}
+hr{
+	margin:10px 0px;
+}
+.reset_and_register{
+	margin-top: 20px;
+}
+.checkbox {
+	padding-left: 20px; 
+}
+.checkbox label {
+	display: inline-block;
+	position: relative;
+	font-size: 18px;
+	padding-left: 5px; 
+}
+.checkbox label::before {
+	content: "";
+	display: inline-block;
+	position: absolute;
+	width: 18px;
+	height: 18px;
+	left: 0;
+	margin-left: -20px;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	background-color: #fff;
+	-webkit-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
+	-o-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
+	transition: border 0.15s ease-in-out, color 0.15s ease-in-out; 
+}
+.checkbox label::after {
+	display: inline-block;
+	position: absolute;
+	width: 18px;
+	height: 18px;
+	left: 0;
+	top: 0;
+	margin-left: -20px;
+	padding-left: 3px;
+	padding-top: 1px;
+	font-size: 11px;
+	color: #555555; 
+}
+.checkbox input[type="checkbox"] {
+	opacity: 0; 
+}
+.checkbox input[type="checkbox"]:focus + label::before {
+	outline: thin dotted;
+	outline: 5px auto -webkit-focus-ring-color;
+	outline-offset: -2px; 
+}
+.checkbox input[type="checkbox"]:checked + label::after {
+	font-family: 'FontAwesome';
+	content: "\f00c";
+	line-height: 18px;
+}
+.checkbox input[type="checkbox"]:disabled + label {
+	opacity: 0.65; 
+}
+.checkbox input[type="checkbox"]:disabled + label::before {
+	background-color: #eeeeee;
+	cursor: not-allowed; 
+}
+.checkbox-success input[type="checkbox"]:checked + label::before {
+	background-color: #c22026;
+	border-color: #c22026; 
+}
+.checkbox-success input[type="checkbox"]:checked + label::after {
+	color: #fff; 
+}
+.reset_and_register .contact-submit{
+	display: block;
+	width: 100%;
+}

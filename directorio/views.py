@@ -11,6 +11,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.mail import send_mail, EmailMultiAlternatives
 from django.forms import inlineformset_factory
 from registration.backends.hmac.views import *
+import feedparser
 
 from .models import *
 from .forms import *
@@ -21,6 +22,12 @@ import json as simplejson
 # Create your views here.
 def index(request,template='index.html'):
 	# object = Organizacion.objects.all()
+	feed = feedparser.parse('http://cadenacacaoca.info/feed/')
+	feed.entries[0].title
+	feed.entries[0].link
+	feed.entries[0].description
+	feed.entries[0].author
+	feed.entries[0].published_parsed
 	return render(request, template, locals())
 
 def _queryset_filtrado_afiliado(request):

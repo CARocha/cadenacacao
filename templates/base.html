@@ -146,7 +146,8 @@
                         <li><a href="/" class="menu-last {% if request.path == '/' %}selected{% endif %}">Inicio</a></li>
 
                         <li><a href="/actores/" class="menu-last {% if '/actores/' in request.path %}selected{% endif %}">Directorio</a></li>
-                        <li class="dropdown"><a href="about-us.html" data-toggle="dropdown" class="dropdown-toggle">Tutoriales</a>
+                        <li><a href="/servicios/" class="menu-last {% if '/servicios/' in request.path %}selected{% endif %}">Servicios</a></li>
+                        <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Tutoriales</a>
                             <ul class="dropdown-menu">
                                 <li>
                                     <div class="yamm-content">
@@ -174,6 +175,7 @@
                                 </li>
                             </ul>
                         </li>
+                        
                         {% if user.is_authenticated %}
                             <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.username}} <span class="caret"></span></a>
@@ -183,7 +185,7 @@
                               </ul>
                             </li>
                         {% else %}
-                            <li><a href="/accounts/login/" class="menu-last">Iniciar Sesion</a></li>
+                        <li><a href="/accounts/login/" class="menu-last">Iniciar Sesion</a></li>
                         {% endif %}
                         <!--<li><a href="" class="menu-last" target="_blank">Manual</a></li>
 
@@ -256,9 +258,9 @@
                 <!--begin col-md-4 -->
                 <div class="col-md-4 padding-bottom-20">
 
-                    <h4>ACERCA DE</h4>
+                    <h4>ACERCA DE SICACAO</h4>
 
-                    <p class="margin-bottom-20">El Proyecto Gestión del Conocimiento en la Cadena de Valor del Cacao en Centroamérica, ejecutado por RIKOLTO, tiene como fin, contribuir en el mejoramiento de la competitividad e inclusividad en la cadena de valor del cacao a nivel regional,</p>
+                    <p class="margin-bottom-20">El Proyecto Gestión del Conocimiento en la Cadena de Valor del Cacao en Centroamérica, ejecutado por RIKOLTO, tiene como fin, contribuir en el mejoramiento de la competitividad e inclusividad en la cadena de valor del cacao a nivel regional.</p>
 
                     <a href="http://cadenacacaoca.info/conocenos/" class="btn-sm btn-blue" target="_blank">Conocer más</a>
 
@@ -272,7 +274,7 @@
 
                     <ul class="footer-list">
 
-                        <li class="first"><a href="http://cadenacacaoca.info/" target="blank">Cadena cacao CA</a></li>
+                        <li class="first"><a href="http://cadenacacaoca.info/" target="blank">Cadena Cacao CA</a></li>
 
                         <li><a href="http://cadenacacaoca.info/noticias/" target="blank">Noticias</a></li>
 

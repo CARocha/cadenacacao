@@ -47,6 +47,7 @@ urlpatterns = [
         #auth_views.password_reset_confirm, name='password_reset_confirm'),
     #url(r'^reset/done/$', auth_views.password_reset_complete, name='password_reset_complete'),
 
+
     #url(r'^accounts/', include('registration.backends.hmac.urls')),
     url(r'^buscador/$', buscador, name='search'),
     url(r'^actores/$', consulta, name='consulta'),
@@ -54,6 +55,7 @@ urlpatterns = [
     url(r'^mapa/$', obtener_lista, name='obtener-lista'),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^politica-condiciones/$', TemplateView.as_view(template_name="policy-service.html")),
+    url(r'^servicios/$', TemplateView.as_view(template_name="servicios.html")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()

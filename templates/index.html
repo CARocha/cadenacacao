@@ -46,50 +46,8 @@
     </div>
 
 </section>
-<section class="section-white small-padding">
-
-        <!--begin container-->
-        <div class="container">
-
-            <!--begin row-->
-            <div class="row">
-                <!--begin col-md-6-->
-                <div class="col-md-6 text-center wow fadeIn" data-wow-delay="0.15s">
-
-                    <h3>Mapeo de cadena de valor de cacao</h3>
-                    <div class="mapa-container">
-                        <div id="map-canvas" style="width:100%; height:400px"></div>
-                    </div>
-
-                </div>
-                <!--end col-sm-6-->
-                <!--begin col-md-6-->
-                <div class="col-md-6">
-                    {% load flatpages %}
-                        {% get_flatpages as flatpages %}
-                            {% for page in flatpages %}
-                                {% if page.url == '/informacion-inicio/' %}
-                                    <h3>{{page.title}}</h3>
-                                    <div class="medium-paragraph margin-bottom-40 text-left">
-                                        {{ page.content|safe}}
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
-                </div>
-                <!--end col-sm-6-->
-
-
-
-
-            </div>
-            <!--end row-->
-
-        </div>
-        <!--end container-->
-
-    </section>
-
 <!--begin blog -->
+
 <section class="section-grey">
 
     <!--begin container-->
@@ -106,30 +64,29 @@
 
         </div>
         <!--end row-->
-
         <!--begin row-->
         <div class="row">
-
+            {% for obj in feed.entries|slice:':3' %}
             <!--begin col-sm-4 -->
             <div class="col-sm-4">
 
                 <!--begin blog-item -->
                 <div class="blog-item">
 
-                    <!--begin popup image -->
+                    <!--begin popup image
                     <div class="popup-wrapper">
                         <div class="popup-gallery">
                             <a href="#"><img src="http://cadenacacaoca.info/wp-content/uploads/2018/12/IIFNC_inauguracion.jpg" class="width-100" alt="pic"><span class="eye-wrapper2"><i class="icon icon-link eye-icon"></i></span></a>
                         </div>
                     </div>
-                    <!--begin popup image -->
+                    begin popup image -->
 
                     <!--begin blog-item_inner -->
                     <div class="blog-item-inner">
 
-                        <h3 class="blog-title"><a href="#">II Foro Nacional de Cacao con actores de cadena de valor del cacao</a></h3>
-
-                        <p>Este 13 y 14 de noviembre de 2018 se lleva a cabo el II Foro Nacional del Cacao con el objetivo de contribuir a la interacción y organización entre los actores de la cadena de valor del cacao, así como a promover su participación en el mercado local e internacional...</p>
+                        <h3 class="blog-title"><a target="_blank" href="{{obj.link}}">{{obj.title}}</a></h3>
+                        <a class="blog-icons last"><i class="icon icon-user"></i> {{obj.author}}</a>
+                        <p>{{obj.description|striptags|safe}}</p>
 
                     </div>
                     <!--end blog-item-inner -->
@@ -139,66 +96,9 @@
 
             </div>
             <!--end col-sm-4-->
+            {% endfor %}
 
-            <!--begin col-sm-4 -->
-            <div class="col-sm-4">
-
-                <!--begin blog-item -->
-                <div class="blog-item">
-
-                    <!--begin popup image -->
-                    <div class="popup-wrapper">
-                        <div class="popup-gallery">
-                            <a href="#"><img src="http://cadenacacaoca.info/wp-content/uploads/2017/05/IMG_20170622_134103916_HDR.jpg" class="width-100" alt="pic"><span class="eye-wrapper2"><i class="icon icon-link eye-icon"></i></span></a>
-                        </div>
-                    </div>
-                    <!--begin popup image -->
-
-                    <!--begin blog-item_inner -->
-                    <div class="blog-item-inner">
-
-                        <h3 class="blog-title"><a href="#">Conforman comisiòn centroamericana del cacao</a></h3>
-
-                        <p>Granada, Nicaragua, Septiembre 2017.Compartir experiencias entre países, dar y recibir información, profundizando sobre estrategias locales, o bien vacíos que es necesario superar, son parte del proceso de reflexión del Seminario de la Cadena de Valor del Cacao en Centroamérica...</p>
-
-                    </div>
-                    <!--end blog-item-inner -->
-
-                </div>
-                <!--end blog-item -->
-
-            </div>
-            <!--end col-sm-4-->
-
-            <!--begin col-sm-4 -->
-            <div class="col-sm-4">
-
-                <!--begin blog-item -->
-                <div class="blog-item">
-
-                    <!--begin popup image -->
-                    <div class="popup-wrapper">
-                        <div class="popup-gallery">
-                            <a href="#"><img src="http://cadenacacaoca.info/wp-content/uploads/2017/05/DSC05787.jpg" class="width-100" alt="pic"><span class="eye-wrapper2"><i class="icon icon-link eye-icon"></i></span></a>
-                        </div>
-                    </div>
-                    <!--begin popup image -->
-
-                    <!--begin blog-item_inner -->
-                    <div class="blog-item-inner">
-
-                        <h3 class="blog-title"><a href="#">Intercambio entre productores centroamericanos y República Dominicana</a></h3>
-
-                        <p>Santo Domingo, República Dominicana, Septiembre 2017. El modelo organizativo de actores de la cadena de valor del Cacao en República Dominicana, sirvió de atractivo para que productores de Cacao Centroamericano, realizaran un viaje de intercambio con el propósito de aprender...</p>
-
-                    </div>
-                    <!--end blog-item-inner -->
-
-                </div>
-                <!--end blog-item -->
-
-            </div>
-            <!--end col-sm-4-->
+            
 
         </div>
         <!--end row-->
@@ -208,6 +108,50 @@
 
 </section>
 <!--end blog -->
+<section class="section-white small-padding">
+
+    <!--begin container-->
+    <div class="container">
+
+        <!--begin row-->
+        <div class="row">
+            <!--begin col-md-6-->
+            <div class="col-md-6 text-center wow fadeIn" data-wow-delay="0.15s">
+
+                <h3>Mapeo de cadena de valor de cacao</h3>
+                <div class="mapa-container">
+                    <div id="map-canvas" style="width:100%; height:400px"></div>
+                </div>
+
+            </div>
+            <!--end col-sm-6-->
+            <!--begin col-md-6-->
+            <div class="col-md-6">
+                {% load flatpages %}
+                    {% get_flatpages as flatpages %}
+                        {% for page in flatpages %}
+                            {% if page.url == '/informacion-inicio/' %}
+                                <h3>{{page.title}}</h3>
+                                <div class="medium-paragraph margin-bottom-40 text-left">
+                                    {{ page.content|safe}}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+            </div>
+            <!--end col-sm-6-->
+
+
+
+
+        </div>
+        <!--end row-->
+
+    </div>
+    <!--end container-->
+
+</section>
+
+
 
 
 {% endblock content %}
