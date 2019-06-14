@@ -225,6 +225,12 @@ select#input {
   color: #7c8595;
 }
 /*consulta*/
+.breadcrumb-wrapper {
+  background-image: url("../images/portada.jpg");
+}
+.breadcrumb-wrapper .breadcrumb-wrapper-overlay {
+  background: rgba(0,24,44,0.5);
+}
 .group-costum {
   padding: 5px 0px;
   position: inherit;
@@ -453,7 +459,7 @@ select#input {
 /*buscador*/
 .panel-search {
   position: relative;
-  margin-top: -100px;
+  margin-top: -50px;
   -moz-box-shadow: 0 8px 7px rgba(0,0,0,0.3);
   -webkit-box-shadow: 0 8px 7px rgba(0,0,0,0.3);
   box-shadow: 0 8px 7px rgba(0,0,0,0.3);
@@ -747,6 +753,30 @@ ol.breadcrumb li a:hover {
 small,
 .small {
   font-size: 95%;
+}
+/**servicios**/
+.portfolio-items div .portfolio-item {
+  -moz-box-shadow: 0 8px 7px rgba(0,0,0,0.1);
+  -webkit-box-shadow: 0 8px 7px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 7px rgba(0,0,0,0.1);
+  border: 1px solid #dedede;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+  padding: 10px 10px 15px 10px;
+}
+.portfolio-items div .portfolio-item p {
+  padding: 0 10px;
+}
+.portfolio-items div .portfolio-item h3 {
+  overflow: hidden;
+  height: 42px;
+  margin: 10px !important;
+  text-align: left;
+}
+.portfolio-items .team-img-sm {
+  margin: 0;
 }
 /*=============================================
 Responsive
