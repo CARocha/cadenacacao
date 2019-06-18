@@ -8,7 +8,9 @@ from solo.models import SingletonModel
 class SiteConfiguration(SingletonModel):
     site_name = models.CharField(max_length=255, default='Nombre del sitio')
     maintenance_mode = models.BooleanField(default=False)
-    acerca = models.TextField(null=True, blank=True)
+    acerca = models.TextField('Texto Cadena cacao',null=True, blank=True)
+    acerca_footer = models.TextField(null=True, blank=True)
+    politica_condicines = models.TextField(null=True, blank=True)
 
     def __unicode__(self):
         return u"Configuración del sitio"
