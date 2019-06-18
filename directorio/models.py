@@ -65,9 +65,11 @@ class IntercambioTecnologia(models.Model):
 		verbose_name_plural = 'Intercambio de Tecnología'
 
 TIPO_CHOICES = (
-		('Sector publico','Sector público'),('Sector privado','Sector privado'),('Academia','Academia'),
+		('Sector publico','Gobierno'),('Sector privado','Empresa'),('Academia','Academia'),
 		('Asociacion','Asociación'),('Cooperativa','Cooperativa'),('Fundacion','Fundación'),
-		('ONG','ONG'),('ONGI','ONGI'),('Plataforma','Plataforma'),('Consultor','Consultor')
+		('ONG','ONG'),('ONGI','ONGI'),('Plataforma','Plataforma'),('Consultor','Consultor'),
+		('Financiera', 'Financiera'),('Banco', 'Banco'),
+		('Centro Investigacion', 'Centro de Investigación')
 	)
 
 AMBITO_CHOICES = (
@@ -105,7 +107,7 @@ class Organizacion(models.Model):
 	servicios = models.ManyToManyField(ServiciosCadena,verbose_name='Servicios que brinda la Organización')
 	ambito_accion = models.CharField(max_length=20,choices=AMBITO_CHOICES,verbose_name='Ámbito de Acción')
 	paises_labora = models.ManyToManyField(Pais,related_name='Paises',verbose_name='Países donde Labora')
-	cobertura = models.CharField(max_length=255,verbose_name='Cobertura Geográfica')
+	#cobertura = models.CharField(max_length=255,verbose_name='Cobertura Geográfica')
 	# periodo_permanencia = models.CharField(max_length=20,choices=PERIODO_CHOICES,verbose_name='Período de Permanencia')
 	# intercambio = models.ManyToManyField(IntercambioTecnologia,verbose_name='Intercambio de Tecnología')
 	sitio_web = models.URLField(blank=True,null=True)
@@ -154,6 +156,7 @@ class Redes(models.Model):
 class ProductosServicios(models.Model):
 	organizacion = models.ForeignKey(Organizacion)
 	nombre = models.CharField(max_length=255)
+	descripcion = models.CharField('Descripción', max_length=200, null=True, blank=True)
 	foto = ImageField(upload_to='productos-servicios/')
 
 	class Meta:
