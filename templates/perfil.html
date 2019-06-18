@@ -224,97 +224,129 @@
                     </div>
                 </div>
             </div>
-                <!--begin section grey-->
-    <section class="section-white">
-        
-        <!--begin container-->
-        <div class="container">
-                <h4>Productos y sevicios</h4>
-                <hr>
-            <!--begin row-->
-            <div class="row">
+            {% if fotos %}
+            <!--begin section grey-->
+            <section class="section-white">
                 
-                    <div id="myCarousel" class="carousel carousel1 slide " data-interval="false">
-
-                        <!-- Wrapper for slides -->
-                        <div class="carousel-inner">
+                <!--begin container-->
+                <div class="container">
+                        <h4>Productos y sevicios</h4>
+                        <hr>
+                    <!--begin row-->
+                    <div class="row">
                         
-                            <div class="item active portfolio-items" id="grid">
-                                {% for foto in fotos|slice:":3" %}                
-                                <a href="/media/{{foto.foto}}" data-fancybox="images" class="col-sm-4 team-item-white">
+                            <div id="myCarousel" class="carousel carousel1 slide " data-interval="false">
 
-                                    <figure class="portfolio-item">
-                                        {% thumbnail foto.foto "200x150" crop='center' format='PNG' as img %}
-                                            <img src="/media/{{img}}" title="{{foto.nombre}}" class="team-img-sm" alt="pic">
-                                        {% endthumbnail %}
-                                        <h3>{{foto.nombre|truncatechars:19}}</h3>
-                                        <div class="caption">
-                                            <h5>{{foto.nombre}}</h5>                                            
-                                        </div>
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner">
+                                
+                                    <div class="item active portfolio-items" id="grid">
+                                        {% for foto in fotos|slice:":3" %}                
+                                        <a href="/media/{{foto.foto}}" data-fancybox="images" class="col-sm-4 team-item-white">
 
-                                        
-                                    </figure>  
+                                            <figure class="portfolio-item">
+                                                {% thumbnail foto.foto "200x150" crop='center' format='PNG' as img %}
+                                                    <img src="/media/{{img}}" title="{{foto.nombre}}" class="team-img-sm" alt="pic">
+                                                {% endthumbnail %}
+                                                <h3>{{foto.nombre|truncatechars:19}}</h3>
+                                                {% if foto.descripcion %}
+                                                <p>{{foto.descripcion}}</p>
+                                                    
+                                                {% endif %}
+                                                <div class="caption">
+                                                    <h5>{{foto.nombre}}</h5>
+                                                    <p>{{foto.descripcion}}</p>                                            
+                                                </div>
 
-                                </a>
-                                {% endfor %}                                  
-                    
-                            </div>
-                            <div class="item portfolio-items" id="grid">
-                                {% for foto in fotos|slice:"3:6" %}                
-                                <a href="/media/{{foto.foto}}" data-fancybox="images" class="col-sm-4 team-item-white">
+                                                
+                                            </figure>  
 
-                                    <figure class="portfolio-item">
-                                        {% thumbnail foto.foto "200x150" crop='center' format='PNG' as img %}
-                                            <img src="/media/{{img}}" title="{{foto.nombre}}" class="team-img-sm" alt="pic">
-                                        {% endthumbnail %}
-                                        <h3>{{foto.nombre|truncatechars:19}}</h3>
-                                        <div class="caption">
-                                            <h5>{{foto.nombre}}</h5>                                            
-                                        </div>
-
-                                    </figure>  
-
-                                </a>
-                                {% endfor %}                                  
-                    
-                            </div>
-                            <div class="item portfolio-items" id="grid">
-                                {% for foto in fotos|slice:"6:9" %}                
-                                <a href="/media/{{foto.foto}}" data-fancybox="images" class="col-sm-4 team-item-white">
-
-                                    <figure class="portfolio-item">
-                                        {% thumbnail foto.foto "200x150" crop='center' format='PNG' as img %}
-                                            <img src="/media/{{img}}" title="{{foto.nombre}}" class="team-img-sm" alt="pic">
-                                        {% endthumbnail %}
-                                    </figure>
-                                    <h3>{{foto.nombre|truncatechars:19}}</h3>
-                                    <div class="caption">
-                                        <h5>{{foto.nombre}}</h5>                                            
-                                    </div>
-
-                                </a>
-                                {% endfor %}                                  
-                    
-                            </div>
+                                        </a>
+                                        {% endfor %}                                  
                             
-                        </div>
+                                    </div>
+                                    <div class="item portfolio-items" id="grid">
+                                        {% for foto in fotos|slice:"3:6" %}                
+                                        <a href="/media/{{foto.foto}}" data-fancybox="images" class="col-sm-4 team-item-white">
 
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators">
-                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                            <li data-target="#myCarousel" data-slide-to="1"></li>
-                        </ol>
+                                            <figure class="portfolio-item">
+                                                {% thumbnail foto.foto "200x150" crop='center' format='PNG' as img %}
+                                                    <img src="/media/{{img}}" title="{{foto.nombre}}" class="team-img-sm" alt="pic">
+                                                {% endthumbnail %}
+                                                <h3>{{foto.nombre|truncatechars:19}}</h3>
+                                                {% if foto.descripcion %}
+                                                <p>{{foto.descripcion}}</p>
+                                                    
+                                                {% endif %}
+                                                <div class="caption">
+                                                    <h5>{{foto.nombre}}</h5>
+                                                    <p>{{foto.descripcion}}</p>                                            
+                                                </div>
 
+                                            </figure>  
+
+                                        </a>
+                                        {% endfor %}                                  
+                            
+                                    </div>
+                                    <div class="item portfolio-items" id="grid">
+                                        {% for foto in fotos|slice:"6:9" %}                
+                                        <a href="/media/{{foto.foto}}" data-fancybox="images" class="col-sm-4 team-item-white">
+
+                                            <figure class="portfolio-item">
+                                                {% thumbnail foto.foto "200x150" crop='center' format='PNG' as img %}
+                                                    <img src="/media/{{img}}" title="{{foto.nombre}}" class="team-img-sm" alt="pic">
+                                                {% endthumbnail %}
+                                            </figure>
+                                            <h3>{{foto.nombre|truncatechars:19}}</h3>
+                                            {% if foto.descripcion %}
+                                            <p>{{foto.descripcion}}</p>
+                                                
+                                            {% endif %}
+                                            <div class="caption">
+                                                <h5>{{foto.nombre}}</h5>
+                                                <p>{{foto.descripcion}}</p>                                            
+                                            </div>
+
+                                        </a>
+                                        {% endfor %}                                  
+                            
+                                    </div>
+                                    
+                                </div>
+
+                                <!-- Indicators -->
+                                <ol class="carousel-indicators">
+                                 
+                                    {% for foto in fotos %}
+                                     {% if forloop.first %}
+                                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                    {% endif %}
+                                        
+                                        {% if forloop.counter == 4 %}
+                                            <li data-target="#myCarousel" data-slide-to="1"></li>
+                                        {% endif %}
+                                        {% if forloop.counter == 7 %}
+                                            <li data-target="#myCarousel" data-slide-to="2"></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                       
+
+
+                                </ol>
+
+                            </div>
+                
                     </div>
-        
-            </div>
-            <!--end row-->
-        
-        </div>
-        <!--end container-->
-        
-    </section>
-    <!--end section grey-->   
+                    <!--end row-->
+                
+                </div>
+                <!--end container-->
+                
+            </section>
+            <!--end section grey--> 
+            {% endif %}
+              
 
             <h4>Comentarios</h4>
             <hr>
