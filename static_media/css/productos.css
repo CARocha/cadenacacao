@@ -1,0 +1,115 @@
+/* Custom button design */
+.fancybox-button {
+  background: transparent !important;
+  color: #333 !important;
+}
+
+.fancybox-toolbar .fancybox-button:hover {
+  background: rgba(223, 223, 223, 0.5) !important;
+  color: #c11c95 !important;
+}
+
+/* Make close button a bit bigger */
+.fancybox-button--close {
+  padding: 7px !important;
+}
+
+/* Navigation arrows */
+.fancybox-navigation .fancybox-button {
+  z-index: 99996 !important;
+}
+
+.fancybox-navigation .fancybox-button div {
+  padding: 0 !important;
+}
+
+.fancybox-navigation .fancybox-button[disabled],
+.fancybox-navigation .fancybox-button[disabled]:hover {
+  color: #888 !important;
+}
+
+.fancybox-navigation .fancybox-button:hover {
+  color: #000 !important;
+}
+
+/* Change backdrop color */
+.fancybox-bg {
+  background: #eee !important;
+
+}
+.fancybox-is-open .fancybox-bg{
+  opacity: 1 !important;
+}
+
+/* Initially hide the caption */
+.caption {
+  display: none !important;
+}
+
+/* Change position and design of caption area */
+.fancybox-caption {
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: auto !important;
+  padding: 0 !important;
+  width: 300px !important;
+  background: #eee !important;
+  color: #333 !important;
+  box-shadow: 0 0 20px #888 !important;
+  z-index: 99996 !important;
+  text-align: left !important;
+  
+  /* Hide next to right edge */
+  transform: translate3d(320px, 0, 0) !important;
+}
+
+.fancybox-caption::before {
+  display: none !important;
+}
+
+.fancybox-caption > div {
+  margin-top: 44px !important;
+  padding: 20px !important;
+  max-height: calc(100vh - 44px) !important;
+  overflow: auto !important;
+}
+
+/* Overwrite the default animation */
+.fancybox-show-caption .fancybox-caption,
+.fancybox-caption {
+  transition: transform .2s !important;
+}
+
+/* Reveal caption */
+ .fancybox-show-caption.fancybox-vertical-caption .fancybox-caption {
+  transform: translate3d(0, 0, 0) !important;
+}
+
+/* Styling of caption content */
+.fancybox-caption a {
+  color: #333 !important;
+}
+
+.fancy-nav a {
+  text-decoration: none !important;
+  font-weight: normal !important;
+  font-size: 20px !important;
+  font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+  background: #444 !important;
+  color: #fff !important;
+  border-radius: 50% !important;
+  display: inline-block !important;
+  width: 22px !important;
+  height: 22px !important;
+  line-height: 18px !important;
+  text-align: center !important;
+  -moz-user-select: none !important;
+  user-select: none !important;
+  cursor: pointer !important;
+  outline: none !important;
+}
+
+.fancy-nav a:hover {
+  text-decoration: none !important;
+}

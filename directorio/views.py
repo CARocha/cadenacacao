@@ -27,7 +27,7 @@ def index(request,template='index.html'):
 	feed.entries[0].link
 	feed.entries[0].description
 	feed.entries[0].author
-	feed.entries[0].published_parsed
+	feed.entries[0].media_content
 	return render(request, template, locals())
 
 def _queryset_filtrado_afiliado(request):

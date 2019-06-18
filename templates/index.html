@@ -47,8 +47,7 @@
 
 </section>
 <!--begin blog -->
-
-<section class="section-grey">
+<section class="section-grey fedd_noticias">
 
     <!--begin container-->
     <div class="container">
@@ -73,20 +72,20 @@
                 <!--begin blog-item -->
                 <div class="blog-item">
 
-                    <!--begin popup image
+                    <!--begin popup image-->
                     <div class="popup-wrapper">
                         <div class="popup-gallery">
-                            <a href="#"><img src="http://cadenacacaoca.info/wp-content/uploads/2018/12/IIFNC_inauguracion.jpg" class="width-100" alt="pic"><span class="eye-wrapper2"><i class="icon icon-link eye-icon"></i></span></a>
+                            <a href="#"><img src="{{obj.media_content.0.url}}" width="100%"  alt="pic"></a>
                         </div>
                     </div>
-                    begin popup image -->
+                    <!--begin popup image -->
 
                     <!--begin blog-item_inner -->
                     <div class="blog-item-inner">
 
-                        <h3 class="blog-title"><a target="_blank" href="{{obj.link}}">{{obj.title}}</a></h3>
+                        <h3 class="blog-title"><a target="_blank" href="{{obj.link}}">{{obj.title|truncatechars:75}}</a></h3>
                         <a class="blog-icons last"><i class="icon icon-user"></i> {{obj.author}}</a>
-                        <p>{{obj.description|striptags|safe}}</p>
+                        <p>{{obj.description|striptags|safe|truncatechars:250}}</p>
 
                     </div>
                     <!--end blog-item-inner -->

@@ -137,9 +137,7 @@ p a {
 /*Noticias*/
 .blog-item .popup-wrapper .popup-gallery {
   width: 100%;
-}
-.blog-item .popup-wrapper .popup-gallery img {
-  max-height: 202px;
+  height: 240px;
 }
 .blog-item .blog-item-inner {
   background-color: #fff;
@@ -755,7 +753,7 @@ small,
   font-size: 95%;
 }
 /**servicios**/
-.portfolio-items div .portfolio-item {
+.portfolio-items .portfolio-item {
   -moz-box-shadow: 0 8px 7px rgba(0,0,0,0.1);
   -webkit-box-shadow: 0 8px 7px rgba(0,0,0,0.1);
   box-shadow: 0 8px 7px rgba(0,0,0,0.1);
@@ -765,15 +763,19 @@ small,
   -o-border-radius: 10px;
   border-radius: 10px;
   padding: 10px 10px 15px 10px;
+  display: block;
 }
-.portfolio-items div .portfolio-item p {
+.portfolio-items .portfolio-item p {
   padding: 0 10px;
-}
-.portfolio-items div .portfolio-item h3 {
-  overflow: hidden;
-  height: 42px;
-  margin: 10px !important;
   text-align: left;
+}
+.portfolio-items .portfolio-item .team-info-white p {
+  text-align: center;
+}
+.portfolio-items .portfolio-item h3 {
+  overflow: hidden;
+  margin: 10px !important;
+  text-align: center;
 }
 .portfolio-items .team-img-sm {
   margin: 0;
