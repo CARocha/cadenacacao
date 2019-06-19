@@ -125,14 +125,13 @@
 							  	</div>
 							  	<div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 							  		<div class="bg-white p-15">
-							  			<form method="POST" id="contact-form">{% csrf_token %}
+							  			<form method="POST" action="{% url 'permiso-admin' %}" id="contact-form">{% csrf_token %}
 							  				<div class="row">
 							  					<div class="col-md-12 mb-10">
 							  						{% if enviado == 1 %}
 						                            <div class="alert alert-success" role="alert">Su mensaje ha sido enviado correctamente!!!</div>
 						                            {% endif %}
-							                        <p>Enviar mensaje al administrador del sistema si desea que su perfil se asocie a una organización/especialista</p>
-							                        <p>Adjuntar información básica para el registro de la misma</p>
+							                        <p>Con este formulario puede mandar a solicitar permiso para editar el perfil de la organizació que decee</p>
 							  					</div>
 							  					<div class="col-md-12 mb-10">
 							  						<label for="organizacion">Organización:</label>
@@ -166,8 +165,8 @@
                                                             {% endif %}
                                                         {% endfor %}
                                                     {% endif %}
-							                        <p>Desea comunicarte con el adminitrador de Cacao. Envia tu mensaje aquí.</p>
-							                        <p>Adjuntar información básica para el registro de la misma</p>
+							                        <p>Desea comunicarte con el adminitrador del Directoio de Cacao. Envia tu mensaje aquí.</p>
+
 							  					</div>
 
 							  					<div class="col-md-12 mb-10">
@@ -186,12 +185,11 @@
         				</div>
         			</div>
 		        	{% else %}
-		        	<form method="POST" id="contact-form">{% csrf_token %}
+		        	<form method="POST" action="." id="contact-form">{% csrf_token %}
 						{% if enviado == 1 %}
 							<div class="alert alert-success" role="alert">Su mensaje ha sido enviado correctamente!!!</div>
 							{% endif %}
-						<p>Enviar mensaje al administrador del sistema si desea que su perfil se asocie a una organización/especialista</p>
-						<p>Adjuntar información básica para el registro de la misma</p>
+						<p>Con este formulario puede mandar a solicitar permiso para editar el perfil de la organizació que decee</p>
                         Organizacion: {{form1.cual_org}} <br>
 						Asunto: {{form1.asunto}}<br>
 						<input type="submit" name="Enviar" value="Enviar mensaje">
@@ -253,14 +251,6 @@
     	toastr.success('Su mensaje ha sido enviado correctamente!!!', {timeOut: 5000})
     {% endif %}
 
-    {% if messages %}
-        {% for message in messages %}
-            {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
-                toastr.success('Su mensaje ha sido enviado correctamente al administrador!!!', {timeOut: 5000})
-            {% endif %}
-        {% endfor %}
-
-    {% endif %}
 
 
 </script>

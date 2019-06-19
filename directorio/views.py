@@ -6,6 +6,7 @@ from django.contrib.auth.views import password_reset
 from django.db.models import Q
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.contrib.sites.models import Site
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.mail import send_mail, EmailMultiAlternatives
@@ -149,36 +150,79 @@ def user_profile(request,template='perfil_user.html'):
 	organizaciones = Organizacion.objects.filter(usuario = user)
 	form = EmailForm()
 
+	# if request.method == 'POST':
+	# 	form1 = PedirPermisoForm(request.POST)
+	# 	if form1.is_valid():
+	# 		org_slug = form1.cleaned_data['cual_org'].id
+	# 		orga = get_object_or_404(Organizacion, pk=org_slug)
+	# 		mensaje = form1.cleaned_data['asunto']
+	# 	try:
+	# 		subject, from_email = 'Solicitud permiso en Sistema Cadena de cacao', 'vecomesoamerica@gmail.com'
+	# 		text_content = 'Usuario: ' + str(user.username) + '<br>'  + \
+	# 						'Correo: ' + str(user.email) + '<br>'  + \
+	# 						'Mensaje: ' + 'Enlace para dar permiso al usuario' + \
+	# 						str(site)+ '/permiso-organizacion/' + str(user.id) + str(org.id)
+
+	# 		html_content = 'Usuario: ' + str(user.username) + '<br>'  + \
+	# 						'Correo: ' + str(user.email) + '<br>'  + \
+	# 						'Mensaje: ' + 'Enlace para dar permiso al usuario' + \
+	# 						str(site)+ '/permiso-organizacion/' + str(user.id) + str(org.id)
+
+	# 		msg = EmailMultiAlternatives(subject, text_content, from_email,
+	# 									 [obj.email for obj in orga.usuario.all()])
+	# 		msg.attach_alternative(html_content, "text/html")
+	# 		msg.send()
+
+	# 		enviado = 1
+	# 		messages.success(request, "2")
+	# 		return HttpResponseRedirect('/accounts/profile/')
+	# 		#form1 = PedirPermisoForm()
+	# 	except:
+	# 		print "nose envia niverga"
+	# 		pass
+
+	# else:
+	form1 = PedirPermisoForm()
+
+	return render(request, template, locals())
+
+@login_required
+def enviar_correo_pedir_permiso(request):
+	user = User.objects.get(username = request.user)
+	organizaciones = Organizacion.objects.filter(usuario = user)
 	if request.method == 'POST':
 		form1 = PedirPermisoForm(request.POST)
 		if form1.is_valid():
 			org_slug = form1.cleaned_data['cual_org'].id
 			orga = get_object_or_404(Organizacion, pk=org_slug)
+			print "organizacion"
+			print orga
 			mensaje = form1.cleaned_data['asunto']
 		try:
 			subject, from_email = 'Solicitud ingreso de organización o especialista a Sistema Cadena de cacao', 'vecomesoamerica@gmail.com'
 			text_content = 'Usuario: ' + str(user.username) + '<br>'  + \
 							'Correo: ' + str(user.email) + '<br>'  + \
-							'Mensaje: ' + str(mensaje)
+							'Mensaje: ' + 'Enlace para dar permiso al usuario' #+ \
+	 						#str('https://directoriocacao.info')+ '/permiso-organizacion/' + str(user.id) + str(org.id)
 
 			html_content = 'Usuario: ' + str(user.username) + '<br>'  + \
 							'Correo: ' + str(user.email) + '<br>'  + \
-							'Mensaje: ' + str(mensaje)
+							'Mensaje: ' + 'Enlace para dar permiso al usuario' #+ \
+	 						#str('https://directoriocacao.info')+ '/permiso-organizacion/' + str(user.id) + str(orga.id)
 
-			msg = EmailMultiAlternatives(subject, text_content, from_email,
-										 [obj.email for obj in orga.usuario.all()])
+			msg = EmailMultiAlternatives(subject, text_content,
+										from_email,
+										[obj.email for obj in orga.usuario.all()]
+										)
+
 			msg.attach_alternative(html_content, "text/html")
 			msg.send()
-
-			enviado = 1
-			form1 = PedirPermisoForm()
+			messages.success(request, "2")
+			return HttpResponseRedirect('/accounts/profile/')
 		except:
 			pass
 
-	else:
-		form1 = PedirPermisoForm()
-
-	return render(request, template, locals())
+	return 2
 
 
 @login_required
