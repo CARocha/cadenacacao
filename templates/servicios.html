@@ -49,7 +49,7 @@
         <!--begin container-->
         <div class="container">
             <div class="row">
-                {% paginate 9 organizaciones %}
+
                 <!--begin portfolio-items-->
                 <div class="portfolio-items" id="grid">
                     {% for obj in organizaciones %}
@@ -60,12 +60,12 @@
 
                                 <figure class="portfolio-item">
 
-                                    <img src="https://www.directoriocacao.info/media/productos-servicios/7.jpeg" class="team-img-sm" alt="pic">
+                                    <img src="/media/{{servicio.foto}}" class="team-img-sm" alt="pic">
 
                                     <h3>{{servicio.nombre}}</h3>
-                                    <div class="team-info-white"><p>{{obj.nombre}}</p></div>
+                                    <div class="team-info-white"><p>{{obj.nombre|truncatechars:19}}</p></div>
                                     {% if servicio.descripcion %}
-                                        <p class="text-left">{{servicio.descripcion}}</p>
+                                        <p class="text-left">{{servicio.descripcion|truncatechars:100}}</p>
                                     {% else %}
                                         <p class="text-left">No tiene descripción</p>
                                     {% endif %}
@@ -82,13 +82,6 @@
 
                 </div>
                 <!--begin sorting-items-->
-                <nav class="Page navigation">
-                    <ul class="pagination pull-right">
-                        <li>
-                            {% show_pages %}
-                        </li>
-                    </ul>
-                </nav>
 
             </div>
             <!--end row-->

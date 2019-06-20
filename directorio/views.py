@@ -401,12 +401,14 @@ class Servicios(ListView):
     context_object_name = "organizaciones"
     #paginate_by = 9
 
-    # def get_context_data(self, **kwargs):
-    #     # Call the base implementation first to get a context
-    #     context = super(Servicios, self).get_context_data(**kwargs)
-    #     # Add in a QuerySet of all the books
-    #     #context['perfiles_list'] = Organizacion.objects.all()
-    #     return context
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(Servicios, self).get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        #ProductosServicios.objects.fiter(organizacion__in=)
+
+        #context['organizaciones'] = Organizacion.objects.filter(productosservicios__nombre__isnull=False)
+        return context
 
 
 
