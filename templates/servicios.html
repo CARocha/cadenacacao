@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load el_pagination_tags static %}
+
 {% block extra_css %}
 {% endblock extra_css %}
 {% block content %}
@@ -7,24 +9,24 @@
     <div class="breadcrumb-wrapper">
 
         <div class="breadcrumb-wrapper-overlay"></div>
-    
+
         <!--begin container -->
         <div class="container">
-            
+
             <!--begin row -->
             <div class="row">
-                  
+
                 <!--begin col-xs-6 -->
                 <div class="col-xs-6">
-                
+
                     <h2 class="page-title white">Sevicios</h2>
-                    
+
                 </div>
                 <!--end col-xs-6 -->
 
                 <!--begin col-xs-6 -->
                 <div class="col-xs-6 text-right">
-                
+
                     <ol class="breadcrumb white">
                       <li><a href="index.html" class="white">Inicio</a></li>
                       <li>Sevicios</li>
@@ -35,151 +37,65 @@
 
             </div>
             <!--end row -->
-            
+
         </div>
         <!--end container -->
-        
+
     </div>
     <!--end breadcrumb-wrapper-->
     <!--begin team -->
     <section class="section-white small-padding">
-        
+
         <!--begin container-->
         <div class="container">
             <div class="row">
-
+                {% paginate 9 organizaciones %}
                 <!--begin portfolio-items-->
                 <div class="portfolio-items" id="grid">
-          
-                    <!--begin team-item -->
-                    <div class="col-md-4 col-sm-4 col-xs-12 team-item-white">
+                    {% for obj in organizaciones %}
+                        {% if obj.productosservicios_set %}
+                            {% for servicio in obj.productosservicios_set.all|slice:":1" %}
+                            <!--begin team-item -->
+                            <div class="col-md-4 col-sm-4 col-xs-12 team-item-white">
 
-                        <figure class="portfolio-item">
-                    
-                            <img src="https://www.directoriocacao.info/media/productos-servicios/7.jpeg" class="team-img-sm" alt="pic">
-                           
-                            <h3>Nombre del servicio</h3>
-                            <div class="team-info-white"><p>Nombre del organizacion</p></div>
-                            
-                            
+                                <figure class="portfolio-item">
 
-                            <p class="text-left">Pellentesque etsum is laoret mauris, dapibis etim etsum, vivamus eti nibh ligula saepe present. 
-                            Quis netsi etsa lorem nibh ligula.</p>
-                            <a href="/actores/perfil/rikolto-veco-nicaragua/#servicios" class="btn-sm btn-blue" target="_blank">Ver más servicios</a>           
+                                    <img src="https://www.directoriocacao.info/media/productos-servicios/7.jpeg" class="team-img-sm" alt="pic">
 
-                        </figure>    
-                        
-                    </div>
-                    <!--end team-item -->
-                    <!--begin team-item -->
-                    <div class="col-md-4 col-sm-4 col-xs-12 team-item-white">
+                                    <h3>{{servicio.nombre}}</h3>
+                                    <div class="team-info-white"><p>{{obj.nombre}}</p></div>
+                                    {% if servicio.descripcion %}
+                                        <p class="text-left">{{servicio.descripcion}}</p>
+                                    {% else %}
+                                        <p class="text-left">No tiene descripción</p>
+                                    {% endif %}
 
-                        <figure class="portfolio-item">
-                    
-                            <img src="https://www.directoriocacao.info/media/productos-servicios/DSC_0686.jpeg" class="team-img-sm" alt="pic">
-                           
-                            <h3>Nombre del servicio</h3>
-                            <div class="team-info-white"><p>Nombre del organizacion</p></div>
-                            
-                            
+                                    <a href="{% url "detail-org" obj.slug %}#servicios" class="btn-sm btn-blue" target="_blank">Ver más servicios</a>
 
-                            <p class="text-left">Pellentesque etsum is laoret mauris, dapibis etim etsum, vivamus eti nibh ligula saepe present. 
-                            Quis netsi etsa lorem nibh ligula.</p>
-                            <a href="/actores/perfil/rikolto-veco-nicaragua/#servicios" class="btn-sm btn-blue" target="_blank">Ver más servicios</a>           
+                                </figure>
 
-                        </figure>    
-                        
-                    </div>
-                    <!--end team-item -->
-                    <!--begin team-item -->
-                    <div class="col-md-4 col-sm-4 col-xs-12 team-item-white">
+                            </div>
+                            <!--end team-item -->
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
 
-                        <figure class="portfolio-item">
-                    
-                            <img src="https://www.directoriocacao.info/media/productos-servicios/IMG_5910.jpeg" class="team-img-sm" alt="pic">
-                           
-                            <h3>Nombre del servicio</h3>
-                            <div class="team-info-white"><p>Nombre del organizacion</p></div>
-                            
-                            
-
-                            <p class="text-left">Pellentesque etsum is laoret mauris, dapibis etim etsum, vivamus eti nibh ligula saepe present. 
-                            Quis netsi etsa lorem nibh ligula.</p>
-                            <a href="/actores/perfil/rikolto-veco-nicaragua/#servicios" class="btn-sm btn-blue" target="_blank">Ver más servicios</a>           
-
-                        </figure>    
-                        
-                    </div>
-                    <!--end team-item -->
-                    <!--begin team-item -->
-                    <div class="col-md-4 col-sm-4 col-xs-12 team-item-white">
-
-                        <figure class="portfolio-item">
-                    
-                            <img src="http://placehold.it/660x660" class="team-img-sm" alt="pic">
-                           
-                            <h3>Nombre del servicio</h3>
-                            <div class="team-info-white"><p>Nombre del organizacion</p></div>
-                            
-                            
-
-                            <p class="text-left">Pellentesque etsum is laoret mauris, dapibis etim etsum, vivamus eti nibh ligula saepe present. 
-                            Quis netsi etsa lorem nibh ligula.</p>
-                            <a href="/actores/perfil/rikolto-veco-nicaragua/#servicios" class="btn-sm btn-blue" target="_blank">Ver más servicios</a>           
-
-                        </figure>    
-                        
-                    </div>
-                    <!--end team-item -->
-                    <!--begin team-item -->
-                    <div class="col-md-4 col-sm-4 col-xs-12 team-item-white">
-
-                        <figure class="portfolio-item">
-                    
-                            <img src="http://placehold.it/660x660" class="team-img-sm" alt="pic">
-                           
-                            <h3>Nombre del servicio</h3>
-                            <div class="team-info-white"><p>Nombre del organizacion</p></div>
-                            
-                            
-
-                            <p class="text-left">Pellentesque etsum is laoret mauris, dapibis etim etsum, vivamus eti nibh ligula saepe present. 
-                            Quis netsi etsa lorem nibh ligula.</p>
-                            <a href="/actores/perfil/rikolto-veco-nicaragua/#servicios" class="btn-sm btn-blue" target="_blank">Ver más servicios</a>           
-
-                        </figure>    
-                        
-                    </div>
-                    <!--end team-item -->
-                    <!--begin team-item -->
-                    <div class="col-md-4 col-sm-4 col-xs-12 team-item-white">
-
-                        <figure class="portfolio-item">
-                    
-                            <img src="http://placehold.it/660x660" class="team-img-sm" alt="pic">
-                           
-                            <h3>Nombre del servicio</h3>
-                            <div class="team-info-white"><p>Nombre del organizacion</p></div>
-                            
-                            
-
-                            <p class="text-left">Pellentesque etsum is laoret mauris, dapibis etim etsum, vivamus eti nibh ligula saepe present. 
-                            Quis netsi etsa lorem nibh ligula.</p>
-                            <a href="/actores/perfil/rikolto-veco-nicaragua/#servicios" class="btn-sm btn-blue" target="_blank">Ver más servicios</a>           
-
-                        </figure>    
-                        
-                    </div>
-                    <!--end team-item -->
                 </div>
-                <!--begin sorting-items-->    
-            
+                <!--begin sorting-items-->
+                <nav class="Page navigation">
+                    <ul class="pagination pull-right">
+                        <li>
+                            {% show_pages %}
+                        </li>
+                    </ul>
+                </nav>
+
             </div>
             <!--end row-->
-        
+
         </div>
         <!--end container-->
-        
+
     </section>
     <!--end team-->
 

@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render, get_object_or_404
+from django.template.loader import render_to_string
 from django.contrib.auth.views import password_reset
 from django.db.models import Q
 from django.contrib.auth.models import User
@@ -11,6 +12,8 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.mail import send_mail, EmailMultiAlternatives
 from django.forms import inlineformset_factory
+from django.contrib.sites.models import Site
+from django.views.generic import TemplateView, ListView
 from registration.backends.hmac.views import *
 import feedparser
 
@@ -22,386 +25,394 @@ import json as simplejson
 
 # Create your views here.
 def index(request,template='index.html'):
-	# object = Organizacion.objects.all()
-	feed = feedparser.parse('http://cadenacacaoca.info/feed/')
-	feed.entries[0].title
-	feed.entries[0].link
-	feed.entries[0].description
-	feed.entries[0].author
-	feed.entries[0].media_content
-	return render(request, template, locals())
+    # object = Organizacion.objects.all()
+    feed = feedparser.parse('http://cadenacacaoca.info/feed/')
+    feed.entries[0].title
+    feed.entries[0].link
+    feed.entries[0].description
+    feed.entries[0].author
+    feed.entries[0].media_content
+    return render(request, template, locals())
 
 def _queryset_filtrado_afiliado(request):
-	params = {}
+    params = {}
 
-	if request.session['pais_sede']:
-		params['pais_sede'] = request.session['pais_sede']
+    if request.session['pais_sede']:
+        params['pais_sede'] = request.session['pais_sede']
 
-	if request.session['ambito_accion']:
-		params['ambito_accion'] = request.session['ambito_accion']
+    if request.session['ambito_accion']:
+        params['ambito_accion'] = request.session['ambito_accion']
 
-	if request.session['tipo_organizacion']:
-		params['tipo_organizacion__in'] = request.session['tipo_organizacion']
+    if request.session['tipo_organizacion']:
+        params['tipo_organizacion__in'] = request.session['tipo_organizacion']
 
-	if request.session['paises_labora']:
-		params['paises_labora__in'] = request.session['paises_labora']
+    if request.session['paises_labora']:
+        params['paises_labora__in'] = request.session['paises_labora']
 
-	if request.session['participacion_cadena']:
-		params['participacion_cadena__in'] = request.session['participacion_cadena']
+    if request.session['participacion_cadena']:
+        params['participacion_cadena__in'] = request.session['participacion_cadena']
 
-	if request.session['servicios']:
-		params['servicios__in'] = request.session['servicios']
+    if request.session['servicios']:
+        params['servicios__in'] = request.session['servicios']
 
-	# if request.session['intercambio']:
-	# 	params['intercambio__in'] = request.session['intercambio']
+    # if request.session['intercambio']:
+    #   params['intercambio__in'] = request.session['intercambio']
 
-	# if request.session['tipo']:
-	# 	params['tipo'] = request.session['tipo']
+    # if request.session['tipo']:
+    #   params['tipo'] = request.session['tipo']
 
-	if request.session['tipo_actividad']:
-		params['tipo_actividad__in'] = request.session['tipo_actividad']
+    if request.session['tipo_actividad']:
+        params['tipo_actividad__in'] = request.session['tipo_actividad']
 
-	unvalid_keys = []
-	for key in params:
-		if not params[key]:
-			unvalid_keys.append(key)
+    unvalid_keys = []
+    for key in params:
+        if not params[key]:
+            unvalid_keys.append(key)
 
-	for key in unvalid_keys:
-		del params[key]
+    for key in unvalid_keys:
+        del params[key]
 
-	return Organizacion.objects.filter(**params).order_by('nombre')
+    return Organizacion.objects.filter(**params).order_by('nombre')
 
 def consulta(request,template='consulta.html'):
-	if request.method == 'POST':
-		mensaje = None
-		form = OrganizacionForm(request.POST)
-		if form.is_valid():
-			request.session['pais_sede'] = form.cleaned_data['pais_sede']
-			request.session['ambito_accion'] = form.cleaned_data['ambito_accion']
-			request.session['tipo_organizacion'] = form.cleaned_data['tipo_organizacion']
-			request.session['paises_labora'] = form.cleaned_data['paises_labora']
-			request.session['participacion_cadena'] = form.cleaned_data['participacion_cadena']
-			request.session['servicios'] = form.cleaned_data['servicios']
-			# request.session['intercambio'] = form.cleaned_data['intercambio']
-			# request.session['tipo'] = form.cleaned_data['tipo']
-			request.session['tipo_actividad'] = form.cleaned_data['tipo_actividad']
+    if request.method == 'POST':
+        mensaje = None
+        form = OrganizacionForm(request.POST)
+        if form.is_valid():
+            request.session['pais_sede'] = form.cleaned_data['pais_sede']
+            request.session['ambito_accion'] = form.cleaned_data['ambito_accion']
+            request.session['tipo_organizacion'] = form.cleaned_data['tipo_organizacion']
+            request.session['paises_labora'] = form.cleaned_data['paises_labora']
+            request.session['participacion_cadena'] = form.cleaned_data['participacion_cadena']
+            request.session['servicios'] = form.cleaned_data['servicios']
+            # request.session['intercambio'] = form.cleaned_data['intercambio']
+            # request.session['tipo'] = form.cleaned_data['tipo']
+            request.session['tipo_actividad'] = form.cleaned_data['tipo_actividad']
 
-			mensaje = "Todas las variables estan correctamente :)"
-			request.session['activo'] = True
-			centinela = 1
+            mensaje = "Todas las variables estan correctamente :)"
+            request.session['activo'] = True
+            centinela = 1
 
-		else:
-			centinela = 0
+        else:
+            centinela = 0
 
-	else:
-		form = OrganizacionForm()
-		mensaje = "Existen alguno errores"
-		try:
-			del request.session['pais_sede']
-			del request.session['ambito_accion']
-			del request.session['tipo_organizacion']
-			del request.session['paises_labora']
-			del request.session['participacion_cadena']
-			del request.session['servicios']
-			# del request.session['intercambio']
-			# del request.session['tipo']
-			del request.session['tipo_actividad']
-		except:
-			pass
+    else:
+        form = OrganizacionForm()
+        mensaje = "Existen alguno errores"
+        try:
+            del request.session['pais_sede']
+            del request.session['ambito_accion']
+            del request.session['tipo_organizacion']
+            del request.session['paises_labora']
+            del request.session['participacion_cadena']
+            del request.session['servicios']
+            # del request.session['intercambio']
+            # del request.session['tipo']
+            del request.session['tipo_actividad']
+        except:
+            pass
 
-	if 'pais_sede' not in request.session:
-		object_list = Organizacion.objects.all().order_by('-ratings__average','nombre')
-	else:
-		filtro = _queryset_filtrado_afiliado(request)
-		object_list = filtro.order_by('-ratings__average','nombre')
+    if 'pais_sede' not in request.session:
+        object_list = Organizacion.objects.all().order_by('-ratings__average','nombre')
+    else:
+        filtro = _queryset_filtrado_afiliado(request)
+        object_list = filtro.order_by('-ratings__average','nombre')
 
-	return render(request, template, locals())
+    return render(request, template, locals())
 
 def detail_org(request,template='perfil.html',slug=None):
-	object = Organizacion.objects.get(slug=slug)
-	fotos = ProductosServicios.objects.filter(organizacion = object)
-	conteo = fotos.count()
+    object = Organizacion.objects.get(slug=slug)
+    fotos = ProductosServicios.objects.filter(organizacion = object)
+    conteo = fotos.count()
 
-	redes = Redes.objects.filter(organizacion = object).order_by('id')
+    redes = Redes.objects.filter(organizacion = object).order_by('id')
 
-	location = object.location.split(",")
+    location = object.location.split(",")
 
-	return render(request, template, locals())
+    return render(request, template, locals())
 
 class MyRegistrationView(RegistrationView):
-	def create_inactive_user(self, form):
-		"""
-		Create the inactive user account and send an email containing
-		activation instructions.
+    def create_inactive_user(self, form):
+        """
+        Create the inactive user account and send an email containing
+        activation instructions.
 
-		"""
-		new_user = form.save(commit=False)
-		new_user.is_active = False
-		new_user.is_staff = True
-		new_user.save()
+        """
+        new_user = form.save(commit=False)
+        new_user.is_active = False
+        new_user.is_staff = True
+        new_user.save()
 
-		self.send_activation_email(new_user)
+        self.send_activation_email(new_user)
 
-		return new_user
+        return new_user
 
 @login_required
 def user_profile(request,template='perfil_user.html'):
-	user = User.objects.get(username = request.user)
-	organizaciones = Organizacion.objects.filter(usuario = user)
-	form = EmailForm()
+    site = Site.objects.get_current()
+    user = User.objects.get(username = request.user)
+    organizaciones = Organizacion.objects.filter(usuario = user)
+    form = EmailForm()
 
-	# if request.method == 'POST':
-	# 	form1 = PedirPermisoForm(request.POST)
-	# 	if form1.is_valid():
-	# 		org_slug = form1.cleaned_data['cual_org'].id
-	# 		orga = get_object_or_404(Organizacion, pk=org_slug)
-	# 		mensaje = form1.cleaned_data['asunto']
-	# 	try:
-	# 		subject, from_email = 'Solicitud permiso en Sistema Cadena de cacao', 'vecomesoamerica@gmail.com'
-	# 		text_content = 'Usuario: ' + str(user.username) + '<br>'  + \
-	# 						'Correo: ' + str(user.email) + '<br>'  + \
-	# 						'Mensaje: ' + 'Enlace para dar permiso al usuario' + \
-	# 						str(site)+ '/permiso-organizacion/' + str(user.id) + str(org.id)
+    if request.method == 'POST':
+        form1 = PedirPermisoForm(request.POST)
+        if form1.is_valid():
+            org_slug = form1.cleaned_data['cual_org'].id
+            orga = get_object_or_404(Organizacion, pk=org_slug)
+            print "organizacion"
+            print orga
+            mensaje = form1.cleaned_data['asunto']
+            print org_slug
+            print mensaje
 
-	# 		html_content = 'Usuario: ' + str(user.username) + '<br>'  + \
-	# 						'Correo: ' + str(user.email) + '<br>'  + \
-	# 						'Mensaje: ' + 'Enlace para dar permiso al usuario' + \
-	# 						str(site)+ '/permiso-organizacion/' + str(user.id) + str(org.id)
+            contenido = render_to_string('notify_new_permiso.html', {
+                                   'mensajes': mensaje,
+                                   'usuario': user.username,
+                                   'url': '%s/otorgar/permiso/%s/%s/' % (site,user.id,orga.id)
+                                    })
+            msg = EmailMultiAlternatives('Solicitud permiso de organización',
+                                         contenido,
+                                         'vecomesoamerica@gmail.com',
+                                         [obj.email for obj in orga.usuario.all()])
+            msg.attach_alternative(contenido, "text/html")
+            msg.send()
+            messages.success(request, "5")
+            return HttpResponseRedirect('/accounts/profile/')
 
-	# 		msg = EmailMultiAlternatives(subject, text_content, from_email,
-	# 									 [obj.email for obj in orga.usuario.all()])
-	# 		msg.attach_alternative(html_content, "text/html")
-	# 		msg.send()
 
-	# 		enviado = 1
-	# 		messages.success(request, "2")
-	# 		return HttpResponseRedirect('/accounts/profile/')
-	# 		#form1 = PedirPermisoForm()
-	# 	except:
-	# 		print "nose envia niverga"
-	# 		pass
+    else:
+        form1 = PedirPermisoForm()
 
-	# else:
-	form1 = PedirPermisoForm()
-
-	return render(request, template, locals())
+    return render(request, template, locals())
 
 @login_required
 def enviar_correo_pedir_permiso(request):
-	user = User.objects.get(username = request.user)
-	organizaciones = Organizacion.objects.filter(usuario = user)
-	if request.method == 'POST':
-		form1 = PedirPermisoForm(request.POST)
-		if form1.is_valid():
-			org_slug = form1.cleaned_data['cual_org'].id
-			orga = get_object_or_404(Organizacion, pk=org_slug)
-			print "organizacion"
-			print orga
-			mensaje = form1.cleaned_data['asunto']
-		try:
-			subject, from_email = 'Solicitud ingreso de organización o especialista a Sistema Cadena de cacao', 'vecomesoamerica@gmail.com'
-			text_content = 'Usuario: ' + str(user.username) + '<br>'  + \
-							'Correo: ' + str(user.email) + '<br>'  + \
-							'Mensaje: ' + 'Enlace para dar permiso al usuario' #+ \
-	 						#str('https://directoriocacao.info')+ '/permiso-organizacion/' + str(user.id) + str(org.id)
-
-			html_content = 'Usuario: ' + str(user.username) + '<br>'  + \
-							'Correo: ' + str(user.email) + '<br>'  + \
-							'Mensaje: ' + 'Enlace para dar permiso al usuario' #+ \
-	 						#str('https://directoriocacao.info')+ '/permiso-organizacion/' + str(user.id) + str(orga.id)
-
-			msg = EmailMultiAlternatives(subject, text_content,
-										from_email,
-										[obj.email for obj in orga.usuario.all()]
-										)
-
-			msg.attach_alternative(html_content, "text/html")
-			msg.send()
-			messages.success(request, "2")
-			return HttpResponseRedirect('/accounts/profile/')
-		except:
-			pass
-
-	return 2
-
+    user = User.objects.get(username = request.user)
+    organizaciones = Organizacion.objects.filter(usuario = user)
+    if request.method == 'POST':
+        form1 = PedirPermisoForm(request.POST)
+        if form1.is_valid():
+            org_slug = form1.cleaned_data['cual_org'].id
+            orga = get_object_or_404(Organizacion, pk=org_slug)
+            print "organizacion"
+            print orga
+            mensaje = form1.cleaned_data['asunto']
+        try:
+            contenido = render_to_string('notify_new_permiso.html', {
+                                   'mensajes': mensaje,
+                                   'url': '%s/otorgar/permiso/%s/%s/' % (site,user.username,organizaciones)
+                                    })
+            msg = EmailMultiAlternatives('Solicitud permiso de organización',
+                                         contenido,
+                                         'vecomesoamerica@gmail.com',
+                                         [obj.email for obj in orga.usuario.all()])
+            msg.attach_alternative(contenido, "text/html")
+            msg.send()
+            messages.success(request, "5")
+            return HttpResponseRedirect('/accounts/profile/')
+        except:
+            print "Hubo errores"
 
 @login_required
 def enviar_correo_administradores(request):
-	user = User.objects.get(username = request.user)
-	if request.method == 'POST':
-		form = EmailForm(request.POST)
-		if form.is_valid():
-			mensaje = form.cleaned_data['mensaje']
-		try:
-			subject, from_email = 'Solicitud ingreso de organización o especialista a Sistema Cadena de cacao', 'vecomesoamerica@gmail.com'
-			text_content = 'Usuario: ' + str(user.username) + '<br>'  + \
-							'Correo: ' + str(user.email) + '<br>'  + \
-							'Mensaje: ' + str(mensaje)
+    user = User.objects.get(username = request.user)
+    if request.method == 'POST':
+        form = EmailForm(request.POST)
+        if form.is_valid():
+            mensaje = form.cleaned_data['mensaje']
+        try:
+            subject, from_email = 'Solicitud ingreso de organización o especialista a Sistema Cadena de cacao', 'vecomesoamerica@gmail.com'
+            text_content = 'Usuario: ' + str(user.username) + '<br>'  + \
+                            'Correo: ' + str(user.email) + '<br>'  + \
+                            'Mensaje: ' + str(mensaje)
 
-			html_content = 'Usuario: ' + str(user.username) + '<br>'  + \
-							'Correo: ' + str(user.email) + '<br>'  + \
-							'Mensaje: ' + str(mensaje)
+            html_content = 'Usuario: ' + str(user.username) + '<br>'  + \
+                            'Correo: ' + str(user.email) + '<br>'  + \
+                            'Mensaje: ' + str(mensaje)
 
-			msg = EmailMultiAlternatives(subject, text_content,
-																	from_email,
-																	[obj.email for obj in User.objects.filter(is_superuser=True)]
-																	)
-			msg.attach_alternative(html_content, "text/html")
-			msg.send()
-			messages.success(request, "2")
-			return HttpResponseRedirect('/accounts/profile/')
-		except:
-			pass
+            msg = EmailMultiAlternatives(subject, text_content,
+                        from_email,
+                        [obj.email for obj in User.objects.filter(is_superuser=True)]
+                        )
+            msg.attach_alternative(html_content, "text/html")
+            msg.send()
+            messages.success(request, "2")
+            return HttpResponseRedirect('/accounts/profile/')
+        except:
+            pass
 
-	return 2
+    return 2
 
 @login_required
 def permisos_organizacion(request,template='editar_permisos.html',slug=None):
-	org = get_object_or_404(Organizacion, slug=slug)
-	if request.method == 'POST':
-		form = PermisoFormOrganizacion(request.POST,request.FILES,instance=org)
-		if form.is_valid():
-			form.save()
-			obj = form.save(commit=False)
-			obj.usuario.add(request.user)
-			obj.save()
-			mandar_aviso(request,org)
-			return HttpResponseRedirect('/accounts/profile/')
+    org = get_object_or_404(Organizacion, slug=slug)
+    if request.method == 'POST':
+        form = PermisoFormOrganizacion(request.POST,request.FILES,instance=org)
+        if form.is_valid():
+            form.save()
+            obj = form.save(commit=False)
+            obj.usuario.add(request.user)
+            obj.save()
+            mandar_aviso(request,org)
+            return HttpResponseRedirect('/accounts/profile/')
 
-	else:
-		form = PermisoFormOrganizacion(instance=org)
-	return render(request, template, locals())
+    else:
+        form = PermisoFormOrganizacion(instance=org)
+    return render(request, template, locals())
 
 @login_required
 def editar_user(request,template='editar_user.html'):
-	if request.method == 'POST':
-		form = UserForm(request.POST, instance=request.user)
-		if form.is_valid():
-			form.save()
-			return HttpResponseRedirect('/accounts/profile/')
-	else:
-		form = UserForm(instance=request.user)
+    if request.method == 'POST':
+        form = UserForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/accounts/profile/')
+    else:
+        form = UserForm(instance=request.user)
 
-	return render(request, template, locals())
+    return render(request, template, locals())
 
 
 
 @login_required
 def crear_org(request,template='crear_org.html'):
-	FormSetInit = inlineformset_factory(Organizacion, ProductosServicios,
-										form=ProductosServiciosFrom,
-										max_num=9,extra=1)
-	FormSetInit2 = inlineformset_factory(Organizacion, Redes,
-										 form=RedesFrom,
-										 extra=1,max_num=11)
-	FormSetInit3 = inlineformset_factory(Organizacion, LinkVideos,
-										 form=VideosForm,
-										 extra=1, max_num=5)
+    FormSetInit = inlineformset_factory(Organizacion, ProductosServicios,
+                                        form=ProductosServiciosFrom,
+                                        max_num=9,extra=1)
+    FormSetInit2 = inlineformset_factory(Organizacion, Redes,
+                                         form=RedesFrom,
+                                         extra=1,max_num=11)
+    FormSetInit3 = inlineformset_factory(Organizacion, LinkVideos,
+                                         form=VideosForm,
+                                         extra=1, max_num=5)
 
-	if request.method == 'POST':
-		form = OrgForm(request.POST,request.FILES)
-		formset1 = FormSetInit(request.POST,request.FILES)
-		formset2 = FormSetInit2(request.POST,request.FILES)
-		formset3 = FormSetInit3(request.POST,request.FILES)
+    if request.method == 'POST':
+        form = OrgForm(request.POST,request.FILES)
+        formset1 = FormSetInit(request.POST,request.FILES)
+        formset2 = FormSetInit2(request.POST,request.FILES)
+        formset3 = FormSetInit3(request.POST,request.FILES)
 
-		if form.is_valid() and formset1.is_valid() and formset2.is_valid() and formset3.is_valid():
-			form.save()
-			org = form.save(commit=False)
-			org.usuario.add(request.user)
-			org.save()
-			#guarda formsets inlines
-			for form1 in formset1:
-				obj = form1.save(commit=False)
-				obj.organizacion = org
-				obj.save()
-			for form2 in formset2:
-				obj = form2.save(commit=False)
-				obj.organizacion = org
-				obj.save()
-			for form3 in formset3:
-				obj = form3.save(commit=False)
-				obj.organizacion = org
-				obj.save()
-			return HttpResponseRedirect('/accounts/profile/')
+        if form.is_valid() and formset1.is_valid() and formset2.is_valid() and formset3.is_valid():
+            form.save()
+            org = form.save(commit=False)
+            org.usuario.add(request.user)
+            org.save()
+            #guarda formsets inlines
+            for form1 in formset1:
+                obj = form1.save(commit=False)
+                obj.organizacion = org
+                obj.save()
+            for form2 in formset2:
+                obj = form2.save(commit=False)
+                obj.organizacion = org
+                obj.save()
+            for form3 in formset3:
+                obj = form3.save(commit=False)
+                obj.organizacion = org
+                obj.save()
+            return HttpResponseRedirect('/accounts/profile/')
 
-	else:
-		form = OrgForm()
-		formset1 = FormSetInit()
-		formset2 = FormSetInit2()
-		formset3 = FormSetInit3()
+    else:
+        form = OrgForm()
+        formset1 = FormSetInit()
+        formset2 = FormSetInit2()
+        formset3 = FormSetInit3()
 
-	return render(request, template, locals())
+    return render(request, template, locals())
 
 
 @login_required
 def editar_org(request,template='editar_org.html',slug=None):
-	object = Organizacion.objects.get(slug=slug)
-	FormSetInit = inlineformset_factory(Organizacion, ProductosServicios, form=ProductosServiciosFrom,extra=1)
-	FormSetInit2 = inlineformset_factory(Organizacion, Redes, form=RedesFrom,extra=1)
-	FormSetInit3 = inlineformset_factory(Organizacion, LinkVideos, form=VideosForm,extra=1)
+    object = Organizacion.objects.get(slug=slug)
+    FormSetInit = inlineformset_factory(Organizacion, ProductosServicios, form=ProductosServiciosFrom,extra=1)
+    FormSetInit2 = inlineformset_factory(Organizacion, Redes, form=RedesFrom,extra=1)
+    FormSetInit3 = inlineformset_factory(Organizacion, LinkVideos, form=VideosForm,extra=1)
 
-	if request.method == 'POST':
-		form = OrgForm(request.POST,request.FILES,instance=object)
-		formset1 = FormSetInit(request.POST,request.FILES,instance=object)
-		formset2 = FormSetInit2(request.POST,request.FILES,instance=object)
-		formset3 = FormSetInit3(request.POST,request.FILES,instance=object)
-		if form.is_valid() and formset1.is_valid() and formset2.is_valid() and formset3.is_valid():
-			form.save()
-			org = form.save(commit=False)
-			org.save()
-			for form1 in formset1:
-				obj = form1.save(commit=False)
-				obj.organizacion = org
-				obj.save()
-			for form2 in formset2:
-				obj = form2.save(commit=False)
-				obj.organizacion = org
-				obj.save()
-			for form3 in formset3:
-				obj = form3.save(commit=False)
-				obj.organizacion = org
-				obj.save()
-			return HttpResponseRedirect('/accounts/profile/')
+    if request.method == 'POST':
+        form = OrgForm(request.POST,request.FILES,instance=object)
+        formset1 = FormSetInit(request.POST,request.FILES,instance=object)
+        formset2 = FormSetInit2(request.POST,request.FILES,instance=object)
+        formset3 = FormSetInit3(request.POST,request.FILES,instance=object)
+        if form.is_valid() and formset1.is_valid() and formset2.is_valid() and formset3.is_valid():
+            form.save()
+            org = form.save(commit=False)
+            org.save()
+            for form1 in formset1:
+                obj = form1.save(commit=False)
+                obj.organizacion = org
+                obj.save()
+            for form2 in formset2:
+                obj = form2.save(commit=False)
+                obj.organizacion = org
+                obj.save()
+            for form3 in formset3:
+                obj = form3.save(commit=False)
+                obj.organizacion = org
+                obj.save()
+            return HttpResponseRedirect('/accounts/profile/')
 
-	else:
-		form = OrgForm(instance=object)
-		formset1 = FormSetInit(instance=object)
-		formset2 = FormSetInit2(instance=object)
-		formset3 = FormSetInit3(instance=object)
+    else:
+        form = OrgForm(instance=object)
+        formset1 = FormSetInit(instance=object)
+        formset2 = FormSetInit2(instance=object)
+        formset3 = FormSetInit3(instance=object)
 
-	return render(request, template, locals())
+    return render(request, template, locals())
 
 def obtener_lista(request):
-	if request.is_ajax():
-		lista = []
-		for objeto in Organizacion.objects.all():
-			if objeto.location:
-				split_location = objeto.location.split(",")
-				dicc = dict(nombre=objeto.nombre ,id=objeto.id,
-							lat=float(split_location[0]),
-							lon=float(split_location[1])
-							)
-				lista.append(dicc)
+    if request.is_ajax():
+        lista = []
+        for objeto in Organizacion.objects.all():
+            if objeto.location:
+                split_location = objeto.location.split(",")
+                dicc = dict(nombre=objeto.nombre ,id=objeto.id,
+                            lat=float(split_location[0]),
+                            lon=float(split_location[1])
+                            )
+                lista.append(dicc)
 
-		serializado = simplejson.dumps(lista)
-		return HttpResponse(serializado, content_type = 'application/json')
+        serializado = simplejson.dumps(lista)
+        return HttpResponse(serializado, content_type = 'application/json')
 
 def mandar_aviso(request, org=None):
-	user = User.objects.get(username = request.user)
-	orga = get_object_or_404(Organizacion, pk=org.id)
+    user = User.objects.get(username = request.user)
+    orga = get_object_or_404(Organizacion, pk=org.id)
 
-	subject, from_email = 'Permiso otorgado!!', 'vecomesoamerica@gmail.com'
-	text_content = 'Usuario: ' + str(user.username) + '<br>'  + \
-					'Correo: ' + str(user.email) + '<br>'  + \
-					'Mensaje: ' + 'Ha otorgado permiso!'
+    subject, from_email = 'Permiso otorgado!!', 'vecomesoamerica@gmail.com'
+    text_content = 'Usuario: ' + str(user.username) + '<br>'  + \
+                    'Correo: ' + str(user.email) + '<br>'  + \
+                    'Mensaje: ' + 'Ha otorgado permiso!'
 
-	html_content = 'Usuario: ' + str(user.username) + '<br>'  + \
-					'Correo: ' + str(user.email) + '<br>'  + \
-					'Mensaje: ' + 'Ha otorgado permiso!'
+    html_content = 'Usuario: ' + str(user.username) + '<br>'  + \
+                    'Correo: ' + str(user.email) + '<br>'  + \
+                    'Mensaje: ' + 'Ha otorgado permiso!'
 
-	msg = EmailMultiAlternatives(subject, text_content, from_email,
-								 [obj.email for obj in orga.usuario.all()])
-	msg.attach_alternative(html_content, "text/html")
-	msg.send()
+    msg = EmailMultiAlternatives(subject, text_content, from_email,
+                                 [obj.email for obj in orga.usuario.all()])
+    msg.attach_alternative(html_content, "text/html")
+    msg.send()
 
-	return 1
+    return 1
+
+class Servicios(ListView):
+    model = Organizacion
+    queryset = Organizacion.objects.order_by('-actualizado')
+    template_name = "servicios.html"
+    context_object_name = "organizaciones"
+    #paginate_by = 9
+
+    # def get_context_data(self, **kwargs):
+    #     # Call the base implementation first to get a context
+    #     context = super(Servicios, self).get_context_data(**kwargs)
+    #     # Add in a QuerySet of all the books
+    #     #context['perfiles_list'] = Organizacion.objects.all()
+    #     return context
+
+
+
+
+
+
+
+
+
