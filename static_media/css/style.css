@@ -293,6 +293,10 @@ select#input {
 .bootstrap-select.btn-group .dropdown-toggle .filter-option {
   color: #3d3935;
 }
+.bootstrap-select.btn-group .dropdown-menu {
+  width: 100%;
+  overflow: hidden;
+}
 .bootstrap-select.btn-group .dropdown-menu li a {
   color: #3d3935 !important;
   font-size: 16px;
