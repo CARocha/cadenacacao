@@ -20,38 +20,35 @@
             <div class="row">
 
                 <div class="col-md-offset-2 col-md-8 detalle-user">
-                    <h1 class="">Editar permisos </h1>
-                    <h5>Organización {{ org.nombre }}</h5>
-                    <p>Agregar o eliminar usuarios adminitradores de la organización </p>
-                    {% if form.errors %}
-                        <ul class="alert alert-warning" role="alert">
-                        {% for field in form %}
-                            {% for error in field.errors %}
-                                <li>
-                                  {% if field != '__all__' %}
-                                    <strong>{{ field.label }}:</strong>
-                                  {% endif %}
-                                  {{ error }}
-                                </li>
-                            {% endfor %}
-                        {% endfor %}
-                        </ul>
-                    {% endif %}
+                    <h1 class="">Editar permiso </h1>
+                    <h5>Le desea otorgar permiso al usuario: <strong>{{usuario}}</strong> sobre el perfil de la Organización <strong>{{organizacion}}</strong>?</h5>
+                    <p> </p>
 
-                    <form action="." method="POST" id="contact-form" class="contact form-edit-org" enctype="multipart/form-data">{% csrf_token %}
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-6">
-                                <div class="input-group group-costum-2">
-                                    <label class="" for="">Usuarios*:</label>
-                                    <br>
-                                    
-                                    {{ form.usuario }}
+                    <div>
+                        <input type="hidden" id="permisito" value="SI">
+                        <input onclick="setGetParameter()" type="button" class="btn btn-success" value = "Agregar permiso"/>
+                        <a href="/accounts/profile" class="btn btn-danger">No</a>
+                    </div>
 
-                                </div>
-                            </div>
-                        </div>
-                        <input type="submit" name="Editar" class="contact-submit" value="Actualizar permisos">
-                    </form>
+
+                    <script>
+
+                    function setGetParameter(){
+                        var search_word = $("#permisito").val();
+                        $.ajax({
+                          type: "POST",
+                          url: "{% url 'editar-permisos-user' usuario.id organizacion.id %}",
+                          data: {
+                            'data': search_word,
+                            'csrfmiddlewaretoken': '{{ csrf_token }}'
+                            },
+                          success: function(result){
+                            alert("Permiso Otorgado");
+                            window.location = "/accounts/profile";
+                          }
+                        });
+                    }
+                    </script>
                 </div>
             </div>
 

@@ -31,7 +31,7 @@ urlpatterns = [
     url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^actores/busqueda/', include('haystack.urls')),
-    url(r'^correo/permiso-org/', enviar_correo_pedir_permiso, name="permiso-admin"),
+    #url(r'^correo/permiso-org/', enviar_correo_pedir_permiso, name="permiso-admin"),
     url(r'^correo/admin/', enviar_correo_administradores, name="soporte-admin"),
     # url(r'^accounts/register/$',MyRegistrationView.as_view(),name='registration_register'),
 
@@ -40,7 +40,7 @@ urlpatterns = [
     url(r'^accounts/profile/crear/$',crear_org,name='crear-org'),
     url(r'^accounts/profile/editar/(?P<slug>[\w-]+)/$',editar_org,name='editar-org'),
     url(r'^accounts/profile/user/editar/$',editar_user,name='editar-user'),
-    url(r'^permisos/editar/(?P<slug>[\w-]+)/$',permisos_organizacion,name='editar-permisos-user'),
+    url(r'^permisos/editar/(?P<user_id>[0-9]+)/(?P<org_id>[0-9]+)/$',permisos_organizacion,name='editar-permisos-user'),
 
     #url(r'^password_reset/$', auth_views.password_reset, name='password_reset'),
     #url(r'^password_reset/done/$', auth_views.password_reset_done, name='password_reset_done'),

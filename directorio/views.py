@@ -168,7 +168,7 @@ def user_profile(request,template='perfil_user.html'):
             contenido = render_to_string('notify_new_permiso.html', {
                                    'mensajes': mensaje,
                                    'usuario': user.username,
-                                   'url': '%s/otorgar/permiso/%s/%s/' % (site,user.id,orga.id)
+                                   'url': '%s/permisos/editar/%s/%s/' % (site,user.id,orga.id)
                                     })
             msg = EmailMultiAlternatives('Solicitud permiso de organización',
                                          contenido,
@@ -185,33 +185,23 @@ def user_profile(request,template='perfil_user.html'):
 
     return render(request, template, locals())
 
+
 @login_required
-def enviar_correo_pedir_permiso(request):
-    user = User.objects.get(username = request.user)
-    organizaciones = Organizacion.objects.filter(usuario = user)
-    if request.method == 'POST':
-        form1 = PedirPermisoForm(request.POST)
-        if form1.is_valid():
-            org_slug = form1.cleaned_data['cual_org'].id
-            orga = get_object_or_404(Organizacion, pk=org_slug)
-            print "organizacion"
-            print orga
-            mensaje = form1.cleaned_data['asunto']
-        try:
-            contenido = render_to_string('notify_new_permiso.html', {
-                                   'mensajes': mensaje,
-                                   'url': '%s/otorgar/permiso/%s/%s/' % (site,user.username,organizaciones)
-                                    })
-            msg = EmailMultiAlternatives('Solicitud permiso de organización',
-                                         contenido,
-                                         'vecomesoamerica@gmail.com',
-                                         [obj.email for obj in orga.usuario.all()])
-            msg.attach_alternative(contenido, "text/html")
-            msg.send()
-            messages.success(request, "5")
-            return HttpResponseRedirect('/accounts/profile/')
-        except:
-            print "Hubo errores"
+def permisos_organizacion(request,template='editar_permisos.html',org_id=None, user_id=None):
+    usuario = get_object_or_404(User, pk=user_id)
+    organizacion = get_object_or_404(Organizacion, pk=org_id)
+
+    if request.method == "POST":
+        search_word = request.POST['data']
+        if search_word == "SI":
+            org = Organizacion.objects.filter(pk=org_id)
+            org.usuario.add(user_id)
+            org.save()
+            print "algo"
+        else:
+            print "Nimerga nose pudo"
+
+    return render(request, template, locals())
 
 @login_required
 def enviar_correo_administradores(request):
@@ -243,22 +233,22 @@ def enviar_correo_administradores(request):
 
     return 2
 
-@login_required
-def permisos_organizacion(request,template='editar_permisos.html',slug=None):
-    org = get_object_or_404(Organizacion, slug=slug)
-    if request.method == 'POST':
-        form = PermisoFormOrganizacion(request.POST,request.FILES,instance=org)
-        if form.is_valid():
-            form.save()
-            obj = form.save(commit=False)
-            obj.usuario.add(request.user)
-            obj.save()
-            mandar_aviso(request,org)
-            return HttpResponseRedirect('/accounts/profile/')
+# @login_required
+# def permisos_organizacion(request,template='editar_permisos.html',slug=None):
+#     org = get_object_or_404(Organizacion, slug=slug)
+#     if request.method == 'POST':
+#         form = PermisoFormOrganizacion(request.POST,request.FILES,instance=org)
+#         if form.is_valid():
+#             form.save()
+#             obj = form.save(commit=False)
+#             obj.usuario.add(request.user)
+#             obj.save()
+#             mandar_aviso(request,org)
+#             return HttpResponseRedirect('/accounts/profile/')
 
-    else:
-        form = PermisoFormOrganizacion(instance=org)
-    return render(request, template, locals())
+#     else:
+#         form = PermisoFormOrganizacion(instance=org)
+#     return render(request, template, locals())
 
 @login_required
 def editar_user(request,template='editar_user.html'):
