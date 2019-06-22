@@ -22,12 +22,17 @@
                 <div class="col-md-offset-2 col-md-8 detalle-user">
                     <h1 class="">Editar permiso </h1>
                     <h5>Le desea otorgar permiso al usuario: <strong>{{usuario}}</strong> sobre el perfil de la Organización <strong>{{organizacion}}</strong>?</h5>
-                    <p> </p>
+                    {% if alerta %}
+                        <p><div class="alert alert-danger" role="alert">
+                              {{alerta}}
+                            </div></p>
+                    {% endif %}
+
 
                     <div>
                         <input type="hidden" id="permisito" value="SI">
-                        <input onclick="setGetParameter()" type="button" class="btn btn-success" value = "Agregar permiso"/>
-                        <a href="/accounts/profile" class="btn btn-danger">No</a>
+                        <input onclick="setGetParameter()" type="button" class="btn btn-success" value = "Agregar permiso" {% if alerta %} disabled {% endif %}/>
+                        <a href="/accounts/profile" class="btn btn-danger">{% if alerta %} Regresar al perfil {%else%}No {% endif %}</a>
                     </div>
 
 

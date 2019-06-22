@@ -159,12 +159,7 @@ def user_profile(request,template='perfil_user.html'):
         if form1.is_valid():
             org_slug = form1.cleaned_data['cual_org'].id
             orga = get_object_or_404(Organizacion, pk=org_slug)
-            print "organizacion"
-            print orga
             mensaje = form1.cleaned_data['asunto']
-            print org_slug
-            print mensaje
-
             contenido = render_to_string('notify_new_permiso.html', {
                                    'mensajes': mensaje,
                                    'usuario': user.username,
@@ -191,15 +186,18 @@ def permisos_organizacion(request,template='editar_permisos.html',org_id=None, u
     usuario = get_object_or_404(User, pk=user_id)
     organizacion = get_object_or_404(Organizacion, pk=org_id)
 
-    if request.method == "POST":
-        search_word = request.POST['data']
-        if search_word == "SI":
-            org = Organizacion.objects.filter(pk=org_id)
-            org.usuario.add(user_id)
-            org.save()
-            print "algo"
-        else:
-            print "Nimerga nose pudo"
+    prueba = Organizacion.objects.filter(pk=org_id,usuario__id=user_id).count()
+    if prueba >=1:
+        alerta = "Este usuario ya tiene permisos asignados"
+    else:
+        if request.method == "POST":
+            search_word = request.POST['data']
+            if search_word == "SI":
+                org = Organizacion.objects.filter(pk=org_id)
+                for obj in org:
+                   obj.usuario.add(user_id)
+            else:
+                print "No se pudo"
 
     return render(request, template, locals())
 
