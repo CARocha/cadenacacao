@@ -196,6 +196,7 @@ def permisos_organizacion(request,template='editar_permisos.html',org_id=None, u
                 org = Organizacion.objects.filter(pk=org_id)
                 for obj in org:
                    obj.usuario.add(user_id)
+                mandar_aviso(request,org)
             else:
                 print "No se pudo"
 

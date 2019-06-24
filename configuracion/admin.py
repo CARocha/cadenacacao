@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.contrib import admin
 from solo.admin import SingletonModelAdmin
 from .models import FotosPortada,LinkVideos,SiteConfiguration
+from .forms import ConfiguracionForm
 # Register your models here.
 class FotosInlines(admin.TabularInline):
     model = FotosPortada
@@ -16,6 +17,7 @@ class VideosInlines(admin.TabularInline):
     max_num = 5
 
 class SiteConfigAdmin(SingletonModelAdmin):
+    form = ConfiguracionForm
     inlines = [FotosInlines, VideosInlines]
 
 admin.site.register(SiteConfiguration, SiteConfigAdmin)

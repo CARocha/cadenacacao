@@ -132,7 +132,7 @@
                     <a href="/" class="navbar-brand brand scrool" id="logo">
                         <!-- Directorio Regional de Actores de Cadena de Valor de Cacao -->
                         <img src="/static/images/logo.png" alt="">
-                        
+
                     </a>
                 </div>
                 <!-- end navbar-header -->
@@ -175,7 +175,7 @@
                                 </li>
                             </ul>
                         </li>
-                        
+
                         {% if user.is_authenticated %}
                             <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.username}} <span class="caret"></span></a>
@@ -195,7 +195,7 @@
                                 {{search.q}}
                             </form>
                         </li>-->
-                        
+
 
 
                     </ul>
@@ -260,7 +260,7 @@
 
                     <h4>ACERCA DE SICACAO</h4>
 
-                    <p class="margin-bottom-20">El Proyecto Gestión del Conocimiento en la Cadena de Valor del Cacao en Centroamérica, ejecutado por RIKOLTO, tiene como fin, contribuir en el mejoramiento de la competitividad e inclusividad en la cadena de valor del cacao a nivel regional.</p>
+                    <p class="margin-bottom-20">{{site_config.acerca_footer|safe}}</p>
 
                     <a href="http://cadenacacaoca.info/conocenos/" class="btn-sm btn-blue" target="_blank">Conocer más</a>
 
