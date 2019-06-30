@@ -120,19 +120,19 @@
 
 {% endblock content %}
 {% block extra_js %}
-<script src="static/js/jquery.cookie.js"></script>
+<script src="/static/js/jquery.cookie.js"></script>
 <script type="text/javascript">
     $( "#id_login" ).addClass("contact-input white-input").attr("placeholder", "Nombre de usuario*");
     $( "#id_password" ).addClass("contact-input white-input").attr("placeholder", "Contraseña*");
     $('input[type="checkbox"]'). attr("checked", "checked");
     $('#myModal').modal('show');
 
-    // $(document).ready(function() {
-    //     if ($.cookie('modal_shown') == null) {
-    //         $.cookie('modal_shown', 'yes', { expires: 7, path: '/' });
-    //         $('#myModal').modal('show');
-    //     }
-    // });
+    $(document).ready(function() {
+        if ($.cookie('modal_shown') == null) {
+            $.cookie('modal_shown', 'yes', { expires: 7, path: '/' });
+            $('#myModal').modal('show');
+        }
+    });
 </script>
 <script src="/static/js/jquery.cookie.js"></script>
 
