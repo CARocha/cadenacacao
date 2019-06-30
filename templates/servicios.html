@@ -62,8 +62,8 @@
 
                                     <img src="/media/{{servicio.foto}}" class="team-img-sm" alt="pic">
 
-                                    <h3>{{servicio.nombre}}</h3>
-                                    <div class="team-info-white"><p>{{obj.nombre|truncatechars:19}}</p></div>
+                                    <h3>{{servicio.nombre|truncatewords:3}}</h3>
+                                    <div class="team-info-white"><p>{{obj.nombre|truncatewords:3}}</p></div>
                                     {% if servicio.descripcion %}
                                         <p class="text-left">{{servicio.descripcion|truncatechars:100}}</p>
                                     {% else %}

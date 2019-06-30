@@ -61,8 +61,8 @@ def _queryset_filtrado_afiliado(request):
     # if request.session['tipo']:
     #   params['tipo'] = request.session['tipo']
 
-    if request.session['tipo_actividad']:
-        params['tipo_actividad__in'] = request.session['tipo_actividad']
+    #if request.session['tipo_actividad']:
+    #    params['tipo_actividad__in'] = request.session['tipo_actividad']
 
     unvalid_keys = []
     for key in params:
@@ -87,7 +87,7 @@ def consulta(request,template='consulta.html'):
             request.session['servicios'] = form.cleaned_data['servicios']
             # request.session['intercambio'] = form.cleaned_data['intercambio']
             # request.session['tipo'] = form.cleaned_data['tipo']
-            request.session['tipo_actividad'] = form.cleaned_data['tipo_actividad']
+            #request.session['tipo_actividad'] = form.cleaned_data['tipo_actividad']
 
             mensaje = "Todas las variables estan correctamente :)"
             request.session['activo'] = True
@@ -196,7 +196,7 @@ def permisos_organizacion(request,template='editar_permisos.html',org_id=None, u
                 org = Organizacion.objects.filter(pk=org_id)
                 for obj in org:
                    obj.usuario.add(user_id)
-                mandar_aviso(request,org)
+                mandar_aviso(request,org_id)
             else:
                 print "No se pudo"
 
@@ -365,7 +365,7 @@ def obtener_lista(request):
 
 def mandar_aviso(request, org=None):
     user = User.objects.get(username = request.user)
-    orga = get_object_or_404(Organizacion, pk=org.id)
+    orga = get_object_or_404(Organizacion, pk=org)
 
     subject, from_email = 'Permiso otorgado!!', 'vecomesoamerica@gmail.com'
     text_content = 'Usuario: ' + str(user.username) + '<br>'  + \

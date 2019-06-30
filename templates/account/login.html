@@ -14,7 +14,7 @@
                 <div class="row">
                     <div class="col-xs-12 col-md-6 col-md-offset-3">
                         <div class="detalle-user login-user">
-                            
+
                             <div class="row">
                                 <!--begin col-md-12-->
                                 <div class="col-md-12 text-center">
@@ -47,7 +47,7 @@
                                         {# {{ form.as_p }} #}
                                         {{ form.login }}
                                         {{ form.password }}
-                                        
+
                                         <div class="row mb-20">
                                             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                                                 <div class="checkbox checkbox-success ">
@@ -63,11 +63,11 @@
                                                 <button class="primaryAction contact-submit btn pull-right"  type="submit">Iniciar sesion</button>
                                             </div>
                                         </div>
-                                        
+
                                         {% if redirect_field_value %}
                                         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                                         {% endif %}
-                                        
+
                                     </form>
                                 </div>
                                 <div class="col-lg-12">
@@ -78,21 +78,21 @@
                                         <hr>
                                         <div>
                                             <h4 class="text-center"><b>¿No tienes cuenta?</b></h4>
-                                            
-                                            <a class=" contact-submit btn" href="{{ signup_url }}">Regístrate en Cadena Cacao</a>
-                                            
+
+                                            <a class=" contact-submit2 btn" href="{{ signup_url }}">Regístrate en Cadena Cacao</a>
+
 
                                         </div>
                                     </div>
                                 </div>
 
-                            </div>                            
+                            </div>
                         </div>
                     </div>
                 </div>
           </div>
     </section>
-    <a class="btn btn-primary" data-toggle="modal" href='#myModal'>Trigger modal</a>
+    <a data-toggle="modal" href='#myModal'></a>
     <div class="modal fade" id="myModal">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -102,15 +102,13 @@
                 </div>
                 <div class="modal-body">
                     <p>
-                        
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pulvinar, ex quis mattis imperdiet, est eros finibus dui, id condimentum nibh leo finibus ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin at facilisis purus, vel varius sem. Quisque dictum eros eros, quis efficitur arcu pulvinar a. Nunc id erat sit amet lectus dictum congue. Praesent ac ornare ante, non porta lacus. Sed consectetur erat nec odio porttitor, sed ornare mauris dignissim. Etiam suscipit nunc ac sem lobortis, vel molestie nibh aliquet. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ornare est sit amet eleifend dignissim. Etiam pharetra sagittis ultrices. Nullam et eros ut lacus convallis faucibus. Fusce tristique sodales tellus, nec tempor velit ultrices vitae. Etiam aliquam rhoncus dictum. Aenean tincidunt nunc commodo convallis rutrum. Phasellus dapibus imperdiet odio nec volutpat.
-
-    
+                        Estimado usuario, si usted ya es miembro del Directorio puede continuar el ingreso por medio del usuario y password con que se registró inicialmente. Si desea registrarse por medio de redes sociales, estará creando un nuevo usuario, para el cual deberá solicitar autorización de vinculación al perfil de la organización que desea administrar.
                     </p>
                     <p>
-                    
-
-Donec mattis eleifend diam, ut pretium lorem volutpat et. Sed viverra hendrerit pulvinar. Nullam tristique rhoncus sapien, vitae ultrices mi. Etiam molestie, eros faucibus imperdiet laoreet, ante enim condimentum diam, at finibus quam enim a risus. Nullam mollis aliquam purus sed ornare. Curabitur non sem dictum, posuere dolor et, imperdiet diam. Morbi euismod, arcu in euismod consequat, leo mauris mattis orci, quis pretium augue nunc id libero. Vivamus vulputate faucibus enim at sagittis. Etiam suscipit nunc ac sem lobortis, vel molestie nibh aliquet. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ornare est sit amet eleifend dignissim. Etiam pharetra sagittis ultrices. Nullam et eros ut lacus convallis faucibus. Fusce tristique sodales tellus, nec tempor velit ultrices vitae. Etiam aliquam rhoncus dictum. Aenean tincidunt nunc commodo convallis rutrum. Phasellus dapibus imperdiet odio nec volutpat.
+                        Si esta es la primera ocasión en que desea ingresar puede hacerlo, bien por medio de sus redes sociales o través del registro de una cuenta de correo y password.
+                    </p>
+                    <p>
+                        Bienvenido al Directorio del Cacao
                     </p>
                 </div>
                 <div class="modal-footer">
@@ -128,7 +126,7 @@ Donec mattis eleifend diam, ut pretium lorem volutpat et. Sed viverra hendrerit 
     $( "#id_password" ).addClass("contact-input white-input").attr("placeholder", "Contraseña*");
     $('input[type="checkbox"]'). attr("checked", "checked");
     $('#myModal').modal('show');
-    
+
     // $(document).ready(function() {
     //     if ($.cookie('modal_shown') == null) {
     //         $.cookie('modal_shown', 'yes', { expires: 7, path: '/' });

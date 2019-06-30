@@ -69,7 +69,7 @@ TIPO_CHOICES = (
 		('Asociacion','Asociación'),('Cooperativa','Cooperativa'),('Fundacion','Fundación'),
 		('ONG','ONG'),('ONGI','ONGI'),('Plataforma','Plataforma'),('Consultor','Consultor'),
 		('Financiera', 'Financiera'),('Banco', 'Banco'),
-		('Centro Investigacion', 'Centro de Investigación')
+		('Centro Investigacion', 'Centro de investigación')
 	)
 
 AMBITO_CHOICES = (
@@ -102,7 +102,7 @@ class Organizacion(models.Model):
 	ciudad = models.CharField(max_length=255,blank=True,null=True,help_text='Cuidad donde esta ubicada o dirección',verbose_name='Ciudad/Dirección')
 	location = PlainLocationField(based_fields=['ciudad'], zoom=5,blank=True,null=True,verbose_name='Ubicación')
 	tipo_organizacion = models.CharField(max_length=20,choices=TIPO_CHOICES,verbose_name='Tipo de Organización')
-	tipo_actividad = models.ManyToManyField(TipoActividad,verbose_name='Tipo de Actividad')
+	#tipo_actividad = models.ManyToManyField(TipoActividad,verbose_name='Tipo de Actividad')
 	participacion_cadena = models.ManyToManyField(Participacion,verbose_name='Participación en la Cadena de Valor')
 	servicios = models.ManyToManyField(ServiciosCadena,verbose_name='Servicios que brinda la Organización')
 	ambito_accion = models.CharField(max_length=20,choices=AMBITO_CHOICES,verbose_name='Ámbito de Acción')

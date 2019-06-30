@@ -68,29 +68,54 @@
 	background-color: transparent;
 }
 
+.contact-submit2{
+	background: #5cac5a;
+	border-color: #5cac5a;
+	padding: 10px;
+	color: white;
+	border: 2px solid #5cac5a
+}
+.contact-submit2:hover, .contact-submit2:focus{
+	border: 2px solid #5cac5a;
+	color: white;
+	background-color: transparent;
+}
+
 .login-user h5{
 	font-weight: 600;
 }
 .login-user a.contact-submit {
 	color: white;
 }
+
+.login-user a.contact-submit2 {
+	color: white;
+}
+
 .login-user a.contact-submit:hover, .login-user a.contact-submit:focus{
 	color: #c22026;
 }
 hr{
 	margin:10px 0px;
 }
+.login-user a.contact-submit2:hover, .login-user a.contact-submit2:focus{
+	color: #5cac5a;
+}
+hr{
+	margin:10px 0px;
+}
+
 .reset_and_register{
 	margin-top: 20px;
 }
 .checkbox {
-	padding-left: 20px; 
+	padding-left: 20px;
 }
 .checkbox label {
 	display: inline-block;
 	position: relative;
 	font-size: 18px;
-	padding-left: 5px; 
+	padding-left: 5px;
 }
 .checkbox label::before {
 	content: "";
@@ -105,7 +130,7 @@ hr{
 	background-color: #fff;
 	-webkit-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
 	-o-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
-	transition: border 0.15s ease-in-out, color 0.15s ease-in-out; 
+	transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
 }
 .checkbox label::after {
 	display: inline-block;
@@ -118,15 +143,15 @@ hr{
 	padding-left: 3px;
 	padding-top: 1px;
 	font-size: 11px;
-	color: #555555; 
+	color: #555555;
 }
 .checkbox input[type="checkbox"] {
-	opacity: 0; 
+	opacity: 0;
 }
 .checkbox input[type="checkbox"]:focus + label::before {
 	outline: thin dotted;
 	outline: 5px auto -webkit-focus-ring-color;
-	outline-offset: -2px; 
+	outline-offset: -2px;
 }
 .checkbox input[type="checkbox"]:checked + label::after {
 	font-family: 'FontAwesome';
@@ -134,20 +159,25 @@ hr{
 	line-height: 18px;
 }
 .checkbox input[type="checkbox"]:disabled + label {
-	opacity: 0.65; 
+	opacity: 0.65;
 }
 .checkbox input[type="checkbox"]:disabled + label::before {
 	background-color: #eeeeee;
-	cursor: not-allowed; 
+	cursor: not-allowed;
 }
 .checkbox-success input[type="checkbox"]:checked + label::before {
 	background-color: #c22026;
-	border-color: #c22026; 
+	border-color: #c22026;
 }
 .checkbox-success input[type="checkbox"]:checked + label::after {
-	color: #fff; 
+	color: #fff;
 }
 .reset_and_register .contact-submit{
+	display: block;
+	width: 100%;
+}
+
+.reset_and_register .contact-submit2{
 	display: block;
 	width: 100%;
 }
