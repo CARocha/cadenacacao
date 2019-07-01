@@ -162,7 +162,9 @@
             <ul id="myList">
                 {% paginate 10 object_list %}
                 {% if not object_list %}
-                    <li>No se encontraron resultados</li>
+                <li class="alert alert-info">
+                    <strong>No se encontraron resultados!</strong>
+                </li>
                 {% else %}
                 {% for obj in object_list %}
                     {% if obj.logo %}

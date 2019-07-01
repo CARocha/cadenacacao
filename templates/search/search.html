@@ -49,111 +49,120 @@
     <!--end container -->
 
 </div>
- <!--begin section-white -->
-<section class="section-white no-padding">
-    <!--begin container-->
-    <div class="container">
-        <div role="tabpanel">
-            <!-- Nav tabs -->
-            <ul class="list-inline border-bottom-black tab-busca" role="tablist">
-                <li role="presentation" class="active">
-                    <a href="#home" aria-controls="home" role="tab" data-toggle="tab" style="color: #cc0000">Búsqueda</a>
-                </li>
-                <li>|</li>
-                <li role="presentation">
-                    <a href="#tab" aria-controls="tab" role="tab" data-toggle="tab" style="color: #cc0000">Búsqueda avanzada</a>
-                </li>
-            </ul>
 
-        </div>
-        <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="home">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
-                        <form id="contact-form" class="contact form-busca" action="/actores/busqueda/" method="GET">
-                            <div class="input-group">
-                                {{search.q}}
-                                <span class="input-group-btn">
-                                    <input value="Buscar" id="submit-button" class="contact-submit" type="submit">
-                                </span>
+<!--begin section-white-->
+<section class="section-white no-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
+                <div class="panel panel-search">
+                   <div class="panel-heading">
+                       <ul class="list-inline tab-busca" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Búsqueda</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#tab" aria-controls="tab" role="tab" data-toggle="tab">Búsqueda avanzada</a>
+                            </li>
+                        </ul>
+                   </div>
+                    <div class="panel-body">
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane {% if not request.POST %}active{% endif %}" id="home">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1">
+                                        <form id="contact-form" class="contact form-busca" action="/actores/busqueda/" method="GET">
+                                            <div class="input-group">
+                                                {{search.q}}
+                                                <span class="input-group-btn">
+                                                    <input value="Buscar" id="submit-button" class="contact-submit" type="submit">
+                                                </span>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
                             </div>
-                        </form>
+                            <div role="tabpanel" class="tab-pane {% if request.POST %}active{% endif %}" id="tab">
+                                
+                                <form id="contact-form" class="contact" action="/actores/" method="post">{% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="input-group group-costum">
+                                                <span class="input-group-addon" id="sizing-addon2">País sede *</span>
+                                                {{asd.pais_sede}}
+
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="input-group group-costum">
+                                                <span class="input-group-addon" id="sizing-addon2">Ámbito de acción</span>
+                                                {{asd.ambito_accion}}
+
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="input-group group-costum">
+
+                                                <span class="input-group-addon" id="sizing-addon2">Tipo de actor</span>
+                                                {{asd.tipo_organizacion}}
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="input-group group-costum">
+                                                <span class="input-group-addon" id="sizing-addon2">País(es) donde labora</span>
+                                                {{asd.paises_labora}}
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="input-group group-costum">
+                                                <span class="input-group-addon" id="sizing-addon2">Participación en la cadena de valor</span>
+                                                {{asd.participacion_cadena}}
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="input-group group-costum">
+                                                <span class="input-group-addon" id="sizing-addon2">Servicios que brindan</span>
+                                                {{asd.servicios}}
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <input value="Consultar" id="submit-button" class="contact-submit" type="submit">
+                                        </div>
+
+
+                                    </div>
+
+                                </form>
+                                
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-            </div>
-            <div role="tabpanel" class="tab-pane {% if request.POST %}active{% endif %}" id="tab">
-                <!--begin contact form -->
-                <form id="contact-form" class="contact" action="/actores/" method="post">{% csrf_token %}
-                    <!--begin row-->
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="input-group group-costum">
-                                <span class="input-group-addon" id="sizing-addon2">País sede *</span>
-                                {{asd.pais_sede}}
-
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="input-group group-costum">
-                                <span class="input-group-addon" id="sizing-addon2">Ámbito de acción</span>
-                                {{asd.ambito_accion}}
-
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="input-group group-costum">
-
-                                <span class="input-group-addon" id="sizing-addon2">Tipo de actor</span>
-                                {{asd.tipo_organizacion}}
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="input-group group-costum">
-                                <span class="input-group-addon" id="sizing-addon2">País(es) donde labora</span>
-                                {{asd.paises_labora}}
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="input-group group-costum">
-                                <span class="input-group-addon" id="sizing-addon2">Participación en la cadena de valor</span>
-                                {{asd.participacion_cadena}}
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="input-group group-costum">
-                                <span class="input-group-addon" id="sizing-addon2">Servicios que brindan</span>
-                                {{asd.servicios}}
-                            </div>
-                        </div>
-
-                        <div class="col-sm-4">
-                            <input value="Consultar" id="submit-button" class="contact-submit" type="submit">
-                        </div>
-
-
-                    </div>
-                    <!--end row-->
-                </form>
-                <!--end contact form -->
             </div>
         </div>
 
-
-
     </div>
-    <!--end container-->
 
 </section>
 <!--end section-white-->
-<section class="section-grey">
+<section class="section-white small-padding">
     <div class="container">
-        <h4 class="border-bottom-black">Lista de actores</h4>
+        <div class="row">
+        <!--begin col-md-12-->
+            <div class="col-md-10 col-md-offset-1 text-center">
+                <h2 class="section-title">Lista de actores</h2>
+            </div>
+            <!--end col-md-12-->
+        </div>
         <div class="list">
             <ul id="myList">
                 {# {% paginate 10 page.object_list %} #}
                 {% if not page.object_list %}
-                    <li>No se encontraron resultados</li>
+                    <li class="alert alert-info">
+                        <strong>No se encontraron resultados!</strong>
+                    </li>
                 {% else %}
                 {% for result in page.object_list %}
 

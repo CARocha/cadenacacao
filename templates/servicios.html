@@ -1,10 +1,16 @@
 {% extends "base.html" %}
-
+{% load thumbnail %}
 {% load el_pagination_tags static %}
 
 {% block extra_css %}
 {% endblock extra_css %}
 {% block content %}
+<style type="text/css">
+    .portfolio-items .portfolio-item{
+        height: 428px;
+        overflow: hidden;
+    }
+</style>
 	<!--begin breadcrumb-wrapper-->
     <div class="breadcrumb-wrapper">
 
@@ -59,8 +65,10 @@
                             <div class="col-md-4 col-sm-4 col-xs-12 team-item-white">
 
                                 <figure class="portfolio-item">
-
-                                    <img src="/media/{{servicio.foto}}" class="team-img-sm" alt="pic">
+                                    {% thumbnail servicio.foto "308x205" crop='center' format='PNG' as img %}
+                                        <img src="/media/{{servicio.foto}}" class="team-img-sm" alt="pic" height="">
+                                    {% endthumbnail %}
+                                    
 
                                     <h3>{{servicio.nombre|truncatewords:3}}</h3>
                                     <div class="team-info-white"><p>{{obj.nombre|truncatewords:3}}</p></div>
