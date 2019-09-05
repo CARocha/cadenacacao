@@ -103,8 +103,8 @@
                         <div class="panel-body">
                             <div class="row">
                                 {% for video in object.linkvideos_set.all %}
-                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                                    {% video video.url '420x250' %}
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 videosdirectorio">
+                                    {% video video.url '420x250'  is_secure=True %}
                                 </div>
                                 {% endfor %}
                             </div>
@@ -391,6 +391,15 @@
           map: map
         });
       }
+
+      /*$('.videosdirectorio').each(function(){
+        //var src = $(this).attr('src');
+        var src = $('iframe',this).attr('src');
+        frase = src.replace("http","https");
+        alert(frase);
+        $('iframe',this).attr('src',frase);
+        }); */
+
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBaguICGAyEp7DdwkG2Z-odTyjLVYMicmg&callback=initMap"></script>
 {% endblock extra_js %}
