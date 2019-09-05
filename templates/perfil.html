@@ -102,11 +102,9 @@
                         </div>
                         <div class="panel-body">
                             <div class="row">
-                                {% for vid in object.linkvideos_set.all %}
+                                {% for video in object.linkvideos_set.all %}
                                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                                    {% video vid.url query="rel=0&wmode=transparent" is_secure=True as my_video %}
-                                        {% video my_video 'small' %}
-                                    {% endvideo %}
+                                    {% video video.url '420x250' %}
                                 </div>
                                 {% endfor %}
                             </div>
