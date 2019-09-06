@@ -22,6 +22,7 @@ class Pais(models.Model):
 	class Meta:
 		verbose_name = 'País'
 		verbose_name_plural = 'Paises'
+		ordering = ('nombre',)
 
 @python_2_unicode_compatible
 class TipoActividad(models.Model):
