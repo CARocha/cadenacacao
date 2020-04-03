@@ -59,17 +59,17 @@
                 <div class="panel panel-search">
                    <div class="panel-heading">
                        <ul class="list-inline tab-busca" role="tablist">
-                            <li role="presentation" class="active">
+                            <li role="presentation" {% if not request.GET %}class="active"{% endif %}>
                                 <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Búsqueda</a>
                             </li>
-                            <li role="presentation">
+                            <li role="presentation" {% if request.GET %}class="active"{% endif %}>
                                 <a href="#tab" aria-controls="tab" role="tab" data-toggle="tab">Búsqueda avanzada</a>
                             </li>
                         </ul>
                    </div>
                     <div class="panel-body">
                         <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane {% if not request.POST %}active{% endif %}" id="home">
+                            <div role="tabpanel" class="tab-pane {% if not request.GET %}active{% endif %}" id="home">
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1">
                                         <form id="contact-form" class="contact form-busca" action="/actores/busqueda/" method="GET">
@@ -84,9 +84,9 @@
                                 </div>
 
                             </div>
-                            <div role="tabpanel" class="tab-pane {% if request.POST %}active{% endif %}" id="tab">
+                            <div role="tabpanel" class="tab-pane {% if request.GET %}active{% endif %}" id="tab">
                                 <!--begin contact form -->
-                                <form id="contact-form" class="contact" action="." method="post">{% csrf_token %}
+                                <form id="contact-form" class="contact" action="." method="get">
                                     <!--begin row-->
                                     <div class="row">
                                         <div class="col-sm-4">
@@ -160,9 +160,7 @@
         </div>
         <div class="list">
             <ul id="myList">
-                {% if not request.method == 'POST' %}
                     {% paginate 10 object_list %}
-                {% endif %}
                 
                 {% if not object_list %}
                 <li class="alert alert-info">
@@ -335,7 +333,17 @@
 
             </ul>
         </div>
-        {% if not request.method == 'POST' %}
+        {% if request.method == 'GET' %}
+        {% get_pages %}
+            <nav class="Page navigation">
+            <ul class="pagination pull-right">
+                {% get_pages %}
+                <li>
+                    {{ pages }}
+                </li>
+            </ul>
+        </nav>
+        {% else %}
         <nav class="Page navigation">
             <ul class="pagination pull-right">
                 <li>
@@ -344,6 +352,7 @@
             </ul>
         </nav>
         {% endif %}
+        
     </div>
 </section>
 <!--end section-white-->

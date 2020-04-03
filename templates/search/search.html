@@ -58,17 +58,17 @@
                 <div class="panel panel-search">
                    <div class="panel-heading">
                        <ul class="list-inline tab-busca" role="tablist">
-                            <li role="presentation" class="active">
+                            <li role="presentation" class="{% if not request.GET %}active{% endif %}">
                                 <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Búsqueda</a>
                             </li>
-                            <li role="presentation">
+                            <li role="presentation" class="{% if request.GET %}active{% endif %}">
                                 <a href="#tab" aria-controls="tab" role="tab" data-toggle="tab">Búsqueda avanzada</a>
                             </li>
                         </ul>
                    </div>
                     <div class="panel-body">
                         <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane {% if not request.POST %}active{% endif %}" id="home">
+                            <div role="tabpanel" class="tab-pane {% if not request.GET %}active{% endif %}" id="home">
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1">
                                         <form id="contact-form" class="contact form-busca" action="/actores/busqueda/" method="GET">
@@ -85,7 +85,7 @@
                             </div>
                             <div role="tabpanel" class="tab-pane {% if request.POST %}active{% endif %}" id="tab">
                                 
-                                <form id="contact-form" class="contact" action="/actores/" method="post">{% csrf_token %}
+                                <form id="contact-form" class="contact" action="/actores/" method="get">
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <div class="input-group group-costum">

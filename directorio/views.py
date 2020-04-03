@@ -75,26 +75,25 @@ def _queryset_filtrado_afiliado(request):
     return Organizacion.objects.filter(**params).order_by('nombre')
 
 def consulta(request,template='consulta.html'):
-    if request.method == 'POST':
-        mensaje = None
-        form = OrganizacionForm(request.POST)
-        if form.is_valid():
-            request.session['pais_sede'] = form.cleaned_data['pais_sede']
-            request.session['ambito_accion'] = form.cleaned_data['ambito_accion']
-            request.session['tipo_organizacion'] = form.cleaned_data['tipo_organizacion']
-            request.session['paises_labora'] = form.cleaned_data['paises_labora']
-            request.session['participacion_cadena'] = form.cleaned_data['participacion_cadena']
-            request.session['servicios'] = form.cleaned_data['servicios']
+    print(request.GET.get('pais_sede'))
+    if request.method == 'GET':
+        form = OrganizacionForm(request.GET)
+        request.session['pais_sede'] = request.GET.get('pais_sede')
+        request.session['ambito_accion'] = request.GET.get('ambito_accion')
+        request.session['tipo_organizacion'] = request.GET.get('tipo_organizacion')
+        request.session['paises_labora'] = request.GET.get('paises_labora')
+        request.session['participacion_cadena'] = request.GET.get('participacion_cadena')
+        request.session['servicios'] = request.GET.get('servicios')
             # request.session['intercambio'] = form.cleaned_data['intercambio']
             # request.session['tipo'] = form.cleaned_data['tipo']
             #request.session['tipo_actividad'] = form.cleaned_data['tipo_actividad']
 
-            mensaje = "Todas las variables estan correctamente :)"
-            request.session['activo'] = True
-            centinela = 1
+            # mensaje = "Todas las variables estan correctamente :)"
+            # request.session['activo'] = True
+            # centinela = 1
 
-        else:
-            centinela = 0
+        # else:
+        #     centinela = 0
 
     else:
         form = OrganizacionForm()
