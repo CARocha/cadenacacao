@@ -160,7 +160,10 @@
         </div>
         <div class="list">
             <ul id="myList">
-                {% paginate 10 object_list %}
+                {% if not request.method == 'POST' %}
+                    {% paginate 10 object_list %}
+                {% endif %}
+                
                 {% if not object_list %}
                 <li class="alert alert-info">
                     <strong>No se encontraron resultados!</strong>
@@ -332,6 +335,7 @@
 
             </ul>
         </div>
+        {% if not request.method == 'POST' %}
         <nav class="Page navigation">
             <ul class="pagination pull-right">
                 <li>
@@ -339,6 +343,7 @@
                 </li>
             </ul>
         </nav>
+        {% endif %}
     </div>
 </section>
 <!--end section-white-->
