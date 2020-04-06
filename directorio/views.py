@@ -72,7 +72,8 @@ def _queryset_filtrado_afiliado(request):
     for key in unvalid_keys:
         del params[key]
 
-    return Organizacion.objects.filter(**params).order_by('nombre')
+    return Organizacion.objects.filter(**params).exclude(Q(contacto_1__isnull = True),Q(correo_1__isnull = True), Q(telefono_1__isnull = True) |
+                                                            Q(contacto_2__isnull = True),Q(correo_2__isnull = True), Q(telefono_2__isnull = True)).order_by('nombre')
 
 def consulta(request,template='consulta.html'):
     print(request.GET.get('pais_sede'))
@@ -112,7 +113,8 @@ def consulta(request,template='consulta.html'):
             pass
 
     if 'pais_sede' not in request.session:
-        object_list = Organizacion.objects.all().order_by('-ratings__average','nombre')
+        object_list = Organizacion.objectsexclude(Q(contacto_1__isnull = True),Q(correo_1__isnull = True), Q(telefono_1__isnull = True) |
+                                                            Q(contacto_2__isnull = True),Q(correo_2__isnull = True), Q(telefono_2__isnull = True)).order_by('-ratings__average','nombre')
     else:
         filtro = _queryset_filtrado_afiliado(request)
         object_list = filtro.order_by('-ratings__average','nombre')

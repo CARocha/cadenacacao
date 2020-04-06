@@ -1,5 +1,6 @@
 from haystack import indexes
 from directorio.models import Organizacion
+from django.db.models import Q
 
 
 class OrganizacionIndex(indexes.SearchIndex, indexes.Indexable):
@@ -16,4 +17,5 @@ class OrganizacionIndex(indexes.SearchIndex, indexes.Indexable):
 
     def index_queryset(self, using=None):
         """Used when the entire index for model is updated."""
-        return self.get_model().objects.all().order_by('-ratings__average','nombre')
+        return self.get_model().objects.exclude(Q(contacto_1__isnull = True),Q(correo_1__isnull = True), Q(telefono_1__isnull = True) |
+                                                            Q(contacto_2__isnull = True),Q(correo_2__isnull = True), Q(telefono_2__isnull = True)).order_by('-ratings__average','nombre')
