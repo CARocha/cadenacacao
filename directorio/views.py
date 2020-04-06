@@ -113,7 +113,7 @@ def consulta(request,template='consulta.html'):
             pass
 
     if 'pais_sede' not in request.session:
-        object_list = Organizacion.objectsexclude(Q(contacto_1__isnull = True),Q(correo_1__isnull = True), Q(telefono_1__isnull = True) |
+        object_list = Organizacion.objects.exclude(Q(contacto_1__isnull = True),Q(correo_1__isnull = True), Q(telefono_1__isnull = True) |
                                                             Q(contacto_2__isnull = True),Q(correo_2__isnull = True), Q(telefono_2__isnull = True)).order_by('-ratings__average','nombre')
     else:
         filtro = _queryset_filtrado_afiliado(request)
