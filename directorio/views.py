@@ -327,18 +327,10 @@ def editar_org(request,template='editar_org.html',slug=None):
             form.save()
             org = form.save(commit=False)
             org.save()
-            for form1 in formset1:
-                obj = form1.save(commit=False)
-                obj.organizacion = org
-                obj.save()
-            for form2 in formset2:
-                obj = form2.save(commit=False)
-                obj.organizacion = org
-                obj.save()
-            for form3 in formset3:
-                obj = form3.save(commit=False)
-                obj.organizacion = org
-                obj.save()
+
+            formset1.save(commit=False)
+            formset2.save(commit=False)
+            formset3.save(commit=False)
             return HttpResponseRedirect('/accounts/profile/')
 
     else:
