@@ -328,9 +328,9 @@ def editar_org(request,template='editar_org.html',slug=None):
             org = form.save(commit=False)
             org.save()
 
-            formset1.save(commit=False)
-            formset2.save(commit=False)
-            formset3.save(commit=False)
+            formset1.save()
+            formset2.save()
+            formset3.save()
             return HttpResponseRedirect('/accounts/profile/')
 
     else:
