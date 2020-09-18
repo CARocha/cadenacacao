@@ -27,6 +27,9 @@ p a {
 .mb-10 {
   margin-bottom: 10px;
 }
+.mb-20 {
+  margin-bottom: 20px;
+}
 .display-inline {
   display: inline-block;
 }
@@ -487,6 +490,12 @@ select#input {
   background-color: #f47521;
   padding: 10px;
 }
+.panel-perfil .panel-heading h3 {
+  font-weight: bold;
+  font-family: 'Lato', sans-serif;
+  color: #fff;
+  font-size: 17px;
+}
 .panel-perfil .panel-heading ul {
   margin-bottom: 0px;
 }
@@ -799,4 +808,16 @@ Responsive
   .panel-search {
     margin-top: 30px;
   }
+}
+/***Correo***/
+.btn-correo {
+  position: absolute;
+  right: 25px;
+  top: 162px;
+  font-size: 16px;
+  font-weight: bold;
+}
+.btn-correo a,
+.btn-correo i {
+  color: #89181c;
 }
