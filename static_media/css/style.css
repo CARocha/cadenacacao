@@ -735,7 +735,7 @@ ol.breadcrumb {
   margin: 10px;
 }
 ol.breadcrumb .active {
-  color: #89181c;
+  color: #3c8241;
 }
 ol.breadcrumb li a:hover {
   color: #c22026;
@@ -812,7 +812,7 @@ Responsive
 /***Correo***/
 .btn-correo {
   position: absolute;
-  right: 25px;
+  right: 110px;
   top: 162px;
   font-size: 16px;
   font-weight: bold;
