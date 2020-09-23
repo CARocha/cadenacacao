@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% load el_pagination_tags static %}
+{% block content %}
+</style>
+	<section>
+		<ol class="breadcrumb">
+			<li class="active">Crear Correo</li>
+		</ol>
+    </section>
+    
+    <section class="section-grey small-padding">
+
+        <!--begin container-->
+        <div class="container ">
+
+
+        	<div class="row">
+        		<div class="col-xs-12 col-sm-12 col-lg-offset-2 col-md-8">
+        			<div class="panel panel-perfil ">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                Formulario de Correo
+                            </h3>
+		                    
+		                </div>
+                        <div class="panel-body no-padding bg-white p-15">
+                            <div class="row">
+                                <div class="col-lg-6 mb-20">
+                                    <label for="organizacion">País:</label>
+                                    <select class="prueba" multiple>
+                                        <option>Nicaragua</option>
+                                        <option>Honduras</option>
+                                        <option>El salvador</option>
+                                    </select>                                      
+                                </div>
+                                <div class="col-lg-6 mb-20">
+                                    <label for="organizacion">Tipo organización:</label>
+                                    <select class="prueba" multiple>
+                                        <option>Gobierno</option>
+                                        <option>ONG</option>
+                                        <option>Financiera</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-6 mb-20">
+                                    <label for="organizacion">Participación cadena:</label>
+                                    <select class="prueba" multiple>
+                                        <option>Insumos</option>
+                                        <option>Producción</option>
+                                        <option>Transformación primaria</option>
+                                    </select>                                      
+                                </div>
+                                <div class="col-lg-6 mb-20">
+                                    <label for="organizacion">Destinatarios</label>
+                                    <select class="prueba" multiple>
+                                        <option>Nombre de contacto 1</option>
+                                        <option>Nombre de contacto 2</option>
+                                        <option>Nombre de contacto 3</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-12 mb-20">
+                                    <label for="organizacion">Asunto</label>
+                                    <input class="form-control" placeholder="Asunto" type="text">
+                                </div>
+                                <div class="col-lg-12 mb-20">
+                                    <label for="organizacion">Mensaje</label>
+                                    <textarea name="asunto" id="id_asunto" rows="10" cols="40" required="" class="form-control"></textarea>
+                                   
+                                </div>
+                            </div>
+                        </div>
+		        	</div>
+        		</div>
+
+        	</div>
+
+        </div>
+    </section>
+{% endblock content %}
+{% block extra_css %}
+    <link rel="stylesheet" href="/static/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="/static/css/toastr.min.css">
+{% endblock extra_css %}
+{% block extra_js %}
+<script src="/static/js/bootstrap-select.min.js"></script>
+<script src="/static/js/toastr.min.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function() {
+
+        $('.prueba').selectpicker({
+            style: 'btn-default',
+            size: 4,
+            liveSearch: 'true',
+            title: 'Seleccione',
+            selectedTextFormat: 'count',
+            countSelectedText: '{0} seleccionados',
+        });
+
+    });
+
+
+
+
+</script>
+{% endblock extra_js %}
