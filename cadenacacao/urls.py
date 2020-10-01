@@ -22,17 +22,20 @@ from context import *
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib.auth import views as auth_views
 from django.views.generic import TemplateView
+#from mensajes.views import enviar_correo
 
 
 urlpatterns = [
     url(r'^$', index, name='index'),
     url(r'^admin/', admin.site.urls),
     url(r'^pages/', include('django.contrib.flatpages.urls')),
+    url(r'^enviar/', include('mensajes.urls', namespace="mensajes", app_name="mensajes")),
     url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^actores/busqueda/', include('haystack.urls')),
     #url(r'^correo/permiso-org/', enviar_correo_pedir_permiso, name="permiso-admin"),
     url(r'^correo/admin/', enviar_correo_administradores, name="soporte-admin"),
+    #url(r'^enviar/correo/', enviar_correo, name="envio-correo"),
     # url(r'^accounts/register/$',MyRegistrationView.as_view(),name='registration_register'),
 
     # url(r'^accounts/logout/$', auth_views.logout,{'next_page': '/'}),
@@ -59,7 +62,7 @@ urlpatterns = [
     url(r'^servicios/$', Servicios.as_view()),
 
     #template correo
-    url(r'^correo/$', TemplateView.as_view(template_name="correo.html")),
+    #url(r'^correo/$', TemplateView.as_view(template_name="correo.html")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()

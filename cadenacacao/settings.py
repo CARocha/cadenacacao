@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'solo.apps.SoloAppConfig',
     'embed_video',
-    'django_feedparser'
+    'django_feedparser',
+    'mensajes',
 ]
 
 DISQUS_API_KEY = 'ivkMjZNobjdzF9S4xS9vvHLQgCJGim1BTlbi5l0Gl4Cak27oEYNKkJHCTTvzeyIl'

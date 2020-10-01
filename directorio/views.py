@@ -76,7 +76,7 @@ def _queryset_filtrado_afiliado(request):
                                                             Q(contacto_2__isnull = True),Q(correo_2__isnull = True), Q(telefono_2__isnull = True)).order_by('nombre')
 
 def consulta(request,template='consulta.html'):
-    print(request.GET.get('pais_sede'))
+    #print(request.GET.get('pais_sede'))
     if request.method == 'GET':
         form = OrganizacionForm(request.GET)
         request.session['pais_sede'] = request.GET.get('pais_sede')

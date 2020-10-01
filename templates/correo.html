@@ -25,50 +25,59 @@
 		                </div>
                         <div class="panel-body no-padding bg-white p-15">
                             <div class="row">
+                    {% if messages %}
+                        {% for message in messages %}
+                            {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                                <div class="alert alert-success" role="alert">Su mensaje ha sido enviado correctamente!!!
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                            <form action="." method="POST" enctype="multipart/form-data"> {% csrf_token %}
+                            {% if form.errors %}
+                                <div class="alert alert-danger alert-dismissible col-12 mx-1" role="alert">
+                                    <div id="form_errors">
+                                        {% for key, value in form.errors.items %}
+                                            <span class="fieldWrapper">
+                                                {{ key }}:{{ value }}
+                                            </span>
+                                        {% endfor %}
+                                    </div>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                {% endif %}
                                 <div class="col-lg-6 mb-20">
                                     <label for="organizacion">País:</label>
-                                    <select class="prueba" multiple>
-                                        <option>Nicaragua</option>
-                                        <option>Honduras</option>
-                                        <option>El salvador</option>
-                                    </select>                                      
+                                    {{form.pais}}                                    
                                 </div>
                                 <div class="col-lg-6 mb-20">
                                     <label for="organizacion">Tipo organización:</label>
-                                    <select class="prueba" multiple>
-                                        <option>Gobierno</option>
-                                        <option>ONG</option>
-                                        <option>Financiera</option>
-                                    </select>
+                                    {{form.tipo_organizacion}}
                                 </div>
                                 <div class="col-lg-6 mb-20">
                                     <label for="organizacion">Participación cadena:</label>
-                                    <select class="prueba" multiple>
-                                        <option>Insumos</option>
-                                        <option>Producción</option>
-                                        <option>Transformación primaria</option>
-                                    </select>                                      
+                                    {{form.participacion_cadena}}                                      
                                 </div>
                                 <div class="col-lg-6 mb-20">
                                     <label for="organizacion">Destinatarios</label>
-                                    <select class="prueba" multiple>
-                                        <option>Nombre de contacto 1</option>
-                                        <option>Nombre de contacto 2</option>
-                                        <option>Nombre de contacto 3</option>
-                                    </select>
+                                    {{form.organizacion}}
                                 </div>
                                 <div class="col-lg-12 mb-20">
                                     <label for="organizacion">Asunto</label>
-                                    <input class="form-control" placeholder="Asunto" type="text">
+                                    {{form.asunto}}
                                 </div>
                                 <div class="col-lg-12 mb-20">
                                     <label for="organizacion">Mensaje</label>
-                                    <textarea name="asunto" id="id_asunto" rows="10" cols="40" required="" class="form-control"></textarea>
+                                    {{form.contenido}}
                                    
                                 </div>
                                 <div class="col-lg-12">
-                                    <a class="btn btn-success" href="/accounts/profile/crear/">Eviar Correo</a>
+                                    <input type="submit" name="Enviar Mensaje" class="btn btn-success" value="Enviar Mensaje">
                                 </div>
+                             </form>
                             </div>
                         </div>
 		        	</div>
