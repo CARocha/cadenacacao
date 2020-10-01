@@ -27,7 +27,11 @@ def enviar_correo(request, template="correo.html"):
         form = MensajeForm(request.POST or None)
         if form.is_valid():
             print("###es valido####")
-            #form.save()
+            instance = form.save(commit=False)
+            instance.usuario = request.user
+            instance.save()
+            form.save_m2m()
+            
             #luego que guarda envia correo para evidencia
             html_content = render_to_string("email/email.html",{'subject':subject,
                                                             'content':content})
