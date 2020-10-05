@@ -7,6 +7,7 @@ from django.contrib.auth.views import password_reset
 from django.db.models import Q
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.utils.html import strip_tags
 from django.contrib.sites.models import Site
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
@@ -300,6 +301,7 @@ def crear_org(request,template='crear_org.html'):
                 obj = form3.save(commit=False)
                 obj.organizacion = org
                 obj.save()
+            mandar_notificacion(request,org.id,'Se creo un nuevo perfil dentro del directorio cacao')
             return HttpResponseRedirect('/accounts/profile/')
 
     else:
@@ -323,15 +325,18 @@ def editar_org(request,template='editar_org.html',slug=None):
         formset1 = FormSetInit(request.POST,request.FILES,instance=object)
         formset2 = FormSetInit2(request.POST,request.FILES,instance=object)
         formset3 = FormSetInit3(request.POST,request.FILES,instance=object)
-        if form.is_valid() and formset1.is_valid() and formset2.is_valid() and formset3.is_valid():
+        if form.is_valid():
             form.save()
             org = form.save(commit=False)
             org.save()
-
+        if formset1.is_valid():
             formset1.save()
+        if formset2.is_valid():
             formset2.save()
+        if formset3.is_valid():
             formset3.save()
-            return HttpResponseRedirect('/accounts/profile/')
+        mandar_notificacion(request,org.id,'Se modifico el perfil de una organizacion')
+        return HttpResponseRedirect('/accounts/profile/')
 
     else:
         form = OrgForm(instance=object)
@@ -392,7 +397,40 @@ class Servicios(ListView):
         #context['organizaciones'] = Organizacion.objects.filter(productosservicios__nombre__isnull=False)
         return context
 
+def mandar_notificacion(request, org=None, texto=None):
+    user = User.objects.get(username = request.user)
+    orga = get_object_or_404(Organizacion, pk=org)
 
+    filtro = Organizacion.objects.all()
+    lista_destinos = []
+    for obj in filtro:
+        if obj.correo_1 != None and obj.correo_1 != '':
+            lista_destinos.append(obj.correo_1)
+        if obj.correo_2 != None and obj.correo_2 != '':
+            lista_destinos.append(obj.correo_2)
+        for mail in obj.usuario.all():
+            if mail.email != None:
+                lista_destinos.append(mail.email)
+   
+    correos_destinos = [i for i in lista_destinos if ('@' in i)]
+    subject = texto
+    html_content = render_to_string("email/email-noti.html",{'subject':texto,
+                                                            'texto':texto,
+                                                            'org':orga,
+                                                            'user': user})
+    text_content = strip_tags(html_content)
+    email = EmailMultiAlternatives(
+        subject,
+        text_content,
+        'vecomesoamerica@gmail.com',
+        #settings.Email_HOST_USER,
+        correos_destinos,
+        reply_to=[request.user.email]
+        )
+    email.attach_alternative(html_content, "text/html")
+    email.send()
+
+    return 1
 
 
 
