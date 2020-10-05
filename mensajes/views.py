@@ -46,20 +46,16 @@ def enviar_correo(request, template="correo.html"):
             for mail in obj.usuario.all():
                 if mail.email != None:
                     lista_destinos.append(mail.email)
-        #print(filtro)
-        print(len(filtro))
-        print(len(lista_destinos))
+       
         correos_destinos = [i for i in lista_destinos if ('@' in i)]
-        print("######## quitando los sin correos#####")
-        print(len(correos_destinos))
-        print(request.user.email)
+        
         form = MensajeForm(request.POST or None)
         if form.is_valid():
-            print("###es valido####")
-            # instance = form.save(commit=False)
-            # instance.usuario = request.user
-            # instance.save()
-            # form.save_m2m()
+            #print("###es valido####")
+            instance = form.save(commit=False)
+            instance.usuario = request.user
+            instance.save()
+            form.save_m2m()
             
             #luego que guarda envia correo para evidencia
             html_content = render_to_string("email/email.html",{'subject':subject,
@@ -67,14 +63,10 @@ def enviar_correo(request, template="correo.html"):
                                                             'user': request.user})
             text_content = strip_tags(html_content)
             email = EmailMultiAlternatives(
-                #subject,
                 subject,
-                #content,
                 text_content,
-                #from email,
                 'simas@simas.org.ni',
                 #settings.Email_HOST_USER,
-                #los recipientes
                 correos_destinos,
                 reply_to=[request.user.email]
                 )
