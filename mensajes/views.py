@@ -11,11 +11,12 @@ from django.utils.html import strip_tags
 from .models import Mensaje
 from .forms import MensajeForm
 from directorio.models import Organizacion
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 
-
+@login_required
 def enviar_correo(request, template="correo.html"):
     if request.method == "POST":
 
@@ -34,20 +35,24 @@ def enviar_correo(request, template="correo.html"):
             data['participacion_cadena__in'] = to_participacion_cadena
         if to_organizacion != []:
             data['id__in'] = to_organizacion
-        print(data) 
+        #print(data) 
         filtro = Organizacion.objects.filter(**data)
-        correos_destinos = []
+        lista_destinos = []
         for obj in filtro:
-            if obj.correo_1 != None:
-                correos_destinos.append(obj.correo_1)
-            if obj.correo_2 != None:
-                correos_destinos.append(obj.correo_2)
+            if obj.correo_1 != None and obj.correo_1 != '':
+                lista_destinos.append(obj.correo_1)
+            if obj.correo_2 != None and obj.correo_2 != '':
+                lista_destinos.append(obj.correo_2)
             for mail in obj.usuario.all():
                 if mail.email != None:
-                    correos_destinos.append(mail.email)
+                    lista_destinos.append(mail.email)
         #print(filtro)
         print(len(filtro))
-        print(correos_destinos)
+        print(len(lista_destinos))
+        correos_destinos = [i for i in lista_destinos if ('@' in i)]
+        print("######## quitando los sin correos#####")
+        print(len(correos_destinos))
+        print(request.user.email)
         form = MensajeForm(request.POST or None)
         if form.is_valid():
             print("###es valido####")
@@ -58,7 +63,8 @@ def enviar_correo(request, template="correo.html"):
             
             #luego que guarda envia correo para evidencia
             html_content = render_to_string("email/email.html",{'subject':subject,
-                                                            'content':content})
+                                                            'content':content,
+                                                            'user': request.user})
             text_content = strip_tags(html_content)
             email = EmailMultiAlternatives(
                 #subject,
@@ -69,7 +75,8 @@ def enviar_correo(request, template="correo.html"):
                 'simas@simas.org.ni',
                 #settings.Email_HOST_USER,
                 #los recipientes
-                correos_destinos
+                correos_destinos,
+                reply_to=[request.user.email]
                 )
             email.attach_alternative(html_content, "text/html")
             email.send()
