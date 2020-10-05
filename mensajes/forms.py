@@ -18,7 +18,7 @@ class MensajeForm(forms.ModelForm):
     destinatario = forms.ModelMultipleChoiceField(queryset=Organizacion.objects.all(),
                                     required=False, widget=forms.SelectMultiple(attrs={"class":"prueba form-control"}))
     asunto = forms.CharField( widget=forms.TextInput(attrs={"class":"prueba form-control"}))
-    contenido = forms.CharField(widget=forms.Textarea(attrs={"rows":10, "cols":40,"class":"prueba form-control"}))
+    contenido = forms.CharField(widget=CKEditorUploadingWidget(attrs={"rows":10, "cols":40,"class":"prueba form-control"}))
     class Meta:
         model=Mensaje
         fields = ('pais', 'tipo_organizacion', 
