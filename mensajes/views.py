@@ -36,7 +36,7 @@ def enviar_correo(request, template="correo.html"):
         if to_organizacion != []:
             data['id__in'] = to_organizacion
         #print(data) 
-        filtro = Organizacion.objects.filter(**data)
+        filtro = Organizacion.objects.filter(**data).distinct()
         lista_destinos = []
         for obj in filtro:
             if obj.correo_1 != None and obj.correo_1 != '':
@@ -48,7 +48,6 @@ def enviar_correo(request, template="correo.html"):
                     lista_destinos.append(mail.email)
        
         correos_destinos = [i for i in lista_destinos if ('@' in i)]
-        
         form = MensajeForm(request.POST or None)
         if form.is_valid():
             #print("###es valido####")
@@ -67,7 +66,7 @@ def enviar_correo(request, template="correo.html"):
                 text_content,
                 'simas@simas.org.ni',
                 #settings.Email_HOST_USER,
-                correos_destinos,
+                list(set(correos_destinos)),
                 reply_to=[request.user.email]
                 )
             email.attach_alternative(html_content, "text/html")
