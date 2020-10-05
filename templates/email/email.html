@@ -131,7 +131,10 @@
                 <table>
                   <tr>
                     <th>
-                      <h1>Hola, el usuario {{user.get_full_name}}</h1>
+                      <h1>Hola, el usuario {{user.get_full_name}}
+                        de la Organizacion {% for obj in user.organizacion_set.all %}
+                        <strong>{{obj.nombre}}</strong>
+                      {% endfor %}</h1>
                       <p class="lead">Le mando el siguiente mensaje con el asunto: {{subject}}</p>
                       <p>{{content}}</p>
                     </th>
