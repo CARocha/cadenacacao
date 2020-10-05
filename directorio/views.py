@@ -424,7 +424,7 @@ def mandar_notificacion(request, org=None, texto=None):
         text_content,
         'vecomesoamerica@gmail.com',
         #settings.Email_HOST_USER,
-        correos_destinos,
+        list(set(correos_destinos)),
         reply_to=[request.user.email]
         )
     email.attach_alternative(html_content, "text/html")

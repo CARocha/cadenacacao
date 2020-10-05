@@ -64,7 +64,7 @@ def enviar_correo(request, template="correo.html"):
             email = EmailMultiAlternatives(
                 subject,
                 text_content,
-                'simas@simas.org.ni',
+                'vecomesoamerica@gmail.com',
                 #settings.Email_HOST_USER,
                 list(set(correos_destinos)),
                 reply_to=[request.user.email]
