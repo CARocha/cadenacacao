@@ -140,7 +140,7 @@
                         <strong>{{obj.nombre}}</strong>
                       {% endfor %}</p>
                       <p class="lead">Le mando el siguiente mensaje con el asunto: {{subject}}</p>
-                      <p>{{content}}</p>
+                      <p>{{content|safe}}</p>
                     </th>
                     <th class="expander"></th>
                   </tr>
